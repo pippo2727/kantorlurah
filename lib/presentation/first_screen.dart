@@ -70,8 +70,9 @@ class FirstScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Button(
-                    onTap: () {
+                  QButton(
+                    label: "Submit",
+                    onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(

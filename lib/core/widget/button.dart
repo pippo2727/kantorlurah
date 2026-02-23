@@ -27,17 +27,11 @@ class QButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final button = _buildButton(context);
-
-    if (isExpanded) {
-      return SizedBox(
-        width: double.infinity,
-        height: height ?? 48,
-        child: button,
-      );
-    }
-
-    return button;
+    return SizedBox(
+      width: double.infinity,
+      height: height ?? 48,
+      child: _buildButton(context),
+    );
   }
 
   Widget _buildButton(BuildContext context) {

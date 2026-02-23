@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 // Global color constants (use these instead of hardcoded colors)
-const Color primaryColor = Color(0xff4BA138);
+const Color primaryColor = Color(0xff20B2AA);
 const Color secondaryColor = Color(0xff2D5524);
 const Color successColor = Colors.green;
-const Color infoColor = Colors.blue;
+const Color infoColor = Colors.blue; 
 const Color warningColor = Colors.orange;
 const Color dangerColor = Colors.red;
 const Color disabledColor = Colors.grey;

@@ -127,8 +127,9 @@ class pengaduan extends StatelessWidget {
                       ),
                     ),
                     //
-                    Button(
-                      onTap: () {
+                    QButton(
+                      label: "Lanjutkan",
+                      onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(

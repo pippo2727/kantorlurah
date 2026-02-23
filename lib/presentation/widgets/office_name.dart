@@ -19,15 +19,16 @@ class OfficeName extends StatelessWidget {
           width: 42,
           height: 50,
         ),
-        const SizedBox(
-          width: 0,
-        ),
-        const Text(
-          'KANTOR LURAH MAHARATU',
-          style: TextStyle(
-            fontSize: 24,
-            color: Colors.blueGrey,
-            fontWeight: FontWeight.bold,
+        const SizedBox(width: 8),
+        const Expanded(
+          child: Text(
+            'KANTOR LURAH MAHARATU',
+            style: TextStyle(
+              fontSize: 24,
+              color: Colors.blueGrey,
+              fontWeight: FontWeight.bold,
+            ),
+            overflow: TextOverflow.ellipsis,
           ),
         ),
       ],
