@@ -58,10 +58,9 @@ export 'package:kantor_lurah/presentation/menu_screen/persyaratan/persyaratan_sc
 export 'package:kantor_lurah/presentation/menu_screen/profil/profil.dart';
 export 'package:kantor_lurah/presentation/menu_screen/waktu/waktu.dart';
 export 'package:kantor_lurah/presentation/splash_screen.dart';
-export 'package:kantor_lurah/presentation/widgets/button.dart';
-export 'package:kantor_lurah/presentation/widgets/footer.dart';
-export 'package:kantor_lurah/presentation/widgets/greeting.dart';
-export 'package:kantor_lurah/presentation/widgets/menu.dart';
-export 'package:kantor_lurah/presentation/widgets/office_name.dart';
-export 'package:kantor_lurah/presentation/widgets/title_app.dart';
-export 'package:kantor_lurah/presentation/widgets/welcome.dart';
+export 'package:kantor_lurah/presentation/partials/footer.dart';
+export 'package:kantor_lurah/presentation/partials/greeting.dart';
+export 'package:kantor_lurah/presentation/partials/menu.dart';
+export 'package:kantor_lurah/presentation/partials/office_name.dart';
+export 'package:kantor_lurah/presentation/partials/title_app.dart';
+export 'package:kantor_lurah/presentation/partials/welcome.dart';
