@@ -38,6 +38,8 @@ export 'package:kantor_lurah/l10n/app_localizations.dart';
 export 'package:kantor_lurah/l10n/app_localizations_en.dart';
 export 'package:kantor_lurah/l10n/app_localizations_id.dart';
 export 'package:kantor_lurah/presentation/first_view.dart';
+export 'package:kantor_lurah/presentation/auth/login_view.dart';
+export 'package:kantor_lurah/presentation/auth/register_view.dart';
 export 'package:kantor_lurah/presentation/main_view.dart';
 export 'package:kantor_lurah/presentation/menu/keterangan/keterangan_view.dart';
 export 'package:kantor_lurah/presentation/menu/pengaduan/input_pengaduan_view.dart';
