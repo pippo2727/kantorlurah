@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kantor_lurah/core.dart';
 
 class Greeting extends StatelessWidget {
   const Greeting({

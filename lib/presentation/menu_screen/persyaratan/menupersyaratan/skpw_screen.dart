@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kantor_lurah/widgets/office_name.dart';
-import 'data/data.dart';
+import 'package:kantor_lurah/core.dart';
 
 class SkpwScreen extends StatelessWidget {
   const SkpwScreen({Key? key}) : super(key: key);

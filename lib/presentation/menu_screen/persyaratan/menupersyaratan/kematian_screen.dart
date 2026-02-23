@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kantor_lurah/widgets/office_name.dart';
-
-import 'data/data.dart';
+import 'package:kantor_lurah/core.dart';
 
 class KematianScreen extends StatelessWidget {
   const KematianScreen({Key? key}) : super(key: key);

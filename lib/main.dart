@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:kantor_lurah/core.dart';
 import 'package:kantor_lurah/l10n/app_localizations.dart';
 import 'package:kantor_lurah/core/theme/theme.dart';
 import 'package:kantor_lurah/core/util/contextless/navigation.dart';
@@ -59,6 +60,7 @@ class _MyAppState extends State<MyApp> {
       navigatorKey: Nav.navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
+      home: SplashScreen(),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:kantor_lurah/widgets/office_name.dart';
-import 'package:kantor_lurah/widgets/title_app.dart';
-
-import 'data/data.dart';
+import 'package:kantor_lurah/core.dart';
 
 class AhliWarisScreen extends StatelessWidget {
   const AhliWarisScreen({Key? key}) : super(key: key);

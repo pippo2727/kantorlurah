@@ -1,14 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kantor_lurah/pages/menu_screen/pengaduan/pengaduan.dart';
-import 'package:kantor_lurah/widgets/footer.dart';
-import 'package:kantor_lurah/widgets/menu.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:kantor_lurah/widgets/office_name.dart';
-import 'package:kantor_lurah/widgets/title_app.dart';
-import 'package:kantor_lurah/widgets/welcome.dart';
-import 'package:kantor_lurah/pages/menu_screen/persyaratan/menupersyaratan/sktm_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:kantor_lurah/core.dart';
 
 class inputpengaduan extends StatelessWidget {
   String name;
