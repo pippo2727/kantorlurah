@@ -1,4 +1,4 @@
-import 'package:kasir_baik/core/util/contextless/navigation.dart';
+import 'package:kantor_lurah/core/util/contextless/navigation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 

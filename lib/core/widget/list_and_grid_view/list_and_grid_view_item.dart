@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:kasir_baik/core/theme/theme.dart';
+import 'package:kantor_lurah/core/theme/theme.dart';
 
 /// Data model for a badge overlay on grid image
 class ItemBadge {

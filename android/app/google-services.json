@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:961924121293:android:81a169c8154660e9d11f84",
         "android_client_info": {
-          "package_name": "com.denyocr.kasir_baik"
+          "package_name": "com.denyocr.kantor_lurah"
         }
       },
       "oauth_client": [
@@ -45,7 +45,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:961924121293:android:caa5a9307caca935d11f84",
         "android_client_info": {
-          "package_name": "com.snapcode.kasir_baik"
+          "package_name": "com.snapcode.kantor_lurah"
         }
       },
       "oauth_client": [

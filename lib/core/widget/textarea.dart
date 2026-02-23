@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kasir_baik/core/theme/theme.dart';
+import 'package:kantor_lurah/core/theme/theme.dart';
 
 /// A multiline text area widget that manages its own controller internally.
 /// Use [initialValue] to set the initial value and [onChanged] to get value updates.

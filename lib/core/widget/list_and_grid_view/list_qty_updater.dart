@@ -1,5 +1,5 @@
-import 'package:kasir_baik/core/theme/theme.dart';
-import 'package:kasir_baik/core/widget/qty_picker.dart';
+import 'package:kantor_lurah/core/theme/theme.dart';
+import 'package:kantor_lurah/core/widget/qty_picker.dart';
 import 'package:flutter/material.dart';
 
 /// A reusable trailing widget for list views that shows:

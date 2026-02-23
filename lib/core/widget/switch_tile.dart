@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_baik/core/theme/theme.dart';
+import 'package:kantor_lurah/core/theme/theme.dart';
 
 /// Reusable switch tile widget with consistent styling.
 ///

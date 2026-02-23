@@ -1,4 +1,4 @@
-package com.snapcode.kasir_baik
+package com.snapcode.kantor_lurah
 
 import io.flutter.embedding.android.FlutterActivity
 

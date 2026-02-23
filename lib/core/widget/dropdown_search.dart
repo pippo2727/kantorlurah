@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_baik/core/theme/theme.dart';
+import 'package:kantor_lurah/core/theme/theme.dart';
 
 /// A dropdown-like widget that opens a full screen search picker
 class QDropdownSearch<T> extends StatefulWidget {

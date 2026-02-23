@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_baik/core/util/contextless/navigation.dart';
-import 'package:kasir_baik/core/widget/widget.dart';
+import 'package:kantor_lurah/core/util/contextless/navigation.dart';
+import 'package:kantor_lurah/core/widget/widget.dart';
 
 /// Contextless utility for showing bottom sheets.
 /// Use this instead of calling showModalBottomSheet directly.

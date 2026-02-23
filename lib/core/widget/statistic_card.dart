@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_baik/core/theme/theme.dart';
+import 'package:kantor_lurah/core/theme/theme.dart';
 
 /// A reusable statistic card widget for displaying summary statistics.
 ///

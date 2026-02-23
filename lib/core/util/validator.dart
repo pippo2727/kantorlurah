@@ -1,4 +1,4 @@
-import 'package:kasir_baik/l10n/app_localizations.dart';
+import 'package:kantor_lurah/l10n/app_localizations.dart';
 
 /// Centralized validator class for form validation
 /// Usage: validator: Validator.required(context)

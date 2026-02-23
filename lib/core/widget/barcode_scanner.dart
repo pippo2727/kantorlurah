@@ -1,8 +1,8 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:kasir_baik/core/theme/theme.dart';
-import 'package:kasir_baik/core/util/validator.dart';
-import 'package:kasir_baik/core/widget/textfield.dart';
+import 'package:kantor_lurah/core/theme/theme.dart';
+import 'package:kantor_lurah/core/util/validator.dart';
+import 'package:kantor_lurah/core/widget/textfield.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 /// Result from barcode scan

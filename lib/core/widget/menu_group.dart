@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_baik/core/util/contextless/navigation.dart';
+import 'package:kantor_lurah/core/util/contextless/navigation.dart';
 
 /// Model for menu group containing multiple menu items
 class MenuGroup {

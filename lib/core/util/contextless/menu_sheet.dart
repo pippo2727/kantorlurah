@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_baik/core/util/contextless/navigation.dart';
+import 'package:kantor_lurah/core/util/contextless/navigation.dart';
 
 /// A menu item for the bottom sheet menu.
 class MenuSheetItem {

@@ -1,6 +1,6 @@
-import 'package:kasir_baik/core/util/contextless/navigation.dart';
-import 'package:kasir_baik/core/widget/widget.dart';
-import 'package:kasir_baik/l10n/app_localizations.dart';
+import 'package:kantor_lurah/core/util/contextless/navigation.dart';
+import 'package:kantor_lurah/core/widget/widget.dart';
+import 'package:kantor_lurah/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class AppDialog {
