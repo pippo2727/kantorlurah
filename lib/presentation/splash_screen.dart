@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_kantor_lurah/pages/first_screen.dart';
-
-import 'package:project_kantor_lurah/pages/main_page.dart';
+import 'package:kantor_lurah/presentation/first_screen.dart';
 
 Timer setTimeout(callback, [int duration = 1000]) {
   return Timer(Duration(milliseconds: duration), callback);

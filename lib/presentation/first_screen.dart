@@ -1,11 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:project_kantor_lurah/pages/main_page.dart';
-import 'package:project_kantor_lurah/widgets/button.dart';
-import 'package:project_kantor_lurah/widgets/greeting.dart';
-import 'package:project_kantor_lurah/widgets/office_name.dart';
-import 'package:project_kantor_lurah/widgets/title_app.dart';
+import 'package:kantor_lurah/core.dart';
 
 class FirstScreen extends StatelessWidget {
   TextEditingController nameController = TextEditingController();

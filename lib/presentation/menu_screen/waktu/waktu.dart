@@ -1,24 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_kantor_lurah/pages/menu_screen/persyaratan/menupersyaratan/ahli_waris_screen.dart';
-import 'package:project_kantor_lurah/pages/menu_screen/persyaratan/menupersyaratan/domisili_screen.dart';
-import 'package:project_kantor_lurah/pages/menu_screen/persyaratan/menupersyaratan/domisili_usaha_screen.dart';
-import 'package:project_kantor_lurah/pages/menu_screen/persyaratan/menupersyaratan/kematian_screen.dart';
-import 'package:project_kantor_lurah/pages/menu_screen/persyaratan/menupersyaratan/keterangan_screen.dart';
-import 'package:project_kantor_lurah/pages/menu_screen/persyaratan/menupersyaratan/nikah_screen.dart';
-import 'package:project_kantor_lurah/pages/menu_screen/persyaratan/menupersyaratan/penghasilan_screen.dart';
-import 'package:project_kantor_lurah/pages/menu_screen/persyaratan/menupersyaratan/rekam_usaha_screen.dart';
-import 'package:project_kantor_lurah/pages/menu_screen/persyaratan/menupersyaratan/skbmr_screen.dart';
-import 'package:project_kantor_lurah/pages/menu_screen/persyaratan/menupersyaratan/skpw_screen.dart';
-import 'package:project_kantor_lurah/pages/menu_screen/pengaduan/pengaduan.dart';
-import 'package:project_kantor_lurah/widgets/footer.dart';
-import 'package:project_kantor_lurah/widgets/menu.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:project_kantor_lurah/widgets/office_name.dart';
-import 'package:project_kantor_lurah/widgets/title_app.dart';
-import 'package:project_kantor_lurah/widgets/welcome.dart';
-import 'package:project_kantor_lurah/pages/menu_screen/persyaratan/menupersyaratan/sktm_screen.dart';
-
+import 'package:kantor_lurah/core.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class keterangan extends StatelessWidget {

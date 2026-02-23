@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:project_kantor_lurah/widgets/office_name.dart';
+import 'package:kantor_lurah/widgets/office_name.dart';
 
 import 'data/data.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:project_kantor_lurah/widgets/office_name.dart';
-import 'package:project_kantor_lurah/widgets/title_app.dart';
+import 'package:kantor_lurah/widgets/office_name.dart';
+import 'package:kantor_lurah/widgets/title_app.dart';
 
 import 'data/data.dart';
 

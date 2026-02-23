@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_kantor_lurah/widgets/office_name.dart';
+import 'package:kantor_lurah/widgets/office_name.dart';
 import 'data/data.dart';
 
 class RekamUsahaScreen extends StatelessWidget {

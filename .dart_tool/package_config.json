@@ -104,6 +104,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "carousel_slider",
+      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/carousel_slider-5.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "characters",
       "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/characters-1.4.1",
       "packageUri": "lib/",
@@ -364,6 +370,12 @@
     {
       "name": "flutter_web_plugins",
       "rootUri": "file:///Users/macbook/MAIN_PROJECTS/flutter_3_35_7/packages/flutter_web_plugins",
+      "packageUri": "lib/",
+      "languageVersion": "3.9"
+    },
+    {
+      "name": "font_awesome_flutter",
+      "rootUri": "file:///Users/macbook/.pub-cache/hosted/pub.dev/font_awesome_flutter-10.12.0",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
