@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
 
-class inputpengaduan extends StatelessWidget {
+class InputPengaduanView extends StatelessWidget {
   String name;
   // List of carousel image
   final List<String> imgList = [
@@ -10,7 +10,7 @@ class inputpengaduan extends StatelessWidget {
     'assets/image/image3.jpg',
   ];
 
-  inputpengaduan({super.key, required this.name});
+  InputPengaduanView({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {

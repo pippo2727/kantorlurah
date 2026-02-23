@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
 
-class AhliWarisScreen extends StatelessWidget {
-  const AhliWarisScreen({super.key});
+class RekamUsahaView extends StatelessWidget {
+  const RekamUsahaView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final PersyaratanItem data = listData[0];
+    final PersyaratanItem data = listData[8];
 
     return Scaffold(
       body: SafeArea(
@@ -19,7 +19,7 @@ class AhliWarisScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TitleApp(),
+                    // TitleApp(),
                     OfficeName(),
                   ],
                 ),
@@ -34,7 +34,7 @@ class AhliWarisScreen extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.fromLTRB(0, 16, 0, 8),
+                padding: const EdgeInsets.fromLTRB(0, 24, 0, 16),
                 width: double.infinity,
                 decoration: const BoxDecoration(
                   color: Colors.teal,
@@ -80,11 +80,21 @@ class AhliWarisScreen extends StatelessWidget {
                     const Text(
                       'PERSYARATAN',
                       style: TextStyle(
-                        fontSize: 29,
+                        fontSize: 25,
                         color: Colors.black87,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    // const Center(
+                    //   child: Text(
+                    //     'PERSYARATAN',
+                    //     style: TextStyle(
+                    //       fontSize: 25,
+                    //       color: Colors.black54,
+                    //       fontWeight: FontWeight.bold,
+                    //     ),
+                    //   ),
+                    // ),
                     const Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: 0,
@@ -95,7 +105,7 @@ class AhliWarisScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 8,
+                      height: 4,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,7 +116,6 @@ class AhliWarisScreen extends StatelessWidget {
                               horizontal: 5.0, vertical: 5.0),
                           child: Text(
                             '${index + 1}. ${entry.value}',
-                            textAlign: TextAlign.left,
                             style: const TextStyle(
                               fontSize: 27,
                               color: Colors.black,

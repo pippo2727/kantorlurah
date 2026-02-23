@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
 
-class KematianScreen extends StatelessWidget {
-  const KematianScreen({super.key});
+class SkbmrView extends StatelessWidget {
+  const SkbmrView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final PersyaratanItem data = listData[6];
+    final PersyaratanItem data = listData[7];
 
     return Scaffold(
       body: SafeArea(
@@ -78,7 +78,7 @@ class KematianScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'PERSYARATAN ',
+                      'PERSYARATAN',
                       style: TextStyle(
                         fontSize: 25,
                         color: Colors.black87,
@@ -95,7 +95,7 @@ class KematianScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 5,
+                      height: 4,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

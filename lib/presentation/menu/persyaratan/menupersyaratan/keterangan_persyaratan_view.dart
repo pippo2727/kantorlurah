@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
 
-class SktmScreen extends StatelessWidget {
-  const SktmScreen({super.key});
+class KeteranganPersyaratanView extends StatelessWidget {
+  const KeteranganPersyaratanView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final PersyaratanItem data = listData[2];
+    final PersyaratanItem data = listData[3];
 
     return Scaffold(
       body: SafeArea(
@@ -70,7 +70,7 @@ class SktmScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 19,
+                height: 16,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -99,13 +99,14 @@ class SktmScreen extends StatelessWidget {
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: data.persyaratan!.asMap().entries.map((entry) {
-                        int index = entry.key;
+                      children: data.persyaratan!.map((value) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 5.0, vertical: 5.0),
+                            horizontal: 8,
+                            vertical: 20,
+                          ),
                           child: Text(
-                            '${index + 1}. ${entry.value}',
+                            '- $value',
                             style: const TextStyle(
                               fontSize: 27,
                               color: Colors.black,

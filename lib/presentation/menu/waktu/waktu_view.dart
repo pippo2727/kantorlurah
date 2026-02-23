@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
 
-class keterangan extends StatelessWidget {
+class WaktuView extends StatelessWidget {
   String name;
   // List of carousel image
   final List<String> imgList = [
@@ -10,7 +10,7 @@ class keterangan extends StatelessWidget {
     'assets/image/image3.jpg',
   ];
 
-  keterangan({super.key, required this.name});
+  WaktuView({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +78,15 @@ class keterangan extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
+                    const SizedBox(
+                        child: Text(
+                      "JAM PELAYANAN",
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
 
                     // Expanded(
                     //   flex: 2,

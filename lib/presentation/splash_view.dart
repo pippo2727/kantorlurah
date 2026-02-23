@@ -37,15 +37,15 @@ class CustomPageRoute<T> extends PageRoute<T> {
   Duration get transitionDuration => Duration(milliseconds: 1000);
 }
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+class SplashView extends StatelessWidget {
+  const SplashView({super.key});
 
   @override
   Widget build(BuildContext context) {
     setTimeout(() {
       Navigator.of(context).pushReplacement(
         CustomPageRoute(
-          FirstScreen(),
+          FirstView(),
         ),
       );
     }, 3000);

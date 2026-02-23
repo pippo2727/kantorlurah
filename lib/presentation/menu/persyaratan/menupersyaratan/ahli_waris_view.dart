@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
 
-class PenghasilanScreen extends StatelessWidget {
-  const PenghasilanScreen({super.key});
+class AhliWarisView extends StatelessWidget {
+  const AhliWarisView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final PersyaratanItem data = listData[5];
+    final PersyaratanItem data = listData[0];
 
     return Scaffold(
       body: SafeArea(
@@ -19,7 +19,7 @@ class PenghasilanScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // TitleApp(),
+                    TitleApp(),
                     OfficeName(),
                   ],
                 ),
@@ -34,7 +34,7 @@ class PenghasilanScreen extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.fromLTRB(0, 24, 0, 16),
+                padding: const EdgeInsets.fromLTRB(0, 16, 0, 8),
                 width: double.infinity,
                 decoration: const BoxDecoration(
                   color: Colors.teal,
@@ -80,7 +80,7 @@ class PenghasilanScreen extends StatelessWidget {
                     const Text(
                       'PERSYARATAN',
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 29,
                         color: Colors.black87,
                         fontWeight: FontWeight.bold,
                       ),
@@ -95,7 +95,7 @@ class PenghasilanScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 4,
+                      height: 8,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,6 +106,7 @@ class PenghasilanScreen extends StatelessWidget {
                               horizontal: 5.0, vertical: 5.0),
                           child: Text(
                             '${index + 1}. ${entry.value}',
+                            textAlign: TextAlign.left,
                             style: const TextStyle(
                               fontSize: 27,
                               color: Colors.black,

@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
       navigatorKey: Nav.navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
-      home: SplashScreen(),
+      home: SplashView(),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

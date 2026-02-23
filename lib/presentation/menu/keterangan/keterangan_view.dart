@@ -1,8 +1,7 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
 
-class profil extends StatelessWidget {
+class KeteranganView extends StatelessWidget {
   String name;
   // List of carousel image
   final List<String> imgList = [
@@ -11,7 +10,7 @@ class profil extends StatelessWidget {
     'assets/image/image3.jpg',
   ];
 
-  profil({super.key, required this.name});
+  KeteranganView({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +57,9 @@ class profil extends StatelessWidget {
                   thickness: 2,
                 ),
               ),
+
               Container(
-                padding: const EdgeInsets.fromLTRB(0, 25, 0, 16),
+                padding: const EdgeInsets.fromLTRB(0, 24, 0, 16),
                 width: double.infinity,
                 decoration: const BoxDecoration(
                   color: Colors.teal,
@@ -78,15 +78,6 @@ class profil extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    const SizedBox(
-                        child: Text(
-                      "PROFIL",
-                      style: TextStyle(
-                        fontSize: 28,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )),
 
                     // Expanded(
                     //   flex: 2,
@@ -104,31 +95,15 @@ class profil extends StatelessWidget {
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 0,
-                  vertical: 5,
-                ),
-                child: Divider(
-                  thickness: 2,
-                ),
-              ),
-              // Carousel image
-              CarouselSlider(
-                options: CarouselOptions(
-                  autoPlay: true,
-                  aspectRatio: 2.0,
-                  enlargeCenterPage: true,
-                ),
-                items: imageSliders,
-              ),
               const SizedBox(
-                height: 26,
+                height: 10,
               ),
-
+////////////////////////////////////////////////////////////////////////
+////////////////kolom jam layanan kantor/////////////////////////
+////////////////////////////////////////////////////////
               Container(
                 width: 375,
-                height: 340,
+                height: 220,
                 padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
@@ -149,7 +124,67 @@ class profil extends StatelessWidget {
                         const SizedBox(
                           width: 350,
                           child: Text(
-                            'Kantor Lurah Maharatu merupakan perangkat pemerintahan kelurahan yang berada di bawah Kecamatan Marpoyan Damai, Kota Pekanbaru. Kantor lurah berperan sebagai ujung tombak pelayanan pemerintahan kepada masyarakat di tingkat kelurahan, dengan tugas utama menyelenggarakan pelayanan administrasi, pemerintahan, pembangunan, serta pemberdayaan masyarakat.',
+                            "JAM LAYANAN KANTOR ",
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 350,
+                          child: Text(
+                            '🕘 Senin – Kamis',
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 350,
+                          child: Text(
+                            '      08.00 WIB – 15.30 WIB',
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 350,
+                          child: Text(
+                            '🕘 Jumat',
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 350,
+                          child: Text(
+                            '      08.00 WIB – 11.30 WIB',
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 350,
+                          child: Text(
+                            '🕘 Sabtu & Minggu',
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 350,
+                          child: Text(
+                            '      Tutup',
                             style: TextStyle(
                                 color: Colors.black87,
                                 fontSize: 20,
@@ -164,9 +199,12 @@ class profil extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+              /////////////////KOLOM CATATATN LAYANAN/////////////////
               Container(
                 width: 375,
-                height: 190,
+                height: 200,
                 padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
@@ -187,27 +225,17 @@ class profil extends StatelessWidget {
                         const SizedBox(
                           width: 350,
                           child: Text(
-                            "IDENTITAS KANTOR LURAH ",
+                            "CATATAN LAYANAN",
                             style: TextStyle(
                                 color: Colors.black87,
-                                fontSize: 25,
+                                fontSize: 30,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
                         const SizedBox(
                           width: 350,
                           child: Text(
-                            '⚫ Nama Kelurahan : Maharatu',
-                            style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
-                            '⚫ Kecamatan : Marpoyan Damai',
+                            '📌 Istirahat:',
                             style: TextStyle(
                                 color: Colors.black87,
                                 fontSize: 20,
@@ -217,7 +245,7 @@ class profil extends StatelessWidget {
                         const SizedBox(
                           width: 350,
                           child: Text(
-                            '⚫ Kota : Pekanbaru',
+                            '      Senin – Kamis : 12.00 - 13.00 WIB ',
                             style: TextStyle(
                                 color: Colors.black87,
                                 fontSize: 20,
@@ -227,7 +255,7 @@ class profil extends StatelessWidget {
                         const SizedBox(
                           width: 350,
                           child: Text(
-                            '⚫ Provinsi : Riau',
+                            '      Jumat : 11.30 – 13.15 WIB',
                             style: TextStyle(
                                 color: Colors.black87,
                                 fontSize: 20,
@@ -237,7 +265,17 @@ class profil extends StatelessWidget {
                         const SizedBox(
                           width: 350,
                           child: Text(
-                            '⚫ Status Wilayah : Kelurahan',
+                            '📌 Layanan tertentu dapat tutup lebih',
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 350,
+                          child: Text(
+                            '      awal pada hari libur nasional.',
                             style: TextStyle(
                                 color: Colors.black87,
                                 fontSize: 20,
@@ -251,104 +289,6 @@ class profil extends StatelessWidget {
               ),
               const SizedBox(
                 height: 10,
-              ),
-              Container(
-                width: 375,
-                height: 550,
-                padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [
-                      Colors.teal,
-                      Colors.teal,
-                    ],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                  ),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
-                            "VISI",
-                            style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
-                            'Terwujudnya pelayanan publik yang prima, transparan, dan akuntabel guna meningkatkan kesejahteraan masyarakat Kelurahan Maharatu.',
-                            style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
-                            "MISI",
-                            style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
-                            '1. Meningkatkan kualitas pelayanan administrasi kelurahan yang cepat, tepat, dan ramah.',
-                            style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
-                            '2. Mewujudkan tata kelola pemerintahan kelurahan yang transparan dan bertanggung jawab.',
-                            style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
-                            '3. Mendorong partisipasi aktif masyarakat dalam pembangunan dan kegiatan sosial.',
-                            style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
-                            '4. Memanfaatkan teknologi informasi dalam mendukung pelayanan kepada masyarakat.',
-                            style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
               ),
               const SizedBox(
                 height: 16,

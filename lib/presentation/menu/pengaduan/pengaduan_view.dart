@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
 
-class pengaduan extends StatelessWidget {
+class PengaduanView extends StatelessWidget {
   TextEditingController nameController = TextEditingController();
   String name;
   // List of carousel image
@@ -11,7 +11,7 @@ class pengaduan extends StatelessWidget {
     'assets/image/image3.jpg',
   ];
 
-  pengaduan({super.key, required this.name});
+  PengaduanView({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +134,7 @@ class pengaduan extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return inputpengaduan(name: nameController.text);
+                              return InputPengaduanView(name: nameController.text);
                             },
                           ),
                         );

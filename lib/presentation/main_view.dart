@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
 
-class MainPage extends StatelessWidget {
+class MainView extends StatelessWidget {
   String name;
 
   // List of carousel image
@@ -11,7 +11,7 @@ class MainPage extends StatelessWidget {
     'assets/image/image3.jpg',
   ];
 
-  MainPage({super.key, required this.name});
+  MainView({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +128,7 @@ class MainPage extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return Persyaratan_screen(name: name);
+                                      return PersyaratanView(name: name);
                                     },
                                   ),
                                 );
@@ -299,7 +299,7 @@ class MainPage extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return pengaduan(name: name);
+                                      return PengaduanView(name: name);
                                     },
                                   ),
                                 );
@@ -350,7 +350,7 @@ class MainPage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return waktu(name: name);
+                                return WaktuView(name: name);
                               },
                             ),
                           );
@@ -399,7 +399,7 @@ class MainPage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return profil(name: name);
+                                return ProfilView(name: name);
                               },
                             ),
                           );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
 
 
-class Persyaratan_screen extends StatelessWidget {
+class PersyaratanView extends StatelessWidget {
   String name;
 
   // List of carousel image
@@ -12,7 +12,7 @@ class Persyaratan_screen extends StatelessWidget {
     'assets/image/image3.jpg',
   ];
 
-  Persyaratan_screen({super.key, required this.name});
+  PersyaratanView({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +147,7 @@ class Persyaratan_screen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return const AhliWarisScreen();
+                                  return const AhliWarisView();
                                 },
                               ),
                             );
@@ -162,7 +162,7 @@ class Persyaratan_screen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return const NikahScreen();
+                                  return const NikahView();
                                 },
                               ),
                             );
@@ -177,7 +177,7 @@ class Persyaratan_screen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return const SktmScreen();
+                                  return const SktmView();
                                 },
                               ),
                             );
@@ -192,7 +192,7 @@ class Persyaratan_screen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return const KematianScreen();
+                                  return const KematianView();
                                 },
                               ),
                             );
@@ -224,7 +224,7 @@ class Persyaratan_screen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return const KeteranganScreen();
+                                  return const KeteranganPersyaratanView();
                                 },
                               ),
                             );
@@ -239,7 +239,7 @@ class Persyaratan_screen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return const SkbmrScreen();
+                                  return const SkbmrView();
                                 },
                               ),
                             );
@@ -254,7 +254,7 @@ class Persyaratan_screen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return const SkpwScreen();
+                                  return const SkpwView();
                                 },
                               ),
                             );
@@ -269,7 +269,7 @@ class Persyaratan_screen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return const DomisiliScreen();
+                                  return const DomisiliView();
                                 },
                               ),
                             );
@@ -301,7 +301,7 @@ class Persyaratan_screen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return const RekamUsahaScreen();
+                                  return const RekamUsahaView();
                                 },
                               ),
                             );
@@ -316,7 +316,7 @@ class Persyaratan_screen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return const PenghasilanScreen();
+                                  return const PenghasilanView();
                                 },
                               ),
                             );
@@ -331,7 +331,7 @@ class Persyaratan_screen extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return const DomisiliUsahaScreen();
+                                  return const DomisiliUsahaView();
                                 },
                               ),
                             );

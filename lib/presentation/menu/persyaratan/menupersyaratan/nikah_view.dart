@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:kantor_lurah/core.dart';
 
-class DomisiliScreen extends StatelessWidget {
-  const DomisiliScreen({super.key});
+class NikahView extends StatelessWidget {
+  const NikahView({super.key});
+
+  _launchUrl() async {
+    const url =
+        'https://docs.google.com/document/d/1Jw_JOg1mosaKYvts0vUTwKFdya_kM3dv/edit?usp=sharing&ouid=113864027345606736968&rtpof=true&sd=true';
+
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final PersyaratanItem data = listData[9];
+    final PersyaratanItem data = listData[1];
 
     return Scaffold(
       body: SafeArea(
@@ -19,7 +31,6 @@ class DomisiliScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // TitleApp(),
                     OfficeName(),
                   ],
                 ),
@@ -106,13 +117,42 @@ class DomisiliScreen extends StatelessWidget {
                               horizontal: 5.0, vertical: 5.0),
                           child: Text(
                             '${index + 1}. ${entry.value}',
+                            textAlign: TextAlign.left,
                             style: const TextStyle(
-                              fontSize: 27,
+                              fontSize: 23,
                               color: Colors.black,
                             ),
                           ),
                         );
                       }).toList(),
+                    ),
+                    InkWell(
+                      onTap: _launchUrl,
+                      child: Container(
+                        width: MediaQuery.of(context).size.height * 0.2,
+                        margin: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.teal,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Icon(
+                              Icons.download_rounded,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              'Download Formulir\nPermohonan Nikah',
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                     const Padding(
                       padding: EdgeInsets.symmetric(

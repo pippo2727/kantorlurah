@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
 
-class DomisiliUsahaScreen extends StatelessWidget {
-  const DomisiliUsahaScreen({super.key});
+class PenghasilanView extends StatelessWidget {
+  const PenghasilanView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final PersyaratanItem data = listData[10];
+    final PersyaratanItem data = listData[5];
 
     return Scaffold(
       body: SafeArea(

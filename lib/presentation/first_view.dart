@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
 
-class FirstScreen extends StatelessWidget {
+class FirstView extends StatelessWidget {
   TextEditingController nameController = TextEditingController();
 
-  FirstScreen({super.key});
+  FirstView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +77,7 @@ class FirstScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return MainPage(name: nameController.text);
+                            return MainView(name: nameController.text);
                           },
                         ),
                       );
