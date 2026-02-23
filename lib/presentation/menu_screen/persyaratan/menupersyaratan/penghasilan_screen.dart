@@ -6,7 +6,7 @@ class PenghasilanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Data data = listData[5];
+    final PersyaratanItem data = listData[5];
 
     return Scaffold(
       body: SafeArea(

@@ -6,7 +6,7 @@ class DomisiliUsahaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Data data = listData[10];
+    final PersyaratanItem data = listData[10];
 
     return Scaffold(
       body: SafeArea(

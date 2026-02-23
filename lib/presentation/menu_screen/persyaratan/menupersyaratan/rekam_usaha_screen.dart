@@ -6,7 +6,7 @@ class RekamUsahaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Data data = listData[8];
+    final PersyaratanItem data = listData[8];
 
     return Scaffold(
       body: SafeArea(

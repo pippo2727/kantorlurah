@@ -6,7 +6,7 @@ class AhliWarisScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Data data = listData[0];
+    final PersyaratanItem data = listData[0];
 
     return Scaffold(
       body: SafeArea(

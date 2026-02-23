@@ -6,7 +6,7 @@ class SkpwScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Data data = listData[4];
+    final PersyaratanItem data = listData[4];
 
     return Scaffold(
       body: SafeArea(

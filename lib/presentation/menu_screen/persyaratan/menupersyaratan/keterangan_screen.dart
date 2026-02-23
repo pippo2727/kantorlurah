@@ -6,7 +6,7 @@ class KeteranganScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Data data = listData[3];
+    final PersyaratanItem data = listData[3];
 
     return Scaffold(
       body: SafeArea(

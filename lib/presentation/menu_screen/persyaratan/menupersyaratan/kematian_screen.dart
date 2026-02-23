@@ -6,7 +6,7 @@ class KematianScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Data data = listData[6];
+    final PersyaratanItem data = listData[6];
 
     return Scaffold(
       body: SafeArea(

@@ -6,7 +6,7 @@ class SkbmrScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Data data = listData[7];
+    final PersyaratanItem data = listData[7];
 
     return Scaffold(
       body: SafeArea(

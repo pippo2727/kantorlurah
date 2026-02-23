@@ -18,7 +18,7 @@ class NikahScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Data data = listData[1];
+    final PersyaratanItem data = listData[1];
 
     return Scaffold(
       body: SafeArea(
