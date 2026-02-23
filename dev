@@ -225,11 +225,12 @@ show_menu() {
     echo -e "${RED}12. Clean Unused Packages${NC}"
     echo -e "${BLUE}13. Update Dev Config${NC}"
     echo -e "${GREEN}14. Generate SHA1 & SHA256${NC}"
+    echo -e "${YELLOW}15. Clean Unused Localizations${NC}"
     echo "0. Exit"
     echo -e "${BLUE}================================${NC}"
     echo -e "Current version: ${GREEN}$(get_full_version)${NC}"
     echo -e "${BLUE}================================${NC}"
-    read -p "Pilih opsi (0-14): " choice
+    read -p "Pilih opsi (0-15): " choice
 }
 
 # Check if argument is passed
@@ -1114,6 +1115,146 @@ case $choice in
         pause
         ;;
     
+    15)
+        # Clean Unused Localizations
+        echo ""
+        echo -e "${YELLOW}================================${NC}"
+        echo -e "${YELLOW}   Clean Unused Localizations${NC}"
+        echo -e "${YELLOW}================================${NC}"
+        echo ""
+        echo -e "${YELLOW}Scanning localization keys usage in lib/presentation/...${NC}"
+        echo ""
+
+        # Find all ARB files
+        arb_files=($(find lib/l10n -name "*.arb" 2>/dev/null | sort))
+
+        if [ ${#arb_files[@]} -eq 0 ]; then
+            echo -e "${RED}Tidak ada file .arb ditemukan di lib/l10n/${NC}"
+            pause
+            exit 1
+        fi
+
+        # Use app_en.arb as reference (or first found)
+        reference_arb="lib/l10n/app_en.arb"
+        if [ ! -f "$reference_arb" ]; then
+            reference_arb="${arb_files[0]}"
+        fi
+
+        echo -e "Reference: ${BLUE}$reference_arb${NC}"
+        echo -e "Files    : ${BLUE}${arb_files[*]}${NC}"
+        echo ""
+
+        # Extract all non-metadata keys via Python
+        all_keys=$(python3 -c "
+import json
+with open('$reference_arb', 'r', encoding='utf-8') as f:
+    data = json.load(f)
+keys = [k for k in data.keys() if not k.startswith('@')]
+print('\n'.join(keys))
+" 2>/dev/null)
+
+        if [ -z "$all_keys" ]; then
+            echo -e "${RED}Gagal membaca file ARB!${NC}"
+            pause
+            exit 1
+        fi
+
+        declare -a unused_keys=()
+        declare -a used_keys=()
+        total_keys=0
+
+        while IFS= read -r key; do
+            [ -z "$key" ] && continue
+            total_keys=$((total_keys + 1))
+            if grep -rq "$key" lib/presentation/ 2>/dev/null; then
+                used_keys+=("$key")
+            else
+                unused_keys+=("$key")
+            fi
+        done <<< "$all_keys"
+
+        echo "================================"
+        echo -e "${BLUE}Scan Results:${NC}"
+        echo "  Total keys   : $total_keys"
+        echo -e "  ${GREEN}Used         : ${#used_keys[@]}${NC}"
+        echo -e "  ${RED}Unused       : ${#unused_keys[@]}${NC}"
+        echo "================================"
+        echo ""
+
+        if [ ${#unused_keys[@]} -eq 0 ]; then
+            echo -e "${GREEN}✅ Semua localization key sudah digunakan di lib/presentation/!${NC}"
+            echo ""
+            pause
+        else
+            echo -e "${RED}Unused keys:${NC}"
+            echo ""
+            for key in "${unused_keys[@]}"; do
+                echo -e "  ${RED}•${NC} $key"
+            done
+
+            echo ""
+            echo "================================"
+            echo -e "${RED}⚠️  WARNING: Key akan dihapus PERMANEN dari semua .arb file!${NC}"
+            printf '  Files: '
+            for f in "${arb_files[@]}"; do printf '%s  ' "$f"; done
+            echo ""
+            echo "================================"
+            echo ""
+            read -p "Hapus semua unused keys dari semua .arb files? (yes/no): " confirm
+
+            if [[ "$confirm" == "yes" ]] || [[ "$confirm" == "y" ]]; then
+                echo ""
+                echo -e "${YELLOW}Removing unused keys...${NC}"
+
+                # Build newline-separated key list for Python heredoc
+                keys_to_remove_str=$(printf '%s\n' "${unused_keys[@]}")
+
+                for arb_file in "${arb_files[@]}"; do
+                    result=$(python3 << PYEOF
+import json
+
+keys_to_remove = """${keys_to_remove_str}""".strip().split('\n')
+keys_to_remove = [k for k in keys_to_remove if k]
+
+with open('${arb_file}', 'r', encoding='utf-8') as f:
+    data = json.load(f)
+
+removed = 0
+for key in keys_to_remove:
+    if key in data:
+        del data[key]
+        removed += 1
+    meta_key = '@' + key
+    if meta_key in data:
+        del data[meta_key]
+
+with open('${arb_file}', 'w', encoding='utf-8') as f:
+    json.dump(data, f, ensure_ascii=False, indent=2)
+    f.write('\n')
+
+print(removed)
+PYEOF
+)
+                    echo -e "  ${GREEN}✅ $arb_file${NC} — ${result} keys removed"
+                done
+
+                echo ""
+                echo "================================"
+                echo -e "${GREEN}✅ Cleanup selesai!${NC}"
+                echo "  Dihapus : ${#unused_keys[@]} keys"
+                echo "  Dari    : ${#arb_files[@]} file(s)"
+                echo "================================"
+                echo ""
+                echo -e "${YELLOW}Jalankan 'flutter gen-l10n' atau 'flutter pub get' untuk regenerate.${NC}"
+            else
+                echo ""
+                echo -e "${YELLOW}Cleanup dibatalkan.${NC}"
+            fi
+            echo ""
+            pause
+        fi
+        ;;
+
     0)
         echo ""
         echo -e "${GREEN}Terima kasih!${NC}"
