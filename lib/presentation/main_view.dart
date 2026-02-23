@@ -33,6 +33,13 @@ class MainView extends StatelessWidget {
         )
         .toList();
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('PELAYANANKU'),
+        backgroundColor: const Color(0xff20B2AA),
+        foregroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        elevation: 0,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -44,17 +51,6 @@ class MainView extends StatelessWidget {
                   Welcome(
                     name: name.isNotEmpty ? name.split(' ')[0] : 'Guest',
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 0,
-                      vertical: 5,
-                    ),
-                    child: Divider(
-                      thickness: 2,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  const AppLogoWithTitleAndSubtitle(),
                   const SizedBox(height: 12),
 //////////////////////////////////////////////////////////////////////
 ////////// BUTTON INFORMASI PERSYARATAN /////////////////////////////

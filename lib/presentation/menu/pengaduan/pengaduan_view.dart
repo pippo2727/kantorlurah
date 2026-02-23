@@ -11,52 +11,15 @@ class PengaduanView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('PENGADUAN'),
+        backgroundColor: const Color(0xff20B2AA),
+        foregroundColor: Colors.white,
+        elevation: 0,
+      ),
       body: SafeArea(
         child: Column(
           children: [
-            // Header
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
-              decoration: const BoxDecoration(
-                color: Colors.teal,
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(24)),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: const Icon(Icons.arrow_back,
-                            color: Colors.white),
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                      ),
-                      const SizedBox(width: 8),
-                      const Text(
-                        'PENGADUAN',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Halo, $name 👋',
-                    style: const TextStyle(
-                        color: Colors.white70, fontSize: 14),
-                  ),
-                ],
-              ),
-            ),
-
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(20),

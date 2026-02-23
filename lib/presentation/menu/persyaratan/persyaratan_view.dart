@@ -41,6 +41,12 @@ class PersyaratanView extends StatelessWidget {
     //  );
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('INFORMASI PERSYARATAN'),
+        backgroundColor: const Color(0xff20B2AA),
+        foregroundColor: Colors.white,
+        elevation: 0,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -49,57 +55,6 @@ class PersyaratanView extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(8, 20, 10, 0),
-                    child: const SizedBox.shrink(),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 0,
-                      vertical: 3,
-                    ),
-                    child: Divider(
-                      thickness: 2,
-                    ),
-                  ),
-
-                  // Welcome(
-                  //   name: name.isNotEmpty ? name.split(' ')[0] : 'Guest',
-                  // ),
-
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(0, 24, 0, 16),
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                      color: Colors.teal,
-                      borderRadius: BorderRadius.vertical(
-                        bottom: Radius.circular(16),
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                          ),
-                        ),
-                        const Flexible(
-                          child: Text(
-                            'INFORMASI PERSYARATAN',
-                            style: TextStyle(
-                              fontSize: 22,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                   // const Padding(
                   //   padding: EdgeInsets.symmetric(
                   //     horizontal: 0,

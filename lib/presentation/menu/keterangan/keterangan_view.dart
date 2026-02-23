@@ -33,62 +33,17 @@ class KeteranganView extends StatelessWidget {
         .toList();
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('KETERANGAN'),
+        backgroundColor: const Color(0xff20B2AA),
+        foregroundColor: Colors.white,
+        elevation: 0,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(8, 20, 10, 0),
-                child: const SizedBox.shrink(),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 0,
-                  vertical: 0,
-                ),
-                child: Divider(
-                  thickness: 2,
-                ),
-              ),
-
-              Container(
-                padding: const EdgeInsets.fromLTRB(0, 24, 0, 16),
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  color: Colors.teal,
-                  borderRadius: BorderRadius.vertical(
-                    bottom: Radius.circular(16),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                      ),
-                    ),
-
-                    // Expanded(
-                    //   flex: 2,
-                    //   child: Center(
-                    //     child: Text(
-                    //       data.title!,
-                    //       style: const TextStyle(
-                    //         fontSize: 28,
-                    //         color: Colors.white,
-                    //         fontWeight: FontWeight.bold,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-                  ],
-                ),
-              ),
               const SizedBox(
                 height: 10,
               ),

@@ -28,13 +28,9 @@ class FirstView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                      ],
-                    ),
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(0, 8, 0, 12),
+                    child: AppLogoWithTitleAndSubtitle(),
                   ),
                   Greeting(),
                   const SizedBox(height: 20),
