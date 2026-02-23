@@ -31,13 +31,26 @@ class _LoginViewState extends State<LoginView> {
 
       final user = response.user;
       if (user != null) {
-        final profile = await SupabaseService.fetchCurrentUserProfile();
-        final name = profile?['name'] as String? ?? user.email ?? 'User';
-
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (_) => MainView(name: name)),
-          (route) => false,
-        );
+        const adminEmail = 'admin@demo.com';
+        if ((user.email ?? '').toLowerCase() == adminEmail) {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (_) => const AdminMainNavigationView()),
+            (route) => false,
+          );
+        } else {
+          final profile = await SupabaseService.fetchCurrentUserProfile();
+          if (!mounted) return;
+          final name = profile?['name'] as String? ?? user.email ?? 'User';
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (_) => UserMainNavigationView(
+                name: name,
+                email: user.email ?? '',
+              ),
+            ),
+            (route) => false,
+          );
+        }
       }
     } on AuthException catch (e) {
       if (!mounted) return;

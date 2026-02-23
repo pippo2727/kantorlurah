@@ -1,162 +1,167 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
+import 'package:kantor_lurah/presentation/menu/pengaduan/input_pengaduan_view.dart';
+import 'package:kantor_lurah/presentation/menu/pengaduan/my_pengaduan_view.dart';
 
 class PengaduanView extends StatelessWidget {
-  TextEditingController nameController = TextEditingController();
-  String name;
-  // List of carousel image
-  final List<String> imgList = [
-    'assets/image/image1.jpg',
-    'assets/image/image2.jpg',
-    'assets/image/image3.jpg',
-  ];
+  final String name;
 
-  PengaduanView({super.key, required this.name});
+  const PengaduanView({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> imageSliders = imgList
-        .map(
-          (item) => Container(
-            margin: const EdgeInsets.all(0.0),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(5.0),
-              ),
-              child: Image.asset(
-                item,
-                fit: BoxFit.cover,
-                width: 1000.0,
-              ),
-            ),
-          ),
-        )
-        .toList();
-
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              // Image.asset(
-              //   'assets/image/image2.jpg',
-              //   fit: BoxFit.cover,
-              //   width: double.infinity,
-              //   height: MediaQuery.of(context).size.height * 0.2,
-              // ),
+        child: Column(
+          children: [
+            // Header
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+              decoration: const BoxDecoration(
+                color: Colors.teal,
+                borderRadius:
+                    BorderRadius.vertical(bottom: Radius.circular(24)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(Icons.arrow_back,
+                            color: Colors.white),
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                      ),
+                      const SizedBox(width: 8),
+                      const Text(
+                        'PENGADUAN',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Halo, $name 👋',
+                    style: const TextStyle(
+                        color: Colors.white70, fontSize: 14),
+                  ),
+                ],
+              ),
+            ),
 
-              Container(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: Row(
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.teal,
+                    const SizedBox(height: 12),
+                    _MenuCard(
+                      icon: Icons.add_comment_outlined,
+                      title: 'Buat Pengaduan Baru',
+                      subtitle: 'Sampaikan keluhan atau laporan Anda',
+                      color: Colors.teal,
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) =>
+                              InputPengaduanView(name: name),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    _MenuCard(
+                      icon: Icons.list_alt_outlined,
+                      title: 'Pengaduan Saya',
+                      subtitle:
+                          'Lihat daftar pengaduan yang pernah Anda buat',
+                      color: Colors.blue,
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const MyPengaduanView(),
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
-              Container(
-                margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.0,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(66),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 0,
-                        vertical: 5,
-                      ),
-                      child: Divider(
-                        thickness: 20,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TitleApp(
-                            isCenter: true,
-                          ),
-                          OfficeName(
-                            isCenter: true,
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(17, 3, 0, 0),
-                      child: Text(
-                        'MASUKKAN NOMOR NIK ',
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.black87,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+class _MenuCard extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final Color color;
+  final VoidCallback onTap;
 
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(8, 0, 8, 15),
-                      child: TextField(
-                        // controller: nameController,
-                        decoration: InputDecoration(
-                          hintText: 'Nomor NIK (Nomor Induk Kepedudukan)',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ),
-                    ),
-                    //
-                    QButton(
-                      label: "Lanjutkan",
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return InputPengaduanView(name: nameController.text);
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 0,
-                        vertical: 5,
-                      ),
-                      child: Divider(
-                        thickness: 25,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+  const _MenuCard({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.color,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.06),
+              blurRadius: 8,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: color.withValues(alpha: 0.1),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(icon, color: color, size: 28),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 15)),
+                  const SizedBox(height: 4),
+                  Text(subtitle,
+                      style: const TextStyle(
+                          color: Colors.black54, fontSize: 12)),
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right, color: Colors.black38),
+          ],
         ),
       ),
     );

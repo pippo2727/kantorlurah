@@ -148,6 +148,26 @@ class AppTheme {
         type: BottomNavigationBarType.fixed,
       ),
       dividerTheme: DividerThemeData(color: Colors.grey.shade200, thickness: 1),
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        indicatorColor: primaryColor.withValues(alpha: 0.15),
+        iconTheme: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return const IconThemeData(color: primaryColor);
+          }
+          return IconThemeData(color: Colors.grey.shade500);
+        }),
+        labelTextStyle: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: primaryColor);
+          }
+          return TextStyle(fontSize: 12, color: Colors.grey.shade500);
+        }),
+      ),
       chipTheme: ChipThemeData(
         backgroundColor: Colors.grey.shade100,
         selectedColor: secondaryColor,

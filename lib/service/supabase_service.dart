@@ -66,6 +66,19 @@ class SupabaseService {
   // Users table helpers
   // ---------------------------------------------------------------------------
 
+  /// Update name and birth_date for the currently logged-in user
+  static Future<void> updateProfile({
+    required String name,
+    required DateTime birthDate,
+  }) async {
+    final uid = _client.auth.currentUser?.id;
+    if (uid == null) throw Exception('Not logged in');
+    await _client.from('users').update({
+      'name': name,
+      'birth_date': birthDate.toIso8601String().split('T').first,
+    }).eq('id', uid);
+  }
+
   /// Fetch the current user profile from public.users
   static Future<Map<String, dynamic>?> fetchCurrentUserProfile() async {
     final uid = _client.auth.currentUser?.id;

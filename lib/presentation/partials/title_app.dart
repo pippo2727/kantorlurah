@@ -1,36 +1,33 @@
 import 'package:flutter/material.dart';
 
 class TitleApp extends StatelessWidget {
-  bool isCenter;
+  final bool isCenter;
 
-  TitleApp({
+  const TitleApp({
     super.key,
     this.isCenter = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment:
-          isCenter ? MainAxisAlignment.center : MainAxisAlignment.start,
-      children: const [
-        Text(
-          'PELAYANAN',
-          style: TextStyle(
-            fontSize: 24,
-            color: Colors.teal,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        Text(
-          'KU',
-          style: TextStyle(
-            fontSize: 24,
-            color: Colors.orange,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ],
+    const textStyle = TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+      letterSpacing: 1.2,
+      height: 1.1,
+    );
+
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      alignment: isCenter ? Alignment.center : Alignment.centerLeft,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text('PELAYANAN', style: textStyle.copyWith(color: Colors.teal)),
+          Text('KU', style: textStyle.copyWith(color: Colors.orange)),
+        ],
+      ),
     );
   }
 }
+

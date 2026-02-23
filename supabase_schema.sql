@@ -85,3 +85,50 @@ $$;
 create or replace trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
+
+-- ============================================================
+-- Table: pengaduan
+-- ============================================================
+create table if not exists public.pengaduan (
+  id             uuid primary key default uuid_generate_v4(),
+  user_id        uuid references public.users(id) on delete set null,
+  name           text not null,
+  nik            text not null,
+  date           date not null default current_date,
+  address        text not null,
+  description    text not null,
+  attachment_url text,
+  status         text not null default 'menunggu'
+                   check (status in ('menunggu', 'diproses', 'selesai', 'ditolak')),
+  admin_note     text,
+  created_at     timestamptz not null default now(),
+  updated_at     timestamptz not null default now()
+);
+
+-- Auto-update updated_at
+create or replace trigger pengaduan_updated_at
+  before update on public.pengaduan
+  for each row execute procedure public.handle_updated_at();
+
+-- Row Level Security
+alter table public.pengaduan enable row level security;
+
+-- Users can insert their own pengaduan
+create policy "pengaduan: insert own"
+  on public.pengaduan for insert
+  with check (user_id = auth.uid());
+
+-- Users can see their own; admin can see all
+create policy "pengaduan: select"
+  on public.pengaduan for select
+  using (
+    user_id = auth.uid()
+    OR (auth.jwt() ->> 'email') = 'admin@demo.com'
+  );
+
+-- Admin can update status / admin_note
+create policy "pengaduan: admin update"
+  on public.pengaduan for update
+  using ((auth.jwt() ->> 'email') = 'admin@demo.com')
+  with check ((auth.jwt() ->> 'email') = 'admin@demo.com');
+
