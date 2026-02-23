@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "961924121293",
+    "project_id": "general-firestore",
+    "storage_bucket": "general-firestore.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961924121293:android:81a169c8154660e9d11f84",
+        "android_client_info": {
+          "package_name": "com.denyocr.kasir_baik"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961924121293-ne3q6ik1jcj38v8skvedflmsncdof5q7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTJkKdqfW-T_CP1CSG58sC0sGCXinv22U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961924121293-ne3q6ik1jcj38v8skvedflmsncdof5q7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "961924121293-1436hadhdjh9l5hbj3lnr54kcjv57vgc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.buntabaseDemo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961924121293:android:caa5a9307caca935d11f84",
+        "android_client_info": {
+          "package_name": "com.snapcode.kasir_baik"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961924121293-ne3q6ik1jcj38v8skvedflmsncdof5q7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTJkKdqfW-T_CP1CSG58sC0sGCXinv22U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961924121293-ne3q6ik1jcj38v8skvedflmsncdof5q7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "961924121293-1436hadhdjh9l5hbj3lnr54kcjv57vgc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.buntabaseDemo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

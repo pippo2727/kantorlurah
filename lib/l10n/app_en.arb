@@ -1,0 +1,4067 @@
+{
+  "@@locale": "en",
+
+  "appName": "Kasir Baik",
+  "appTitle": "POS",
+  "appSubtitle": "Point of Sale System",
+
+  "common_save": "Save",
+  "common_cancel": "Cancel",
+  "common_continue": "Continue",
+  "common_delete": "Delete",
+  "common_edit": "Edit",
+  "common_add": "Add",
+  "common_close": "Close",
+  "common_contactUs": "Contact Us",
+  "common_confirm": "Confirm",
+  "common_yes": "Yes",
+  "common_no": "No",
+  "common_ok": "OK",
+  "common_done": "Done",
+  "common_apply": "Apply",
+  "common_reset": "Reset",
+  "common_search": "Search",
+  "common_filter": "Filter",
+  "common_sort": "Sort",
+  "common_all": "All",
+  "common_loading": "Loading...",
+  "common_error": "Error",
+  "common_success": "Success",
+  "common_warning": "Warning",
+  "common_info": "Info",
+  "common_share": "Share",
+  "common_back": "Back",
+  "common_next": "Next",
+  "common_previous": "Previous",
+  "common_select": "Select",
+  "common_permission": "Permission Required",
+  "common_openSettings": "Open Settings",
+  "common_later": "Later",
+  "common_today": "Today",
+  "common_yesterday": "Yesterday",
+  "common_thisWeek": "This Week",
+  "common_lastWeek": "Last Week",
+  "common_thisMonth": "This Month",
+  "common_lastMonth": "Last Month",
+  "common_customRange": "Custom Range",
+  "common_custom": "Custom",
+  "common_selectCustomRange": "Select custom date range",
+  "common_dateRange": "Date Range",
+  "common_noData": "No data available",
+  "common_unknown": "Unknown",
+  "common_active": "Active",
+  "common_inactive": "Inactive",
+  "common_confirmDelete": "Are you sure you want to delete this item?",
+  "common_copy": "Copy",
+  "common_retry": "Retry",
+  "common_refresh": "Refresh",
+  "common_download": "Download",
+  "common_print": "Print",
+  "common_printPreview": "Print Preview",
+  "common_thermalPrint": "Thermal Print",
+  "common_pdfPrint": "PDF Print",
+  "common_orders": "orders",
+  "common_printSuccess": "Print successful",
+  "common_printFailed": "Print failed",
+  "common_generatedOn": "Generated on",
+  "common_applyFilter": "Apply Filter",
+  "common_deleting": "Deleting...",
+  "common_deletedSuccessfully": "Deleted successfully",
+  "common_filterAndSort": "Filter & Sort",
+  "common_sortBy": "Sort By",
+  "common_payment": "Payment",
+  "common_processing": "Processing...",
+  "common_saved": "Saved successfully",
+  "common_nameAsc": "Name A-Z",
+  "common_nameDesc": "Name Z-A",
+  "common_stock": "Stock",
+  "common_quantity": "Quantity",
+  "common_price": "Price",
+  "common_max": "Max",
+  "common_min": "Min",
+  "common_range": "Range",
+  "common_enterValidNumber": "Please enter a valid number",
+  "common_maxValueExceeded": "Value cannot exceed {max}",
+  "@common_maxValueExceeded": {
+    "placeholders": {
+      "max": {"type": "String"}
+    }
+  },
+  "common_minValueRequired": "Value must be at least {min}",
+  "@common_minValueRequired": {
+    "placeholders": {
+      "min": {"type": "String"}
+    }
+  },
+  "common_searchProducts": "Search products...",
+  "common_noProductsFound": "No products found",
+  "common_selectSortHint": "Select sort...",
+  "common_searchHint": "Search...",
+  "common_noName": "No Name",
+  "common_viewAll": "View All",
+  "common_total": "Total",
+  "common_totalOrders": "Total Orders",
+  "common_product": "Product",
+  "common_type": "Type",
+  "common_qty": "Qty",
+  "common_units": "units",
+
+  "news_title": "News",
+  "news_category": "Category",
+  "news_allCategories": "All Categories",
+  "news_searchNews": "Search news...",
+  "news_noNews": "No news found",
+
+  "login_title": "Welcome Back",
+  "login_subtitle": "Sign in to continue",
+  "login_email": "Email",
+  "login_password": "Password",
+  "login_rememberMe": "Remember me",
+  "login_signIn": "Sign In",
+  "login_loggingIn": "Logging in...",
+  "login_checkingData": "Checking data...",
+  "login_creatingAdmin": "Creating default admin...",
+  "login_failed": "Login failed",
+  "login_emulatorDetected": "Emulator Detected",
+  "login_emulatorWarning": "This app cannot run on an emulator or simulator. Please use a real device to continue.",
+  "login_welcomeSampleData": "Welcome! Sample data has been generated.",
+  "login_factoryResetTitle": "Factory Reset",
+  "login_factoryResetMessage": "WARNING: This will sign out from Firebase and DELETE ALL local data including:\n\n• All products and categories\n• All customers and suppliers\n• All orders and transactions\n• All users\n• All settings\n\nThe app will return to fresh install state.",
+  "login_factoryResetConfirm2Title": "Are You Sure?",
+  "login_factoryResetConfirm2Message": "This operation is IRREVERSIBLE.\n\nAll your data will be permanently lost and the app will reset as if freshly installed.\n\nAre you absolutely sure?",
+  "login_factoryResetConfirm3Title": "Final Warning",
+  "login_factoryResetConfirm3Message": "This is your LAST chance to cancel.\n\nAfter this, ALL DATA will be permanently deleted and Firebase will be signed out.\n\nThere is NO way to recover.",
+  "login_factoryResetNow": "RESET NOW",
+  "login_factoryResetting": "Resetting all data...",
+  "login_factoryResetDone": "All data has been reset. Please restart the app.",
+
+  "home_todaySales": "Today's Sales",
+  "home_todayOrders": "Today's Orders",
+  "home_todayExpenses": "Today's Expenses",
+  "home_outstandingCredits": "Outstanding Credits",
+  "home_outstandingDebts": "Outstanding Debts",
+  "home_todayProfit": "Today's Profit",
+  "home_unpaidPO": "Unpaid PO",
+  "home_activeCashiers": "Active Cashiers",
+  "home_stockAlert": "Stock Alert",
+  "home_allStockFulfilled": "All product stock is fulfilled",
+  "home_autoRestockPO": "Auto Restock (PO)",
+  "home_autoRestockSA": "Auto Restock (SA)",
+  "home_outOfStock": "Out of Stock",
+  "home_lowStockInfo": "Stock: {current} (min: {minimum})",
+  "@home_lowStockInfo": {
+    "placeholders": {
+      "current": {"type": "String"},
+      "minimum": {"type": "String"}
+    }
+  },
+  "home_freeMode": "Free Mode",
+  "home_trialMode": "Trial Mode",
+  "home_premiumMode": "Premium Mode",
+  "home_upgradeToPremium": "Upgrade to Premium",
+  "home_watchAdForPremium": "Watch Ad for Premium",
+  "home_premiumActiveUntil": "Active until {date}",
+  "@home_premiumActiveUntil": {
+    "placeholders": {
+      "date": {"type": "String"}
+    }
+  },
+  "home_quickActions": "Quick Actions",
+  "home_pos": "POS",
+  "home_sales": "Sales",
+  "home_tables": "Tables",
+  "home_newPurchaseOrder": "New PO",
+  "home_purchaseOrders": "Purchase Orders",
+  "home_stockAdjustment": "Stock Adj",
+  "home_customers": "Customers",
+  "home_products": "Products",
+  "home_categories": "Categories",
+  "home_variants": "Variants",
+  "home_vouchers": "Vouchers",
+  "home_suppliers": "Suppliers",
+  "home_expenseTypes": "Expense Types",
+  "home_credits": "Credits",
+  "home_debts": "Debts",
+  "home_expenses": "Expenses",
+  "home_paymentMethods": "Payment Methods",
+  "home_users": "Users",
+  "home_printer": "Printer",
+  "home_salesReport": "Sales Report",
+  "home_taxReport": "Tax Report",
+  "home_cashflowReport": "Cash Flow",
+  "home_capitalReport": "Capital Report",
+  "home_cashDrawer": "Cash Drawer",
+  "home_cashDrawerReport": "Cash Drawer Report",
+  "home_cashReasons": "Cash Reasons",
+  "home_purchaseReport": "Purchase Report",
+  "home_inventoryReport": "Inventory",
+  "home_stockHistory": "Stock History",
+  "home_stockAdjustmentReport": "Stock Adj Report",
+  "home_creditReport": "Credit Report",
+  "home_debtReport": "Debt Report",
+  "home_expenseReport": "Expense Report",
+  "home_customerReport": "Customer Report",
+  "home_supplierReport": "Supplier Report",
+  "home_paymentMethodReport": "Payment Method",
+  "home_staffReport": "Staff Report",
+  "home_productPerformance": "Product Performance",
+  "home_hourlySales": "Hourly Sales",
+  "home_productSalesProfit": "Product Sales & Profit",
+  "home_profitAndLoss": "Profit & Loss",
+  "home_developerTools": "Developer Tools",
+  "home_developerUI": "Developer UI",
+  "home_settings": "Settings",
+  "home_logout": "Logout",
+  "home_logoutConfirmTitle": "Logout",
+  "home_logoutConfirmMessage": "Are you sure you want to logout?",
+  "home_masterData": "Master Data",
+  "home_reports": "Reports",
+  "home_transactions": "Transactions",
+  "home_management": "Management",
+  "home_development": "Development",
+  "home_tableManagement": "Tables",
+  "home_orderStatuses": "Order Statuses",
+
+  "pos_title": "Point of Sale",
+  "pos_searchProducts": "Search products...",
+  "pos_allCategories": "All",
+  "pos_cart": "Cart",
+  "pos_emptyCart": "Cart is empty",
+  "pos_addItems": "Add items to get started",
+  "pos_selectTable": "Select Table",
+  "pos_selectCustomer": "Select Customer",
+  "pos_noTable": "No Table",
+  "pos_takeaway": "Takeaway",
+  "pos_takeawayDescription": "Order without table (to-go)",
+  "pos_orTakeaway": "or order without table",
+  "pos_orderType": "Order Type",
+  "pos_dineIn": "Dine In",
+  "pos_noCustomer": "No Customer",
+  "pos_items": "items",
+  "pos_itemsLabel": "Items:",
+  "pos_itemsBatchLabel": "Items Batch {number}:",
+  "@pos_itemsBatchLabel": {
+    "placeholders": {
+      "number": {"type": "int"}
+    }
+  },
+  "pos_total": "Total",
+  "pos_checkout": "Checkout",
+  "pos_proceedToPayment": "Proceed to Payment",
+  "pos_noItemsInCart": "No items in cart",
+  "pos_outOfStock": "Out of Stock",
+  "pos_lowStock": "Low Stock",
+  "pos_inStock": "In Stock",
+  "pos_addToCart": "Add to Cart",
+  "pos_updateCart": "Update Cart",
+  "pos_removeFromCart": "Remove from Cart",
+  "pos_quantity": "Quantity",
+  "pos_unit": "Unit",
+  "pos_note": "Note",
+  "pos_addNote": "Add note...",
+  "pos_variants": "Variants",
+  "pos_price": "Price",
+  "pos_subtotal": "Subtotal",
+  "pos_discount": "Discount",
+  "pos_tax": "Tax",
+  "pos_grandTotal": "Grand Total",
+  "pos_cashReceived": "Cash Received",
+  "pos_change": "Change",
+  "pos_payNow": "Pay Now",
+  "pos_paymentMethod": "Payment Method",
+  "pos_cash": "Cash",
+  "pos_qris": "QRIS",
+  "pos_bankTransfer": "Bank Transfer",
+  "pos_credit": "Credit",
+  "pos_paymentSuccess": "Payment Success",
+  "pos_printReceipt": "Print Receipt",
+  "pos_newOrder": "New Order",
+  "pos_orderNumber": "Order #",
+  "pos_tableNumber": "Table",
+  "pos_customerName": "Customer",
+  "pos_viewOrder": "View Order",
+  "pos_cancelOrder": "Cancel Order",
+  "pos_orderCancelled": "Order cancelled",
+  "pos_confirmCancel": "Are you sure you want to cancel this order?",
+  "pos_customerOptional": "Customer (Optional)",
+  "pos_walkInCustomer": "Walk-in Customer",
+  "pos_searchCustomerHint": "Search customer name or phone...",
+  "pos_payment": "Payment",
+  "pos_qtyExceedsStock": "Quantity exceeds available stock",
+  "pos_editItem": "Edit Item",
+  "pos_addItem": "Add Item",
+  "pos_unlimitedStock": "Unlimited stock",
+  "pos_stockInfo": "Stock: {qty} {unit}",
+  "@pos_stockInfo": {
+    "placeholders": {
+      "qty": {"type": "String"},
+      "unit": {"type": "String"}
+    }
+  },
+  "pos_quantityWithUnit": "Quantity ({unit})",
+  "@pos_quantityWithUnit": {
+    "placeholders": {
+      "unit": {"type": "String"}
+    }
+  },
+  "pos_options": "Options",
+  "pos_notes": "Notes",
+  "pos_addSpecialInstructions": "Add special instructions...",
+  "pos_update": "Update",
+  "pos_qtyMustBeGreater": "Quantity must be greater than 0",
+  "pos_noDecimalQty": "This product does not allow decimal quantities",
+  "pos_totalQtyExceedsStock": "Total quantity ({total} PCS) exceeds available stock ({stock} PCS)",
+  "@pos_totalQtyExceedsStock": {
+    "placeholders": {
+      "total": {"type": "String"},
+      "stock": {"type": "String"}
+    }
+  },
+  "pos_processingOrder": "Processing order...",
+  "pos_orderCreated": "Order Created",
+  "pos_itemsAddedPrint": "Items added to existing order. Print order ticket?",
+  "pos_orderCreatedPrint": "Order created successfully. Print order ticket?",
+  "pos_orderFailed": "Order failed: {error}",
+  "@pos_orderFailed": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "pos_selectOrderType": "Select Order Type",
+  "pos_nonTableOrder": "Non-Table Order",
+  "common_skip": "Skip",
+
+  "posCategories_title": "Order Categories",
+  "posCategories_name": "Category Name",
+  "posCategories_icon": "Icon",
+  "posCategories_color": "Color",
+  "posCategories_sortOrder": "Sort Order",
+  "posCategories_nameRequired": "Category name is required",
+  "posCategories_updated": "Category updated",
+  "posCategories_added": "Category added",
+  "posCategories_deleteConfirm": "Delete category \"{name}\"?",
+  "@posCategories_deleteConfirm": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "posCategories_generateDefaults": "Generate Defaults",
+  "posCategories_generateDefaultsConfirm": "This will add default categories (Takeaway, Gofood, Shopefood). Continue?",
+  "posCategories_defaultsGenerated": "Default categories generated",
+  "posCategories_noCategories": "No categories found",
+
+  "paymentDetail_title": "Payment Receipt",
+  "paymentDetail_printerSettings": "Printer Settings",
+  "paymentDetail_paymentSuccessful": "Payment Successful!",
+  "paymentDetail_printing": "Printing...",
+  "paymentDetail_print": "Print",
+  "paymentDetail_orderItems": "ORDER ITEMS",
+  "paymentDetail_voucher": "Voucher",
+  "paymentDetail_paymentDetails": "PAYMENT DETAILS",
+  "paymentDetail_amountPaid": "Amount Paid",
+  "paymentDetail_thankYou": "Thank you for your order!",
+  "paymentDetail_comeAgain": "Please come again",
+
+  "printPreview_title": "Print Preview",
+  "printPreview_cashier": "Cashier",
+  "printPreview_kitchen": "Kitchen",
+  "printPreview_waiter": "Waiter",
+  "printPreview_kitchenOrder": "Kitchen Order",
+  "printPreview_waiterOrder": "Waiter Order",
+
+  "products_title": "Products",
+  "products_addProduct": "Add Product",
+  "products_editProduct": "Edit Product",
+  "products_deleteProduct": "Delete Product",
+  "products_deleteConfirm": "Are you sure you want to delete this product?",
+  "products_name": "Product Name",
+  "products_price": "Selling Price",
+  "products_purchasePrice": "Purchase Price",
+  "products_stock": "Stock",
+  "products_minStock": "Minimum Stock",
+  "products_category": "Category",
+  "products_description": "Description",
+  "products_photo": "Photo",
+  "products_barcode": "Barcode",
+  "products_isService": "Is Service",
+  "products_stockMode": "Stock Tracking",
+  "products_allowComma": "Allow Decimal Quantity",
+  "products_units": "Units",
+  "products_searchProducts": "Search products...",
+  "products_allCategories": "All Categories",
+  "products_noProducts": "No products found",
+  "products_addFirst": "Add your first product",
+  "products_productSaved": "Product saved successfully",
+  "products_productDeleted": "Product deleted",
+  "products_scanBarcode": "Scan Barcode",
+
+  "productForm_productPhoto": "Product Photo",
+  "productForm_addUnit": "Add Unit",
+  "productForm_unitName": "Unit Name (max 3 chars)",
+  "productForm_unitNameHint": "e.g., PCS, BOX, KG",
+  "productForm_conversionFactor": "Conversion Factor",
+  "productForm_conversionFactorHint": "e.g., 12 (1 Pack = 12 PCS)",
+  "productForm_conversionFactorHelp": "How many base units (PCS) in one of this unit?",
+  "productForm_unitNameRequired": "Unit name is required",
+  "productForm_unitNameMax3": "Unit name max 3 characters",
+  "productForm_validConversionFactor": "Please enter a valid conversion factor",
+  "productForm_unitAlreadyExists": "Unit \"{name}\" already exists",
+  "@productForm_unitAlreadyExists": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "productForm_productNameRequired": "Product name is required",
+  "productForm_savingProduct": "Saving product...",
+  "productForm_productUpdated": "Product updated successfully",
+  "productForm_productAdded": "Product added successfully",
+  "productForm_enterPurchasePrice": "Enter purchase price",
+  "productForm_setViaPO": "Set via Purchase Order",
+  "productForm_alertWhenBelowThis": "Alert when stock below this",
+  "productForm_orderRecommendation": "Order Recommendation",
+  "productForm_orderRecommendationHint": "Recommended quantity to reorder",
+  "productForm_noCategory": "No Category",
+  "productForm_scanOrEnterManually": "Scan or enter manually",
+  "productForm_productVariants": "Product Variants",
+  "productForm_selectVariants": "Select variants that apply to this product",
+  "productForm_productUnits": "Product Units",
+  "productForm_defineUnitsHelp": "Define units for this product (e.g., PCS, Pack, Box)",
+  "productForm_unitsPricing": "Units & Pricing",
+  "productForm_unitsPricingHelp": "Define units and set selling price per unit",
+  "productForm_baseUnit": "Base Unit",
+  "productForm_mainPrice": "Main Price",
+  "productForm_setAbove": "Set price above",
+  "productForm_autoPrice": "Auto",
+  "productForm_customPrice": "Custom",
+  "productForm_customUnitPrice": "Custom unit price",
+  "productForm_customPriceEnabled": "Set a custom selling price for this unit",
+  "productForm_autoCalculatePrice": "Price auto-calculated from base price × conversion",
+  "productForm_editUnitPrice": "Edit Unit Price",
+  "productForm_unitPrice": "Unit Price",
+  "productForm_validUnitPrice": "Please enter a valid unit price",
+  "productForm_autoCalcExplanation": "Auto-calculated: {price} (base price × {factor})",
+  "@productForm_autoCalcExplanation": {
+    "placeholders": {
+      "price": {"type": "String"},
+      "factor": {"type": "String"}
+    }
+  },
+  "productForm_noUnitsWarning": "No units defined. Default PCS unit will be used.",
+  "productForm_isService": "This product is a service",
+  "productForm_stockNotTracked": "Stock will not be tracked",
+  "productForm_tapToMarkAsService": "Tap to mark as service",
+  "productForm_trackStock": "Track stock",
+  "productForm_stockWillBeTracked": "Stock will be tracked",
+  "productForm_canSellUnlimited": "Can sell unlimited quantity",
+  "productForm_allowDecimalQty": "Allow decimal quantity",
+  "productForm_decimalExample": "e.g. 2.5 kg, 1.5 liter",
+  "productForm_wholeNumbersOnly": "Only whole numbers allowed",
+  "productForm_quickMarkup": "Quick markup:",
+  "productForm_enterPurchasePriceFirst": "Enter purchase price first",
+  "productForm_priceEqualWarning": "Selling price is the same as purchase price. You will have no profit margin. Are you sure you want to continue?",
+
+  "categories_title": "Categories",
+  "categories_addCategory": "Add Category",
+  "categories_editCategory": "Edit Category",
+  "categories_deleteCategory": "Delete Category",
+  "categories_deleteConfirm": "Are you sure you want to delete this category?",
+  "categories_name": "Category Name",
+  "categories_description": "Description",
+  "categories_photo": "Photo",
+  "categories_noCategories": "No categories found",
+  "categories_addFirst": "Add your first category",
+  "categories_categorySaved": "Category saved successfully",
+  "categories_categoryDeleted": "Category deleted",
+  "categories_nameRequired": "Category name is required",
+  "categories_saving": "Saving category...",
+  "categories_categoryUpdated": "Category updated successfully",
+  "categories_categoryAdded": "Category added successfully",
+  "categories_visibilitySettings": "Visibility Settings",
+  "categories_visibleOnPos": "Visible on POS",
+  "categories_visibleOnPosHint": "Show products from this category in POS",
+  "categories_visibleOnStockAdjustment": "Visible on Stock Adjustment",
+  "categories_visibleOnStockAdjustmentHint": "Show products from this category in Stock Adjustment",
+  "categories_visibleOnPurchaseOrder": "Visible on Purchase Order",
+  "categories_visibleOnPurchaseOrderHint": "Show products from this category in Purchase Order",
+
+  "customers_title": "Customers",
+  "customers_addCustomer": "Add Customer",
+  "customers_editCustomer": "Edit Customer",
+  "customers_deleteCustomer": "Delete Customer",
+  "customers_deleteConfirm": "Are you sure you want to delete this customer?",
+  "customers_name": "Customer Name",
+  "customers_phone": "Phone",
+  "customers_email": "Email",
+  "customers_address": "Address",
+  "customers_searchCustomers": "Search customers...",
+  "customers_noCustomers": "No customers found",
+  "customers_addFirst": "Add your first customer",
+  "customers_customerSaved": "Customer saved successfully",
+  "customers_customerDeleted": "Customer deleted",
+  "customers_nameRequired": "Customer name is required",
+  "customers_savingCustomer": "Saving customer...",
+  "customers_customerAdded": "Customer added successfully",
+  "customers_customerUpdated": "Customer updated successfully",
+  "customers_viewOnly": "View Only",
+  "customers_cannotEditAsStaff": "Only admin can edit or delete customers.",
+  "customer_name": "Customer Name",
+
+  "suppliers_title": "Suppliers",
+  "suppliers_addSupplier": "Add Supplier",
+  "suppliers_editSupplier": "Edit Supplier",
+  "suppliers_deleteSupplier": "Delete Supplier",
+  "suppliers_deleteConfirm": "Are you sure you want to delete this supplier?",
+  "suppliers_name": "Supplier Name",
+  "suppliers_phone": "Phone",
+  "suppliers_email": "Email",
+  "suppliers_address": "Address",
+  "suppliers_notes": "Notes",
+  "suppliers_searchSuppliers": "Search suppliers...",
+  "suppliers_noSuppliers": "No suppliers found",
+  "suppliers_noSuppliersFound": "No suppliers found",
+  "suppliers_addFirst": "Add your first supplier",
+  "suppliers_supplierSaved": "Supplier saved successfully",
+  "suppliers_supplierDeleted": "Supplier deleted",
+  "suppliers_nameRequired": "Supplier name is required",
+  "suppliers_saving": "Saving supplier...",
+  "suppliers_updated": "Supplier updated successfully",
+  "suppliers_added": "Supplier added successfully",
+  "suppliers_bankInfo": "Bank Information",
+  "suppliers_bankName": "Bank Name",
+  "suppliers_bankAccountNumber": "Account Number",
+  "suppliers_bankAccountName": "Account Holder Name",
+
+  "tables_title": "Tables",
+  "tables_searchTables": "Search tables...",
+  "tables_addTable": "Add Table",
+  "tables_editTable": "Edit Table",
+  "tables_deleteTable": "Delete Table",
+  "tables_deleteConfirm": "Are you sure you want to delete this table?",
+  "tables_number": "Table Number",
+  "tables_capacity": "Capacity",
+  "tables_status": "Status",
+  "tables_available": "Available",
+  "tables_occupied": "Occupied",
+  "tables_maintenance": "Maintenance",
+  "tables_noTables": "No tables found",
+  "tables_addFirst": "Add your first table",
+  "tables_tableSaved": "Table saved successfully",
+  "tables_tableDeleted": "Table deleted",
+  "tables_generateTables": "Generate Tables",
+  "tables_liveView": "Live View",
+  "tables_invalidNumber": "Please enter a valid table number",
+  "tables_updated": "Table updated successfully",
+  "tables_added": "Table added successfully",
+  "tables_numberOfTables": "Number of Tables",
+  "tables_startFromNumber": "Start From Number",
+  "tables_capacityPerTable": "Capacity per Table",
+  "tables_invalidCount": "Please enter a valid number of tables (1-100)",
+  "tables_generatedSuccess": "{count} tables generated successfully!",
+  "@tables_generatedSuccess": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tables_generate": "Generate",
+
+  "users_title": "Users",
+  "users_addUser": "Add User",
+  "users_editUser": "Edit User",
+  "users_deleteUser": "Delete User",
+  "users_deleteConfirm": "Are you sure you want to delete this user?",
+  "users_deleteUserConfirm": "Are you sure you want to delete user \"{name}\"?",
+  "@users_deleteUserConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "users_deleteUserFailed": "Failed to delete user",
+  "users_name": "Name",
+  "users_email": "Email",
+  "users_password": "Password",
+  "users_role": "Role",
+  "users_admin": "Admin",
+  "users_cashier": "Cashier",
+  "users_roleAdmin": "Admin",
+  "users_roleCashier": "Cashier",
+  "users_allRoles": "All Roles",
+  "users_searchUsers": "Search users...",
+  "users_noUsers": "No users found",
+  "users_noUsersFound": "No users found",
+  "users_noMatchingUsers": "No matching users",
+  "users_tapToAdd": "Tap + to add a new user",
+  "users_addFirst": "Add your first user",
+  "users_userSaved": "User saved successfully",
+  "users_userDeleted": "User deleted",
+  "users_user": "User",
+  "users_you": "You",
+  "users_status": "Status",
+  "users_statusActive": "Active",
+  "users_statusInactive": "Inactive",
+  "users_allStatus": "All Status",
+  "users_activeFirst": "Active First",
+  "users_inactiveFirst": "Inactive First",
+  "users_cannotDeleteSelf": "Cannot delete your own account",
+  "users_cannotDeactivateSelf": "Cannot deactivate your own account",
+  "users_activating": "Activating user...",
+  "users_deactivating": "Deactivating user...",
+  "users_activated": "User activated",
+  "users_deactivated": "User deactivated",
+  "users_statusChangeFailed": "Failed to change status",
+  "users_activate": "Activate",
+  "users_deactivate": "Deactivate",
+  "users_nameRequired": "Name is required",
+  "users_emailRequired": "Email is required",
+  "users_fullNameHint": "Full name",
+  "users_emailHint": "email@demo.com",
+  "users_newPasswordOptional": "New Password (optional)",
+  "users_leaveEmptyHint": "Leave empty if not changing",
+  "users_minCharactersHint": "Minimum 6 characters",
+  "users_updatingUser": "Updating user...",
+  "users_addingUser": "Adding user...",
+  "users_userUpdated": "User updated successfully",
+  "users_userAdded": "User added successfully",
+  "users_updateFailed": "Failed to update user",
+  "users_addFailed": "Failed to add user",
+
+  "variants_title": "Variants",
+  "variants_addVariant": "Add Variant",
+  "variants_editVariant": "Edit Variant",
+  "variants_deleteVariant": "Delete Variant",
+  "variants_deleteConfirm": "Are you sure you want to delete this variant?",
+  "variants_deleteConfirmWithName": "Are you sure you want to delete \"{name}\"?",
+  "@variants_deleteConfirmWithName": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "variants_name": "Variant Name",
+  "variants_nameHint": "e.g., Size, Temperature",
+  "variants_options": "Options",
+  "variants_optionsCommaSeparated": "Options (comma separated)",
+  "variants_optionsHint": "e.g., S, M, L, XL",
+  "variants_separateWithComma": "Separate each option with a comma",
+  "variants_addOption": "Add Option",
+  "variants_noVariants": "No variants found",
+  "variants_addFirst": "Add your first variant",
+  "variants_tapToAddFirst": "Tap + to add your first variant",
+  "variants_searchVariants": "Search variants...",
+  "variants_variantSaved": "Variant saved successfully",
+  "variants_variantAdded": "Variant added",
+  "variants_variantUpdated": "Variant updated",
+  "variants_variantDeleted": "Variant deleted successfully",
+  "variants_enterName": "Please enter variant name",
+  "variants_enterOption": "Please enter at least one option",
+  "variants_enterValidOptions": "Please enter valid options",
+  "variants_updating": "Updating...",
+  "variants_saving": "Saving...",
+  "variants_deleting": "Deleting...",
+  "variants_sortBy": "Sort By",
+  "variants_nameAZ": "Name A-Z",
+  "variants_nameZA": "Name Z-A",
+  "variants_optionsCount": "{count} options",
+  "@variants_optionsCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "variants_moreOptions": "+{count} more",
+  "@variants_moreOptions": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+
+  "vouchers_title": "Vouchers",
+  "vouchers_addVoucher": "Add Voucher",
+  "vouchers_editVoucher": "Edit Voucher",
+  "vouchers_deleteVoucher": "Delete Voucher",
+  "vouchers_deleteConfirm": "Are you sure you want to delete this voucher?",
+  "vouchers_code": "Voucher Code",
+  "vouchers_name": "Voucher Name",
+  "vouchers_type": "Type",
+  "vouchers_value": "Value",
+  "vouchers_nominal": "Nominal",
+  "vouchers_percent": "Percent",
+  "vouchers_minTransaction": "Minimum Transaction",
+  "vouchers_usageLimit": "Usage Limit",
+  "vouchers_usedCount": "Used Count",
+  "vouchers_startDate": "Start Date",
+  "vouchers_endDate": "End Date",
+  "vouchers_isActive": "Is Active",
+  "vouchers_noVouchers": "No vouchers found",
+  "vouchers_noVouchersFound": "No vouchers found",
+  "vouchers_searchVouchers": "Search vouchers...",
+  "vouchers_addFirst": "Add your first voucher",
+  "vouchers_voucherSaved": "Voucher saved successfully",
+  "vouchers_voucherDeleted": "Voucher deleted",
+
+  "voucherForm_codeHint": "e.g., DISCOUNT10",
+  "voucherForm_nameHint": "e.g., New Year Discount",
+  "voucherForm_nominalRp": "Nominal (Rp)",
+  "voucherForm_percentSymbol": "Percent (%)",
+  "voucherForm_discountAmountRp": "Discount Amount (Rp)",
+  "voucherForm_discountPercent": "Discount Percent (%)",
+  "voucherForm_valueHintNominal": "e.g., 10000",
+  "voucherForm_valueHintPercent": "e.g., 10",
+  "voucherForm_minTransactionRp": "Min. Transaction (Rp)",
+  "voucherForm_minTransactionHint": "0 for no minimum",
+  "voucherForm_usageLimitOptional": "Usage Limit (optional)",
+  "voucherForm_usageLimitHint": "Leave empty for unlimited",
+  "voucherForm_subscriptionEndDate": "Subscription End Date",
+  "voucherForm_selectDate": "Select date...",
+  "voucherForm_validPeriodOptional": "Valid Period (optional)",
+  "voucherForm_codeRequired": "Voucher code is required",
+  "voucherForm_valueRequired": "Discount value is required",
+  "voucherForm_invalidValue": "Invalid discount value",
+  "voucherForm_percentMax100": "Percent cannot be more than 100",
+  "voucherForm_savingVoucher": "Saving voucher...",
+  "voucherForm_voucherUpdated": "Voucher updated successfully",
+  "voucherForm_voucherAdded": "Voucher added successfully",
+
+  "expenses_title": "Expenses",
+  "expenses_addExpense": "Add Expense",
+  "expenses_editExpense": "Edit Expense",
+  "expenses_deleteExpense": "Delete Expense",
+  "expenses_deleteConfirm": "Are you sure you want to delete this expense?",
+  "expenses_type": "Expense Type",
+  "expenses_amount": "Amount",
+  "expenses_description": "Description",
+  "expenses_date": "Date",
+  "expenses_noExpenses": "No expenses found",
+  "expenses_searchExpenses": "Search expenses...",
+  "expenses_addFirst": "Add your first expense",
+  "expenses_expenseSaved": "Expense saved successfully",
+  "expenses_expenseDeleted": "Expense deleted",
+  "expenses_fromStockAdjustment": "From Stock Adjustment",
+  "expenses_cannotEditStockAdjustment": "This expense was auto-created from Stock Adjustment and cannot be edited or deleted.",
+  "expenses_fromCashDrawer": "From Cash Drawer",
+  "expenses_cannotEditCashDrawer": "This expense was auto-created from Cash Drawer shortage and cannot be edited or deleted.",
+  "expenses_viewOnly": "View Only",
+  "expenses_cannotEditAsStaff": "Only admin can edit or delete expenses.",
+
+  "expenseForm_selectCategory": "Select Category",
+  "expenseForm_searchCategory": "Search category...",
+  "expenseForm_pleaseEnterAmount": "Please enter amount",
+  "expenseForm_pleaseEnterValidAmount": "Please enter valid amount",
+  "expenseForm_pleaseSelectCategory": "Please select a category",
+  "expenseForm_savingExpense": "Saving expense...",
+  "expenseForm_expenseUpdated": "Expense updated successfully",
+  "expenseForm_expenseAdded": "Expense added successfully",
+  "expenseForm_notesOptional": "Notes (optional)",
+
+  "expenseTypes_title": "Expense Types",
+  "expenseTypes_addType": "Add Expense Type",
+  "expenseTypes_editType": "Edit Expense Type",
+  "expenseTypes_deleteType": "Delete Expense Type",
+  "expenseTypes_deleteConfirm": "Are you sure you want to delete this expense type?",
+  "expenseTypes_name": "Type Name",
+  "expenseTypes_icon": "Icon",
+  "expenseTypes_color": "Color",
+  "expenseTypes_noTypes": "No expense types found",
+  "expenseTypes_addFirst": "Add your first expense type",
+  "expenseTypes_typeSaved": "Expense type saved successfully",
+  "expenseTypes_typeDeleted": "Expense type deleted",
+  "expenseTypes_nameRequired": "Type name is required",
+  "expenseTypes_selectIcon": "Select Icon",
+  "expenseTypes_selectColor": "Select Color",
+  "expenseTypes_preview": "Preview",
+  "expenseTypes_descriptionOptional": "Description (Optional)",
+  "expenseTypes_savingType": "Saving expense type...",
+  "expenseTypes_typeUpdated": "Expense type updated successfully",
+  "expenseTypes_typeAdded": "Expense type added successfully",
+
+  "orderStatuses_title": "Order Statuses",
+  "orderStatuses_addStatus": "Add Order Status",
+  "orderStatuses_editStatus": "Edit Order Status",
+  "orderStatuses_deleteStatus": "Delete Order Status",
+  "orderStatuses_deleteConfirm": "Are you sure you want to delete this order status?",
+  "orderStatuses_name": "Status Name",
+  "orderStatuses_noStatuses": "No order statuses found",
+  "orderStatuses_addFirst": "Add your first order status",
+  "orderStatuses_statusSaved": "Order status saved successfully",
+  "orderStatuses_statusDeleted": "Order status deleted",
+  "orderStatuses_nameRequired": "Status name is required",
+  "orderStatuses_selectIcon": "Select Icon",
+  "orderStatuses_selectColor": "Select Color",
+  "orderStatuses_preview": "Preview",
+  "orderStatuses_descriptionOptional": "Description (Optional)",
+  "orderStatuses_savingStatus": "Saving order status...",
+  "orderStatuses_statusUpdated": "Order status updated successfully",
+  "orderStatuses_statusAdded": "Order status added successfully",
+  "orderStatuses_sortOrder": "Sort Order",
+  "orderStatuses_sortOrderAsc": "Sort Order (Ascending)",
+  "orderStatuses_sortOrderDesc": "Sort Order (Descending)",
+  "orderStatuses_allStatuses": "All Statuses",
+  "orderStatuses_filterByStatus": "Order Status",
+  "orderStatuses_updateStatus": "Update Status",
+  "orderStatuses_selectStatus": "Select order status...",
+  "orderStatuses_searchStatus": "Search status...",
+  "orderStatuses_noStatus": "No Status",
+
+  "paymentMethods_title": "Payment Methods",
+  "paymentMethods_addMethod": "Add Payment Method",
+  "paymentMethods_editMethod": "Edit Payment Method",
+  "paymentMethods_deleteMethod": "Delete Payment Method",
+  "paymentMethods_deleteConfirm": "Are you sure you want to delete this payment method?",
+  "paymentMethods_name": "Method Name",
+  "paymentMethods_type": "Type",
+  "paymentMethods_bankName": "Bank Name",
+  "paymentMethods_accountNumber": "Account Number",
+  "paymentMethods_accountName": "Account Name",
+  "paymentMethods_qrImage": "QR Image",
+  "paymentMethods_noMethods": "No payment methods found",
+  "paymentMethods_addFirst": "Add your first payment method",
+  "paymentMethods_methodSaved": "Payment method saved successfully",
+  "paymentMethods_methodDeleted": "Payment method deleted",
+  "paymentMethods_qrisSubtitle": "Add QR code payment (DANA, OVO, GoPay, etc)",
+  "paymentMethods_bankTransferSubtitle": "Add bank account for transfer",
+  "paymentMethods_qrisPayments": "QRIS Payments",
+  "paymentMethods_bankTransfer": "Bank Transfer",
+  "paymentMethods_cash": "Cash",
+  "paymentMethods_alwaysAvailable": "Always available",
+  "paymentMethods_noMethodsYet": "No payment methods yet",
+  "paymentMethods_tapToAdd": "Tap + to add QRIS or Bank Transfer",
+  "paymentMethods_methodCount": "{count} method(s)",
+  "@paymentMethods_methodCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "paymentMethods_accountNumberCopied": "Account number copied",
+  "paymentMethods_deleteConfirmName": "Are you sure you want to delete \"{name}\"?",
+  "@paymentMethods_deleteConfirmName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentMethods_editQris": "Edit QRIS Payment",
+  "paymentMethods_addQris": "Add QRIS Payment",
+  "paymentMethods_editBankTransfer": "Edit Bank Transfer",
+  "paymentMethods_addBankTransfer": "Add Bank Transfer",
+  "paymentMethods_paymentName": "Payment Name",
+  "paymentMethods_paymentNameHint": "e.g., DANA, OVO, GoPay",
+  "paymentMethods_accountNameHint": "e.g., John Doe",
+  "paymentMethods_qrCodeImage": "QR Code Image",
+  "paymentMethods_bankNameHint": "e.g., BCA, Mandiri, BNI",
+  "paymentMethods_accountNumberHint": "e.g., 1234567890",
+  "paymentMethods_accountHolderName": "Account Holder Name",
+  "paymentMethods_enterPaymentName": "Please enter payment name",
+  "paymentMethods_uploadQrCode": "Please upload QR code image",
+  "paymentMethods_enterBankName": "Please enter bank name",
+  "paymentMethods_enterAccountNumber": "Please enter account number",
+  "paymentMethods_enterAccountHolder": "Please enter account holder name",
+  "paymentMethods_saving": "Saving...",
+
+  "credits_title": "Credits",
+  "credits_management": "Credit Management",
+  "credits_addCredit": "Add Credit",
+  "credits_addManualCredit": "Add Manual Credit",
+  "credits_addPayment": "Add Payment",
+  "credits_totalOutstanding": "Total Outstanding",
+  "credits_totalAmount": "Total Amount",
+  "credits_paid": "Paid",
+  "credits_partial": "Partial",
+  "credits_unpaid": "Unpaid",
+  "credits_remaining": "Remaining",
+  "credits_amount": "Amount",
+  "credits_description": "Description",
+  "credits_notes": "Notes",
+  "credits_notesOptional": "Notes (optional)",
+  "credits_created": "Created",
+  "credits_status": "Status",
+  "credits_allStatus": "All Status",
+  "credits_allCustomers": "All Customers",
+  "credits_selectCustomer": "Select customer...",
+  "credits_paymentHistory": "Payment History",
+  "credits_noCredits": "No credits found",
+  "credits_noCreditsYet": "No credits yet",
+  "credits_noPaymentsYet": "No payments yet",
+  "credits_creditSaved": "Credit saved successfully",
+  "credits_paymentSaved": "Payment saved successfully",
+  "credits_addingCredit": "Adding credit...",
+  "credits_manualCreditEntry": "Manual credit entry",
+  "credits_pleaseSelectCustomer": "Please select a customer",
+  "credits_pleaseEnterValidAmount": "Please enter a valid amount",
+  "credits_deleteCredit": "Delete Credit",
+  "credits_deleteCreditConfirm": "Are you sure you want to delete this credit record for {customerName}?",
+  "@credits_deleteCreditConfirm": {
+    "placeholders": {
+      "customerName": {
+        "type": "String"
+      }
+    }
+  },
+  "credits_deletingCredit": "Deleting credit...",
+  "credits_creditDeleted": "Credit deleted",
+
+  "debts_title": "Debt Management",
+  "debts_addDebt": "Add Debt",
+  "debts_addPayment": "Add Payment",
+  "debts_addManualDebt": "Add Manual Debt",
+  "debts_totalOutstanding": "Total Outstanding",
+  "debts_totalAmount": "Total Amount",
+  "debts_paid": "Paid",
+  "debts_partial": "Partial",
+  "debts_unpaid": "Unpaid",
+  "debts_remaining": "Remaining",
+  "debts_paymentHistory": "Payment History",
+  "debts_noDebts": "No debts found",
+  "debts_noDebtsYet": "No debts yet",
+  "debts_noPaymentsYet": "No payments yet",
+  "debts_debtSaved": "Debt saved successfully",
+  "debts_paymentSaved": "Payment saved successfully",
+  "debts_debtAddedSuccessfully": "Debt added successfully",
+  "debts_debtDeleted": "Debt deleted",
+  "debts_deletingDebt": "Deleting debt...",
+  "debts_addingDebt": "Adding debt...",
+  "debts_deleteDebt": "Delete Debt",
+  "debts_deleteConfirm": "Are you sure you want to delete this debt record for {supplierName}?",
+  "@debts_deleteConfirm": {
+    "placeholders": {
+      "supplierName": {
+        "type": "String"
+      }
+    }
+  },
+  "debts_selectSupplier": "Select supplier...",
+  "debts_allSuppliers": "All Suppliers",
+  "debts_allStatus": "All Status",
+  "debts_status": "Status",
+  "debts_amount": "Amount",
+  "debts_description": "Description",
+  "debts_notes": "Notes",
+  "debts_notesOptional": "Notes (optional)",
+  "debts_created": "Created",
+  "debts_manualDebtEntry": "Manual debt entry",
+  "debts_pleaseSelectSupplier": "Please select a supplier",
+  "debts_pleaseEnterValidAmount": "Please enter a valid amount",
+  "debts_payDebt": "Pay Debt",
+  "debts_paidInFull": "Paid in Full",
+
+  "debtPayment_title": "Pay Debt",
+  "debtPayment_selectPaymentMethod": "Select Payment Method",
+  "debtPayment_payWithCash": "Pay with cash",
+  "debtPayment_scanQrisToPay": "Scan QRIS to pay",
+  "debtPayment_enterValidAmount": "Please enter a valid amount",
+  "debtPayment_amountExceedsRemaining": "Amount exceeds remaining balance",
+  "debtPayment_processingPayment": "Processing payment...",
+  "debtPayment_paymentRecordedSuccess": "Payment recorded successfully",
+  "debtPayment_paymentFailed": "Payment failed: {error}",
+  "@debtPayment_paymentFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "debtPayment_paymentMethod": "Payment Method",
+  "debtPayment_unknownSupplier": "Unknown",
+  "debtPayment_totalDebt": "Total Debt",
+  "debtPayment_paid": "Paid",
+  "debtPayment_remaining": "Remaining",
+  "debtPayment_paymentAmount": "Payment Amount",
+  "debtPayment_amount": "Amount",
+  "debtPayment_fullAmount": "Full Amount",
+  "debtPayment_notesOptional": "Notes (Optional)",
+  "debtPayment_paymentNotes": "Payment notes",
+  "debtPayment_processing": "Processing...",
+  "debtPayment_submitPayment": "Submit Payment",
+  "debtPayment_ivePaid": "I've Paid",
+  "debtPayment_iveTransferred": "I've Transferred",
+  "debtPayment_scanQrCode": "Scan QR code above using your e-wallet app",
+  "debtPayment_accountNumber": "Account Number",
+  "debtPayment_accountHolder": "Account Holder",
+  "debtPayment_total": "Total:",
+  "debtPayment_transferToAccount": "Transfer the amount above to the account",
+  "debtPayment_accountNumberCopied": "Account number copied",
+  "debtPayment_qris": "QRIS",
+  "debtPayment_bankTransfer": "Bank Transfer",
+  "debtPayment_cash": "Cash",
+  "debtPayment_nonCash": "Non-Cash",
+  "debtPayment_payWithNonCash": "Pay via bank transfer",
+  "debtPayment_supplierBankInfo": "Supplier Bank Information",
+  "debtPayment_noBankInfo": "No bank information available for this supplier",
+
+  "purchaseOrder_title": "Purchase Orders",
+  "purchaseOrder_new": "New Purchase Order",
+  "purchaseOrder_edit": "Edit Purchase Order",
+  "purchaseOrder_delete": "Delete Purchase Order",
+  "purchaseOrder_deleteConfirm": "Are you sure you want to delete this purchase order?",
+  "purchaseOrder_supplier": "Supplier",
+  "purchaseOrder_date": "Date",
+  "purchaseOrder_status": "Status",
+  "purchaseOrder_pending": "Pending",
+  "purchaseOrder_received": "Received",
+  "purchaseOrder_cancelled": "Cancelled",
+  "purchaseOrder_items": "Items",
+  "purchaseOrder_total": "Total",
+  "purchaseOrder_noPurchaseOrders": "No purchase orders found",
+  "purchaseOrder_addFirst": "Create your first purchase order",
+  "purchaseOrder_orderSaved": "Purchase order saved successfully",
+  "purchaseOrder_orderDeleted": "Purchase order deleted",
+  "purchaseOrder_markReceived": "Mark as Received",
+  "purchaseOrder_receivedSuccess": "Purchase order marked as received",
+  "purchaseOrder_serviceCannotBePurchased": "Service products cannot be purchased",
+  "purchaseOrder_productNotFoundSearching": "Product not found, searching: {code}",
+  "@purchaseOrder_productNotFoundSearching": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "purchaseOrder_scanBarcodeToAdd": "Scan barcode to add product",
+  "purchaseOrder_paymentTitle": "Purchase Order Payment",
+  "purchaseOrder_confirmCashPayment": "Confirm Cash Payment",
+  "purchaseOrder_confirmCreditPayment": "Confirm Credit Payment",
+  "purchaseOrder_confirmPayment": "Confirm Payment",
+  "purchaseOrder_confirmCredit": "Confirm Credit",
+  "purchaseOrder_stockWillBeUpdated": "Stock will be updated immediately",
+  "purchaseOrder_debtWillBeCreated": "A debt record will be created for this supplier",
+  "purchaseOrder_selectSupplier": "Select Supplier",
+  "purchaseOrder_searchSupplier": "Search supplier name...",
+  "purchaseOrder_orderItems": "Order Items",
+  "purchaseOrder_itemsCount": "{count} items",
+  "@purchaseOrder_itemsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "purchaseOrder_confirmAndReceiveStock": "Confirm & Receive Stock",
+  "purchaseOrder_confirmPurchaseOrder": "Confirm Purchase Order",
+  "purchaseOrder_stockUpdatedAfterConfirmation": "Stock will be updated immediately after confirmation",
+  "purchaseOrder_cartEmpty": "Cart is empty",
+  "purchaseOrder_pleaseSelectSupplier": "Please select a supplier",
+  "purchaseOrder_creatingAndReceiving": "Creating and receiving purchase order...",
+  "purchaseOrder_creatingOrder": "Creating purchase order...",
+  "purchaseOrder_failedPrefix": "Failed: {error}",
+  "@purchaseOrder_failedPrefix": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "purchaseOrder_debtFromPO": "Debt from Purchase Order",
+  "purchaseOrder_createdButFailedToReceive": "PO created but failed to receive: {error}",
+  "@purchaseOrder_createdButFailedToReceive": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "purchaseOrder_payNowInCash": "Pay now in cash",
+  "purchaseOrder_payLaterCreatesDebt": "Pay later, creates debt record",
+  "purchaseOrder_confirmPayment": "Confirm Payment",
+  "purchaseOrder_confirmPaymentCashMessage": "You will pay {amount} in cash. This action cannot be changed. The amount will be recorded as cash outcome.",
+  "@purchaseOrder_confirmPaymentCashMessage": {
+    "placeholders": {
+      "amount": {"type": "String"}
+    }
+  },
+  "purchaseOrder_confirmPaymentCreditMessage": "You will pay {amount} on credit. This action cannot be changed. A debt record will be created for this purchase.",
+  "@purchaseOrder_confirmPaymentCreditMessage": {
+    "placeholders": {
+      "amount": {"type": "String"}
+    }
+  },
+  "purchaseOrder_creditDebt": "Credit (Debt)",
+  "purchaseOrder_cart": "Purchase Order Cart",
+  "purchaseOrder_clearAll": "Clear All",
+  "purchaseOrder_purchasePriceLabel": "Purchase Price: {name}",
+  "@purchaseOrder_purchasePriceLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "purchaseOrder_priceRp": "Price (Rp)",
+  "purchaseOrder_invalidPrice": "Invalid price",
+  "purchaseOrder_yourCartEmpty": "Your cart is empty",
+  "purchaseOrder_createdAndReceived": "Purchase Order Created & Received",
+  "purchaseOrder_createdAndReceivedMessage": "Purchase order has been created and stock updated successfully!",
+  "purchaseOrder_createdTitle": "Purchase Order Created",
+  "purchaseOrder_createdMessage": "Purchase order created successfully! You can receive the items later from PO list.",
+  "purchaseOrder_debtCreatedSuffix": " A debt record has been created for this purchase.",
+  "purchaseOrder_createPO": "Create PO",
+  "purchaseOrder_createAndReceive": "Create & Receive",
+  "purchaseOrder_createAndReceiveNote": "\"Create & Receive\" will update stock immediately",
+  "purchaseOrder_pleaseSelectSupplierFirst": "Please select a supplier first",
+  "purchaseOrder_printPO": "Print PO",
+  "purchaseOrder_paymentType": "Payment Type",
+  "purchaseOrder_cash": "Cash",
+  "purchaseOrder_credit": "Credit",
+  "purchaseOrder_unpaid": "Unpaid",
+  "purchaseOrder_paid": "Paid",
+  "purchaseOrder_ordered": "Ordered",
+  "paymentMethod_title": "Payment Method",
+
+  "purchaseOrderDetail_receipt": "Purchase Order Receipt",
+  "purchaseOrderDetail_backToHome": "Back to Home",
+  "purchaseOrderDetail_completed": "Purchase Order Completed!",
+  "purchaseOrderDetail_stockUpdated": "Stock Updated",
+  "purchaseOrderDetail_debtRecorded": "Debt Recorded",
+  "purchaseOrderDetail_orderDetails": "Order Details",
+  "purchaseOrderDetail_totalItems": "Total Items",
+  "purchaseOrderDetail_productsCount": "{count} products",
+  "@purchaseOrderDetail_productsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "purchaseOrderDetail_itemsCount": "{count} items",
+  "@purchaseOrderDetail_itemsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "purchaseOrderDetail_totalAmount": "Total Amount",
+
+  "stockAdjustment_title": "Stock Adjustment",
+  "stockAdjustment_addAdjustment": "Add Adjustment",
+  "stockAdjustment_product": "Product",
+  "stockAdjustment_currentStock": "Current Stock",
+  "stockAdjustment_newStock": "New Stock",
+  "stockAdjustment_change": "Change",
+  "stockAdjustment_reason": "Reason",
+  "stockAdjustment_date": "Date",
+  "stockAdjustment_noAdjustments": "No adjustments found",
+  "stockAdjustment_adjustment": "Adjustment",
+  "stockAdjustment_adjustmentSaved": "Stock adjustment saved successfully",
+  "stockAdjustment_history": "Adjustment History",
+  "stockAdjustment_searchAdjustments": "Search adjustments...",
+  "stockAdjustment_noAdjustmentsYet": "No stock adjustments yet",
+  "stockAdjustment_deleteAdjustment": "Delete Adjustment",
+  "stockAdjustment_deleteConfirmMessage": "Are you sure you want to delete this adjustment record?\n\nNote: This will not reverse the stock or expense.",
+  "stockAdjustment_adjustmentDeleted": "Adjustment deleted",
+  "stockAdjustment_totalRecords": "Total Records",
+  "stockAdjustment_totalQty": "Total Qty",
+  "stockAdjustment_totalLoss": "Total Loss",
+  "stockAdjustment_unknown": "Unknown",
+  "stockAdjustment_allReasons": "All Reasons",
+  "stockAdjustment_searchReason": "Search reason...",
+  "stockAdjustment_newestFirst": "Newest First",
+  "stockAdjustment_oldestFirst": "Oldest First",
+  "stockAdjustment_productAZ": "Product A-Z",
+  "stockAdjustment_productZA": "Product Z-A",
+  "stockAdjustment_highestValue": "Highest Value",
+  "stockAdjustment_lowestValue": "Lowest Value",
+  "stockAdjustment_pcs": "pcs",
+  "stockAdjustment_searchProducts": "Search products...",
+  "stockAdjustment_noProductsWithStock": "No products with stock available",
+  "stockAdjustment_noStockAvailable": "No stock available for adjustment",
+  "stockAdjustment_qtyExceedsStock": "Quantity cannot exceed current stock ({stock})",
+  "@stockAdjustment_qtyExceedsStock": {
+    "placeholders": {
+      "stock": {"type": "String"}
+    }
+  },
+  "stockAdjustment_serviceCannotBeAdjusted": "Service products cannot be adjusted",
+  "stockAdjustment_noStockForProduct": "No stock available for this product",
+  "stockAdjustment_productNotFoundSearching": "Product not found, searching: {code}",
+  "@stockAdjustment_productNotFoundSearching": {
+    "placeholders": {
+      "code": {"type": "String"}
+    }
+  },
+  "stockAdjustment_scanBarcodeToAdd": "Scan barcode to add product",
+  "stockAdjustment_setQuantity": "Set Quantity",
+  "stockAdjustment_quantityToAdjust": "Quantity to Adjust",
+  "stockAdjustment_exampleQty": "e.g. 3",
+  "stockAdjustment_maxQty": "Max: {stock}",
+  "@stockAdjustment_maxQty": {
+    "placeholders": {
+      "stock": {"type": "String"}
+    }
+  },
+  "stockAdjustment_enterValidQty": "Please enter valid quantity",
+  "stockAdjustment_stockLabel": "Stock: {stock}",
+  "@stockAdjustment_stockLabel": {
+    "placeholders": {
+      "stock": {"type": "String"}
+    }
+  },
+  "stockAdjustment_addedProduct": "Added: {name}",
+  "@stockAdjustment_addedProduct": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "stockAdjustment_editLossValue": "Edit Loss Value",
+  "stockAdjustment_lossValue": "Loss Value",
+  "stockAdjustment_quantity": "Quantity",
+  "stockAdjustment_purchasePrice": "Purchase Price",
+  "stockAdjustment_loss": "Loss",
+  "stockAdjustmentForm_title": "Stock Adjustment",
+  "stockAdjustmentForm_scanProductBarcode": "Scan product barcode",
+  "stockAdjustmentForm_selectProduct": "Select product...",
+  "stockAdjustmentForm_searchProduct": "Search product...",
+  "stockAdjustmentForm_pleaseSelectProduct": "Please select a product",
+  "stockAdjustmentForm_qtyMustBeGreaterThanZero": "Quantity must be greater than 0",
+  "stockAdjustmentForm_productFound": "Product found: {name}",
+  "@stockAdjustmentForm_productFound": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "stockAdjustmentForm_productNotFound": "Product with barcode \"{code}\" not found",
+  "@stockAdjustmentForm_productNotFound": {
+    "placeholders": {
+      "code": {"type": "String"}
+    }
+  },
+  "stockAdjustmentForm_selectReason": "Select reason...",
+  "stockAdjustmentForm_searchReason": "Search reason...",
+  "stockAdjustmentForm_lossValue": "Loss Value ({symbol})",
+  "@stockAdjustmentForm_lossValue": {
+    "placeholders": {
+      "symbol": {"type": "String"}
+    }
+  },
+  "stockAdjustmentForm_lossValueHint": "Set to 0 if no financial loss",
+  "stockAdjustmentForm_notes": "Notes",
+  "stockAdjustmentForm_notesHint": "Optional notes about this adjustment...",
+  "stockAdjustmentForm_summary": "Summary",
+  "stockAdjustmentForm_stockBefore": "Stock Before",
+  "stockAdjustmentForm_adjustment": "Adjustment",
+  "stockAdjustmentForm_stockAfter": "Stock After",
+  "stockAdjustmentForm_expenseWillBeRecorded": "An expense of {symbol} {amount} will be recorded under \"{category}\"",
+  "@stockAdjustmentForm_expenseWillBeRecorded": {
+    "placeholders": {
+      "symbol": {"type": "String"},
+      "amount": {"type": "String"},
+      "category": {"type": "String"}
+    }
+  },
+  "stockAdjustmentForm_saveAdjustment": "Save Adjustment",
+  "stockAdjustmentForm_processingAdjustment": "Processing adjustment...",
+
+  "stockAdjustmentReport_title": "Stock Adjustment Report",
+  "stockAdjustmentReport_printPreview": "Print Preview - Stock Adjustment",
+  "stockAdjustmentReport_lossValue": "Loss Value",
+  "stockAdjustmentReport_summary": "Summary",
+  "stockAdjustmentReport_transactions": "Transactions",
+  "stockAdjustmentReport_totalAdjustments": "Total Adjustments",
+  "stockAdjustmentReport_totalQty": "Total Qty",
+  "stockAdjustmentReport_totalLoss": "Total Loss",
+  "stockAdjustmentReport_avgLossPerAdj": "Avg Loss/Adj",
+  "stockAdjustmentReport_breakdownByReason": "Breakdown by Reason",
+  "stockAdjustmentReport_topProductsByLoss": "Top 5 Products by Loss Value",
+  "stockAdjustmentReport_adjustmentsCount": "{count} adjustments",
+  "@stockAdjustmentReport_adjustmentsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "stockAdjustmentReport_recordsCount": "{count} records",
+  "@stockAdjustmentReport_recordsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "stockAdjustmentReport_dateRange": "Date Range",
+  "stockAdjustmentReport_selectDateRange": "Select date range...",
+  "stockAdjustmentReport_searchDateRange": "Search date range...",
+  "stockAdjustmentReport_selectCustomDateRange": "Select custom date range",
+  "stockAdjustmentReport_allReasons": "All Reasons",
+  "stockAdjustmentReport_searchReason": "Search reason...",
+  "stockAdjustmentReport_unknown": "Unknown",
+  "stockAdjustmentReport_pcs": "pcs",
+  "stockAdjustmentReport_previousStock": "Previous Stock",
+  "stockAdjustmentReport_lossValue": "Loss Value",
+  "stockAdjustmentReport_notes": "Notes",
+  "stockAdjustmentReport_quantity": "Quantity",
+  "stockAdjustmentReport_detail": "Adjustment Detail",
+  "stockAdjustmentReport_items": "Items",
+  "stockAdjustmentReport_stockChange": "Stock Change",
+  "stockAdjustmentReport_prevStock": "Prev: {qty}",
+  "@stockAdjustmentReport_prevStock": {
+    "placeholders": {
+      "qty": {"type": "String"}
+    }
+  },
+
+  "stockAdjustmentCart_title": "Adjustment Cart",
+  "stockAdjustmentCart_totalItems": "Total Items",
+  "stockAdjustmentCart_productUnits": "{products} products ({units} units)",
+  "@stockAdjustmentCart_productUnits": {
+    "placeholders": {
+      "products": {"type": "int"},
+      "units": {"type": "String"}
+    }
+  },
+  "stockAdjustmentCart_totalLossValue": "Total Loss Value",
+  "stockAdjustmentCart_noItemsToAdjust": "No items to adjust",
+  "stockAdjustmentCart_qty": "Qty:",
+  "stockAdjustmentCart_lossValue": "Loss Value",
+  "stockAdjustmentCart_selectReason": "Select reason...",
+  "stockAdjustmentCart_searchReason": "Search reason...",
+  "stockAdjustmentCart_notesOptional": "Notes (optional)",
+  "stockAdjustmentCart_addNotes": "Add notes...",
+  "stockAdjustmentCart_totalLoss": "Total Loss",
+  "stockAdjustmentCart_processAdjustments": "Process Adjustments",
+  "stockAdjustmentCart_processingAdjustments": "Processing adjustments...",
+  "stockAdjustmentCart_noItemsWarning": "No items to adjust",
+  "stockAdjustmentCart_processedSuccess": "{count} adjustment(s) processed successfully",
+  "@stockAdjustmentCart_processedSuccess": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "stockAdjustmentCart_qtyExceedsStock": "Quantity cannot exceed current stock ({stock})",
+  "@stockAdjustmentCart_qtyExceedsStock": {
+    "placeholders": {
+      "stock": {"type": "String"}
+    }
+  },
+  "stockAdjustmentCart_stockLabel": "Stock: {stock}",
+  "@stockAdjustmentCart_stockLabel": {
+    "placeholders": {
+      "stock": {"type": "String"}
+    }
+  },
+  "stockAdjustmentCart_costLabel": "Cost: {symbol} {amount}",
+  "@stockAdjustmentCart_costLabel": {
+    "placeholders": {
+      "symbol": {"type": "String"},
+      "amount": {"type": "String"}
+    }
+  },
+  "stockAdjustmentCart_reason": "Reason",
+  "stockAdjustmentCart_confirmTitle": "Confirm Stock Adjustment",
+  "stockAdjustmentCart_confirmMessage": "Are you sure you want to process {count} stock adjustment(s)? This action cannot be undone.",
+  "@stockAdjustmentCart_confirmMessage": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+
+  "printer_title": "Printer",
+  "printer_settings": "Printer Settings",
+  "printer_connect": "Connect",
+  "printer_disconnect": "Disconnect",
+  "printer_testPrint": "Test Print",
+  "printer_scanDevices": "Scan Devices",
+  "printer_noDevices": "No devices found",
+  "printer_connected": "Connected",
+  "printer_disconnected": "Disconnected",
+  "printer_connecting": "Connecting...",
+  "printer_printSuccess": "Print successful",
+  "printer_printFailed": "Print failed",
+  "printer_refreshDevices": "Refresh Devices",
+  "printer_initializing": "Initializing...",
+  "printer_foundDevices": "Found {count} device(s)",
+  "@printer_foundDevices": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "printer_connectedTo": "Connected to {name}",
+  "@printer_connectedTo": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "printer_failedToConnect": "Failed to connect to {name}",
+  "@printer_failedToConnect": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "printer_reconnected": "Reconnected to {name}",
+  "@printer_reconnected": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "printer_failedToReconnect": "Failed to reconnect",
+  "printer_selectPaperSize": "Select Paper Size",
+  "printer_paperSizePrompt": "Choose the paper size of your thermal printer:",
+  "printer_58mm": "58mm",
+  "printer_80mm": "80mm",
+  "printer_smallReceipt": "Small receipt printer",
+  "printer_standardReceipt": "Standard receipt printer",
+  "printer_printingTest": "Printing test receipt...",
+  "printer_testPrinted": "Test receipt printed!",
+  "printer_paperSizeChanged": "Paper size changed to {size}",
+  "@printer_paperSizeChanged": {
+    "placeholders": {
+      "size": {"type": "String"}
+    }
+  },
+  "printer_forgetPrinter": "Forget Printer",
+  "printer_forgetMessage": "Are you sure you want to forget this printer? You will need to reconnect it later.",
+  "printer_forget": "Forget",
+  "printer_removingPrinter": "Removing printer...",
+  "printer_removed": "Printer removed",
+  "printer_connectToDevice": "Connect to this printer",
+  "printer_printTestReceipt": "Print a test receipt",
+  "printer_disconnectFromDevice": "Disconnect from this printer",
+  "printer_changePaperSize": "Change Paper Size",
+  "printer_currentPaperSize": "Current: {size}",
+  "@printer_currentPaperSize": {
+    "placeholders": {
+      "size": {"type": "String"}
+    }
+  },
+  "printer_removeFromSaved": "Remove from saved devices",
+  "printer_bluetoothDisabled": "Bluetooth Disabled",
+  "printer_enableBluetooth": "Please enable Bluetooth to connect",
+  "printer_printerConnected": "Printer Connected",
+  "printer_readyToPrint": "Ready to print",
+  "printer_online": "Online",
+  "printer_noPrinterConnected": "No Printer Connected",
+  "printer_selectDeviceBelow": "Select a device below to connect",
+  "printer_systemStatus": "System Status",
+  "printer_bluetooth": "Bluetooth",
+  "printer_enabled": "Enabled",
+  "printer_disabled": "Disabled",
+  "printer_permission": "Permission",
+  "printer_granted": "Granted",
+  "printer_notGranted": "Not Granted",
+  "printer_printer": "Printer",
+  "printer_defaultPrinter": "Default Printer",
+  "printer_remove": "Remove",
+  "printer_availableDevices": "Available Devices",
+  "printer_scanning": "Scanning...",
+  "printer_refresh": "Refresh",
+  "printer_bluetoothOff": "Bluetooth is Off",
+  "printer_enableBluetoothSettings": "Enable Bluetooth in your device settings to discover printers",
+  "printer_noDevicesFound": "No Devices Found",
+  "printer_pairInSettings": "Pair your Bluetooth printer in system settings first, then tap Refresh",
+  "printer_printTestReceiptButton": "Print Test Receipt",
+  "printer_tips": "Tips",
+  "printer_tipsContent": "• Tap on a device to see options\n• Long press for quick actions\n• Make sure printer is turned on and paired via system Bluetooth settings",
+  "printer_initializeFailed": "Failed to initialize: {error}",
+  "@printer_initializeFailed": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "printer_refreshFailed": "Refresh failed: {error}",
+  "@printer_refreshFailed": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "printer_connectionError": "Connection error: {error}",
+  "@printer_connectionError": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "printer_reconnectError": "Reconnect error: {error}",
+  "@printer_reconnectError": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "printer_printError": "Print error: {error}",
+  "@printer_printError": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+
+  "salesReport_title": "Sales Report",
+  "salesReport_summary": "Summary",
+  "salesReport_transactions": "Transactions",
+  "salesReport_totalSales": "Total Sales",
+  "salesReport_totalOrders": "Total Orders",
+  "salesReport_averageOrder": "Average Order",
+  "salesReport_grossProfit": "Gross Profit",
+  "salesReport_salesTrend": "Sales Trend",
+  "salesReport_topProducts": "Top 5 Best Sellers",
+  "salesReport_dateRange": "Date Range",
+  "salesReport_cashier": "Cashier",
+  "salesReport_allCashiers": "All Cashiers",
+  "salesReport_paymentMethod": "Payment Method",
+  "salesReport_allPaymentMethods": "All Payment Methods",
+  "salesReport_noTransactions": "No transactions found",
+  "salesReport_orders": "orders",
+  "salesReport_cancelled": "CANCELLED",
+  "salesReport_cancelledOrders": "Cancelled Orders",
+  "salesReport_cancelledAmount": "Cancelled Amount",
+  "salesReport_printPreview": "Print Preview - Sales Report",
+  "salesReport_grandTotal": "Grand Total",
+  "salesReport_averageOrderValue": "Average Order Value",
+  "salesReport_totalTransactions": "Total Transactions",
+  "salesReport_averageTransaction": "Average Transaction",
+  "salesReport_itemCount": "{count} items",
+  "@salesReport_itemCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "salesReport_subtotal": "Subtotal",
+  "salesReport_tax": "Tax ({rate}%)",
+  "@salesReport_tax": {
+    "placeholders": {
+      "rate": {"type": "String"}
+    }
+  },
+  "salesReport_amountPaid": "Amount Paid",
+  "salesReport_change": "Change",
+  "salesReport_reprintReceipt": "Reprint Receipt",
+  "salesReport_voucherDiscount": "Voucher ({code})",
+  "@salesReport_voucherDiscount": {
+    "placeholders": {
+      "code": {"type": "String"}
+    }
+  },
+  "salesReport_cashierLabel": "Cashier: {name}",
+  "@salesReport_cashierLabel": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+
+  "taxReport_title": "Tax Report",
+  "taxReport_summary": "Summary",
+  "taxReport_transactions": "Transactions",
+  "taxReport_totalTax": "Total Tax",
+  "taxReport_orderCount": "Order Count",
+  "taxReport_salesBeforeTax": "Sales Before Tax",
+  "taxReport_averageTax": "Average Tax",
+  "taxReport_breakdown": "Tax Breakdown",
+  "taxReport_taxCollected": "Tax Collected",
+  "taxReport_totalWithTax": "Total with Tax",
+  "taxReport_byPaymentMethod": "Tax by Payment Method",
+  "taxReport_trend": "Tax Trend",
+  "taxReport_tax": "Tax",
+  "taxReport_noTransactions": "No transactions found",
+  "taxReport_orders": "orders",
+  "taxReport_walkIn": "Walk-in Customer",
+  "taxReport_orderId": "Order ID",
+  "taxReport_taxAmount": "Tax Amount",
+  "taxReport_paymentMethod": "Payment Method",
+  "taxReport_cashier": "Cashier",
+  "taxReport_allCashiers": "All Cashiers",
+  "taxReport_taxRateInfo": "Current tax rate: {rate}%",
+  "@taxReport_taxRateInfo": {
+    "placeholders": {
+      "rate": {"type": "String"}
+    }
+  },
+  "taxReport_printPreview": "Print Preview - Tax Report",
+
+  "expenseReport_title": "Expense Report",
+  "expenseReport_totalExpenses": "Total Expenses",
+  "expenseReport_totalItems": "Total Items",
+  "expenseReport_category": "Category",
+  "expenseReport_description": "Description",
+  "expenseReport_transactions": "Transactions",
+  "expenseReport_expensesByCategory": "Expenses by Category",
+  "expenseReport_byType": "By Type",
+  "expenseReport_trend": "Expense Trend",
+  "expenseReport_printPreview": "Print Preview - Expense Report",
+
+  "creditReport_title": "Credit Report",
+  "creditReport_totalCredits": "Total Credits",
+  "creditReport_totalCredit": "Total Credit",
+  "creditReport_totalPaid": "Total Paid",
+  "creditReport_totalOutstanding": "Total Outstanding",
+  "creditReport_totalRemaining": "Total Remaining",
+  "creditReport_amount": "Amount",
+  "creditReport_paid": "Paid",
+  "creditReport_remaining": "Remaining",
+  "creditReport_transactions": "Transactions",
+  "creditReport_customerSummary": "Customer Summary",
+  "creditReport_printPreview": "Print Preview - Credit Report",
+
+  "debtReport_title": "Debt Report",
+  "debtReport_totalDebts": "Total Debts",
+  "debtReport_totalPaid": "Total Paid",
+  "debtReport_totalOutstanding": "Total Outstanding",
+  "debtReport_totalSuppliers": "Total Suppliers",
+  "debtReport_suppliersWithDebt": "Suppliers with Debt",
+  "debtReport_supplierSummary": "Supplier Summary",
+  "debtReport_printPreview": "Print Preview - Debt Report",
+
+  "cashflowReport_title": "Cash Flow Report",
+  "cashflowReport_income": "Income",
+  "cashflowReport_expense": "Expense",
+  "cashflowReport_netCashflow": "Net Cash Flow",
+  "cashflowReport_summary": "Summary",
+  "cashflowReport_transactions": "Transactions",
+  "cashflowReport_cashIn": "Cash In",
+  "cashflowReport_cashOut": "Cash Out",
+  "cashflowReport_breakdownByType": "Breakdown by Type",
+  "cashflowReport_salesIncome": "Sales Income",
+  "cashflowReport_creditPayments": "Credit Payments",
+  "cashflowReport_debtPayments": "Debt Payments",
+  "cashflowReport_expenses": "Expenses",
+  "cashflowReport_noTransactionsInPeriod": "No transactions in this period",
+  "cashflowReport_noTransactionsFound": "No transactions found",
+  "cashflowReport_itemsCount": "{count} items",
+  "@cashflowReport_itemsCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "cashflowReport_dateRange": "Date Range",
+  "cashflowReport_selectDateRange": "Select date range...",
+  "cashflowReport_searchDateRange": "Search date range...",
+  "cashflowReport_selectCustomDateRange": "Select custom date range",
+  "cashflowReport_sales": "Sales",
+  "cashflowReport_creditPaymentLabel": "Credit Payment",
+  "cashflowReport_debtPaymentLabel": "Debt Payment",
+  "cashflowReport_expenseLabel": "Expense",
+  "cashflowReport_helpTitle": "What is Cashflow?",
+  "cashflowReport_helpDescription": "Cashflow shows the actual movement of cash in and out of your business - when money actually changes hands.",
+  "cashflowReport_helpCashSales": "Cash sales (paid immediately)",
+  "cashflowReport_helpCreditPayments": "Credit payments from customers",
+  "cashflowReport_helpCashOverage": "Cash overage",
+  "cashflowReport_helpOwnerDeposit": "Owner deposits / cash in",
+  "cashflowReport_helpCashPurchases": "Cash purchases (PO paid in cash)",
+  "cashflowReport_helpDebtPayments": "Debt payments to suppliers",
+  "cashflowReport_helpExpenses": "Business expenses",
+  "cashflowReport_helpCashShortage": "Cash shortage",
+  "cashflowReport_helpNotIncluded": "Not Included",
+  "cashflowReport_helpOpeningBalance": "Opening balance (not a transaction)",
+  "cashflowReport_helpCreditSales": "Credit sales (no cash yet)",
+  "cashflowReport_helpCreditPurchases": "Credit purchases (no cash out yet)",
+  "cashflowReport_otherCashIn": "Other Cash In",
+  "cashflowReport_otherCashOut": "Other Cash Out",
+  "cashflowReport_printPreview": "Print Preview - Cash Flow",
+  "cashflowReport_totalCashIn": "Total Cash In",
+  "cashflowReport_totalCashOut": "Total Cash Out",
+  "cashflowReport_negativeFlow": "Negative Cash Flow",
+
+  "capitalReport_title": "Capital Report",
+  "capitalReport_openingBalance": "Opening Balance",
+  "capitalReport_additionalCapital": "Additional Capital",
+  "capitalReport_cashOverage": "Cash Overage",
+  "capitalReport_totalCapital": "Total Capital",
+  "capitalReport_composition": "Capital Composition",
+  "capitalReport_sessions": "Sessions",
+  "capitalReport_totalSessions": "Total Sessions",
+  "capitalReport_noSessions": "No sessions found in this period",
+  "capitalReport_openedBy": "Opened by",
+  "capitalReport_printPreview": "Print Preview - Capital Report",
+  "capitalReport_cashIn": "Cash In",
+  "capitalReport_capitalBreakdown": "Capital Breakdown",
+
+  "paymentMethodReport_title": "Payment Methods",
+  "paymentMethodReport_summary": "Summary",
+  "paymentMethodReport_transactions": "Transactions",
+  "paymentMethodReport_totalRevenue": "Total Revenue",
+  "paymentMethodReport_avgValue": "Avg Value",
+  "paymentMethodReport_methodsUsed": "Methods Used",
+  "paymentMethodReport_paymentDistribution": "Payment Distribution",
+  "paymentMethodReport_paymentDetails": "Payment Details",
+  "paymentMethodReport_noPaymentData": "No payment data for this period",
+  "paymentMethodReport_noTransactions": "No transactions for this period",
+  "paymentMethodReport_transactionsCount": "{count} orders",
+  "@paymentMethodReport_transactionsCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "paymentMethodReport_paymentMethod": "Payment Method",
+  "paymentMethodReport_allMethods": "All Methods",
+  "paymentMethodReport_searchPaymentMethod": "Search payment method...",
+  "paymentMethodReport_orderId": "Order ID",
+  "paymentMethodReport_total": "Total",
+  "paymentMethodReport_customer": "Customer",
+  "paymentMethodReport_cashier": "Cashier",
+  "paymentMethodReport_cash": "Cash",
+  "paymentMethodReport_qris": "QRIS",
+  "paymentMethodReport_bankTransfer": "Bank Transfer",
+  "paymentMethodReport_credit": "Credit",
+  "paymentMethodReport_txnPercent": "{count} txn • {percent}%",
+  "@paymentMethodReport_txnPercent": {
+    "placeholders": {
+      "count": {"type": "int"},
+      "percent": {"type": "String"}
+    }
+  },
+  "paymentMethodReport_avgLabel": "Avg: {value}",
+  "@paymentMethodReport_avgLabel": {
+    "placeholders": {
+      "value": {"type": "String"}
+    }
+  },
+  "paymentMethodReport_transactionsLabel": "{count} transactions",
+  "@paymentMethodReport_transactionsLabel": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "paymentMethodReport_printPreview": "Print Preview - Payment Methods",
+  "paymentMethodReport_breakdown": "Payment Methods Breakdown",
+  "paymentMethodReport_transactionCount": "Transaction Count",
+  "paymentMethodReport_totalTransactions": "Total Transactions",
+  "paymentMethodReport_averageTransaction": "Average Transaction",
+
+  "inventoryReport_title": "Inventory Report",
+  "inventoryReport_summary": "Summary",
+  "inventoryReport_products": "Products",
+  "inventoryReport_totalProducts": "Total Products",
+  "inventoryReport_stockValue": "Stock Value",
+  "inventoryReport_totalValue": "Total Value",
+  "inventoryReport_lowStock": "Low Stock",
+  "inventoryReport_outOfStock": "Out of Stock",
+  "inventoryReport_allProducts": "All Products",
+  "inventoryReport_stockStatus": "Stock Status",
+  "inventoryReport_selectStatus": "Select status...",
+  "inventoryReport_valueSummary": "Value Summary",
+  "inventoryReport_stockValueCost": "Stock Value (Cost)",
+  "inventoryReport_retailValue": "Retail Value",
+  "inventoryReport_potentialProfit": "Potential Profit",
+  "inventoryReport_topProductsByValue": "Top 5 Products by Value",
+  "inventoryReport_pcsInStock": "{count} pcs in stock",
+  "@inventoryReport_pcsInStock": {
+    "placeholders": {
+      "count": {"type": "String"}
+    }
+  },
+  "inventoryReport_pcs": "{count} pcs",
+  "@inventoryReport_pcs": {
+    "placeholders": {
+      "count": {"type": "String"}
+    }
+  },
+  "inventoryReport_itemsCount": "{count} items",
+  "@inventoryReport_itemsCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "inventoryReport_noProductsFound": "No products found",
+  "inventoryReport_uncategorized": "Uncategorized",
+  "inventoryReport_totalStockValue": "Total Stock Value",
+  "inventoryReport_totalRetailValue": "Total Retail Value",
+
+  "settings_title": "App Settings",
+  "settings_storeInfo": "Store Information",
+  "settings_storeName": "Store Name",
+  "settings_storeAddress": "Store Address",
+  "settings_storeContact": "Store Contact",
+  "settings_receiptLogo": "Receipt Logo",
+  "settings_currency": "Currency",
+  "settings_currencySymbol": "Currency Symbol",
+  "settings_tax": "Tax",
+  "settings_taxRate": "Tax Rate",
+  "settings_tableMode": "Table Mode",
+  "settings_tableModeDesc": "Enable table selection in POS",
+  "settings_creditSale": "Credit Sale",
+  "settings_creditSaleDesc": "Allow credit sales to customers",
+  "settings_sellOutOfStock": "Sell Out of Stock",
+  "settings_sellOutOfStockDesc": "Allow selling products with 0 stock",
+  "settings_editPurchasePrice": "Edit Purchase Price",
+  "settings_editPurchasePriceDesc": "Allow editing purchase price in POS",
+  "settings_menuVisibility": "Menu Visibility",
+  "settings_userRoleMenus": "User Role Menus",
+  "settings_language": "Language",
+  "settings_languageDesc": "Select app language",
+  "settings_english": "English",
+  "settings_indonesian": "Indonesian",
+  "settings_saved": "Settings saved successfully",
+  "settings_requireCashDrawer": "Require Cash Drawer",
+  "settings_cashDrawerEnabled": "Cash drawer requirement enabled",
+  "settings_cashDrawerDisabled": "Cash drawer requirement disabled",
+  "settings_cashDrawerEnabledDesc": "Users must open a cash drawer session before accessing the app.",
+  "settings_cashDrawerDisabledDesc": "Cash drawer is optional, users can access the app freely.",
+  "settings_cashDrawerLocked": "App locked until session opened",
+  "settings_cashDrawerUnlocked": "No session required to access app",
+  "settings_general": "General",
+  "settings_sales": "Sales",
+  "settings_menu": "Menu",
+  "settings_pricing": "Pricing",
+
+  "developer_title": "Developer Tools",
+  "developer_warning": "These actions are destructive and cannot be undone.",
+  "developer_note": "These tools are intended for development and testing purposes only. Use with caution in production environments.",
+  "developer_dataManagement": "Data Management",
+  "developer_deleteAll": "Delete All",
+  "developer_deleteAllDesc": "Orders, expenses, credits",
+  "developer_dummyDataGenerators": "Dummy Data Generators",
+  "developer_cafe": "Cafe",
+  "developer_cafeDesc": "Coffee, tea, pastries",
+  "developer_grocery": "Grocery",
+  "developer_groceryDesc": "Fruits, vegetables, dairy",
+  "developer_pharmacy": "Pharmacy",
+  "developer_pharmacyDesc": "Medicines, vitamins",
+  "developer_laundry": "Laundry",
+  "developer_laundryDesc": "Wash, dry clean, iron",
+  "developer_padang": "Padang Restaurant",
+  "developer_padangDesc": "Nasi Padang, rendang, gulai",
+  "developer_backupRestore": "Backup & Restore",
+  "developer_backupMasterData": "Backup Master Data",
+  "developer_backupMasterDataDesc": "Products, customers, settings",
+  "developer_backupFullData": "Backup Full Data",
+  "developer_backupFullDataDesc": "All data including transactions",
+  "developer_restoreMasterData": "Restore Master Data",
+  "developer_restoreMasterDataDesc": "Restore from master backup",
+  "developer_restoreFullData": "Restore Full Data",
+  "developer_restoreFullDataDesc": "Restore from full backup",
+  "developer_backupSuccess": "Backup Successful",
+  "developer_backupSavedTo": "Backup file has been saved to:",
+  "developer_shareBackupHint": "You can share this file to save it to cloud storage or send to another device.",
+  "developer_restoreWarning": "WARNING: This will DELETE all current data before restoring!",
+  "developer_selectFile": "Select File",
+  "developer_restoreNow": "Restore Now",
+  "developer_restoringData": "Restoring data...",
+  "developer_restoreSuccess": "Restored {count} collections successfully!",
+  "@developer_restoreSuccess": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "developer_generateData": "Generate Data",
+  "developer_deleteAllConfirmTitle": "Delete All Orders",
+  "developer_deleteAllConfirmMessage": "Are you sure you want to delete ALL transaction data?\n\nThis action cannot be undone and will:\n• Delete all order records\n• Delete all expense records\n• Delete all credit records\n• Delete all debt records\n• Delete all purchase orders\n• Delete all stock history\n• Delete all stock adjustments\n• Reset all tables to available status\n• Reset all product stock to 0\n• Reset all product purchase price to 0",
+  "developer_finalConfirmationTitle": "Final Confirmation",
+  "developer_finalConfirmationMessage": "This is your FINAL warning.\n\nAre you absolutely sure you want to delete all transaction data?",
+  "developer_lastWarningTitle": "Last Warning",
+  "developer_lastWarningMessage": "This action CANNOT be undone.\n\nAll transaction data will be permanently deleted.\n\nClick the button below to proceed.",
+  "developer_iUnderstandDelete": "I Understand, Delete",
+  "developer_deletingTransactionData": "Deleting all transaction data...",
+  "developer_allDataDeleted": "All data deleted and tables reset!",
+  "developer_someDeletionsFailed": "Some deletions may have failed. Check your data.",
+  "developer_destroyAllData": "Reset",
+  "developer_destroyAllDataDesc": "Reset app to first time setup",
+  "developer_destroyAllDataTitle": "Reset App",
+  "developer_destroyAllDataMessage": "WARNING: This will DELETE ALL DATA including:\n\n• All products and categories\n• All customers and suppliers\n• All orders and transactions\n• All users (you will be logged out)\n• All settings\n\nThe app will return to first time setup.",
+  "developer_destroyFinalConfirmTitle": "Are You Sure?",
+  "developer_destroyFinalConfirmMessage": "This operation is IRREVERSIBLE.\n\nYou will lose ALL your data and the app will reset to initial state.\n\nAre you absolutely sure?",
+  "developer_destroyLastWarningTitle": "Point of No Return",
+  "developer_destroyLastWarningMessage": "This is your FINAL chance to cancel.\n\nOnce you click the button below, ALL DATA will be permanently deleted.\n\nThere is NO way to recover your data after this.",
+  "developer_destroyNow": "RESET NOW",
+  "developer_destroyingAllData": "Resetting all data...",
+  "developer_allDataDestroyed": "App has been reset to initial state.",
+  "developer_generatingData": "Generating {type} data...",
+  "@developer_generatingData": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "developer_dataGenerated": "{type} data generated! {modeLabel}",
+  "@developer_dataGenerated": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "modeLabel": {
+        "type": "String"
+      }
+    }
+  },
+  "developer_tableModeEnabled": "Table mode enabled",
+  "developer_tableModeDisabled": "Table mode disabled",
+  "developer_errorGeneratingData": "Error generating data: {error}",
+  "@developer_errorGeneratingData": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "developer_creatingBackup": "Creating {type} backup...",
+  "@developer_creatingBackup": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "developer_backupFailed": "Backup failed: {error}",
+  "@developer_backupFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "developer_restoreFailed": "Restore failed: {error}",
+  "@developer_restoreFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "developer_invalidBackupFile": "Invalid backup file format",
+  "developer_couldNotReadFile": "Could not read file",
+  "developer_confirmRestore": "Confirm Restore",
+  "developer_backupInfo": "Backup Info:",
+  "developer_backupType": "Type: {type}",
+  "@developer_backupType": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "developer_masterDataType": "Master Data",
+  "developer_fullDataType": "Full Data",
+  "developer_backupCreated": "Created: {date}",
+  "@developer_backupCreated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "developer_backupItems": "Items: {count} records",
+  "@developer_backupItems": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "developer_proceedWithRestore": "Proceed with restore?",
+  "developer_generateDataTitle": "Generate {type} Data",
+  "@developer_generateDataTitle": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "developer_willDeleteExistingData": "This will DELETE all existing data.",
+  "developer_demoMode": "Demo Mode",
+  "developer_withStockTransactions": "With Stock & Transactions",
+  "developer_withStockTransactionsDesc": "Include stock, orders, credits data",
+  "developer_emptyMode": "Empty Mode",
+  "developer_emptyModeDesc": "Products & categories only, no transactions",
+  "developer_productOptions": "Product Options",
+  "developer_stockTracking": "Stock Tracking",
+  "developer_stockTrackingDesc": "Track product stock levels",
+  "developer_serviceProducts": "Service Products",
+  "developer_serviceProductsDesc": "Products are services (no physical stock)",
+  "developer_allowCommaQuantity": "Allow Comma Quantity",
+  "developer_allowCommaQuantityDesc": "Allow decimal quantities (e.g., 1.5 kg)",
+  "developer_appSettings": "App Settings",
+  "developer_tableMode": "Table Mode",
+  "developer_tableModeDesc": "Enable table selection in POS",
+  "developer_sellOutOfStock": "Sell Out of Stock",
+  "developer_sellOutOfStockDesc": "Allow selling products with 0 stock",
+  "developer_restoreMasterDataWarning": "WARNING: This will DELETE all current master data before restoring!\n\nMaster data includes:\n• Products & Categories\n• Customers & Suppliers\n• Variants & Vouchers\n• Tables & Users\n• Payment Methods & Expense Types\n\nTransaction data will NOT be affected.\n\nAre you sure you want to continue?",
+  "developer_restoreFullDataWarning": "CRITICAL WARNING: This will DELETE ALL current data before restoring!\n\nThis includes:\n• All master data (Products, Customers, etc.)\n• All transactions (Orders, Expenses, etc.)\n• All credits and debts\n• All settings\n\nThis action CANNOT be undone!\n\nAre you sure you want to continue?",
+  "developer_kasirBaikBackup": "Kasir Baik Backup",
+  "developer_backupFile": "Backup file: {fileName}",
+  "@developer_backupFile": {
+    "placeholders": {
+      "fileName": {
+        "type": "String"
+      }
+    }
+  },
+  "developer_data": "Data",
+  "developer_unknown": "Unknown",
+
+  "profile_title": "Profile",
+  "profile_editProfile": "Edit Profile",
+  "profile_changePassword": "Change Password",
+  "profile_logout": "Logout",
+
+  "payment_title": "Payment",
+  "payment_selectMethod": "Select Payment Method",
+  "payment_amount": "Amount",
+  "payment_amountPaid": "Amount Paid",
+  "payment_amountDue": "Amount Due",
+  "payment_change": "Change",
+  "payment_notes": "Notes",
+  "payment_confirm": "Confirm Payment",
+  "payment_success": "Payment successful!",
+  "payment_failed": "Payment failed",
+
+  "order_orderDetails": "Order Details",
+  "order_orderId": "Order ID",
+  "order_orderDate": "Order Date",
+  "order_orderStatus": "Order Status",
+  "order_paid": "Paid",
+  "order_unpaid": "Unpaid",
+  "order_partial": "Partial",
+  "order_cancelled": "Cancelled",
+  "order_items": "Items",
+  "order_notes": "Notes",
+
+  "validation_required": "This field is required",
+  "validation_invalidEmail": "Invalid email address",
+  "validation_minLength": "Minimum {length} characters",
+  "@validation_minLength": {
+    "placeholders": {
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+  "validation_invalidNumber": "Invalid number",
+  "validation_positiveNumber": "Must be a positive number",
+
+  "dateFilter_today": "Today",
+  "dateFilter_yesterday": "Yesterday",
+  "dateFilter_thisWeek": "This Week",
+  "dateFilter_lastWeek": "Last Week",
+  "dateFilter_thisMonth": "This Month",
+  "dateFilter_lastMonth": "Last Month",
+  "dateFilter_custom": "Custom Range",
+  "dateFilter_selectCustomRange": "Select custom date range",
+
+  "sortBy_nameAsc": "Name A-Z",
+  "sortBy_nameDesc": "Name Z-A",
+  "sortBy_priceAsc": "Price Low-High",
+  "sortBy_priceDesc": "Price High-Low",
+  "sortBy_stockAsc": "Stock Low-High",
+  "sortBy_stockDesc": "Stock High-Low",
+  "sortBy_dateAsc": "Oldest First",
+  "sortBy_dateDesc": "Newest First",
+  "sortBy_salesDesc": "Highest Sales",
+  "sortBy_salesAsc": "Lowest Sales",
+  "sortBy_profitDesc": "Highest Profit",
+  "sortBy_profitAsc": "Lowest Profit",
+  "sortBy_qtyDesc": "Most Sold",
+  "sortBy_qtyAsc": "Least Sold",
+
+  "purchaseOrders_title": "Purchase Orders",
+  "purchaseOrders_noOrders": "No purchase orders",
+  "purchaseOrders_allStatus": "All Status",
+  "purchaseOrders_allPaymentStatus": "All",
+  "purchaseOrders_receive": "Receive",
+  "purchaseOrders_receiveOrder": "Receive Order",
+  "purchaseOrders_receivePurchaseOrder": "Receive Purchase Order",
+  "purchaseOrders_receiveConfirmMessage": "Are you sure you want to mark this purchase order as received? This will:\n\n• Add stock for all items\n• Update purchase prices\n• Create stock history records",
+  "purchaseOrders_receiving": "Receiving purchase order...",
+  "purchaseOrders_receiveSuccess": "Purchase order received! Stock updated.",
+  "purchaseOrders_receiveFailed": "Failed to receive purchase order",
+  "purchaseOrders_cancelPurchaseOrder": "Cancel Purchase Order",
+  "purchaseOrders_cancelConfirmMessage": "Are you sure you want to cancel this purchase order?",
+  "purchaseOrders_cancelOrder": "Cancel Order",
+  "purchaseOrders_cancelling": "Cancelling...",
+  "purchaseOrders_cancelSuccess": "Purchase order cancelled",
+  "purchaseOrders_cancelFailed": "Failed to cancel purchase order",
+  "purchaseOrders_created": "Created",
+  "purchaseOrders_unknownSupplier": "Unknown Supplier",
+  "purchaseOrders_itemsCount": "{count} items",
+  "@purchaseOrders_itemsCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+
+  "purchaseOrderReport_title": "Purchase Order Report",
+  "purchaseOrderReport_summary": "Summary",
+  "purchaseOrderReport_orders": "Orders",
+  "purchaseOrderReport_totalPO": "Total PO",
+  "purchaseOrderReport_totalValue": "Total Value",
+  "purchaseOrderReport_pendingAmount": "Pending",
+  "purchaseOrderReport_completedAmount": "Completed",
+  "purchaseOrderReport_orderStatusOverview": "Order Status Overview",
+  "purchaseOrderReport_pending": "Pending",
+  "purchaseOrderReport_received": "Received",
+  "purchaseOrderReport_cancelled": "Cancelled",
+  "purchaseOrderReport_purchaseOrders": "Purchase Orders",
+  "purchaseOrderReport_ordersCount": "{count} orders",
+  "@purchaseOrderReport_ordersCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "purchaseOrderReport_noPurchaseOrdersFound": "No purchase orders found",
+  "purchaseOrderReport_itemsCount": "{count} item(s)",
+  "@purchaseOrderReport_itemsCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "purchaseOrderReport_credit": "Credit",
+  "purchaseOrderReport_cash": "Cash",
+  "purchaseOrderReport_unknownSupplier": "Unknown Supplier",
+  "purchaseOrderReport_purchaseOrderDetail": "Purchase Order",
+  "purchaseOrderReport_status": "Status",
+  "purchaseOrderReport_payment": "Payment",
+  "purchaseOrderReport_created": "Created",
+  "purchaseOrderReport_items": "Items",
+  "purchaseOrderReport_total": "Total",
+  "purchaseOrderReport_notes": "Notes",
+  "purchaseOrderReport_dateRange": "Date Range",
+  "purchaseOrderReport_selectDateRange": "Select date range...",
+  "purchaseOrderReport_searchDateRange": "Search date range...",
+  "purchaseOrderReport_selectCustomDateRange": "Select custom date range",
+  "purchaseOrderReport_supplier": "Supplier",
+  "purchaseOrderReport_allSuppliers": "All Suppliers",
+  "purchaseOrderReport_searchSupplier": "Search supplier...",
+  "purchaseOrderReport_allStatus": "All Status",
+  "purchaseOrderReport_searchStatus": "Search status...",
+  "purchaseOrderReport_printPreview": "Print Preview - Purchase Order",
+  "purchaseOrderReport_totalPOs": "Total POs",
+  "purchaseOrderReport_totalAmount": "Total Amount",
+  "purchaseOrderReport_receivedAmount": "Received Amount",
+  "purchaseOrderReport_poNumber": "PO Number",
+  "purchaseOrderReport_date": "Date",
+  "purchaseOrderReport_amount": "Amount",
+
+  "stockHistoryReport_title": "Stock History",
+  "stockHistoryReport_printPreview": "Print Preview - Stock History",
+  "stockHistoryReport_totalTransactions": "Total Transactions",
+  "stockHistoryReport_totalStockIn": "Total Stock In",
+  "stockHistoryReport_totalStockOut": "Total Stock Out",
+  "stockHistoryReport_totalStockCanceled": "Total Stock Canceled",
+  "stockHistoryReport_totalValueIn": "Total Value In",
+  "stockHistoryReport_totalValueOut": "Total Value Out",
+  "stockHistoryReport_netValue": "Net Value",
+  "stockHistoryReport_summary": "Summary",
+  "stockHistoryReport_transactions": "Transactions",
+  "stockHistoryReport_stockIn": "Stock In",
+  "stockHistoryReport_stockOut": "Stock Out",
+  "stockHistoryReport_stockCanceled": "Stock Canceled",
+  "stockHistoryReport_fromPO": "From PO",
+  "stockHistoryReport_fromSales": "From Sales",
+  "stockHistoryReport_fromCanceled": "From Canceled",
+  "stockHistoryReport_adjustment": "Adjustment",
+  "stockHistoryReport_adjustments": "Adjustments",
+  "stockHistoryReport_allTypes": "All Types",
+  "stockHistoryReport_allTime": "All Time",
+  "stockHistoryReport_last30Days": "Last 30 Days",
+  "stockHistoryReport_dateRange": "Date Range",
+  "stockHistoryReport_selectDateRange": "Select date range...",
+  "stockHistoryReport_selectCustomDateRange": "Select custom date range",
+  "stockHistoryReport_type": "Type",
+  "stockHistoryReport_searchType": "Search type...",
+  "stockHistoryReport_product": "Product",
+  "stockHistoryReport_allProducts": "All Products",
+  "stockHistoryReport_searchProduct": "Search product...",
+  "stockHistoryReport_scanBarcodeToFilter": "Scan barcode to filter",
+  "stockHistoryReport_filteredBy": "Filtered by: {productName}",
+  "@stockHistoryReport_filteredBy": {
+    "placeholders": {
+      "productName": {"type": "String"}
+    }
+  },
+  "stockHistoryReport_productNotFoundSearching": "Product not found, searching: {code}",
+  "@stockHistoryReport_productNotFoundSearching": {
+    "placeholders": {
+      "code": {"type": "String"}
+    }
+  },
+  "stockHistoryReport_topProductsByMovement": "Top Products by Movement",
+  "stockHistoryReport_stockMovementDistribution": "Stock Movement Distribution",
+  "stockHistoryReport_noStockMovementData": "No stock movement data",
+  "stockHistoryReport_noDataToDisplay": "No data to display",
+  "stockHistoryReport_unitsCount": "{count} units",
+  "@stockHistoryReport_unitsCount": {
+    "placeholders": {
+      "count": {"type": "String"}
+    }
+  },
+  "stockHistoryReport_units": "units",
+  "stockHistoryReport_searchByProductName": "Search by product name...",
+  "stockHistoryReport_recordsCount": "{count} records",
+  "@stockHistoryReport_recordsCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "stockHistoryReport_noStockHistory": "No stock history",
+  "stockHistoryReport_clearDateFilter": "Clear date filter",
+  "stockHistoryReport_netChange": "Net Change",
+  "stockHistoryReport_transactionsLabel": "Transactions",
+  "stockHistoryReport_adjustmentsCount": "{count} adjustments",
+  "@stockHistoryReport_adjustmentsCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "stockHistoryReport_transactionsCount": "{count} transactions",
+  "@stockHistoryReport_transactionsCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "stockHistoryReport_unknownProduct": "Unknown Product",
+  "stockHistoryReport_totalRecords": "Total Records",
+
+  "pnl_title": "Profit & Loss",
+  "pnl_summary": "Summary",
+  "pnl_transactions": "Transactions",
+  "pnl_filter": "Filter",
+  "pnl_reset": "Reset",
+  "pnl_applyFilter": "Apply Filter",
+  "pnl_dateRange": "Date Range",
+  "pnl_selectDateRange": "Select date range...",
+  "pnl_searchDateRange": "Search date range...",
+  "pnl_selectCustomDateRange": "Select custom date range",
+  "pnl_netSales": "Net Sales",
+  "pnl_grossProfit": "Gross Profit",
+  "pnl_netProfit": "Net Profit",
+  "pnl_netLoss": "Net Loss",
+  "pnl_profitMargin": "Profit Margin",
+  "pnl_orders": "Orders",
+  "pnl_margin": "Margin",
+  "pnl_statement": "Profit & Loss Statement",
+  "pnl_revenue": "Revenue",
+  "pnl_grossSales": "Gross Sales",
+  "pnl_discounts": "Discounts",
+  "pnl_costOfGoodsSold": "Cost of Goods Sold",
+  "pnl_cogs": "COGS",
+  "pnl_otherIncome": "Other Income",
+  "pnl_cashOverage": "Cash Overage",
+  "pnl_operatingExpenses": "Operating Expenses",
+  "pnl_totalExpenses": "Total Expenses",
+  "pnl_expenseBreakdown": "Expense Breakdown",
+  "pnl_salesOrders": "Sales Orders",
+  "pnl_expenses": "Expenses",
+  "pnl_ordersExpensesCount": "{orders} orders, {expenses} expenses",
+  "@pnl_ordersExpensesCount": {
+    "placeholders": {
+      "orders": {"type": "int"},
+      "expenses": {"type": "int"}
+    }
+  },
+  "pnl_noTransactionsFound": "No transactions found for this period",
+  "pnl_printPreview": "Print Preview - Profit & Loss",
+  "pnl_loss": "Loss",
+
+  "staffReport_title": "Staff Performance",
+  "staffReport_summary": "Summary",
+  "staffReport_staff": "Staff",
+  "staffReport_totalSales": "Total Sales",
+  "staffReport_transactions": "Transactions",
+  "staffReport_activeStaff": "Active Staff",
+  "staffReport_avgPerStaff": "Avg per Staff",
+  "staffReport_topStaff": "Top 5 Staff",
+  "staffReport_noStaffData": "No staff data for this period",
+  "staffReport_staffRankings": "Staff Rankings ({filter})",
+  "@staffReport_staffRankings": {
+    "placeholders": {
+      "filter": {"type": "String"}
+    }
+  },
+  "staffReport_staffCount": "{count} staff",
+  "@staffReport_staffCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "staffReport_topSales": "Top Sales",
+  "staffReport_mostTransactions": "Most Transactions",
+  "staffReport_avgOrderValue": "Avg Order Value",
+  "staffReport_nTransactions": "{count} transactions",
+  "@staffReport_nTransactions": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "staffReport_transactionsAvg": "{count} transactions • Avg {amount}",
+  "@staffReport_transactionsAvg": {
+    "placeholders": {
+      "count": {"type": "int"},
+      "amount": {"type": "String"}
+    }
+  },
+  "staffReport_dateRange": "Date Range",
+  "staffReport_selectDateRange": "Select date range...",
+  "staffReport_searchDateRange": "Search date range...",
+  "staffReport_selectCustomDateRange": "Select custom date range",
+  "staffReport_totalTransactions": "Total Transactions",
+  "staffReport_avgPerTransaction": "Avg per Transaction",
+  "staffReport_staffPerformance": "Staff Performance",
+  "staffReport_staffName": "Staff Name",
+  "staffReport_avgOrder": "Avg Order",
+  "staffReport_printPreview": "Print Preview - Staff Report",
+  "staffReport_sales": "Sales",
+
+  "supplierReport_title": "Supplier Report",
+  "supplierReport_summary": "Summary",
+  "supplierReport_suppliers": "Suppliers",
+  "supplierReport_totalPurchase": "Total Purchase",
+  "supplierReport_totalPO": "Total PO",
+  "supplierReport_activeSuppliers": "Active Suppliers",
+  "supplierReport_pendingPO": "Pending PO",
+  "supplierReport_topSuppliers": "Top 5 Suppliers",
+  "supplierReport_noSupplierData": "No supplier data for this period",
+  "supplierReport_supplierRankings": "Supplier Rankings ({filter})",
+  "@supplierReport_supplierRankings": {
+    "placeholders": {
+      "filter": {"type": "String"}
+    }
+  },
+  "supplierReport_topPurchase": "Top Purchase",
+  "supplierReport_mostOrders": "Most Orders",
+  "supplierReport_recentOrder": "Recent Order",
+  "supplierReport_alphabetical": "Alphabetical",
+  "supplierReport_nPO": "{count} PO",
+  "@supplierReport_nPO": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "supplierReport_nPending": "{count} pending",
+  "@supplierReport_nPending": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "supplierReport_dateRange": "Date Range",
+  "supplierReport_selectDateRange": "Select date range...",
+  "supplierReport_searchDateRange": "Search date range...",
+  "supplierReport_selectCustomDateRange": "Select custom date range",
+  "supplierReport_supplier": "Supplier",
+  "supplierReport_allSuppliers": "All Suppliers",
+  "supplierReport_searchSupplier": "Search supplier...",
+  "supplierReport_printPreview": "Print Preview - Supplier Report",
+  "supplierReport_totalSuppliers": "Total Suppliers",
+  "supplierReport_totalOrders": "Total Orders",
+  "supplierReport_pendingOrders": "Pending Orders",
+  "supplierReport_supplierSummary": "Supplier Summary",
+  "supplierReport_poCount": "PO",
+  "supplierReport_pending": "Pending",
+  "supplierReport_helpTitle": "Supplier Report Help",
+  "supplierReport_helpDescription": "This report shows supplier activity and purchase order statistics for the selected period.",
+  "supplierReport_helpIncludes": "This report includes:",
+  "supplierReport_helpPurchaseOrders": "Total purchase orders per supplier",
+  "supplierReport_helpTotalPurchaseValue": "Total purchase value per supplier",
+  "supplierReport_helpPendingOrders": "Pending purchase orders status",
+
+  "customerReport_title": "Customer Report",
+  "customerReport_summary": "Summary",
+  "customerReport_customers": "Customers",
+  "customerReport_activeCustomers": "Active Customers",
+  "customerReport_totalOrders": "Total Orders",
+  "customerReport_totalRevenue": "Total Revenue",
+  "customerReport_avgOrderValue": "Avg Order Value",
+  "customerReport_top5Customers": "Top 5 Customers",
+  "customerReport_noCustomerData": "No customer data for this period",
+  "customerReport_ordersCount": "{count} orders",
+  "@customerReport_ordersCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "customerReport_customersCount": "{count} customers",
+  "@customerReport_customersCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "customerReport_dateRange": "Date Range",
+  "customerReport_selectDateRange": "Select date range...",
+  "customerReport_searchDateRange": "Search date range...",
+  "customerReport_selectCustomDateRange": "Select custom date range",
+  "customerReport_topSpender": "Top Spender",
+  "customerReport_topSpenderDesc": "Customers with highest spending",
+  "customerReport_mostOrders": "Most Orders",
+  "customerReport_mostOrdersDesc": "Customers with most orders",
+  "customerReport_recentPurchase": "Recent Purchase",
+  "customerReport_recentPurchaseDesc": "Recently active customers",
+  "customerReport_alphabetical": "Alphabetical",
+  "customerReport_alphabeticalDesc": "A to Z by name",
+  "customerReport_printPreview": "Print Preview - Customer Report",
+  "customerReport_customerDetails": "Customer Details",
+  "customerReport_orders": "Orders",
+  "customerReport_totalSpent": "Total Spent",
+  "customerReport_lastPurchase": "Last Purchase",
+  "customerReport_averageOrderValue": "Average Order Value",
+  "customerReport_customersWithOrders": "Customers with Orders",
+  "customerReport_topCustomers": "Top Customers",
+
+  "productPerformance_title": "Product Performance",
+  "productPerformance_summary": "Summary",
+  "productPerformance_products": "Products",
+  "productPerformance_totalRevenue": "Total Revenue",
+  "productPerformance_totalProfit": "Total Profit",
+  "productPerformance_itemsSold": "Items Sold",
+  "productPerformance_avgMargin": "Avg Margin",
+  "productPerformance_top5BestSellers": "Top 5 Best Sellers",
+  "productPerformance_noSalesData": "No sales data for this period",
+  "productPerformance_sold": "sold",
+  "productPerformance_margin": "margin",
+  "productPerformance_profit": "Profit",
+  "productPerformance_productsCount": "{count} products",
+  "@productPerformance_productsCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "productPerformance_soldCount": "{count} sold",
+  "@productPerformance_soldCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "productPerformance_dateRange": "Date Range",
+  "productPerformance_selectDateRange": "Select date range...",
+  "productPerformance_searchDateRange": "Search date range...",
+  "productPerformance_category": "Category",
+  "productPerformance_allCategories": "All Categories",
+  "productPerformance_searchCategory": "Search category...",
+  "productPerformance_topSelling": "Top Selling",
+  "productPerformance_topSellingDesc": "Products with highest sales",
+  "productPerformance_lowSelling": "Low Selling",
+  "productPerformance_lowSellingDesc": "Products with lowest sales",
+  "productPerformance_highMargin": "High Margin",
+  "productPerformance_highMarginDesc": "Products with highest profit margin",
+  "productPerformance_lowMargin": "Low Margin",
+  "productPerformance_lowMarginDesc": "Products with lowest profit margin",
+  "productPerformance_selectSort": "Select sort...",
+  "productPerformance_totalQtySold": "Total Qty Sold",
+  "productPerformance_totalProducts": "Total Products",
+  "productPerformance_performanceTable": "Product Performance",
+  "productPerformance_qtySold": "Qty Sold",
+  "productPerformance_revenue": "Revenue",
+  "productPerformance_printPreview": "Print Preview - Product Performance",
+
+  "productSalesProfit_title": "Product Sales & Profit",
+  "productSalesProfit_totalProfit": "Total Profit",
+  "productSalesProfit_topProducts": "Top Products",
+  "productSalesProfit_productsSold": "Products Sold",
+  "productSalesProfit_qtySold": "Qty Sold",
+  "productSalesProfit_top5MostProfitable": "Top 5 Most Profitable",
+  "productSalesProfit_cogsCalculation": "COGS Calculation",
+  "productSalesProfit_cogsDescription": "Cost of Goods Sold is calculated using the Average Cost (Weighted Average) method. Product Purchase Price is automatically updated when receiving a Purchase Order.",
+  "productSalesProfit_product": "Product",
+  "productSalesProfit_sales": "Sales",
+  "productSalesProfit_totalProducts": "Total Products",
+  "productSalesProfit_totalQtySold": "Total Qty Sold",
+  "productSalesProfit_totalSales": "Total Sales",
+  "productSalesProfit_totalCogs": "Total COGS",
+  "productSalesProfit_netProfit": "Net Profit",
+  "productSalesProfit_profitMargin": "Profit Margin",
+  "productSalesProfit_salesAmount": "Sales Amount",
+  "productSalesProfit_cogs": "COGS",
+  "productSalesProfit_profit": "Profit",
+
+  "hourlySales_title": "Hourly Sales",
+  "hourlySales_summary": "Summary",
+  "hourlySales_breakdown": "Breakdown",
+  "hourlySales_peakHour": "Peak Hour",
+  "hourlySales_peakSales": "Peak Sales",
+  "hourlySales_totalSales": "Total Sales",
+  "hourlySales_totalOrders": "Total Orders",
+  "hourlySales_hourlyBreakdown": "Hourly Breakdown",
+  "hourlySales_hoursWithSales": "{count} hours with sales",
+  "@hourlySales_hoursWithSales": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "hourlySales_noSalesData": "No sales data for this period",
+  "hourlySales_salesByHour": "Sales by Hour",
+  "hourlySales_noTransactions": "No transactions recorded",
+  "hourlySales_peak": "PEAK",
+  "hourlySales_slow": "SLOW",
+  "hourlySales_orders": "{count} orders",
+  "@hourlySales_orders": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "hourlySales_morning": "Morning",
+  "hourlySales_afternoon": "Afternoon",
+  "hourlySales_evening": "Evening",
+  "hourlySales_night": "Night",
+  "hourlySales_lateNight": "Late Night",
+  "hourlySales_dateRange": "Date Range",
+  "hourlySales_selectDateRange": "Select date range...",
+  "hourlySales_searchDateRange": "Search date range...",
+  "hourlySales_selectCustomDateRange": "Select custom date range",
+  "hourlySales_hour": "Hour",
+  "hourlySales_transactions": "Transactions",
+  "hourlySales_sales": "Sales",
+
+  "payOrder_title": "Payment",
+  "payOrder_titleWithTable": "Table {tableNumber} - Payment",
+  "@payOrder_titleWithTable": {
+    "placeholders": {
+      "tableNumber": {"type": "int"}
+    }
+  },
+  "payOrder_selectPaymentMethod": "Select Payment Method",
+  "payOrder_cash": "Cash",
+  "payOrder_payWithCash": "Pay with cash",
+  "payOrder_qris": "QRIS",
+  "payOrder_bankTransfer": "Bank Transfer",
+  "payOrder_credit": "Credit",
+  "payOrder_creditHutang": "Credit (Hutang)",
+  "payOrder_customerPaysLater": "Customer pays later",
+  "payOrder_noDigitalPaymentMethods": "No digital payment methods configured",
+  "payOrder_addQrisOrBankTransfer": "Add QRIS or Bank Transfer in Settings > Payment Methods",
+  "payOrder_creditRequiresCustomer": "Credit payment requires a customer. Please select a customer first.",
+  "payOrder_creditSaleDisabled": "Credit sale is disabled. Enable it in Settings.",
+  "payOrder_enterVoucherCode": "Please enter a voucher code",
+  "payOrder_voucherApplied": "Voucher applied! Discount: Rp {discount}",
+  "@payOrder_voucherApplied": {
+    "placeholders": {
+      "discount": {"type": "String"}
+    }
+  },
+  "payOrder_invalidVoucher": "Invalid voucher",
+  "payOrder_voucherRemoved": "Voucher removed",
+  "payOrder_paymentFailed": "Payment failed: {error}",
+  "@payOrder_paymentFailed": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "payOrder_scanQrCode": "Scan QR code above using your e-wallet app",
+  "payOrder_total": "Total",
+  "payOrder_ivePaid": "I've Paid",
+  "payOrder_accountNumber": "Account Number",
+  "payOrder_accountHolder": "Account Holder",
+  "payOrder_accountNumberCopied": "Account number copied",
+  "payOrder_amountCopied": "Amount copied",
+  "payOrder_transferAmount": "Transfer Amount:",
+  "payOrder_transferExactAmount": "Transfer the exact amount to the account above",
+  "payOrder_iveTransferred": "I've Transferred",
+  "payOrder_creditPayment": "Credit Payment",
+  "payOrder_creditRecordedFor": "This order will be recorded as credit (hutang) for:",
+  "payOrder_amount": "Amount: Rp {amount}",
+  "@payOrder_amount": {
+    "placeholders": {
+      "amount": {"type": "String"}
+    }
+  },
+  "payOrder_creditWarning": "Customer must pay this amount later. You can track credits in Credit Management.",
+  "payOrder_confirmCredit": "Confirm Credit",
+  "payOrder_customerRequired": "Customer is required for credit payment",
+  "payOrder_unknownCustomer": "Unknown Customer",
+  "payOrder_processingCreditSale": "Processing credit sale...",
+  "payOrder_failedToCreateOrder": "Failed to create order",
+  "payOrder_verifyPayment": "Verify Payment",
+  "payOrder_checkEWallet": "Please check your e-wallet app to confirm the payment has been received.",
+  "payOrder_checkBanking": "Please check your mobile banking or internet banking to confirm the transfer has been received.",
+  "payOrder_confirmPaymentReceived": "Confirm Payment Received",
+  "payOrder_processingPayment": "Processing payment...",
+  "payOrder_orderFailed": "Order failed: {error}",
+  "@payOrder_orderFailed": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "payOrder_customer": "Customer",
+  "payOrder_selectCustomer": "Select customer (optional)",
+  "payOrder_searchCustomer": "Search customer...",
+  "payOrder_subtotal": "Subtotal",
+  "payOrder_voucher": "Voucher",
+  "payOrder_enterVoucher": "Enter voucher code",
+  "payOrder_apply": "Apply",
+  "payOrder_removeVoucher": "Remove voucher",
+  "payOrder_amountPaid": "Amount paid",
+  "payOrder_change": "Change",
+  "payOrder_insufficient": "Kurang",
+  "payOrder_customerWillPayLater": "Customer will pay later",
+  "payOrder_processing": "Processing...",
+  "payOrder_confirmPayment": "Confirm Payment",
+  "payOrder_orderSummary": "Order Summary",
+  "payOrder_items": "{count} items",
+  "@payOrder_items": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "payOrder_unknown": "Unknown",
+  "payOrder_note": "Note: {note}",
+  "@payOrder_note": {
+    "placeholders": {
+      "note": {"type": "String"}
+    }
+  },
+  "payOrder_exact": "Exact",
+  "payOrder_salesCredit": "Sales Credit",
+
+  "tableLive_title_tables": "Tables",
+  "tableLive_title_orders": "Orders",
+  "tableLive_orderDetails": "Order Details",
+  "tableLive_total": "Total",
+  "tableLive_note": "Note: {note}",
+  "@tableLive_note": {
+    "placeholders": {
+      "note": {"type": "String"}
+    }
+  },
+  "tableLive_printOrder": "Print Order",
+  "tableLive_tableNumber": "Table {number}",
+  "@tableLive_tableNumber": {
+    "placeholders": {
+      "number": {"type": "int"}
+    }
+  },
+  "tableLive_statusSeats": "{status} • {capacity} seats",
+  "@tableLive_statusSeats": {
+    "placeholders": {
+      "status": {"type": "String"},
+      "capacity": {"type": "int"}
+    }
+  },
+  "tableLive_activeOrder": "Active Order",
+  "tableLive_noActiveOrder": "No Active Order",
+  "tableLive_totalAmount": "Total: Rp {amount}",
+  "@tableLive_totalAmount": {
+    "placeholders": {
+      "amount": {"type": "String"}
+    }
+  },
+  "tableLive_addItems": "Add Items",
+  "tableLive_noActiveOrderYet": "No active order yet",
+  "tableLive_changeStatus": "Change Status:",
+  "tableLive_underMaintenance": "Under Maintenance",
+  "tableLive_startNewOrder": "Start New Order",
+  "tableLive_processPayment": "Process Payment (Rp {amount})",
+  "@tableLive_processPayment": {
+    "placeholders": {
+      "amount": {"type": "String"}
+    }
+  },
+  "tableLive_changeStatusBtn": "Change Status",
+  "tableLive_setAvailable": "Set Available",
+  "tableLive_tableChangeStatus": "Table {number} - Change Status",
+  "@tableLive_tableChangeStatus": {
+    "placeholders": {
+      "number": {"type": "int"}
+    }
+  },
+  "tableLive_noTablesAvailable": "No Tables Available",
+  "tableLive_goToTablesHint": "Go to Home > Tables to add tables",
+  "tableLive_searchTableNumber": "Search table number...",
+  "tableLive_availableCount": "Available ({count})",
+  "@tableLive_availableCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "tableLive_occupiedCount": "Occupied ({count})",
+  "@tableLive_occupiedCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "tableLive_maintenanceCount": "Maintenance ({count})",
+  "@tableLive_maintenanceCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "tableLive_allCount": "All ({count})",
+  "@tableLive_allCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "tableLive_noTablesWithStatus": "No {status} tables",
+  "@tableLive_noTablesWithStatus": {
+    "placeholders": {
+      "status": {"type": "String"}
+    }
+  },
+  "tableLive_tapTableHint": "Tap a table to view details",
+  "tableLive_searchCustomerOrTable": "Search customer or table...",
+  "tableLive_unpaidCount": "Unpaid ({count})",
+  "@tableLive_unpaidCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "tableLive_finishedCount": "Finished ({count})",
+  "@tableLive_finishedCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "tableLive_noUnpaidOrders": "No unpaid orders",
+  "tableLive_noFinishedOrders": "No finished orders",
+  "tableLive_paymentStatus": "Payment",
+  "tableLive_allPaymentStatus": "All",
+  "tableLive_unpaid": "Unpaid",
+  "tableLive_finished": "Finished",
+  "tableLive_allOrderStatus": "All Status",
+  "tableLive_noTakeawayOrders": "No takeaway orders",
+  "tableLive_order": "Order",
+  "tableLive_takeaway": "Takeaway",
+  "tableLive_noCustomer": "No customer",
+  "tableLive_completedOrder": "Completed Order",
+  "tableLive_paid": "PAID",
+  "tableLive_itemsCount": "{count} items",
+  "@tableLive_itemsCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "tableLive_filter": "Filter",
+  "tableLive_dateRange": "Date Range",
+  "tableLive_selectDateRange": "Select date range...",
+  "tableLive_searchDateRange": "Search date range...",
+  "tableLive_selectCustomDateRange": "Select custom date range",
+  "tableLive_customer": "Customer",
+  "tableLive_allCustomers": "All Customers",
+  "tableLive_searchCustomer": "Search customer...",
+  "tableLive_cancelOrder": "Cancel Order",
+  "tableLive_cancelOrderTitle": "Cancel Order?",
+  "tableLive_cancelOrderMessage": "Stock will be returned to inventory.\n\nAny losses from this transaction should be recorded in Stock Adjustment or Expense.",
+  "tableLive_cancelOrderConfirm": "Cancel Order",
+  "tableLive_cancellingOrder": "Cancelling order...",
+  "tableLive_orderCancelled": "Order cancelled successfully",
+  "tableLive_cannotChangeStatusTitle": "Cannot Change Status",
+  "tableLive_cannotChangeStatusMessage": "This table has an active order. Please complete or cancel the order first before changing the table status.",
+  "tableLive_editItem": "Edit Item",
+  "tableLive_quantity": "Quantity",
+  "tableLive_noteOptional": "Note (optional)",
+  "tableLive_removeItem": "Remove Item",
+  "tableLive_removeItemConfirm": "Remove \"{itemName}\" from order?",
+  "@tableLive_removeItemConfirm": {
+    "placeholders": {
+      "itemName": {"type": "String"}
+    }
+  },
+  "tableLive_itemRemoved": "Item removed from order",
+  "tableLive_itemUpdated": "Item updated",
+  "tableLive_orderEmptyCancelled": "Order cancelled (no items left)",
+  "tableLive_updatingItem": "Updating item...",
+  "tableLive_removingItem": "Removing item...",
+  "tableLive_tapToEdit": "Tap item to edit",
+
+  "developerUi_title": "UI Components",
+  "developerUi_tabForm": "Form",
+  "developerUi_tabDialogSnackbar": "Dialog & Snackbar",
+  "developerUi_qbuttonTitle": "QButton",
+  "developerUi_qbuttonDesc": "Reusable button with variants: primary, secondary, danger, text",
+  "developerUi_primary": "Primary",
+  "developerUi_secondary": "Secondary",
+  "developerUi_danger": "Danger",
+  "developerUi_text": "Text",
+  "developerUi_withIcon": "With Icon",
+  "developerUi_loadingState": "Loading State",
+  "developerUi_primaryClicked": "Primary clicked",
+  "developerUi_secondaryClicked": "Secondary clicked",
+  "developerUi_dangerClicked": "Danger clicked",
+  "developerUi_textClicked": "Text clicked",
+  "developerUi_iconButtonClicked": "Icon button clicked",
+  "developerUi_qtextfieldTitle": "QTextField",
+  "developerUi_qtextfieldDesc": "Reusable text field with label, hint, icons, validation",
+  "developerUi_username": "Username",
+  "developerUi_enterUsername": "Enter your username",
+  "developerUi_password": "Password",
+  "developerUi_enterPassword": "Enter your password",
+  "developerUi_multiline": "Multiline",
+  "developerUi_enterDescription": "Enter description...",
+  "developerUi_qdropdownTitle": "QDropdownField",
+  "developerUi_qdropdownDesc": "Reusable dropdown field with generic type support",
+  "developerUi_selectOption": "Select Option",
+  "developerUi_chooseOne": "Choose one",
+  "developerUi_option1": "Option 1",
+  "developerUi_option2": "Option 2",
+  "developerUi_option3": "Option 3",
+  "developerUi_selected": "Selected",
+  "developerUi_qimageTitle": "QImageField",
+  "developerUi_qimageDesc": "Image picker with camera/gallery support and auto-upload",
+  "developerUi_productImage": "Product Image",
+  "developerUi_categoryFilterTitle": "CategoryFilter",
+  "developerUi_categoryFilterDesc": "Horizontal scrollable category filter chips",
+  "developerUi_formWidgetsUsage": "Form Widgets Usage",
+  "developerUi_appDialogTitle": "AppDialog",
+  "developerUi_appDialogDesc": "Contextless dialog utilities.\nImport: lib/core/util/contextless/dialog.dart",
+  "developerUi_confirmAction": "Confirm Action",
+  "developerUi_confirmDialogMessage": "This is a confirmation dialog. Do you want to proceed?",
+  "developerUi_confirmed": "Confirmed!",
+  "developerUi_information": "Information",
+  "developerUi_infoDialogMessage": "This is an informational dialog to display messages.",
+  "developerUi_warningDialogMessage": "This action may have consequences. Continue?",
+  "developerUi_proceededWithWarning": "Proceeded with warning",
+  "developerUi_deleteItem": "Delete Item",
+  "developerUi_dangerDialogMessage": "This action cannot be undone. Delete?",
+  "developerUi_itemDeleted": "Item deleted!",
+  "developerUi_appSnackbarTitle": "AppSnackbar",
+  "developerUi_appSnackbarDesc": "Contextless snackbar utilities.\nImport: lib/core/util/contextless/snackbar.dart",
+  "developerUi_successMessage": "This is a success message!",
+  "developerUi_errorMessage": "This is an error message!",
+  "developerUi_warningMessage": "This is a warning message!",
+  "developerUi_infoMessage": "This is an info message!",
+  "developerUi_undo": "UNDO",
+  "developerUi_undoSuccessful": "Undo successful!",
+  "developerUi_appLoadingTitle": "AppLoading",
+  "developerUi_appLoadingDesc": "Contextless loading overlay.\nImport: lib/core/util/contextless/loading.dart",
+  "developerUi_loadingFinished": "Loading finished!",
+  "developerUi_withMessage": "with message",
+  "developerUi_pleaseWait": "Please wait...",
+  "developerUi_processing": "Processing...",
+  "developerUi_dialogSnackbarLoadingUsage": "Dialog, Snackbar & Loading Usage",
+
+  "developerUi_tabMoreWidgets": "More Widgets",
+  "developerUi_tabChips": "Chips",
+
+  "developerUi_qtextareaTitle": "QTextArea",
+  "developerUi_qtextareaDesc": "Multiline text area with internal controller, min/max lines, and counter",
+  "developerUi_notes": "Notes",
+  "developerUi_enterNotes": "Enter your notes here...",
+
+  "developerUi_qdropdownSearchTitle": "QDropdownSearch",
+  "developerUi_qdropdownSearchDesc": "Full-screen searchable dropdown for long lists (customers, products, etc.)",
+  "developerUi_selectCustomer": "Select Customer",
+  "developerUi_searchCustomer": "Search customer...",
+
+  "developerUi_qdateFieldTitle": "QDateField",
+  "developerUi_qdateFieldDesc": "Date picker field with clearable option and consistent styling",
+  "developerUi_selectDate": "Select Date",
+
+  "developerUi_qdateRangeFieldTitle": "QDateRangeField",
+  "developerUi_qdateRangeFieldDesc": "Date range picker with start and end date fields",
+  "developerUi_dateRange": "Date Range",
+
+  "developerUi_qtyPickerTitle": "QtyPicker",
+  "developerUi_qtyPickerDesc": "Quantity picker with +/- buttons. Two types: fullWidth (form) and compact (list/cart)",
+  "developerUi_quantity": "Quantity",
+  "developerUi_compactMode": "Compact Mode",
+
+  "developerUi_qswitchTileTitle": "QSwitchTile",
+  "developerUi_qswitchTileDesc": "Switch tile with title, subtitle, and icon in a styled container",
+  "developerUi_trackStock": "Track Stock",
+  "developerUi_stockTracked": "Stock will be tracked",
+  "developerUi_stockNotTracked": "Tap to enable",
+
+  "developerUi_statisticCardTitle": "StatisticCard & StatisticCardGrid",
+  "developerUi_statisticCardDesc": "Statistic cards for dashboards and reports. Max 2 cards per row",
+  "developerUi_totalSales": "Total Sales",
+  "developerUi_totalOrders": "Total Orders",
+  "developerUi_avgOrder": "Avg Order",
+  "developerUi_profit": "Profit",
+
+  "developerUi_commonWidgetsTitle": "Common Widgets",
+  "developerUi_commonWidgetsDesc": "Reusable common widgets from common_widgets.dart",
+
+  "developerUi_emptyStateTitle": "EmptyStateWidget",
+  "developerUi_emptyStateDesc": "Consistent empty state with icon, message, and optional action",
+  "developerUi_noDataFound": "No data found",
+  "developerUi_tryAdding": "Try adding some items",
+
+  "developerUi_viewModeToggleTitle": "ViewModeToggle",
+  "developerUi_viewModeToggleDesc": "Grid/List view mode toggle for management views",
+
+  "developerUi_detailRowTitle": "DetailRow",
+  "developerUi_detailRowDesc": "Label-value row for detail sheets and info displays",
+  "developerUi_customerName": "Customer Name",
+  "developerUi_johnDoe": "John Doe",
+  "developerUi_status": "Status",
+  "developerUi_completed": "Completed",
+  "developerUi_phone": "Phone",
+
+  "developerUi_sectionHeaderTitle": "SectionHeader",
+  "developerUi_sectionHeaderDesc": "Section title with optional icon and trailing widget",
+  "developerUi_customerInfo": "Customer Information",
+
+  "developerUi_lineItemRowTitle": "LineItemRow & TotalRow",
+  "developerUi_lineItemRowDesc": "Line items and total rows for financial reports",
+  "developerUi_productSales": "Product Sales",
+  "developerUi_discount": "Discount",
+  "developerUi_grandTotal": "Grand Total",
+
+  "developerUi_bulletPointTitle": "BulletPoint",
+  "developerUi_bulletPointDesc": "Simple bullet point text for help dialogs and lists",
+  "developerUi_bulletText1": "First point of information",
+  "developerUi_bulletText2": "Second point of information",
+  "developerUi_bulletText3": "Third point of information",
+
+  "developerUi_filterIconButtonTitle": "FilterIconButton",
+  "developerUi_filterIconButtonDesc": "Filter button with badge indicator for AppBar",
+
+  "developerUi_statusChipTitle": "StatusChip",
+  "developerUi_statusChipDesc": "Read-only status badge with optional icon",
+  "developerUi_active": "Active",
+  "developerUi_pending": "Pending",
+  "developerUi_paid": "Paid",
+
+  "developerUi_infoChipTitle": "InfoChip",
+  "developerUi_infoChipDesc": "Icon + label info display (not a Chip widget)",
+
+  "developerUi_quickActionChipTitle": "QuickActionChip",
+  "developerUi_quickActionChipDesc": "Tappable quick action chips (amount shortcuts, etc.)",
+  "developerUi_chipTapped": "Chip tapped",
+
+  "developerUi_selectableActionChipTitle": "SelectableActionChip",
+  "developerUi_selectableActionChipDesc": "Tappable chip with selected state (currency, tax rate, etc.)",
+
+  "developerUi_selectionCardTitle": "SelectionCard",
+  "developerUi_selectionCardDesc": "Card-like selection with icon (role, type picker)",
+  "developerUi_admin": "Admin",
+  "developerUi_cashier": "Cashier",
+  "developerUi_manager": "Manager",
+
+  "developerUi_selectableChipWrapTitle": "SelectableChipWrap",
+  "developerUi_selectableChipWrapDesc": "Multi-select chips in Wrap layout",
+  "developerUi_size": "Size",
+  "developerUi_color": "Color",
+  "developerUi_topping": "Topping",
+
+  "developerUi_deletableChipListTitle": "DeletableChipList",
+  "developerUi_deletableChipListDesc": "Chips with delete button (units, tags)",
+  "developerUi_chipDeleted": "Chip deleted",
+
+  "developerUi_singleSelectChipRowTitle": "SingleSelectChipRow",
+  "developerUi_singleSelectChipRowDesc": "Single select chips in a Row (payment type, etc.)",
+  "developerUi_cash": "Cash",
+  "developerUi_credit": "Credit",
+  "developerUi_transfer": "Transfer",
+
+  "developerUi_moreWidgetsUsage": "More Widgets Usage",
+  "developerUi_chipsUsage": "Chips & Selection Widgets Usage",
+
+  "nav_home": "Home",
+  "nav_pos": "POS",
+  "nav_tables": "Tables",
+  "nav_orders": "Orders",
+  "nav_stockAlert": "Stock",
+  "nav_profile": "Profile",
+
+  "creditPayment_title": "Add Payment",
+  "creditPayment_selectPaymentMethod": "Select Payment Method",
+  "creditPayment_payWithCash": "Pay with cash",
+  "creditPayment_scanQrisToPay": "Scan QRIS to pay",
+  "creditPayment_enterValidAmount": "Please enter a valid amount",
+  "creditPayment_amountExceedsRemaining": "Amount exceeds remaining balance",
+  "creditPayment_processingPayment": "Processing payment...",
+  "creditPayment_paymentAddedSuccess": "Payment added successfully",
+  "creditPayment_paymentFailed": "Payment failed: {error}",
+  "@creditPayment_paymentFailed": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "creditPayment_paymentMethod": "Payment Method",
+  "creditPayment_unknownCustomer": "Unknown Customer",
+  "creditPayment_total": "Total",
+  "creditPayment_paid": "Paid",
+  "creditPayment_remaining": "Remaining",
+  "creditPayment_amountPaid": "Amount paid",
+  "creditPayment_amount": "Amount",
+  "creditPayment_change": "Change",
+  "creditPayment_insufficient": "Insufficient",
+  "creditPayment_exact": "Exact",
+  "creditPayment_full": "Full",
+  "creditPayment_notesOptional": "Notes (optional)",
+  "creditPayment_processing": "Processing...",
+  "creditPayment_addPayment": "Add Payment",
+  "creditPayment_ivePaid": "I've Paid",
+  "creditPayment_iveTransferred": "I've Transferred",
+  "creditPayment_scanQrCode": "Scan QR code above using your e-wallet app",
+  "creditPayment_accountNumber": "Account Number",
+  "creditPayment_accountHolder": "Account Holder",
+  "creditPayment_transferAmount": "Transfer Amount:",
+  "creditPayment_transferExactAmount": "Transfer the exact amount to the account above",
+  "creditPayment_accountNumberCopied": "Account number copied",
+  "creditPayment_amountCopied": "Amount copied",
+
+  "purchaseAddItem_addItem": "Add Item",
+  "purchaseAddItem_editItem": "Edit Item",
+  "purchaseAddItem_currentStock": "Current Stock: {stock}",
+  "@purchaseAddItem_currentStock": {
+    "placeholders": {
+      "stock": {"type": "String"}
+    }
+  },
+  "purchaseAddItem_defaultCost": "Default Cost: {cost}",
+  "@purchaseAddItem_defaultCost": {
+    "placeholders": {
+      "cost": {"type": "String"}
+    }
+  },
+  "purchaseAddItem_purchasePricePerUnit": "Purchase Price (per {unit})",
+  "@purchaseAddItem_purchasePricePerUnit": {
+    "placeholders": {
+      "unit": {"type": "String"}
+    }
+  },
+  "purchaseAddItem_basePricePcs": "Base price (PCS): {price}",
+  "@purchaseAddItem_basePricePcs": {
+    "placeholders": {
+      "price": {"type": "String"}
+    }
+  },
+  "purchaseAddItem_qtyMustBeGreater": "Quantity must be greater than 0",
+  "purchaseAddItem_noDecimalQty": "This product does not allow decimal quantities",
+  "purchaseAddItem_priceCannotBeNegative": "Price cannot be negative",
+
+  "users_cannotDeleteDemoAccount": "Cannot delete demo account",
+  "users_cannotDeactivateDemoAccount": "Cannot deactivate demo account",
+  "users_maxUsersReached": "Maximum 2 users in Free mode. Upgrade to Premium for unlimited users.",
+  "users_maxUsersReachedTrial": "Maximum 2 users in Trial mode. Enter serial number for unlimited users.",
+
+  "upgrade_title": "Upgrade to Premium",
+  "upgrade_subtitle": "Unlock all features with Premium",
+  "upgrade_limitationsTitle": "Current Limitations",
+  "upgrade_limitProducts": "Products",
+  "upgrade_limitUsers": "Users",
+  "upgrade_limitTransactions": "Daily Transactions",
+  "upgrade_limitTransactionsValue": "5/type",
+  "upgrade_perDay": "day",
+  "upgrade_limitAds": "Advertisements",
+  "upgrade_limitAdsValue": "Shown",
+  "upgrade_transactionTypesTitle": "Transaction Types",
+  "upgrade_transactionPos": "POS / Sales",
+  "upgrade_transactionPurchase": "Purchase Orders",
+  "upgrade_transactionExpense": "Expenses",
+  "upgrade_transactionStockAdjustment": "Stock Adjustments",
+  "upgrade_transactionCredit": "Credits (Receivables)",
+  "upgrade_transactionDebt": "Debts (Payables)",
+  "upgrade_premiumBenefits": "Premium Benefits",
+  "upgrade_benefitUnlimitedProducts": "Unlimited products",
+  "upgrade_benefitUnlimitedUsers": "Unlimited users",
+  "upgrade_benefitUnlimitedTransactions": "Unlimited daily transactions",
+  "upgrade_benefitNoAds": "No advertisements",
+  "upgrade_upgradeToPremium": "Upgrade to Premium",
+  "upgrade_maxProductsReached": "Maximum 15 products reached",
+  "upgrade_maxTransactionsReached": "Daily transaction limit reached for this type",
+  "upgrade_freeModeLimits": "Free Mode: 5 transactions/day per type",
+  "upgrade_trialModeLimits": "Trial Mode: 50 transactions/day per type (with ads)",
+  "upgrade_premiumModeLimits": "Premium: Unlimited transactions, no ads",
+  "upgrade_modeComparison": "Mode Comparison",
+  "upgrade_currentMode": "CURRENT",
+  "upgrade_freeProducts": "Max 15 products",
+  "upgrade_freeUsers": "Max 2 users",
+  "upgrade_freeTransactions": "5 transactions/day per type",
+  "upgrade_freeAds": "Ads displayed",
+  "upgrade_trialProducts": "Max 15 products",
+  "upgrade_trialUsers": "Max 2 users",
+  "upgrade_trialTransactions": "50 transactions/day per type",
+  "upgrade_trialAds": "Ads displayed",
+
+  "subscription_title": "Subscribe to Premium",
+  "subscription_upgradeToPremium": "Upgrade to Premium",
+  "subscription_fillForm": "Fill in your details to subscribe",
+  "subscription_name": "Name",
+  "subscription_nameHint": "Enter your full name",
+  "subscription_nameRequired": "Please enter your name",
+  "subscription_phone": "Phone Number",
+  "subscription_phoneHint": "Enter your phone number",
+  "subscription_phoneRequired": "Please enter your phone number",
+  "subscription_voucherCode": "Voucher Code (Optional)",
+  "subscription_voucherHint": "Enter voucher code...",
+  "subscription_voucherDiscount": "{percent}% Discount Applied!",
+  "@subscription_voucherDiscount": {
+    "placeholders": {
+      "percent": {"type": "int"}
+    }
+  },
+  "subscription_voucherInfo": "Enter voucher code to get special discount on your subscription.",
+  "subscription_voucherLocked": "Voucher code is locked from your previous subscription.",
+  "subscription_voucherExpired": "This voucher code has expired.",
+  "subscription_voucherNotFound": "Voucher code not found. It may have been removed.",
+  "subscription_voucherInactive": "This voucher code is no longer active.",
+  "subscription_voucherExpiredDeleted": "This voucher has expired and has been removed. Please use another voucher or continue without discount.",
+  "subscription_voucherInvalid": "This voucher code is invalid.",
+  "subscription_voucherUsageExceeded": "This voucher has reached its maximum usage limit.",
+  "subscription_clearVoucherTitle": "Clear Voucher Code",
+  "subscription_clearVoucherMessage": "Are you sure you want to remove this voucher code? You will need to re-enter it for your next subscription.",
+  "subscription_voucherCleared": "Voucher code cleared",
+  "subscription_selectDuration": "Select Subscription Duration",
+  "subscription_selectPlan": "Please select a subscription plan",
+  "subscription_totalPrice": "Total Price",
+  "subscription_savings": "You save Rp {amount}!",
+  "@subscription_savings": {
+    "placeholders": {
+      "amount": {"type": "String"}
+    }
+  },
+  "subscription_subscribe": "Subscribe Now",
+  "subscription_selectedPlan": "Selected Plan",
+  "subscription_creatingOrder": "Creating order...",
+  "subscription_activating": "Activating premium...",
+  "subscription_successTitle": "Premium Activated!",
+  "subscription_successMessage": "Your premium subscription has been activated. Enjoy all premium features!",
+  "subscription_startingPurchase": "Starting purchase...",
+  "subscription_networkError": "Please check your internet connection",
+  "subscription_googleRequired": "Google Account Required",
+  "subscription_googleRequiredDesc": "Please link your Google account to subscribe. This ensures your subscription can be restored if you reinstall the app.",
+  "subscription_googleLinkNow": "Link Google Account",
+  "subscription_alreadyActive": "This Google account already has an active subscription. You cannot subscribe again until the current subscription expires.",
+
+  "subscriptionInfo_title": "Subscription Plans",
+  "subscriptionInfo_headerTitle": "Kasir Baik Premium",
+  "subscriptionInfo_headerSubtitle": "Unlock all features and grow your business without limits",
+  "subscriptionInfo_currentMode": "Current",
+  "subscriptionInfo_premiumDesc": "You have full access to all features",
+  "subscriptionInfo_trialDesc": "Temporary premium access from watching ads",
+  "subscriptionInfo_freeDesc": "Limited features with daily transaction limits",
+  "subscriptionInfo_plansTitle": "Available Plans",
+  "subscriptionInfo_normalPrice": "Normal Price",
+  "subscriptionInfo_voucherPrice": "With Voucher",
+  "subscriptionInfo_save": "Save Rp {amount}",
+  "@subscriptionInfo_save": {
+    "placeholders": {
+      "amount": {"type": "String"}
+    }
+  },
+  "subscriptionInfo_popular": "POPULAR",
+  "subscriptionInfo_comparisonTitle": "Feature Comparison",
+  "subscriptionInfo_featureProducts": "Products",
+  "subscriptionInfo_featureUsers": "Users",
+  "subscriptionInfo_featureTransactions": "Transactions",
+  "subscriptionInfo_featureAds": "Ads",
+  "subscriptionInfo_featureReports": "Reports",
+  "subscriptionInfo_unlimited": "Unlimited",
+  "subscriptionInfo_day": "day",
+  "subscriptionInfo_yes": "Yes",
+  "subscriptionInfo_no": "No",
+  "subscriptionInfo_withAds": "With Ads",
+  "subscriptionInfo_full": "Full",
+  "subscriptionInfo_voucherTitle": "Get Special Discount",
+  "subscriptionInfo_voucherDesc": "Enter a voucher code during checkout to get discounted subscription prices!",
+  "subscriptionInfo_subscribeCta": "Subscribe to Premium",
+
+  "payment_title": "Payment",
+  "payment_confirmTitle": "Confirm Payment",
+  "payment_confirmMessage": "Have you completed the payment? Click confirm to activate your premium subscription.",
+  "payment_confirmButton": "I Have Paid",
+  "payment_successTitle": "Payment Successful!",
+  "payment_successMessage": "Your premium subscription for {duration} has been activated. Enjoy all premium features!",
+  "@payment_successMessage": {
+    "placeholders": {
+      "duration": {"type": "String"}
+    }
+  },
+  "payment_cancelTitle": "Cancel Payment?",
+  "payment_cancelMessage": "Are you sure you want to cancel the payment process?",
+  "payment_warningTitle": "Important!",
+  "payment_warningMessage": "Do not close this page while making a payment for the premium activation to work.\n\nIf you have already made a payment but nothing happens, tap the 'Check Payment Status' button at the bottom of the screen.",
+  "payment_checkStatus": "Check Payment Status",
+  "payment_doNotCloseWarning": "Do not close this page while making a payment for the premium activation to work. If you close it, you must confirm manually via the Contact Us menu.",
+  "payment_screenshotTitle": "Screenshot Page?",
+  "payment_screenshotMessage": "Save a screenshot of this page as payment proof?",
+  "payment_screenshotConfirm": "Save",
+  "payment_screenshotSaving": "Saving screenshot...",
+  "payment_screenshotSaved": "Screenshot saved to gallery",
+  "payment_screenshotFailed": "Failed to save screenshot",
+  "payment_infoText": "Complete your payment in the browser above, then tap the button below to confirm.",
+
+  "firstTimeSetup_welcome": "Welcome!",
+  "firstTimeSetup_subtitle": "Let's set up your business",
+  "firstTimeSetup_selectAppType": "Select Your Business Type",
+  "firstTimeSetup_pleaseSelectAppType": "Please select an app type",
+  "firstTimeSetup_generateSampleData": "Generate Sample Data",
+  "firstTimeSetup_generateSampleDataDesc": "Add sample products, categories, and customers to get started quickly",
+  "firstTimeSetup_continue": "Continue",
+  "firstTimeSetup_skip": "Skip Setup",
+  "firstTimeSetup_settingUp": "Setting up your app...",
+  "firstTimeSetup_setupComplete": "Setup complete!",
+  "firstTimeSetup_cafe": "Cafe",
+  "firstTimeSetup_cafeDesc": "Coffee shop, restaurant, food & beverage",
+  "firstTimeSetup_grocery": "Grocery",
+  "firstTimeSetup_groceryDesc": "Supermarket, mini market, retail store",
+  "firstTimeSetup_pharmacy": "Pharmacy",
+  "firstTimeSetup_pharmacyDesc": "Drugstore, pharmacy, health store",
+  "firstTimeSetup_laundry": "Laundry",
+  "firstTimeSetup_laundryDesc": "Laundry service, dry cleaning",
+  "firstTimeSetup_blank": "Blank",
+  "firstTimeSetup_blankDesc": "Start from scratch, add your own data",
+  "firstTimeSetup_storagePermissionDesc": "To keep your data safe even after clearing app data, please grant storage permission. This allows the app to store data in a location that won't be deleted.",
+  "firstTimeSetup_storagePermissionWarning": "Without this permission, your data will be lost if you clear app data!",
+
+  "storagePermission_title": "Storage Access Required",
+  "storagePermission_description": "This app needs storage access to keep your business data safe. This permission is required to ensure your data is not lost when you uninstall the app or clear app data.",
+  "storagePermission_benefit1Title": "Data Protection",
+  "storagePermission_benefit1Desc": "Your master data and transactions stay safe even after app uninstall",
+  "storagePermission_benefit2Title": "Local Backup",
+  "storagePermission_benefit2Desc": "Create and restore backups anytime without internet",
+  "storagePermission_benefit3Title": "Data Security",
+  "storagePermission_benefit3Desc": "Your data is stored securely on your device",
+  "storagePermission_grantAccess": "Grant Access",
+  "storagePermission_deniedWarning": "Permission was denied. Please grant storage access to continue using the app. Tap 'Open Settings' and enable 'All files access' for this app.",
+  "storagePermission_checkAgain": "Check Again",
+  "storagePermission_note": "We only access the KasirBaik folder on your device. Your other files remain private and untouched.",
+
+  "export_title": "Export Data",
+  "export_subtitle": "Export to Excel",
+  "export_confirmMessage": "This will export all data to an Excel file. Continue?",
+  "export_export": "Export",
+  "export_exporting": "Exporting data...",
+  "export_success": "Data exported successfully",
+  "export_failed": "Failed to export data",
+  "export_share": "Share",
+  "export_masterData": "Master Data",
+  "export_masterDataDesc": "Products, categories, customers, and other reference data",
+  "export_reports": "Reports",
+  "export_transactionData": "Transaction Data",
+  "export_transactionDataDesc": "Orders, expenses, purchases, and other transaction records (filtered by: {dateRange})",
+  "@export_transactionDataDesc": {
+    "placeholders": {
+      "dateRange": {"type": "String"}
+    }
+  },
+  "export_products": "Products",
+  "export_categories": "Categories",
+  "export_customers": "Customers",
+  "export_suppliers": "Suppliers",
+  "export_tables": "Tables",
+  "export_users": "Users",
+  "export_orders": "Orders",
+  "export_expenses": "Expenses",
+  "export_purchases": "Purchases",
+  "export_stockAdjustments": "Stock Adjustments",
+  "export_credits": "Credits",
+  "export_debts": "Debts",
+  "export_paymentMethods": "Payment Methods",
+  "export_reportSummaries": "Report Summaries",
+  "export_reportSummariesDesc": "Calculated report summaries based on {period} data",
+  "@export_reportSummariesDesc": {
+    "placeholders": {
+      "period": {"type": "String"}
+    }
+  },
+  "export_salesReport": "Sales Report",
+  "export_profitLossReport": "Profit & Loss",
+  "export_cashflowReport": "Cashflow",
+  "export_inventoryReport": "Inventory",
+  "export_productPerformance": "Product Performance",
+  "export_expenseReport": "Expense Report",
+  "export_creditReport": "Credit Report",
+  "export_debtReport": "Debt Report",
+  "export_balanceSheet": "Balance Sheet",
+  "export_variants": "Variants",
+  "export_posCategories": "POS Categories",
+  "export_cashReasons": "Cash Reasons",
+  "export_expenseTypes": "Expense Types",
+  "export_orderStatuses": "Order Statuses",
+  "export_vouchers": "Vouchers",
+  "export_cashDrawerSessions": "Cash Drawer",
+  "export_stockHistory": "Stock History",
+  "export_goodReceives": "Good Receives",
+  "export_info": "Export Information",
+  "export_infoDescription": "Master data will be exported in full. Transaction data will be filtered based on the selected date range.",
+  "export_exportToExcel": "Export to Excel",
+  "export_dateFilter": "Date Filter",
+  "export_preview": "Preview Data",
+
+  "exportPreview_title": "Export Preview",
+  "exportPreview_summary": "Summary",
+  "exportPreview_sales": "Sales",
+  "exportPreview_expenses": "Expenses",
+  "exportPreview_receivablesPayables": "Receivables/Payables",
+  "exportPreview_financialSummary": "Financial Summary",
+  "exportPreview_balanceSummary": "Balance Summary",
+  "exportPreview_masterData": "Master Data",
+  "exportPreview_transactionSummary": "Transaction Summary",
+  "exportPreview_totalSales": "Total Sales",
+  "exportPreview_grossProfit": "Gross Profit",
+  "exportPreview_totalExpenses": "Total Expenses",
+  "exportPreview_netProfit": "Net Profit",
+  "exportPreview_inventoryValue": "Inventory Value",
+  "exportPreview_receivables": "Receivables",
+  "exportPreview_payables": "Payables",
+  "exportPreview_netPosition": "Net Position",
+  "exportPreview_orderCount": "Orders",
+  "exportPreview_expenseCount": "Expenses",
+  "exportPreview_salesByPaymentMethod": "Sales by Payment Method",
+  "exportPreview_expensesByCategory": "Expenses by Category",
+  "exportPreview_recentOrders": "Recent Orders",
+  "exportPreview_andMore": "and {count} more",
+  "@exportPreview_andMore": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+
+  "dateFilter_thisYear": "This Year",
+  "dateFilter_allTime": "All Time",
+
+  "reward_pleaseWait": "Please wait a moment",
+  "reward_earnAfterTimer": "Reward will be given after the timer ends",
+  "reward_offlineExplanation": "This page appears because no ads are available, or you are in offline mode, or your internet connection is unstable.",
+  "reward_offlineHint": "You can close this page and try again when your internet is stable, or wait until the timer finishes.",
+
+  "cloudBackup_title": "Cloud Backup",
+  "cloudBackup_backup": "Backup to Cloud",
+  "cloudBackup_backupDesc": "Upload backup to cloud storage",
+  "cloudBackup_restore": "Restore from Cloud",
+  "cloudBackup_restoreDesc": "View and restore from cloud backups",
+  "cloudBackup_backingUp": "Uploading backup to cloud...",
+  "cloudBackup_backupSuccess": "Backup uploaded successfully!",
+  "cloudBackup_backupFailed": "Backup failed: {error}",
+  "@cloudBackup_backupFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "cloudBackup_noBackups": "No cloud backups found",
+  "cloudBackup_noBackupsHint": "Create a backup first to see it here",
+  "cloudBackup_backupHistory": "Backup History",
+  "cloudBackup_masterData": "Master Data",
+  "cloudBackup_fullData": "Full Data",
+  "cloudBackup_createdAt": "Created: {date}",
+  "@cloudBackup_createdAt": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "cloudBackup_itemCount": "{count} records",
+  "@cloudBackup_itemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cloudBackup_restoreThis": "Restore this backup?",
+  "cloudBackup_restoreWarning": "This will DELETE all current data and replace it with data from this backup.\n\nBackup info:\n• Type: {type}\n• Created: {date}\n• Records: {count}\n\nThis action cannot be undone!",
+  "@cloudBackup_restoreWarning": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cloudBackup_restoring": "Restoring from cloud backup...",
+  "cloudBackup_restoreSuccess": "Restored {count} collections from cloud backup!",
+  "@cloudBackup_restoreSuccess": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cloudBackup_restoreFailed": "Restore failed: {error}",
+  "@cloudBackup_restoreFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "cloudBackup_autoRestoring": "Cloud backup found. Restoring your data...",
+  "cloudBackup_autoRestoreSuccess": "Data restored successfully!",
+  "cloudBackup_autoRestoreFailed": "Auto-restore failed. Starting fresh setup.",
+  "cloudBackup_deleteEntry": "Delete from history?",
+  "cloudBackup_deleteEntryMessage": "This will only remove the backup from history. The file on cloud storage will not be deleted.",
+  "cloudBackup_selectBackupType": "Select Backup Type",
+  "cloudBackup_masterDataDesc": "Products, customers, categories, suppliers",
+  "cloudBackup_fullDataDesc": "All data including transactions and orders",
+  "cloudBackup_storeName": "Store: {name}",
+  "@cloudBackup_storeName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "cloudBackup_fileSize": "Size: {size}",
+  "@cloudBackup_fileSize": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "cloudBackup_premiumRequired": "Cloud Backup is a premium feature. Please upgrade to use this feature.",
+  "cloudBackup_createBackup": "Create Backup",
+  "cloudBackup_createBackupConfirm": "This will backup all your data including products, transactions, expenses, credits, debts, and settings to the cloud.",
+  "cloudBackup_viewOnline": "View Online",
+  "cloudBackup_viewLocal": "View Local",
+  "cloudBackup_viewLocalFolder": "View Local Folder",
+  "cloudBackup_localStorageLocation": "Local Backup Location",
+  "cloudBackup_localFileSaved": "Local file saved",
+  "cloudBackup_localFileDeleted": "Local file not available",
+  "cloudBackup_localBackupFile": "Backup File",
+  "cloudBackup_noLocalFile": "No local file available",
+  "cloudBackup_localFileNotFound": "Local file not found",
+  "cloudBackup_cannotOpenLocalFile": "Cannot open local file",
+  "cloudBackup_autoBackupInfoTitle": "Auto Backup Schedule",
+  "cloudBackup_autoBackupInfoDesc": "Your data is automatically backed up at the following times each day. Backups are triggered when you open the app or navigate between menus.",
+  "cloudBackup_autoBackupDone": "Done",
+  "cloudBackup_autoBackupCompleted": "Completed today",
+
+  "cashDrawer_title": "Cash Drawer",
+  "cashDrawer_noActiveSession": "No Active Session",
+  "cashDrawer_noActiveSessionDesc": "Open a new session to start tracking cash",
+  "cashDrawer_openSession": "Open Session",
+  "cashDrawer_closeSession": "Close Session",
+  "cashDrawer_openingBalance": "Opening Balance",
+  "cashDrawer_currentBalance": "Current Balance",
+  "cashDrawer_expectedBalance": "Expected Balance",
+  "cashDrawer_actualBalance": "Actual Balance",
+  "cashDrawer_difference": "Difference",
+  "cashDrawer_cashIn": "Cash In",
+  "cashDrawer_cashOut": "Cash Out",
+  "cashDrawer_totalSales": "Sales",
+  "cashDrawer_totalCashIn": "Cash In",
+  "cashDrawer_totalCashOut": "Cash Out",
+  "cashDrawer_transactions": "Transactions",
+  "cashDrawer_noTransactions": "No transactions yet",
+  "cashDrawer_enterOpeningBalance": "Enter opening balance",
+  "cashDrawer_selectReason": "Select Reason",
+  "cashDrawer_amount": "Amount",
+  "cashDrawer_notes": "Notes (Optional)",
+  "cashDrawer_insufficientBalance": "Insufficient balance. Cannot cash out more than current balance.",
+  "cashDrawer_sessionOpened": "Cash drawer session opened",
+  "cashDrawer_sessionClosed": "Cash drawer session closed",
+  "cashDrawer_backupBeforeLogout": "Would you like to backup your data to the cloud before logging out?",
+  "cashDrawer_cashInSuccess": "Cash in recorded successfully",
+  "cashDrawer_cashOutSuccess": "Cash out recorded successfully",
+  "cashDrawer_closeConfirmTitle": "Close Cash Drawer",
+  "cashDrawer_closeConfirmMessage": "Enter the actual cash amount to close the session",
+  "cashDrawer_actualAmount": "Actual Amount",
+  "cashDrawer_varianceWarning": "There is a variance of {amount}. Please verify the amount.",
+  "@cashDrawer_varianceWarning": {
+    "placeholders": {
+      "amount": {"type": "String"}
+    }
+  },
+  "cashDrawer_varianceOk": "Balance matches! No variance.",
+  "cashDrawer_sessionBy": "Session by {name}",
+  "@cashDrawer_sessionBy": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "cashDrawer_openSessionDesc": "Enter the opening cash balance to start a new session",
+  "cashDrawer_invalidAmount": "Please enter a valid amount",
+  "cashDrawer_enterActualBalance": "Please enter the actual balance",
+  "cashDrawer_negativeExpectedInfo": "Expected balance is negative. Actual balance will be set automatically.",
+  "cashDrawer_reason": "Reason",
+  "cashDrawer_addCashIn": "Add Cash In",
+  "cashDrawer_addCashOut": "Add Cash Out",
+  "cashDrawer_cashInAdded": "Cash in added successfully",
+  "cashDrawer_cashOutAdded": "Cash out added successfully",
+  "cashDrawer_availableBalance": "Available Balance",
+  "cashDrawer_openedBy": "Opened by",
+  "cashDrawer_close": "Close",
+  "cashDrawer_items": "items",
+  "cashDrawer_sale": "Sale",
+  "cashDrawer_refund": "Refund",
+  "cashDrawer_additionalBalance": "Additional Balance",
+  "cashDrawer_bankDeposit": "Bank Deposit",
+  "cashDrawer_capitalReturn": "Capital Return",
+  "cashDrawer_sessionRequired": "Cash Drawer Required",
+  "cashDrawer_sessionRequiredDesc": "Please open a cash drawer session before accessing the app. This helps track all cash transactions during your shift.",
+  "cashDrawer_cannotCloseSession": "Cannot Close Session",
+  "cashDrawer_unpaidOrdersExist": "There are {count} unpaid order(s). Please complete all payments before closing the session.",
+  "@cashDrawer_unpaidOrdersExist": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+
+  "cashDrawerReport_title": "Cash Drawer Report",
+  "cashDrawerReport_sessions": "Sessions",
+  "cashDrawerReport_cashier": "Cashier",
+  "cashDrawerReport_noSessions": "No sessions found in this period",
+  "cashDrawerReport_totalSessions": "Total Sessions",
+  "cashDrawerReport_closedSessions": "Closed",
+  "cashDrawerReport_openSessions": "Open",
+  "cashDrawerReport_totalDifference": "Total Variance",
+  "cashDrawerReport_cashFlow": "Cash Flow Summary",
+  "cashDrawerReport_netCashFlow": "Net Cash Flow",
+  "cashDrawerReport_sessionsByUser": "Sessions by Cashier",
+  "cashDrawerReport_differenceHistory": "Variance History",
+  "cashDrawerReport_open": "Open",
+  "cashDrawerReport_closed": "Closed",
+  "cashDrawerReport_openingBalance": "Opening Balance",
+  "cashDrawerReport_currentBalance": "Current Balance",
+  "cashDrawerReport_income": "Income",
+  "cashDrawerReport_outcome": "Outcome",
+  "cashDrawerReport_sales": "Sales",
+  "cashDrawerReport_creditPayments": "Credit Payments",
+  "cashDrawerReport_purchaseOrders": "Purchase Orders",
+  "cashDrawerReport_expenses": "Expenses",
+  "cashDrawerReport_debtPayments": "Debt Payments",
+  "cashDrawerReport_transactionSummary": "Transaction Summary",
+  "cashDrawerReport_printPreview": "Print Preview - Cash Drawer",
+  "cashDrawerReport_summary": "Summary",
+  "cashDrawerReport_openedAt": "Opened At",
+  "cashDrawerReport_closingBalance": "Closing Balance",
+  "cashDrawerReport_difference": "Difference",
+  "cashDrawerReport_totalOpeningBalance": "Total Opening Balance",
+  "cashDrawerReport_totalClosingBalance": "Total Closing Balance",
+  "cashDrawerReport_totalIncome": "Total Income",
+  "cashDrawerReport_totalOutcome": "Total Outcome",
+  "cashDrawerReport_status": "Status",
+
+  "cashReasons_title": "Cash Reasons",
+  "cashReasons_add": "Add Cash Reason",
+  "cashReasons_edit": "Edit Cash Reason",
+  "cashReasons_name": "Name",
+  "cashReasons_type": "Type",
+  "cashReasons_cashIn": "Cash In",
+  "cashReasons_cashOut": "Cash Out",
+  "cashReasons_icon": "Icon",
+  "cashReasons_color": "Color",
+  "cashReasons_createExpense": "Create Expense",
+  "cashReasons_createExpenseDesc": "Automatically create expense record when using this reason",
+  "cashReasons_expenseCategory": "Expense Category",
+  "cashReasons_noReasons": "No cash reasons found",
+  "cashReasons_generateDefaults": "Generate Defaults",
+  "cashReasons_generateDefaultsDesc": "Create default cash in/out reasons",
+  "cashReasons_defaultsGenerated": "Default cash reasons generated",
+  "cashReasons_searchReasons": "Search reasons...",
+  "cashReasons_all": "All",
+  "cashReasons_sortOrder": "Sort Order",
+  "cashReasons_deleteConfirm": "Delete this cash reason?",
+  "cashReasons_saved": "Cash reason saved successfully",
+  "cashReasons_deleted": "Cash reason deleted",
+  "cashReasons_deleteTitle": "Delete Cash Reason",
+  "cashReasons_generateDefaultsConfirm": "This will create default cash in/out reasons. Continue?",
+  "cashReasons_typeCashIn": "Cash In Only",
+  "cashReasons_typeCashOut": "Cash Out Only",
+  "cashReasons_in": "In",
+  "cashReasons_out": "Out",
+  "cashReasons_autoExpense": "Auto Expense",
+  "cashReasons_willCreateExpense": "Will create expense in category",
+  "cashReasons_nameRequired": "Name is required",
+  "cashReasons_updated": "Cash reason updated successfully",
+  "cashReasons_added": "Cash reason added successfully",
+  "cashReasons_preview": "Preview",
+  "cashReasons_selectIcon": "Select Icon",
+  "cashReasons_selectColor": "Select Color",
+  "cashReasons_autoCreateExpense": "Auto Create Expense",
+
+  "common_summary": "Summary",
+  "common_notes": "Notes",
+  "common_optional": "Optional",
+  "common_saving": "Saving...",
+  "common_sortOrder": "Sort Order",
+
+  "stockAdjustment_lossValueModeTitle": "Loss Value Calculation",
+  "stockAdjustment_lossValueModeDescription": "How should the loss value be calculated for stock adjustments?",
+  "stockAdjustment_lossValueBasedOnPurchasePrice": "Based on Purchase Price",
+  "stockAdjustment_lossValueBasedOnPurchasePriceDesc": "Loss = Purchase Price × Quantity",
+  "stockAdjustment_lossValueZero": "No Loss Value",
+  "stockAdjustment_lossValueZeroDesc": "Set loss value to 0 (no expense)",
+  "stockAdjustment_negativeQtyInfo": "Use negative quantity to reduce stock",
+  "stockAdjustment_negativeForIncrease": "Use negative value to increase stock",
+  "stockAdjustment_positiveForIncrease": "+ to add stock, - to reduce stock",
+  "stockAdjustment_stockIncrease": "Stock Increase",
+  "stockAdjustment_selectUnit": "Select Unit",
+  "stockAdjustment_baseUnit": "Base unit",
+  "stockAdjustment_qtyCannotExceedStock": "Reduction cannot exceed current stock ({stock})",
+  "@stockAdjustment_qtyCannotExceedStock": {
+    "placeholders": {
+      "stock": {"type": "String"}
+    }
+  },
+  "stockAdjustmentCart_qtyCannotExceedStock": "Reduction cannot exceed current stock ({stock})",
+  "@stockAdjustmentCart_qtyCannotExceedStock": {
+    "placeholders": {
+      "stock": {"type": "String"}
+    }
+  },
+
+  "stockAdjustmentAddItem_addItem": "Add Item",
+  "stockAdjustmentAddItem_editItem": "Edit Item",
+  "stockAdjustmentAddItem_addToCart": "Add to Adjustment",
+  "stockAdjustmentAddItem_update": "Update",
+  "stockAdjustmentAddItem_qtyMustNotBeZero": "Quantity must not be zero",
+  "stockAdjustmentAddItem_noDecimalQty": "This product does not allow decimal quantities",
+  "stockAdjustmentAddItem_costInfo": "Cost: {price}/{unit}",
+  "@stockAdjustmentAddItem_costInfo": {
+    "placeholders": {
+      "price": {"type": "String"},
+      "unit": {"type": "String"}
+    }
+  },
+
+  "validator_required": "is required",
+  "validator_invalidEmail": "Please enter a valid email address",
+  "validator_invalidPhone": "Please enter a valid phone number",
+  "validator_minLength": "Must be at least {length} characters",
+  "@validator_minLength": {
+    "placeholders": {
+      "length": {"type": "int"}
+    }
+  },
+  "validator_maxLength": "Must be at most {length} characters",
+  "@validator_maxLength": {
+    "placeholders": {
+      "length": {"type": "int"}
+    }
+  },
+  "validator_numericOnly": "Please enter numbers only",
+  "validator_minValue": "Value must be at least {value}",
+  "@validator_minValue": {
+    "placeholders": {
+      "value": {"type": "int"}
+    }
+  },
+  "validator_maxValue": "Value cannot exceed {value}",
+  "@validator_maxValue": {
+    "placeholders": {
+      "value": {"type": "int"}
+    }
+  },
+  "validator_passwordMinLength": "Password must be at least {length} characters",
+  "@validator_passwordMinLength": {
+    "placeholders": {
+      "length": {"type": "int"}
+    }
+  },
+  "validator_passwordMismatch": "Passwords do not match",
+  "validator_invalidUrl": "Please enter a valid URL",
+  "validator_invalidBarcode": "Please enter a valid barcode (4-20 alphanumeric characters)",
+
+  "home_balanceSheet": "Balance Sheet",
+
+  "balanceSheet_title": "Balance Sheet",
+  "balanceSheet_printPreview": "Print Preview - Balance Sheet",
+  "balanceSheet_details": "Details",
+  "balanceSheet_difference": "Difference",
+  "balanceSheet_statement": "Balance Sheet Statement",
+  "balanceSheet_assets": "Assets",
+  "balanceSheet_liabilities": "Liabilities",
+  "balanceSheet_equity": "Equity",
+  "balanceSheet_totalAssets": "Total Assets",
+  "balanceSheet_totalLiabilities": "Total Liabilities",
+  "balanceSheet_ownersEquity": "Owner's Equity",
+  "balanceSheet_cashOnHand": "Cash on Hand",
+  "balanceSheet_accountsReceivable": "Accounts Receivable",
+  "balanceSheet_accountsPayable": "Accounts Payable",
+  "balanceSheet_inventory": "Inventory",
+  "balanceSheet_balanceCheck": "Balance Check",
+  "balanceSheet_liabilitiesPlusEquity": "Liabilities + Equity",
+  "balanceSheet_inventoryDetail": "Inventory Detail",
+  "balanceSheet_receivablesDetail": "Receivables Detail",
+  "balanceSheet_payablesDetail": "Payables Detail",
+  "balanceSheet_totalProducts": "Total Products",
+  "balanceSheet_totalStock": "Total Stock",
+  "balanceSheet_inventoryValue": "Inventory Value",
+  "balanceSheet_totalCredits": "Outstanding Credits",
+  "balanceSheet_totalDebts": "Outstanding Debts",
+  "balanceSheet_outstandingAmount": "Outstanding Amount",
+  "balanceSheet_details": "Details",
+  "balanceSheet_assetComposition": "Asset Composition",
+  "balanceSheet_cashSessions": "Cash Sessions",
+  "balanceSheet_noSessions": "No cash sessions in this period",
+  "balanceSheet_noReceivables": "No outstanding receivables in this period",
+  "balanceSheet_noPayables": "No outstanding payables in this period",
+
+  "common_closed": "Closed",
+  "common_open": "Open",
+  "common_noDescription": "No Description",
+  "common_other": "Other",
+  "common_auditInfo": "Audit Information",
+  "common_createdBy": "Created By",
+  "common_updatedBy": "Updated By",
+  "common_amount": "Amount",
+  "common_percentage": "Percentage",
+  "common_date": "Date",
+  "common_description": "Description",
+
+  "expenses_detailTitle": "Expense Detail",
+
+  "goodReceive_title": "Good Receive",
+  "goodReceive_selectPO": "Select Purchase Order",
+  "goodReceive_noPendingPO": "No pending purchase orders",
+  "goodReceive_noPendingPOHint": "Create a purchase order first",
+  "goodReceive_partial": "Partial",
+  "goodReceive_fullyReceived": "Fully Received",
+  "goodReceive_remainingItems": "remaining",
+  "goodReceive_items": "{count} items",
+  "@goodReceive_items": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "goodReceive_product": "Product",
+  "goodReceive_ordered": "Ordered",
+  "goodReceive_received": "Received",
+  "goodReceive_receiveNow": "Receive Now",
+  "goodReceive_remaining": "Remaining",
+  "goodReceive_totalReceiveAmount": "Total Receive Amount",
+  "goodReceive_noItemsToReceive": "No items to receive",
+  "goodReceive_noItemsToReceiveHint": "Enter quantity to receive for at least one item",
+  "goodReceive_saveGoodReceive": "Save Good Receive",
+  "goodReceive_confirmReceive": "Confirm Good Receive",
+  "goodReceive_confirmReceiveMessage": "This will update the stock for {count} items. Continue?",
+  "@goodReceive_confirmReceiveMessage": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "goodReceive_saving": "Saving good receive...",
+  "goodReceive_receiveAll": "Receive All",
+  "goodReceive_saveSuccess": "Good receive saved successfully",
+  "goodReceive_saveFailed": "Failed to save good receive: {error}",
+  "@goodReceive_saveFailed": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "goodReceive_grNumber": "GR Number",
+  "goodReceive_purchaseOrder": "Purchase Order",
+  "goodReceive_receiveDate": "Receive Date",
+  "goodReceive_supplier": "Supplier",
+  "goodReceive_history": "Good Receive History",
+  "goodReceive_noHistory": "No good receive history",
+  "goodReceive_viewDetail": "View Detail",
+  "goodReceive_allPOReceived": "All purchase orders have been fully received",
+
+  "salesReport_helpTitle": "What is Sales Report?",
+  "salesReport_helpDescription": "Sales Report shows your revenue from completed sales transactions within the selected period.",
+  "salesReport_helpIncludes": "Includes",
+  "salesReport_helpPaidOrders": "Paid orders (cash, QRIS, bank transfer)",
+  "salesReport_helpCreditSales": "Credit sales (counted as revenue when sold)",
+  "salesReport_helpTaxCalculation": "Tax calculation based on settings",
+  "salesReport_helpGrossProfit": "Gross profit (revenue - COGS)",
+  "salesReport_helpNotIncluded": "Not Included",
+  "salesReport_helpPendingOrders": "Pending/unpaid orders",
+  "salesReport_helpCancelledOrders": "Cancelled orders",
+  "salesReport_helpRefunds": "Refunds",
+
+  "expenseReport_helpTitle": "What is Expense Report?",
+  "expenseReport_helpDescription": "Expense Report tracks all business expenses and operational costs within the selected period.",
+  "expenseReport_helpIncludes": "Includes",
+  "expenseReport_helpOperationalExpenses": "Operational expenses (rent, utilities, salaries)",
+  "expenseReport_helpCashShortage": "Cash shortage from cash drawer",
+  "expenseReport_helpSupplies": "Supplies and consumables",
+  "expenseReport_helpOtherExpenses": "Other business expenses",
+  "expenseReport_helpNotIncluded": "Not Included",
+  "expenseReport_helpPurchaseOrders": "Purchase orders (inventory purchases)",
+  "expenseReport_helpDebtPayments": "Debt payments to suppliers",
+
+  "creditReport_helpTitle": "What is Credit Report?",
+  "creditReport_helpDescription": "Credit Report shows outstanding amounts owed by customers (accounts receivable) for credit sales.",
+  "creditReport_helpIncludes": "Includes",
+  "creditReport_helpCreditSales": "Credit sales to customers",
+  "creditReport_helpOutstandingAmount": "Outstanding amount to be collected",
+  "creditReport_helpPaymentHistory": "Payment history and status",
+  "creditReport_helpNote": "Note",
+  "creditReport_helpNoteDescription": "Credit is money customers owe to you. When customers pay, the credit balance decreases.",
+
+  "debtReport_helpTitle": "What is Debt Report?",
+  "debtReport_helpDescription": "Debt Report shows outstanding amounts you owe to suppliers (accounts payable) for credit purchases.",
+  "debtReport_helpIncludes": "Includes",
+  "debtReport_helpCreditPurchases": "Credit purchases from suppliers",
+  "debtReport_helpOutstandingAmount": "Outstanding amount to be paid",
+  "debtReport_helpPaymentHistory": "Payment history and status",
+  "debtReport_helpNote": "Note",
+  "debtReport_helpNoteDescription": "Debt is money you owe to suppliers. When you pay suppliers, the debt balance decreases.",
+
+  "inventoryReport_helpTitle": "What is Inventory Report?",
+  "inventoryReport_helpDescription": "Inventory Report shows the current stock levels and values of all products in your inventory.",
+  "inventoryReport_helpIncludes": "Includes",
+  "inventoryReport_helpCurrentStock": "Current stock quantities",
+  "inventoryReport_helpStockValue": "Stock value at purchase price (cost)",
+  "inventoryReport_helpRetailValue": "Potential retail value at selling price",
+  "inventoryReport_helpLowStock": "Low stock and out of stock alerts",
+  "inventoryReport_helpNote": "Note",
+  "inventoryReport_helpNoteDescription": "This is a real-time snapshot of your inventory. It is not filtered by date.",
+
+  "balanceSheet_helpTitle": "What is Balance Sheet?",
+  "balanceSheet_helpDescription": "Balance Sheet shows your business's financial position: what you own (assets), what you owe (liabilities), and your net worth (equity).",
+  "balanceSheet_helpAssets": "Assets",
+  "balanceSheet_helpCashOnHand": "Cash on hand (from cash drawer)",
+  "balanceSheet_helpInventory": "Inventory value (current stock)",
+  "balanceSheet_helpAccountsReceivable": "Accounts receivable (customer credits)",
+  "balanceSheet_helpLiabilities": "Liabilities",
+  "balanceSheet_helpAccountsPayable": "Accounts payable (supplier debts)",
+  "balanceSheet_helpEquity": "Equity",
+  "balanceSheet_helpEquityDescription": "Assets minus Liabilities = Owner's Equity",
+
+  "profitLoss_helpTitle": "What is Profit & Loss?",
+  "profitLoss_helpDescription": "Profit & Loss (P&L) shows your business profitability: revenue minus costs and expenses.",
+  "profitLoss_helpRevenue": "Revenue",
+  "profitLoss_helpSalesRevenue": "Sales revenue (all paid orders)",
+  "profitLoss_helpCosts": "Costs",
+  "profitLoss_helpCOGS": "Cost of Goods Sold (purchase price of items sold)",
+  "profitLoss_helpExpenses": "Operating expenses",
+  "profitLoss_helpOtherIncome": "Other Income",
+  "profitLoss_helpCashOverage": "Cash overage from cash drawer",
+  "profitLoss_helpNetProfit": "Net Profit = Revenue - COGS - Expenses + Other Income",
+
+  "cashDrawerReport_helpTitle": "What is Cash Drawer Report?",
+  "cashDrawerReport_helpDescription": "Cash Drawer Report shows detailed cash transactions and sessions for your cash drawer.",
+  "cashDrawerReport_helpIncome": "Income",
+  "cashDrawerReport_helpSalesIncome": "Cash sales and QRIS payments",
+  "cashDrawerReport_helpCreditPaymentsReceived": "Credit payments received",
+  "cashDrawerReport_helpCashInTransactions": "Cash in transactions (deposits)",
+  "cashDrawerReport_helpOutcome": "Outcome",
+  "cashDrawerReport_helpExpensesPaid": "Expenses paid from cash drawer",
+  "cashDrawerReport_helpPurchaseOrdersPaid": "Purchase orders paid in cash",
+  "cashDrawerReport_helpDebtPaymentsMade": "Debt payments to suppliers",
+  "cashDrawerReport_helpCashOutTransactions": "Cash out transactions (withdrawals)",
+
+  "capitalReport_helpTitle": "What is Capital Report?",
+  "capitalReport_helpDescription": "Capital Report shows the owner's investment and capital contributions to the business.",
+  "capitalReport_helpIncludes": "Includes",
+  "capitalReport_helpOpeningBalance": "Opening balance when starting cash drawer",
+  "capitalReport_helpAdditionalCapital": "Additional capital deposits (cash in)",
+  "capitalReport_helpCashOverage": "Cash overage (extra cash found)",
+  "capitalReport_helpNote": "Note",
+  "capitalReport_helpNoteDescription": "Capital represents owner's investment in the business. Opening balance is the initial capital.",
+
+  "staffReport_helpTitle": "What is Staff Report?",
+  "staffReport_helpDescription": "Staff Report shows performance metrics for each staff member based on their sales transactions.",
+  "staffReport_helpIncludes": "Includes",
+  "staffReport_helpSalesPerStaff": "Total sales per staff member",
+  "staffReport_helpTransactionCount": "Number of transactions handled",
+  "staffReport_helpAverageTransaction": "Average transaction value",
+  "staffReport_helpNote": "Note",
+  "staffReport_helpNoteDescription": "Staff performance is based on who processed the order (cashier).",
+
+  "customerReport_helpTitle": "What is Customer Report?",
+  "customerReport_helpDescription": "Customer Report shows customer purchase patterns and their contribution to your revenue.",
+  "customerReport_helpIncludes": "Includes",
+  "customerReport_helpCustomerPurchases": "Total purchases per customer",
+  "customerReport_helpOrderFrequency": "Order frequency and count",
+  "customerReport_helpAverageOrderValue": "Average order value",
+  "customerReport_helpNote": "Note",
+  "customerReport_helpNoteDescription": "Helps identify your best customers and their buying patterns.",
+
+  "supplierReport_helpTitle": "What is Supplier Report?",
+  "supplierReport_helpDescription": "Supplier Report shows purchase history and transaction details with each supplier.",
+  "supplierReport_helpIncludes": "Includes",
+  "supplierReport_helpPurchaseOrders": "Purchase orders per supplier",
+  "supplierReport_helpTotalPurchaseValue": "Total purchase value",
+  "supplierReport_helpPendingOrders": "Pending and received orders",
+  "supplierReport_helpNote": "Note",
+  "supplierReport_helpNoteDescription": "Helps track supplier relationships and purchase patterns.",
+
+  "productPerformance_helpTitle": "What is Product Performance?",
+  "productPerformance_helpDescription": "Product Performance shows how well each product is selling and its profitability.",
+  "productPerformance_helpIncludes": "Includes",
+  "productPerformance_helpQuantitySold": "Quantity sold per product",
+  "productPerformance_helpRevenue": "Revenue generated",
+  "productPerformance_helpProfitMargin": "Profit margin per product",
+  "productPerformance_helpNote": "Note",
+  "productPerformance_helpNoteDescription": "Use this to identify best-selling and most profitable products.",
+
+  "hourlySales_helpTitle": "What is Hourly Sales Report?",
+  "hourlySales_helpDescription": "Hourly Sales Report shows sales distribution across different hours of the day.",
+  "hourlySales_helpIncludes": "Includes",
+  "hourlySales_helpSalesPerHour": "Sales amount per hour",
+  "hourlySales_helpTransactionPerHour": "Transaction count per hour",
+  "hourlySales_helpPeakHours": "Peak hours identification",
+  "hourlySales_helpNote": "Note",
+  "hourlySales_helpNoteDescription": "Helps optimize staffing and operations based on busy hours.",
+
+  "stockHistory_helpTitle": "What is Stock History?",
+  "stockHistory_helpDescription": "Stock History shows all stock movements (in and out) for your products.",
+  "stockHistory_helpStockIn": "Stock In",
+  "stockHistory_helpPurchaseReceived": "Purchase orders received",
+  "stockHistory_helpStockAdjustmentIn": "Stock adjustments (additions)",
+  "stockHistory_helpInitialStock": "Initial stock entries",
+  "stockHistory_helpStockOut": "Stock Out",
+  "stockHistory_helpSalesDeduction": "Sales deductions",
+  "stockHistory_helpStockAdjustmentOut": "Stock adjustments (deductions)",
+
+  "stockAdjustment_helpTitle": "What is Stock Adjustment Report?",
+  "stockAdjustment_helpDescription": "Stock Adjustment Report shows all inventory adjustments due to damage, expiry, theft, or corrections.",
+  "stockAdjustment_helpIncludes": "Includes",
+  "stockAdjustment_helpDamaged": "Damaged products",
+  "stockAdjustment_helpExpired": "Expired products",
+  "stockAdjustment_helpLost": "Lost or stolen products",
+  "stockAdjustment_helpCorrection": "Stock count corrections",
+  "stockAdjustment_helpNote": "Note",
+  "stockAdjustment_helpNoteDescription": "Loss value is calculated using purchase price of adjusted items.",
+
+  "productSalesProfit_helpTitle": "What is Product Sales & Profit?",
+  "productSalesProfit_helpDescription": "Product Sales & Profit shows detailed revenue and profit breakdown for each product sold.",
+  "productSalesProfit_helpIncludes": "Includes",
+  "productSalesProfit_helpSalesRevenue": "Sales revenue per product",
+  "productSalesProfit_helpCOGS": "Cost of goods sold",
+  "productSalesProfit_helpGrossProfit": "Gross profit per product",
+  "productSalesProfit_helpProfitMargin": "Profit margin percentage",
+
+  "paymentMethod_helpTitle": "What is Payment Method Report?",
+  "paymentMethod_helpDescription": "Payment Method Report shows sales breakdown by payment method used.",
+  "paymentMethod_helpIncludes": "Includes",
+  "paymentMethod_helpCash": "Cash payments",
+  "paymentMethod_helpQRIS": "QRIS/e-wallet payments",
+  "paymentMethod_helpBankTransfer": "Bank transfer payments",
+  "paymentMethod_helpCredit": "Credit sales",
+  "paymentMethod_helpNote": "Note",
+  "paymentMethod_helpNoteDescription": "Helps understand customer payment preferences.",
+
+  "purchaseOrderReport_helpTitle": "What is Purchase Order Report?",
+  "purchaseOrderReport_helpDescription": "Purchase Order Report shows all purchase orders and their status.",
+  "purchaseOrderReport_helpIncludes": "Includes",
+  "purchaseOrderReport_helpAllPO": "All purchase orders created",
+  "purchaseOrderReport_helpPendingPO": "Pending orders awaiting delivery",
+  "purchaseOrderReport_helpReceivedPO": "Received and completed orders",
+  "purchaseOrderReport_helpPaymentStatus": "Payment status (paid/unpaid)",
+  "purchaseOrderReport_helpNote": "Note",
+  "purchaseOrderReport_helpNoteDescription": "Tracks inventory purchases from suppliers.",
+
+  "stockAdjustment_infoTitle": "Stock Adjustment Impact",
+  "stockAdjustment_infoDescription": "Stock adjustment affects the weighted average purchase price calculation when receiving new Purchase Orders.",
+  "stockAdjustment_infoHowItWorks": "How Weighted Average Works",
+  "stockAdjustment_infoFormula": "Formula: (Current Stock × Current Price + New Qty × New Price) ÷ Total Stock",
+  "stockAdjustment_infoSimulationTitle": "Simulation Example",
+  "stockAdjustment_infoBaseCase": "Base: 10 pcs @ Rp 5,000",
+  "stockAdjustment_infoPurchase": "New PO: 10 pcs @ Rp 6,000",
+  "stockAdjustment_infoNoAdjustment": "Without adjustment:",
+  "stockAdjustment_infoNoAdjustmentCalc": "(10×5000 + 10×6000) ÷ 20 = Rp 5,500",
+  "stockAdjustment_infoAfterReduce": "After -5 adjustment:",
+  "stockAdjustment_infoAfterReduceCalc": "(5×5000 + 10×6000) ÷ 15 = Rp 5,667",
+  "stockAdjustment_infoAfterIncrease": "After +5 adjustment:",
+  "stockAdjustment_infoAfterIncreaseCalc": "(15×5000 + 10×6000) ÷ 25 = Rp 5,400",
+  "stockAdjustment_infoConclusion": "Key Insight",
+  "stockAdjustment_infoConclusionDesc": "Lower stock = new PO price has more weight (higher avg). Higher stock = current price has more weight (lower avg).",
+  "stockAdjustment_infoReportSafe": "Your reports are safe",
+  "stockAdjustment_infoReportSafeDesc": "Order items store purchase price at time of sale, so profit calculations remain accurate.",
+  "stockAdjustment_qtyIncrease": "+{qty} pcs",
+  "@stockAdjustment_qtyIncrease": {
+    "placeholders": {
+      "qty": {"type": "String"}
+    }
+  },
+  "stockAdjustment_qtyDecrease": "-{qty} pcs",
+  "@stockAdjustment_qtyDecrease": {
+    "placeholders": {
+      "qty": {"type": "String"}
+    }
+  },
+
+  "premiumGate_title": "Premium Feature",
+  "premiumGate_message": "This feature is only available for Premium users. Upgrade to Premium to unlock all features.",
+  "premiumGate_upgrade": "Upgrade",
+
+  "orderLimit_title": "Order Limit Reached",
+  "orderLimit_message": "Free mode is limited to {maxOrders} orders. You currently have {currentOrders} orders. Upgrade to Premium for unlimited orders.",
+  "@orderLimit_message": {
+    "placeholders": {
+      "maxOrders": {"type": "int"},
+      "currentOrders": {"type": "int"}
+    }
+  },
+
+  "receipt_item": "Item",
+  "receipt_qty": "Qty",
+  "receipt_subtotal": "Subtotal",
+  "receipt_total": "TOTAL",
+  "receipt_paid": "Paid",
+  "receipt_change": "Change",
+  "receipt_method": "Method",
+  "receipt_note": "Note: {note}",
+  "@receipt_note": {
+    "placeholders": {
+      "note": {"type": "String"}
+    }
+  },
+  "receipt_notePrefix": "Note:",
+  "receipt_table": "TABLE {tableNumber}",
+  "@receipt_table": {
+    "placeholders": {
+      "tableNumber": {"type": "String"}
+    }
+  },
+  "receipt_customer": "Customer: {customerName}",
+  "@receipt_customer": {
+    "placeholders": {
+      "customerName": {"type": "String"}
+    }
+  },
+  "receipt_tax": "Tax {taxRate}%",
+  "@receipt_tax": {
+    "placeholders": {
+      "taxRate": {"type": "String"}
+    }
+  },
+  "receipt_discount": "Discount",
+  "receipt_discountWithCode": "Discount ({code})",
+  "@receipt_discountWithCode": {
+    "placeholders": {
+      "code": {"type": "String"}
+    }
+  },
+  "receipt_cash": "Cash",
+  "receipt_purchaseOrder": "PURCHASE ORDER",
+  "receipt_date": "Date: {date}",
+  "@receipt_date": {
+    "placeholders": {
+      "date": {"type": "String"}
+    }
+  },
+  "receipt_supplier": "Supplier: {supplierName}",
+  "@receipt_supplier": {
+    "placeholders": {
+      "supplierName": {"type": "String"}
+    }
+  },
+  "receipt_status": "Status: {status}",
+  "@receipt_status": {
+    "placeholders": {
+      "status": {"type": "String"}
+    }
+  },
+  "receipt_payment": "Payment: {paymentType}",
+  "@receipt_payment": {
+    "placeholders": {
+      "paymentType": {"type": "String"}
+    }
+  },
+  "receipt_creditDebt": "Credit (Debt)",
+  "receipt_thankYou": "Thank You",
+  "receipt_order": "ORDER",
+  "receipt_kitchenOrder": "KITCHEN ORDER",
+  "receipt_waiterOrder": "WAITER ORDER",
+  "receipt_open": "Open",
+  "receipt_close": "Close",
+
+  "profile_bindGoogle": "Link Google Account",
+  "profile_bindGoogleDesc": "Link your Google account for cloud backup",
+  "profile_googleBound": "Google Account Linked",
+  "profile_googleBoundDesc": "Linked to {email}",
+  "@profile_googleBoundDesc": {
+    "placeholders": {
+      "email": {"type": "String"}
+    }
+  },
+  "profile_unlinkGoogle": "Unlink Google Account",
+  "profile_unlinkGoogleConfirm": "Are you sure you want to unlink your Google account? You will lose access to cloud backups.",
+  "profile_unlinkGoogleSuccess": "Google account unlinked",
+  "profile_bindGoogleSuccess": "Google account linked successfully!",
+  "profile_bindGoogleFailed": "Failed to link Google account: {error}",
+  "@profile_bindGoogleFailed": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+
+  "cloudBackup_googleRequired": "Google Account Required",
+  "cloudBackup_googleRequiredDesc": "Please link your Google account first to use cloud backup.",
+  "cloudBackup_linkNow": "Link Now",
+  "cloudBackup_savingToCloud": "Saving backup info to cloud...",
+  "firstTimeAuth_title": "Secure Your Data",
+  "firstTimeAuth_description": "Sign in with your Google account to keep your data safe. This is required so your data can be easily restored if your device is lost or the app is uninstalled.",
+  "firstTimeAuth_benefit1": "Automatic cloud backup of your data",
+  "firstTimeAuth_benefit2": "Easy restore when switching devices or reinstalling",
+  "firstTimeAuth_benefit3": "Sync subscription across devices",
+  "firstTimeAuth_signInGoogle": "Sign in with Google",
+  "firstTimeAuth_footerNote": "Your Google account is only used for backup and data protection. We do not access any other data.",
+  "firstTimeAuth_success": "Google account linked successfully!",
+  "firstTimeAuth_failed": "Failed to sign in: {error}",
+  "@firstTimeAuth_failed": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "cloudBackup_syncFailed": "Failed to sync backup to cloud: {error}",
+  "@cloudBackup_syncFailed": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  }
+}

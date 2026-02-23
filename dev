@@ -1,0 +1,1127 @@
+#!/bin/bash
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# ENV file path
+ENV_FILE=".dev.env"
+
+# Function to load or create env file
+load_env() {
+    if [ -f "$ENV_FILE" ]; then
+        # Load from env file
+        source "$ENV_FILE"
+        
+        # Validate required variables
+        if [ -z "$APP_NAME" ] || [ -z "$FIREBASE_APP_ID" ]; then
+            echo -e "${YELLOW}ENV file exists but missing required variables.${NC}"
+            setup_env
+        fi
+    else
+        echo -e "${YELLOW}================================${NC}"
+        echo -e "${YELLOW}   First Time Setup${NC}"
+        echo -e "${YELLOW}================================${NC}"
+        echo ""
+        echo -e "File ${BLUE}$ENV_FILE${NC} tidak ditemukan."
+        echo "Silakan masukkan konfigurasi berikut:"
+        echo ""
+        setup_env
+    fi
+}
+
+# Function to setup/update env file
+setup_env() {
+    # Get APP_NAME
+    read -p "Masukkan APP_NAME (contoh: YourAppName): " input_app_name
+    if [ -z "$input_app_name" ]; then
+        echo -e "${RED}APP_NAME tidak boleh kosong!${NC}"
+        exit 1
+    fi
+    APP_NAME="$input_app_name"
+    
+    # Get FIREBASE_APP_ID
+    read -p "Masukkan FIREBASE_APP_ID (contoh: 1:123456789:android:abc123): " input_firebase_id
+    if [ -z "$input_firebase_id" ]; then
+        echo -e "${RED}FIREBASE_APP_ID tidak boleh kosong!${NC}"
+        exit 1
+    fi
+    FIREBASE_APP_ID="$input_firebase_id"
+    
+    # Get FIREBASE_TESTER_GROUP (optional, default: maintester)
+    read -p "Masukkan FIREBASE_TESTER_GROUP (default: maintester): " input_tester_group
+    if [ -z "$input_tester_group" ]; then
+        input_tester_group="maintester"
+    fi
+    FIREBASE_TESTER_GROUP="$input_tester_group"
+    
+    # Get DEST_FOLDER (optional)
+    read -p "Masukkan folder output APK (default: ~/Desktop/APK_Output): " input_dest_folder
+    if [ -z "$input_dest_folder" ]; then
+        input_dest_folder="$HOME/Desktop/APK_Output"
+    fi
+    DEST_FOLDER="$input_dest_folder"
+    
+    # Auto clean: delete old APK/AAB files with same APP_NAME in dest folder
+    if [ -d "$DEST_FOLDER" ]; then
+        old_files=$(find "$DEST_FOLDER" -maxdepth 1 -type f -name "${APP_NAME}_*" 2>/dev/null)
+        if [ -n "$old_files" ]; then
+            old_count=$(echo "$old_files" | wc -l | tr -d ' ')
+            echo "$old_files" | while read -r f; do
+                rm -f "$f"
+            done
+            echo -e "${GREEN}✅ Auto-cleaned $old_count old file(s) from $DEST_FOLDER${NC}"
+        fi
+    fi
+    
+    # Save to env file
+    echo "# Dev Script Environment Configuration" > "$ENV_FILE"
+    echo "# Generated on $(date)" >> "$ENV_FILE"
+    echo "" >> "$ENV_FILE"
+    echo "APP_NAME=\"$APP_NAME\"" >> "$ENV_FILE"
+    echo "FIREBASE_APP_ID=\"$FIREBASE_APP_ID\"" >> "$ENV_FILE"
+    echo "FIREBASE_TESTER_GROUP=\"$FIREBASE_TESTER_GROUP\"" >> "$ENV_FILE"
+    echo "DEST_FOLDER=\"$DEST_FOLDER\"" >> "$ENV_FILE"
+    
+    echo ""
+    echo -e "${GREEN}✅ Konfigurasi disimpan ke $ENV_FILE${NC}"
+    echo ""
+    
+    # Add to .gitignore if not already there
+    if [ -f ".gitignore" ]; then
+        if ! grep -q "^\.dev\.env$" .gitignore; then
+            echo "" >> .gitignore
+            echo "# Dev script environment" >> .gitignore
+            echo ".dev.env" >> .gitignore
+            echo -e "${GREEN}✅ Added .dev.env to .gitignore${NC}"
+        fi
+    fi
+}
+
+# Load environment configuration
+load_env
+
+# Set defaults if not loaded from env
+DEST_FOLDER="${DEST_FOLDER:-$HOME/Desktop/APK_Output}"
+FIREBASE_TESTER_GROUP="${FIREBASE_TESTER_GROUP:-maintester}"
+
+# Auto clean old builds from DEST_FOLDER
+if [ -d "$DEST_FOLDER" ]; then
+    old_files=$(find "$DEST_FOLDER" -maxdepth 1 -type f -name "${APP_NAME}_*" 2>/dev/null)
+    if [ -n "$old_files" ]; then
+        old_count=$(echo "$old_files" | wc -l | tr -d ' ')
+        echo "$old_files" | while read -r f; do
+            rm -f "$f"
+        done
+        echo -e "${GREEN}✅ Auto-cleaned $old_count old build(s) from $DEST_FOLDER${NC}"
+    fi
+fi
+
+# Function to pause
+pause() {
+    read -p "Tekan Enter untuk melanjutkan..."
+}
+
+# Function to check if Firebase CLI is installed
+check_firebase_cli() {
+    if ! command -v firebase &> /dev/null; then
+        echo -e "${RED}Firebase CLI tidak ditemukan!${NC}"
+        echo -e "${YELLOW}Install dengan: npm install -g firebase-tools${NC}"
+        echo -e "${YELLOW}Lalu login dengan: firebase login${NC}"
+        return 1
+    fi
+    return 0
+}
+
+# Function to upload to Firebase App Distribution
+upload_to_firebase() {
+    local apk_path=$1
+    local release_notes=$2
+    
+    echo ""
+    echo -e "${YELLOW}Uploading to Firebase App Distribution...${NC}"
+    
+    if ! check_firebase_cli; then
+        return 1
+    fi
+    
+    firebase appdistribution:distribute "$apk_path" \
+        --app "$FIREBASE_APP_ID" \
+        --groups "$FIREBASE_TESTER_GROUP" \
+        --release-notes "$release_notes"
+    
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}✅ Upload ke Firebase App Distribution berhasil!${NC}"
+        return 0
+    else
+        echo -e "${RED}❌ Upload ke Firebase App Distribution gagal!${NC}"
+        return 1
+    fi
+}
+
+# Function to get version from pubspec.yaml (e.g., 1.0.0+1 -> 1.0.0)
+get_version_name() {
+    grep "^version:" pubspec.yaml | sed 's/version: //' | cut -d'+' -f1 | tr -d ' '
+}
+
+# Function to get build number from pubspec.yaml (e.g., 1.0.0+1 -> 1)
+get_build_number() {
+    grep "^version:" pubspec.yaml | sed 's/version: //' | cut -d'+' -f2 | tr -d ' '
+}
+
+# Function to get full version string
+get_full_version() {
+    grep "^version:" pubspec.yaml | sed 's/version: //' | tr -d ' '
+}
+
+# Function to auto-increment version before build
+auto_increment_version() {
+    echo ""
+    echo -e "${YELLOW}Auto-incrementing version...${NC}"
+    
+    # Read current version
+    current_version=$(get_full_version)
+    current_version_name=$(get_version_name)
+    current_build_number=$(get_build_number)
+    
+    # Calculate new build number
+    new_build_number=$((current_build_number + 1))
+    
+    # Calculate new version name (increment patch version)
+    IFS='.' read -r major minor patch <<< "$current_version_name"
+    new_patch=$((patch + 1))
+    new_version_name="${major}.${minor}.${new_patch}"
+    
+    # New full version
+    new_full_version="${new_version_name}+${new_build_number}"
+    
+    # Update pubspec.yaml
+    sed -i '' "s/^version: $current_version/version: $new_full_version/" pubspec.yaml
+    
+    echo -e "${GREEN}Version updated: $current_version → $new_full_version${NC}"
+    echo ""
+}
+
+# Show menu
+show_menu() {
+    clear
+    echo -e "${BLUE}================================${NC}"
+    echo -e "${BLUE}  ${APP_NAME} - Flutter Build Menu${NC}"
+    echo -e "${BLUE}================================${NC}"
+    echo "1. Build Debug APK (ARM64)"
+    echo "2. Build Release APK (ARM64)"
+    echo "3. Build Release APK (ARM64)"
+    echo "4. Build App Bundle (AAB)"
+    echo "5. Build APK + AAB (ARM64 + AAB)"
+    echo "6. Build iOS IPA"
+    echo "7. Clean Project"
+    echo "8. Check Large Assets (>1MB)"
+    echo "9. Update Version & Build Number"
+    echo -e "${YELLOW}10. Build & Upload to Firebase App Tester${NC}"
+    echo -e "${RED}11. Clean Unused Assets${NC}"
+    echo -e "${RED}12. Clean Unused Packages${NC}"
+    echo -e "${BLUE}13. Update Dev Config${NC}"
+    echo -e "${GREEN}14. Generate SHA1 & SHA256${NC}"
+    echo "0. Exit"
+    echo -e "${BLUE}================================${NC}"
+    echo -e "Current version: ${GREEN}$(get_full_version)${NC}"
+    echo -e "${BLUE}================================${NC}"
+    read -p "Pilih opsi (0-14): " choice
+}
+
+# Check if argument is passed
+if [ -n "$1" ]; then
+    choice=$1
+else
+    show_menu
+fi
+
+# Process choice
+case $choice in
+    1)
+        # Build Debug APK (ARM64 only)
+        echo ""
+        echo -e "${YELLOW}Building Debug APK (ARM64)...${NC}"
+        flutter build apk --debug --split-per-abi --target-platform android-arm64
+        
+        if [ $? -ne 0 ]; then
+            echo -e "${RED}Build gagal!${NC}"
+            pause
+            exit 1
+        fi
+        
+        source_apk="build/app/outputs/flutter-apk/app-arm64-v8a-debug.apk"
+        
+        echo ""
+        echo -e "${GREEN}Debug APK berhasil dibuild!${NC}"
+        echo "Lokasi: $source_apk"
+        
+        # Show file size
+        if [ -f "$source_apk" ]; then
+            size=$(stat -f%z "$source_apk" 2>/dev/null || stat -c%s "$source_apk" 2>/dev/null)
+            size_mb=$(echo "scale=2; $size / 1048576" | bc)
+            echo -e "Size: ${GREEN}${size_mb} MB${NC}"
+        fi
+        pause
+        ;;
+    
+    2)
+        # Build Release APK (ARM64 only)
+        auto_increment_version
+        echo ""
+        echo -e "${YELLOW}Cleaning project first...${NC}"
+        flutter clean
+        flutter pub get
+        echo ""
+        echo -e "${YELLOW}Building Release APK (ARM64)...${NC}"
+        flutter build apk --release --split-per-abi --target-platform android-arm64
+        
+        if [ $? -ne 0 ]; then
+            echo -e "${RED}Build gagal!${NC}"
+            pause
+            exit 1
+        fi
+        
+        echo -e "${GREEN}Release APK berhasil dibuild!${NC}"
+        echo ""
+        
+        # Get version name
+        version_name=$(get_version_name)
+        
+        # Copy APK (ARM64 only)
+        source_apk="build/app/outputs/flutter-apk/app-arm64-v8a-release.apk"
+        
+        if [ ! -f "$source_apk" ]; then
+            echo -e "${RED}Error: APK file tidak ditemukan di $source_apk${NC}"
+            pause
+            exit 1
+        fi
+        
+        # Create destination folder if not exists
+        mkdir -p "$DEST_FOLDER"
+        
+        dest_apk="$DEST_FOLDER/${APP_NAME}_${version_name}.apk"
+        cp "$source_apk" "$dest_apk"
+        
+        if [ $? -eq 0 ]; then
+            # Show file size
+            size=$(stat -f%z "$source_apk" 2>/dev/null || stat -c%s "$source_apk" 2>/dev/null)
+            size_mb=$(echo "scale=2; $size / 1048576" | bc)
+            echo -e "${GREEN}[OK] APK disalin ke: $dest_apk${NC}"
+            echo -e "Size: ${GREEN}${size_mb} MB${NC}"
+        else
+            echo -e "${RED}Error: Gagal menyalin APK${NC}"
+        fi
+        echo ""
+        pause
+        ;;
+    
+    3)
+        # Build Release APK (ARM64 only)
+        auto_increment_version
+        echo ""
+        echo -e "${YELLOW}Cleaning project first...${NC}"
+        flutter clean
+        flutter pub get
+        echo ""
+        echo -e "${YELLOW}Building Release APK (ARM64)...${NC}"
+        flutter build apk --release --split-per-abi --target-platform android-arm64
+        
+        if [ $? -ne 0 ]; then
+            echo -e "${RED}Build gagal!${NC}"
+            pause
+            exit 1
+        fi
+        
+        echo -e "${GREEN}Release APK berhasil dibuild!${NC}"
+        echo ""
+        
+        # Get version name
+        version_name=$(get_version_name)
+        
+        # Create destination folder if not exists
+        mkdir -p "$DEST_FOLDER"
+        
+        # Copy APK (ARM64 only)
+        source_apk="build/app/outputs/flutter-apk/app-arm64-v8a-release.apk"
+        dest_apk="$DEST_FOLDER/${APP_NAME}_${version_name}.apk"
+        cp "$source_apk" "$dest_apk"
+        
+        if [ $? -eq 0 ]; then
+            # Show file size
+            size=$(stat -f%z "$source_apk" 2>/dev/null || stat -c%s "$source_apk" 2>/dev/null)
+            size_mb=$(echo "scale=2; $size / 1048576" | bc)
+            echo -e "${GREEN}[OK] APK disalin ke: $dest_apk${NC}"
+            echo -e "Size: ${GREEN}${size_mb} MB${NC}"
+        else
+            echo -e "${RED}Error: Gagal menyalin APK${NC}"
+        fi
+        
+        echo ""
+        echo "================================"
+        echo -e "${YELLOW}Note: APK ini untuk device modern 64-bit (95%+ devices)${NC}"
+        echo "================================"
+        pause
+        ;;
+    
+    4)
+        # Build App Bundle
+        auto_increment_version
+        echo ""
+        echo -e "${YELLOW}Cleaning project first...${NC}"
+        flutter clean
+        flutter pub get
+        echo ""
+        echo -e "${YELLOW}Building App Bundle...${NC}"
+        flutter build appbundle --release
+        
+        if [ $? -ne 0 ]; then
+            echo -e "${RED}Build gagal!${NC}"
+            pause
+            exit 1
+        fi
+        
+        echo -e "${GREEN}App Bundle berhasil dibuild!${NC}"
+        echo ""
+        
+        # Get version name
+        version_name=$(get_version_name)
+        
+        # Copy AAB
+        source_aab="build/app/outputs/bundle/release/app-release.aab"
+        
+        if [ ! -f "$source_aab" ]; then
+            echo -e "${RED}Error: AAB file tidak ditemukan di $source_aab${NC}"
+            pause
+            exit 1
+        fi
+        
+        # Create destination folder if not exists
+        mkdir -p "$DEST_FOLDER"
+        
+        dest_aab="$DEST_FOLDER/${APP_NAME}_${version_name}.aab"
+        cp "$source_aab" "$dest_aab"
+        
+        if [ $? -eq 0 ]; then
+            size_bytes=$(stat -f%z "$dest_aab" 2>/dev/null || stat -c%s "$dest_aab" 2>/dev/null)
+            size_mb=$(echo "scale=2; $size_bytes / 1048576" | bc)
+            echo -e "${GREEN}[OK] AAB disalin ke: $dest_aab${NC}"
+            echo -e "Size: ${GREEN}${size_mb} MB${NC}"
+        else
+            echo -e "${RED}Error: Gagal menyalin AAB${NC}"
+        fi
+        echo ""
+        pause
+        ;;
+    
+    5)
+        # Build Both APK (ARM64) + AAB
+        auto_increment_version
+        echo ""
+        echo -e "${YELLOW}Cleaning project first...${NC}"
+        flutter clean
+        flutter pub get
+        echo ""
+        echo -e "${YELLOW}Building Release APK (ARM64)...${NC}"
+        flutter build apk --release --split-per-abi --target-platform android-arm64
+        
+        if [ $? -ne 0 ]; then
+            echo -e "${RED}APK Build gagal!${NC}"
+            pause
+            exit 1
+        fi
+        
+        echo ""
+        echo -e "${YELLOW}Building App Bundle...${NC}"
+        flutter build appbundle --release
+        
+        if [ $? -ne 0 ]; then
+            echo -e "${RED}AAB Build gagal!${NC}"
+            pause
+            exit 1
+        fi
+        
+        echo ""
+        echo "================================"
+        echo -e "${GREEN}Build berhasil!${NC}"
+        echo "================================"
+        
+        # Get version name
+        version_name=$(get_version_name)
+        
+        # Create destination folder if not exists
+        mkdir -p "$DEST_FOLDER"
+        
+        # Copy APK (ARM64 only)
+        source_apk="build/app/outputs/flutter-apk/app-arm64-v8a-release.apk"
+        if [ -f "$source_apk" ]; then
+            dest_apk="$DEST_FOLDER/${APP_NAME}_${version_name}.apk"
+            cp "$source_apk" "$dest_apk"
+            if [ $? -eq 0 ]; then
+                size=$(stat -f%z "$source_apk" 2>/dev/null || stat -c%s "$source_apk" 2>/dev/null)
+                size_mb=$(echo "scale=2; $size / 1048576" | bc)
+                echo -e "${GREEN}[OK] APK disalin ke: $dest_apk${NC}"
+                echo -e "     Size: ${GREEN}${size_mb} MB${NC}"
+            else
+                echo -e "${RED}Error: Gagal menyalin APK${NC}"
+            fi
+        else
+            echo -e "${RED}Error: APK file tidak ditemukan${NC}"
+        fi
+        
+        # Copy AAB
+        source_aab="build/app/outputs/bundle/release/app-release.aab"
+        if [ -f "$source_aab" ]; then
+            dest_aab="$DEST_FOLDER/${APP_NAME}_${version_name}.aab"
+            cp "$source_aab" "$dest_aab"
+            if [ $? -eq 0 ]; then
+                size=$(stat -f%z "$source_aab" 2>/dev/null || stat -c%s "$source_aab" 2>/dev/null)
+                size_mb=$(echo "scale=2; $size / 1048576" | bc)
+                echo -e "${GREEN}[OK] AAB disalin ke: $dest_aab${NC}"
+                echo -e "     Size: ${GREEN}${size_mb} MB${NC}"
+            else
+                echo -e "${RED}Error: Gagal menyalin AAB${NC}"
+            fi
+        else
+            echo -e "${RED}Error: AAB file tidak ditemukan${NC}"
+        fi
+        
+        echo ""
+        echo "================================"
+        echo "Selesai!"
+        echo "================================"
+        pause
+        ;;
+    
+    6)
+        # Build iOS IPA
+        auto_increment_version
+        echo ""
+        echo -e "${YELLOW}Cleaning project first...${NC}"
+        flutter clean
+        flutter pub get
+        echo ""
+        echo -e "${YELLOW}Building iOS IPA...${NC}"
+        flutter build ipa --release
+        
+        if [ $? -ne 0 ]; then
+            echo -e "${RED}iOS Build gagal!${NC}"
+            echo -e "${YELLOW}Pastikan Xcode sudah dikonfigurasi dengan benar.${NC}"
+            pause
+            exit 1
+        fi
+        
+        echo ""
+        echo -e "${GREEN}iOS IPA berhasil dibuild!${NC}"
+        echo "Lokasi: build/ios/ipa/"
+        
+        # List IPA files
+        if [ -d "build/ios/ipa" ]; then
+            echo ""
+            echo "Files:"
+            ls -la build/ios/ipa/
+        fi
+        
+        echo ""
+        pause
+        ;;
+    
+    7)
+        # Clean Project
+        echo ""
+        echo -e "${YELLOW}Cleaning project...${NC}"
+        flutter clean
+        echo ""
+        echo -e "${YELLOW}Getting packages...${NC}"
+        flutter pub get
+        echo ""
+        echo -e "${GREEN}Project berhasil dibersihkan!${NC}"
+        pause
+        ;;
+    
+    8)
+        # Check Large Assets
+        echo ""
+        echo -e "${YELLOW}Checking for large files (>1MB) in assets folder...${NC}"
+        echo ""
+        found=0
+        
+        # Check assets folder
+        while IFS= read -r -d '' file; do
+            size=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null)
+            if [ "$size" -gt 1048576 ]; then
+                found=$((found + 1))
+                size_mb=$(echo "scale=2; $size / 1048576" | bc)
+                echo -e "${YELLOW}[${size_mb}MB]${NC} $file"
+            fi
+        done < <(find assets -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.gif" -o -name "*.webp" -o -name "*.mp3" -o -name "*.wav" -o -name "*.ogg" -o -name "*.mp4" -o -name "*.json" \) -print0 2>/dev/null)
+        
+        echo ""
+        if [ $found -eq 0 ]; then
+            echo -e "${GREEN}Tidak ada file yang lebih dari 1MB ditemukan.${NC}"
+        else
+            echo -e "${YELLOW}Total: $found file lebih dari 1MB ditemukan.${NC}"
+        fi
+        echo ""
+        pause
+        ;;
+    
+    9)
+        # Update Version & Build Number
+        echo ""
+        echo "================================"
+        echo "   Update Version & Build Number"
+        echo "================================"
+        echo ""
+        
+        # Read current version
+        current_version=$(get_full_version)
+        current_version_name=$(get_version_name)
+        current_build_number=$(get_build_number)
+        
+        echo -e "Current version: ${GREEN}$current_version${NC}"
+        echo -e "  - Version Name: $current_version_name"
+        echo -e "  - Build Number: $current_build_number"
+        echo ""
+        
+        # Calculate new build number
+        new_build_number=$((current_build_number + 1))
+        
+        # Calculate default new version name (increment patch version)
+        IFS='.' read -r major minor patch <<< "$current_version_name"
+        new_patch=$((patch + 1))
+        default_version_name="${major}.${minor}.${new_patch}"
+        
+        # Ask for new version name
+        read -p "Enter new version name (or press Enter for $default_version_name): " new_version_name
+        
+        # If empty, use default
+        if [ -z "$new_version_name" ]; then
+            new_version_name="$default_version_name"
+        fi
+        
+        # Ask for build number
+        read -p "Enter new build number (or press Enter for $new_build_number): " input_build_number
+        
+        if [ -n "$input_build_number" ]; then
+            new_build_number=$input_build_number
+        fi
+        
+        # New full version
+        new_full_version="${new_version_name}+${new_build_number}"
+        
+        echo ""
+        echo "================================"
+        echo "Updating to:"
+        echo -e "  Version: ${GREEN}$new_full_version${NC}"
+        echo "================================"
+        echo ""
+        
+        # Backup original file
+        cp pubspec.yaml pubspec.yaml.backup
+        echo "Backup created: pubspec.yaml.backup"
+        echo ""
+        
+        # Update pubspec.yaml
+        sed -i '' "s/^version: $current_version/version: $new_full_version/" pubspec.yaml
+        
+        echo ""
+        echo "================================"
+        echo -e "${GREEN}Update successful!${NC}"
+        echo "================================"
+        echo "  Old version: $current_version"
+        echo "  New version: $new_full_version"
+        echo "================================"
+        echo ""
+        pause
+        ;;
+    
+    11)
+        # Clean Unused Assets
+        echo ""
+        echo -e "${YELLOW}================================${NC}"
+        echo -e "${YELLOW}   Clean Unused Assets${NC}"
+        echo -e "${YELLOW}================================${NC}"
+        echo ""
+        echo -e "${YELLOW}Scanning assets folder (excluding fonts)...${NC}"
+        echo ""
+        
+        # Arrays to store files
+        declare -a unused_files=()
+        declare -a used_files=()
+        total_files=0
+        total_size=0
+        
+        # Find all asset files (exclude _ placeholder, readme, and fonts folder)
+        while IFS= read -r -d '' file; do
+            # Skip fonts folder
+            if [[ "$file" == assets/fonts/* ]]; then
+                continue
+            fi
+            
+            # Skip placeholder files and readme
+            basename_file=$(basename "$file")
+            if [[ "$basename_file" == "_" ]] || [[ "$basename_file" == "readme.html" ]] || [[ "$basename_file" == ".gitkeep" ]]; then
+                continue
+            fi
+            
+            total_files=$((total_files + 1))
+            
+            # Check if filename is referenced in lib/
+            if grep -r -q "$basename_file" lib/ 2>/dev/null; then
+                used_files+=("$file")
+            else
+                # Get file size
+                size=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null)
+                total_size=$((total_size + size))
+                unused_files+=("$file")
+            fi
+        done < <(find assets -type f -print0 2>/dev/null)
+        
+        # Calculate total size in KB and MB
+        total_size_kb=$(echo "scale=2; $total_size / 1024" | bc)
+        total_size_mb=$(echo "scale=2; $total_size / 1048576" | bc)
+        
+        echo "================================"
+        echo -e "${BLUE}Scan Results:${NC}"
+        echo "  Total assets: $total_files"
+        echo -e "  ${GREEN}Used: ${#used_files[@]}${NC}"
+        echo -e "  ${RED}Unused: ${#unused_files[@]}${NC}"
+        if [ ${#unused_files[@]} -gt 0 ]; then
+            echo -e "  ${RED}Total size: ${total_size_kb} KB (${total_size_mb} MB)${NC}"
+        fi
+        echo "================================"
+        echo ""
+        
+        if [ ${#unused_files[@]} -eq 0 ]; then
+            echo -e "${GREEN}✅ Semua asset sudah digunakan!${NC}"
+            echo ""
+            pause
+        else
+            echo -e "${YELLOW}Unused files:${NC}"
+            echo ""
+            for file in "${unused_files[@]}"; do
+                # Get file size
+                size=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null)
+                size_kb=$(echo "scale=2; $size / 1024" | bc)
+                echo -e "  ${RED}[$size_kb KB]${NC} $file"
+            done
+            
+            echo ""
+            echo "================================"
+            echo -e "${RED}⚠️  WARNING: File akan dihapus permanen!${NC}"
+            echo -e "  Total: ${RED}${total_size_kb} KB (${total_size_mb} MB)${NC}"
+            echo "================================"
+            echo ""
+            read -p "Hapus semua unused assets? (yes/no): " confirm
+            
+            if [[ "$confirm" == "yes" ]] || [[ "$confirm" == "y" ]]; then
+                echo ""
+                echo -e "${YELLOW}Deleting unused assets...${NC}"
+                echo ""
+                
+                deleted_count=0
+                for file in "${unused_files[@]}"; do
+                    if rm "$file" 2>/dev/null; then
+                        echo -e "${GREEN}✓${NC} Deleted: $file"
+                        deleted_count=$((deleted_count + 1))
+                    else
+                        echo -e "${RED}✗${NC} Failed: $file"
+                    fi
+                done
+                
+                echo ""
+                echo "================================"
+                echo -e "${GREEN}✅ Cleanup complete!${NC}"
+                echo "  Deleted: $deleted_count files"
+                echo "  Freed: ${total_size_kb} KB (${total_size_mb} MB)"
+                echo "================================"
+            else
+                echo ""
+                echo -e "${YELLOW}Cleanup dibatalkan.${NC}"
+            fi
+            echo ""
+            pause
+        fi
+        ;;
+    
+    10)
+        # Build & Upload to Firebase App Distribution (ARM64 only)
+        echo ""
+        echo -e "${BLUE}================================${NC}"
+        echo -e "${BLUE}   Build & Upload to Firebase App Tester${NC}"
+        echo -e "${BLUE}   (ARM64-v8a only)${NC}"
+        echo -e "${BLUE}================================${NC}"
+        echo ""
+        
+        # Check Firebase CLI first
+        if ! check_firebase_cli; then
+            pause
+            exit 1
+        fi
+        
+        auto_increment_version
+        echo ""
+        echo -e "${YELLOW}Cleaning project first...${NC}"
+        flutter clean
+        flutter pub get
+        echo ""
+        echo -e "${YELLOW}Building Release APK (ARM64)...${NC}"
+        flutter build apk --release --split-per-abi --target-platform android-arm64
+        
+        if [ $? -ne 0 ]; then
+            echo -e "${RED}Build gagal!${NC}"
+            pause
+            exit 1
+        fi
+        
+        echo -e "${GREEN}Release APK berhasil dibuild!${NC}"
+        echo ""
+        
+        # Get version info
+        version_name=$(get_version_name)
+        build_number=$(get_build_number)
+        
+        # APK path (ARM64 only - most modern devices)
+        source_apk="build/app/outputs/flutter-apk/app-arm64-v8a-release.apk"
+        
+        if [ ! -f "$source_apk" ]; then
+            echo -e "${RED}Error: APK file tidak ditemukan di $source_apk${NC}"
+            pause
+            exit 1
+        fi
+        
+        # Create destination folder if not exists
+        mkdir -p "$DEST_FOLDER"
+        
+        # Copy APK locally
+        dest_apk="$DEST_FOLDER/${APP_NAME}_${version_name}.apk"
+        cp "$source_apk" "$dest_apk"
+        
+        if [ $? -eq 0 ]; then
+            size=$(stat -f%z "$source_apk" 2>/dev/null || stat -c%s "$source_apk" 2>/dev/null)
+            size_mb=$(echo "scale=2; $size / 1048576" | bc)
+            echo -e "${GREEN}[OK] APK disalin ke: $dest_apk${NC}"
+            echo -e "Size: ${GREEN}${size_mb} MB${NC}"
+        fi
+        
+        # Auto generate release notes
+        release_notes="Version ${version_name} (Build ${build_number}) - ARM64-v8a"
+        
+        # Upload to Firebase
+        upload_to_firebase "$source_apk" "$release_notes"
+        
+        echo ""
+        echo "================================"
+        echo -e "${GREEN}Selesai!${NC}"
+        echo "================================"
+        echo "  Version: ${version_name}+${build_number}"
+        echo "  ABI: arm64-v8a (64-bit ARM)"
+        echo "  APK: $dest_apk"
+        echo "  Firebase Group: $FIREBASE_TESTER_GROUP"
+        echo "================================"
+        echo -e "${YELLOW}Note: APK ini hanya untuk device modern 64-bit${NC}"
+        echo "================================"
+        echo ""
+        pause
+        ;;
+    
+    12)
+        # Clean Unused Packages
+        echo ""
+        echo -e "${BLUE}================================${NC}"
+        echo -e "${BLUE}   Clean Unused Packages${NC}"
+        echo -e "${BLUE}================================${NC}"
+        echo ""
+        echo -e "${YELLOW}Scanning dependencies in pubspec.yaml...${NC}"
+        echo ""
+        
+        # Arrays to store packages
+        declare -a unused_packages=()
+        declare -a used_packages=()
+        declare -a skipped_packages=()
+        
+        # Packages to always skip (Flutter SDK packages, common utilities, icons)
+        skip_patterns=(
+            "flutter"
+            "flutter_localizations"
+            "flutter_test"
+            "flutter_lints"
+            "flutter_launcher_icons"
+            "intl"  # Used by flutter_localizations
+            "cupertino_icons"  # Used via CupertinoIcons class
+        )
+        
+        # Read dependencies section (between dependencies: and dev_dependencies: or flutter:)
+        in_dependencies=0
+        in_dev_dependencies=0
+        in_nested=0  # Track if we're inside a nested block (like flutter: sdk: flutter)
+        
+        while IFS= read -r line; do
+            # Check section markers (no leading whitespace)
+            if [[ "$line" =~ ^dependencies:$ ]]; then
+                in_dependencies=1
+                in_dev_dependencies=0
+                in_nested=0
+                continue
+            elif [[ "$line" =~ ^dev_dependencies:$ ]]; then
+                in_dependencies=0
+                in_dev_dependencies=1
+                in_nested=0
+                continue
+            elif [[ "$line" =~ ^[a-z_]+: && ! "$line" =~ ^[[:space:]] ]]; then
+                # Any other top-level section
+                in_dependencies=0
+                in_dev_dependencies=0
+                in_nested=0
+                continue
+            fi
+            
+            # Skip dev_dependencies
+            if [ $in_dev_dependencies -eq 1 ]; then
+                continue
+            fi
+            
+            # Process dependencies
+            if [ $in_dependencies -eq 1 ]; then
+                # Count leading spaces
+                leading_spaces="${line%%[^[:space:]]*}"
+                num_spaces=${#leading_spaces}
+                
+                # Only process lines with exactly 2 spaces (direct dependencies)
+                # Skip lines with 4+ spaces (nested properties like sdk: flutter)
+                if [ $num_spaces -ne 2 ]; then
+                    continue
+                fi
+                
+                # Extract package name (format: "  package_name: ^1.0.0" or "  package_name:")
+                if [[ "$line" =~ ^[[:space:]]{2}([a-z_][a-z0-9_]*): ]]; then
+                    package_name="${BASH_REMATCH[1]}"
+                    
+                    # Check if package should be skipped
+                    skip=0
+                    for pattern in "${skip_patterns[@]}"; do
+                        if [[ "$package_name" == "$pattern" ]]; then
+                            skip=1
+                            skipped_packages+=("$package_name")
+                            break
+                        fi
+                    done
+                    
+                    if [ $skip -eq 1 ]; then
+                        continue
+                    fi
+                    
+                    # Search for package usage in lib/ folder
+                    # Multiple patterns: package:name, import 'name, or common class usage
+                    search_pattern="package:${package_name}/"
+                    
+                    if grep -rq "$search_pattern" lib/ 2>/dev/null; then
+                        used_packages+=("$package_name")
+                    else
+                        unused_packages+=("$package_name")
+                    fi
+                fi
+            fi
+        done < pubspec.yaml
+        
+        echo "================================"
+        echo -e "${BLUE}Scan Results:${NC}"
+        echo "  Total dependencies scanned: $((${#used_packages[@]} + ${#unused_packages[@]}))"
+        echo -e "  ${GREEN}Used: ${#used_packages[@]}${NC}"
+        echo -e "  ${RED}Unused: ${#unused_packages[@]}${NC}"
+        echo -e "  ${YELLOW}Skipped: ${#skipped_packages[@]} (SDK/common packages)${NC}"
+        echo "================================"
+        echo ""
+        
+        if [ ${#unused_packages[@]} -eq 0 ]; then
+            echo -e "${GREEN}✅ Tidak ada package yang tidak digunakan.${NC}"
+            echo ""
+            pause
+        else
+            echo -e "${RED}Unused packages found:${NC}"
+            echo ""
+            for pkg in "${unused_packages[@]}"; do
+                echo -e "  ${RED}•${NC} $pkg"
+            done
+            echo ""
+            echo -e "${YELLOW}Catatan:${NC}"
+            echo "  - Package mungkin digunakan secara tidak langsung"
+            echo "  - Beberapa package diakses via plugin/extension"
+            echo "  - Pastikan untuk test setelah menghapus"
+            echo ""
+            
+            read -p "Hapus semua package yang tidak digunakan? (y/N): " confirm_all
+            
+            if [[ "$confirm_all" =~ ^[Yy]$ ]]; then
+                echo ""
+                for pkg in "${unused_packages[@]}"; do
+                    echo -e "${YELLOW}Removing $pkg...${NC}"
+                    # Remove the line containing the package
+                    sed -i '' "/^  $pkg:/d" pubspec.yaml
+                    echo -e "${GREEN}✅ Removed: $pkg${NC}"
+                done
+                
+                echo ""
+                echo -e "${GREEN}================================${NC}"
+                echo -e "${GREEN}   Packages removed!${NC}"
+                echo -e "${GREEN}================================${NC}"
+                echo ""
+                echo -e "${YELLOW}Jalankan 'flutter pub get' untuk update dependencies.${NC}"
+            else
+                echo ""
+                echo "Pilih package yang ingin dihapus satu per satu:"
+                echo ""
+                
+                for pkg in "${unused_packages[@]}"; do
+                    read -p "Hapus '$pkg'? (y/N): " confirm_single
+                    if [[ "$confirm_single" =~ ^[Yy]$ ]]; then
+                        sed -i '' "/^  $pkg:/d" pubspec.yaml
+                        echo -e "${GREEN}✅ Removed: $pkg${NC}"
+                    else
+                        echo -e "${YELLOW}⏭️  Skipped: $pkg${NC}"
+                    fi
+                done
+                
+                echo ""
+                echo -e "${YELLOW}Jalankan 'flutter pub get' untuk update dependencies.${NC}"
+            fi
+            
+            echo ""
+            pause
+        fi
+        ;;
+    
+    13)
+        # Update Dev Config
+        echo ""
+        echo -e "${BLUE}================================${NC}"
+        echo -e "${BLUE}   Update Dev Config${NC}"
+        echo -e "${BLUE}================================${NC}"
+        echo ""
+        echo -e "Current config from ${BLUE}$ENV_FILE${NC}:"
+        echo ""
+        echo -e "  APP_NAME: ${GREEN}$APP_NAME${NC}"
+        echo -e "  FIREBASE_APP_ID: ${GREEN}$FIREBASE_APP_ID${NC}"
+        echo -e "  FIREBASE_TESTER_GROUP: ${GREEN}$FIREBASE_TESTER_GROUP${NC}"
+        echo -e "  DEST_FOLDER: ${GREEN}$DEST_FOLDER${NC}"
+        echo ""
+        
+        read -p "Update konfigurasi? (y/N): " confirm_update
+        
+        if [[ "$confirm_update" =~ ^[Yy]$ ]]; then
+            setup_env
+        else
+            echo -e "${YELLOW}Konfigurasi tidak diubah.${NC}"
+        fi
+        
+        echo ""
+        pause
+        ;;
+    
+    14)
+        # Generate SHA1 & SHA256
+        echo ""
+        echo -e "${GREEN}================================${NC}"
+        echo -e "${GREEN}   Generate SHA1 & SHA256${NC}"
+        echo -e "${GREEN}================================${NC}"
+        echo ""
+        
+        # --- Debug Keystore ---
+        echo -e "${BLUE}[1] Debug Keystore${NC}"
+        DEBUG_KEYSTORE="$HOME/.android/debug.keystore"
+        if [ -f "$DEBUG_KEYSTORE" ]; then
+            echo -e "${YELLOW}Path: $DEBUG_KEYSTORE${NC}"
+            echo ""
+            keytool -list -v -keystore "$DEBUG_KEYSTORE" -alias androiddebugkey -storepass android 2>/dev/null | grep -E "SHA1:|SHA256:|Owner:|Issuer:|Valid from:" | while IFS= read -r line; do
+                if echo "$line" | grep -q "SHA1:"; then
+                    sha_value=$(echo "$line" | sed 's/.*SHA1: //')
+                    echo -e "  ${GREEN}SHA1:   $sha_value${NC}"
+                elif echo "$line" | grep -q "SHA256:"; then
+                    sha_value=$(echo "$line" | sed 's/.*SHA256: //')
+                    echo -e "  ${GREEN}SHA256: $sha_value${NC}"
+                else
+                    echo -e "  $line"
+                fi
+            done
+        else
+            echo -e "  ${RED}Debug keystore tidak ditemukan di $DEBUG_KEYSTORE${NC}"
+            echo -e "  ${YELLOW}Jalankan 'flutter run' dulu untuk generate debug keystore.${NC}"
+        fi
+        
+        echo ""
+        echo -e "${BLUE}--------------------------------${NC}"
+        echo ""
+        
+        # --- Release Keystore ---
+        echo -e "${BLUE}[2] Release Keystore (Play Store)${NC}"
+        KEY_PROPERTIES="android/key.properties"
+        if [ -f "$KEY_PROPERTIES" ]; then
+            # Read values from key.properties
+            STORE_FILE=$(grep "^storeFile=" "$KEY_PROPERTIES" | cut -d'=' -f2 | tr -d '[:space:]')
+            STORE_PASSWORD=$(grep "^storePassword=" "$KEY_PROPERTIES" | cut -d'=' -f2 | tr -d '[:space:]')
+            KEY_ALIAS=$(grep "^keyAlias=" "$KEY_PROPERTIES" | cut -d'=' -f2 | tr -d '[:space:]')
+            KEY_PASSWORD=$(grep "^keyPassword=" "$KEY_PROPERTIES" | cut -d'=' -f2 | tr -d '[:space:]')
+            
+            # Resolve storeFile path relative to android/app/ directory (same as Gradle's file() resolution)
+            if [[ "$STORE_FILE" == /* ]]; then
+                RESOLVED_STORE_FILE="$STORE_FILE"
+            else
+                RESOLVED_STORE_FILE="$(cd android/app && realpath "$STORE_FILE" 2>/dev/null || echo "$STORE_FILE")"
+            fi
+            
+            echo -e "${YELLOW}Path: $RESOLVED_STORE_FILE${NC}"
+            echo -e "${YELLOW}Alias: $KEY_ALIAS${NC}"
+            echo ""
+            
+            if [ -f "$RESOLVED_STORE_FILE" ]; then
+                keytool -list -v -keystore "$RESOLVED_STORE_FILE" -alias "$KEY_ALIAS" -storepass "$STORE_PASSWORD" -keypass "$KEY_PASSWORD" 2>/dev/null | grep -E "SHA1:|SHA256:|Owner:|Issuer:|Valid from:" | while IFS= read -r line; do
+                    if echo "$line" | grep -q "SHA1:"; then
+                        sha_value=$(echo "$line" | sed 's/.*SHA1: //')
+                        echo -e "  ${GREEN}SHA1:   $sha_value${NC}"
+                    elif echo "$line" | grep -q "SHA256:"; then
+                        sha_value=$(echo "$line" | sed 's/.*SHA256: //')
+                        echo -e "  ${GREEN}SHA256: $sha_value${NC}"
+                    else
+                        echo -e "  $line"
+                    fi
+                done
+            else
+                echo -e "  ${RED}Keystore file tidak ditemukan: $RESOLVED_STORE_FILE${NC}"
+                echo -e "  ${YELLOW}Pastikan file .jks sudah ada di path yang benar.${NC}"
+            fi
+        else
+            echo -e "  ${RED}File key.properties tidak ditemukan di android/key.properties${NC}"
+            echo -e "  ${YELLOW}Buat file key.properties dengan format:${NC}"
+            echo -e "    storePassword=yourpassword"
+            echo -e "    keyPassword=yourpassword"
+            echo -e "    keyAlias=youralias"
+            echo -e "    storeFile=path/to/your.jks"
+        fi
+        
+        echo ""
+        echo -e "${BLUE}================================${NC}"
+        echo -e "${YELLOW}Gunakan SHA1 & SHA256 di atas untuk:${NC}"
+        echo -e "  • Google Play Console → App signing"
+        echo -e "  • Firebase Console → Project Settings → Android app"
+        echo -e "  • Google Cloud Console → Credentials (OAuth)"
+        echo -e "  • Google Sign-In configuration"
+        echo -e "${BLUE}================================${NC}"
+        echo ""
+        pause
+        ;;
+    
+    0)
+        echo ""
+        echo -e "${GREEN}Terima kasih!${NC}"
+        exit 0
+        ;;
+    
+    *)
+        echo -e "${RED}Pilihan tidak valid!${NC}"
+        pause
+        ;;
+esac
