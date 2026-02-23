@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
 
@@ -12,7 +11,7 @@ class profil extends StatelessWidget {
     'assets/image/image3.jpg',
   ];
 
-  profil({Key? key, required this.name}) : super(key: key);
+  profil({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +81,7 @@ class profil extends StatelessWidget {
                     const SizedBox(
                         child: Text(
                       "PROFIL",
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 28,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

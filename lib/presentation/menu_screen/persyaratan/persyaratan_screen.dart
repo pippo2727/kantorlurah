@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:kantor_lurah/core.dart';
 
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Persyaratan_screen extends StatelessWidget {
   String name;
@@ -15,7 +12,7 @@ class Persyaratan_screen extends StatelessWidget {
     'assets/image/image3.jpg',
   ];
 
-  Persyaratan_screen({Key? key, required this.name}) : super(key: key);
+  Persyaratan_screen({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +96,7 @@ class Persyaratan_screen extends StatelessWidget {
                         const SizedBox(
                             child: Text(
                           "INFORMASI  PERSYARATAN",
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 26,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
-import 'data/persyaratan_item.dart';
 
 class KeteranganScreen extends StatelessWidget {
-  const KeteranganScreen({Key? key}) : super(key: key);
+  const KeteranganScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

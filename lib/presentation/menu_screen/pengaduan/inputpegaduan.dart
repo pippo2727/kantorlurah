@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kantor_lurah/core.dart';
 
 class inputpengaduan extends StatelessWidget {
@@ -12,7 +10,7 @@ class inputpengaduan extends StatelessWidget {
     'assets/image/image3.jpg',
   ];
 
-  inputpengaduan({Key? key, required this.name}) : super(key: key);
+  inputpengaduan({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {

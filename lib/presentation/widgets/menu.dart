@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kantor_lurah/core.dart';
 
 class Menu extends StatelessWidget {
   String? title;
@@ -8,12 +7,12 @@ class Menu extends StatelessWidget {
   Function? onTap;
 
   Menu({
-    Key? key,
+    super.key,
     this.title,
     this.image,
     this.backgroundColor,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
-import 'data/persyaratan_item.dart';
 
 class DomisiliScreen extends StatelessWidget {
-  const DomisiliScreen({Key? key}) : super(key: key);
+  const DomisiliScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

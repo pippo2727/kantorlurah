@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
-import 'data/persyaratan_item.dart';
 
 class AhliWarisScreen extends StatelessWidget {
-  const AhliWarisScreen({Key? key}) : super(key: key);
+  const AhliWarisScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

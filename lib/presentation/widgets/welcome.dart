@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:kantor_lurah/core.dart';
 
 class Welcome extends StatelessWidget {
   String? name;
 
   Welcome({
-    Key? key,
+    super.key,
     this.name,
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
     return Align(

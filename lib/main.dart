@@ -1,8 +1,5 @@
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:kantor_lurah/core.dart';
-import 'package:kantor_lurah/l10n/app_localizations.dart';
-import 'package:kantor_lurah/core/theme/theme.dart';
-import 'package:kantor_lurah/core/util/contextless/navigation.dart';
 import 'package:flutter/material.dart';
 
 void main() async {

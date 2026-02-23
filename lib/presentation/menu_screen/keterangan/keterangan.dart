@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kantor_lurah/core.dart';
 
 class waktu extends StatelessWidget {
@@ -12,7 +10,7 @@ class waktu extends StatelessWidget {
     'assets/image/image3.jpg',
   ];
 
-  waktu({Key? key, required this.name}) : super(key: key);
+  waktu({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +81,7 @@ class waktu extends StatelessWidget {
                     const SizedBox(
                         child: Text(
                       "JAM PELAYANAN",
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 28,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class keterangan extends StatelessWidget {
   String name;
@@ -12,7 +10,7 @@ class keterangan extends StatelessWidget {
     'assets/image/image3.jpg',
   ];
 
-  keterangan({Key? key, required this.name}) : super(key: key);
+  keterangan({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {

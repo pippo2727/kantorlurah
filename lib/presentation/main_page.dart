@@ -11,7 +11,7 @@ class MainPage extends StatelessWidget {
     'assets/image/image3.jpg',
   ];
 
-  MainPage({Key? key, required this.name}) : super(key: key);
+  MainPage({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {

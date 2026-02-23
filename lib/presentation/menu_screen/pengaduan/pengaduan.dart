@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kantor_lurah/core.dart';
 
 class pengaduan extends StatelessWidget {
@@ -13,7 +11,7 @@ class pengaduan extends StatelessWidget {
     'assets/image/image3.jpg',
   ];
 
-  pengaduan({Key? key, required this.name}) : super(key: key);
+  pengaduan({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {

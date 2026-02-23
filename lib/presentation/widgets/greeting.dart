@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kantor_lurah/core.dart';
 
 class Greeting extends StatelessWidget {
   const Greeting({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

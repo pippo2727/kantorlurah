@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:kantor_lurah/core.dart';
 
 class Button extends StatelessWidget {
   Function? onTap;
 
   Button({
-    Key? key,
+    super.key,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

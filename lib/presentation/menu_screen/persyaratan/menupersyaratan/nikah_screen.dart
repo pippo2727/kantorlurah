@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:kantor_lurah/core.dart';
-import 'data/persyaratan_item.dart';
 
 class NikahScreen extends StatelessWidget {
-  const NikahScreen({Key? key}) : super(key: key);
+  const NikahScreen({super.key});
 
   _launchUrl() async {
-    const _url =
+    const url =
         'https://docs.google.com/document/d/1Jw_JOg1mosaKYvts0vUTwKFdya_kM3dv/edit?usp=sharing&ouid=113864027345606736968&rtpof=true&sd=true';
 
-    if (await canLaunch(_url)) {
-      await launch(_url);
+    if (await canLaunch(url)) {
+      await launch(url);
     } else {
-      throw 'Could not launch $_url';
+      throw 'Could not launch $url';
     }
   }
 

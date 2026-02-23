@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:kantor_lurah/core.dart';
 
 class OfficeName extends StatelessWidget {
   bool isCenter;
 
   OfficeName({
-    Key? key,
+    super.key,
     this.isCenter = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

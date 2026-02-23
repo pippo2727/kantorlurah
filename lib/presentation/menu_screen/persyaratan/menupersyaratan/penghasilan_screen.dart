@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
-import 'data/persyaratan_item.dart';
 
 class PenghasilanScreen extends StatelessWidget {
-  const PenghasilanScreen({Key? key}) : super(key: key);
+  const PenghasilanScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

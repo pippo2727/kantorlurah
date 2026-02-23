@@ -4,7 +4,7 @@ import 'package:kantor_lurah/core.dart';
 class FirstScreen extends StatelessWidget {
   TextEditingController nameController = TextEditingController();
 
-  FirstScreen({Key? key}) : super(key: key);
+  FirstScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
