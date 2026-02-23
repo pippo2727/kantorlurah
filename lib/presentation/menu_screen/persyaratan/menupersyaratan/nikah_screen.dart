@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:kantor_lurah/core.dart';
+import 'data/persyaratan_item.dart';
 
 class NikahScreen extends StatelessWidget {
   const NikahScreen({Key? key}) : super(key: key);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
+import 'data/persyaratan_item.dart';
 
 class SkpwScreen extends StatelessWidget {
   const SkpwScreen({Key? key}) : super(key: key);

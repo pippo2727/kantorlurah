@@ -1,38 +1,13 @@
-import 'dart:async';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:kantor_lurah/core.dart';
 import 'package:kantor_lurah/l10n/app_localizations.dart';
 import 'package:kantor_lurah/core/theme/theme.dart';
 import 'package:kantor_lurah/core/util/contextless/navigation.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
-  runZonedGuarded<Future<void>>(
-    () async {
-      WidgetsFlutterBinding.ensureInitialized();
-      // Initialize Crashlytics
-      if (!kIsWeb) {
-        // Pass all uncaught Flutter errors to Crashlytics
-        FlutterError.onError =
-            FirebaseCrashlytics.instance.recordFlutterFatalError;
-
-        // Pass all uncaught asynchronous errors to Crashlytics
-        PlatformDispatcher.instance.onError = (error, stack) {
-          FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-          return true;
-        };
-      }
-      runApp(const MyApp());
-    },
-    (error, stack) {
-      // Catch errors outside of Flutter framework
-      if (!kIsWeb) {
-        FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-      }
-    },
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {

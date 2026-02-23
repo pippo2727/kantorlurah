@@ -43,7 +43,7 @@ export 'package:kantor_lurah/presentation/menu_screen/keterangan/keterangan.dart
 export 'package:kantor_lurah/presentation/menu_screen/pengaduan/inputpegaduan.dart';
 export 'package:kantor_lurah/presentation/menu_screen/pengaduan/pengaduan.dart';
 export 'package:kantor_lurah/presentation/menu_screen/persyaratan/menupersyaratan/ahli_waris_screen.dart';
-export 'package:kantor_lurah/presentation/menu_screen/persyaratan/menupersyaratan/data/data.dart';
+export 'package:kantor_lurah/presentation/menu_screen/persyaratan/menupersyaratan/data/persyaratan_item.dart';
 export 'package:kantor_lurah/presentation/menu_screen/persyaratan/menupersyaratan/domisili_screen.dart';
 export 'package:kantor_lurah/presentation/menu_screen/persyaratan/menupersyaratan/domisili_usaha_screen.dart';
 export 'package:kantor_lurah/presentation/menu_screen/persyaratan/menupersyaratan/kematian_screen.dart';
