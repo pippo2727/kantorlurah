@@ -33,8 +33,6 @@ class FirstView extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TitleApp(isCenter: true),
-                        OfficeName(isCenter: true),
                       ],
                     ),
                   ),

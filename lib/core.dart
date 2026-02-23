@@ -68,8 +68,6 @@ export 'package:kantor_lurah/presentation/splash_view.dart';
 export 'package:kantor_lurah/presentation/partials/footer.dart';
 export 'package:kantor_lurah/presentation/partials/greeting.dart';
 export 'package:kantor_lurah/presentation/partials/menu.dart';
-export 'package:kantor_lurah/presentation/partials/office_name.dart';
-export 'package:kantor_lurah/presentation/partials/title_app.dart';
 export 'package:kantor_lurah/presentation/partials/welcome.dart';
 export 'package:kantor_lurah/presentation/partials/nav_profile_tab_view.dart';
 export 'package:kantor_lurah/presentation/partials/edit_profile_view.dart';

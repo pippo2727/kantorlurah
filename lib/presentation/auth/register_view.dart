@@ -71,8 +71,6 @@ class _RegisterViewState extends State<RegisterView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TitleApp(isCenter: true),
-              OfficeName(isCenter: true),
               const SizedBox(height: 24),
               const Text(
                 'BUAT AKUN BARU',

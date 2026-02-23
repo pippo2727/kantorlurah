@@ -41,25 +41,6 @@ class MainView extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(8, 20, 10, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        TitleApp(),
-                        OfficeName(),
-                      ],
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 0,
-                      vertical: 3,
-                    ),
-                    child: Divider(
-                      thickness: 2,
-                    ),
-                  ),
                   Welcome(
                     name: name.isNotEmpty ? name.split(' ')[0] : 'Guest',
                   ),
@@ -72,9 +53,9 @@ class MainView extends StatelessWidget {
                       thickness: 2,
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox(height: 10),
+                  const AppLogoWithTitleAndSubtitle(),
+                  const SizedBox(height: 12),
 //////////////////////////////////////////////////////////////////////
 ////////// BUTTON INFORMASI PERSYARATAN /////////////////////////////
 ////////////////////////////////////////////////////////////////////
@@ -128,97 +109,6 @@ class MainView extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-
-// ///////////////////////////////////////////////////////////
-// // ////////////////////////////////////////////////////////
-// // ///// BUTTON PENGADUAN ///////////////////////////////
-// ///////////////////////////////////////////////////////
-//                   Container(
-//                     width: 380,
-//                     height: 140,
-//                     padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
-//                     decoration: BoxDecoration(
-//                       gradient: const LinearGradient(
-//                         colors: [
-//                           Colors.blueGrey,
-//                           Colors.purple,
-//                         ],
-//                         begin: Alignment.centerLeft,
-//                         end: Alignment.centerRight,
-//                       ),
-//                       borderRadius: BorderRadius.circular(16),
-//                     ),
-//                     child: Row(
-//                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                       children: [
-//                         Column(
-//                           children: [
-//                             const Text(
-//                               "PENGADUAN MASYARAKAT",
-//                               style: TextStyle(
-//                                   color: Colors.black87,
-//                                   fontSize: 15,
-//                                   fontWeight: FontWeight.bold),
-//                             ),
-//                             const SizedBox(
-//                               height: 5,
-//                             ),
-//                             const SizedBox(
-//                                 width: 120,
-//                                 child: Text(
-//                                   "Berita Terkini",
-//                                   style: TextStyle(
-//                                       color: Colors.black87,
-//                                       fontSize: 12,
-//                                       fontWeight: FontWeight.bold),
-//                                 )),
-//                             const SizedBox(
-//                               height: 35,
-//                             ),
-//                             InkWell(
-//                               onTap: () {
-//                                 Navigator.push(
-//                                   context,
-//                                   MaterialPageRoute(
-//                                     builder: (context) {
-//                                       return const berita_terkini();
-//                                     },
-//                                   ),
-//                                 );
-//                               },
-//                               child: Container(
-//                                 width: 150,
-//                                 height: 35,
-//                                 padding: const EdgeInsets.all(8.0),
-//                                 decoration: BoxDecoration(
-//                                   color: Colors.blueAccent,
-//                                   borderRadius: BorderRadius.circular(12.0),
-//                                 ),
-//                                 child: const Center(
-//                                   child: Text(
-//                                     "Klik Untuk Melihat",
-//                                     style: TextStyle(
-//                                       color: Colors.white,
-//                                       fontWeight: FontWeight.w400,
-//                                       fontSize: 14,
-//                                     ),
-//                                   ),
-//                                 ),
-//                               ),
-//                             ),
-//                           ],
-//                         ),
-//                         Image.asset(
-//                           'assets/image/reporter.jpg',
-//                           width: 150,
-//                           height: 100,
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-//                   const SizedBox(
-//                     height: 10,
-//                   ),
 
 ///////////////////////////////////////////////////////////////
 //// BUTTON PENGADUAN MASYARAKAT ///////////////////////////////////////
@@ -407,6 +297,74 @@ class MainView extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Combined app logo + title + subtitle widget (replaces TitleApp + OfficeName)
+// ---------------------------------------------------------------------------
+class AppLogoWithTitleAndSubtitle extends StatelessWidget {
+  const AppLogoWithTitleAndSubtitle({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        children: [
+          Image.asset(
+            'assets/image/logo.png',
+            width: 48,
+            height: 48,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'PELAYANAN',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          color: Colors.teal,
+                        ),
+                      ),
+                      Text(
+                        'KU',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                          color: Colors.orange,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Text(
+                  'KANTOR LURAH MAHARATU',
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.blueGrey,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0.5,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

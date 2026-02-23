@@ -28,12 +28,7 @@ class NikahView extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.fromLTRB(8, 20, 10, 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    OfficeName(),
-                  ],
-                ),
+                child: const SizedBox.shrink(),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(

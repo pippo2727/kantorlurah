@@ -89,8 +89,6 @@ class _LoginViewState extends State<LoginView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TitleApp(isCenter: true),
-                    OfficeName(isCenter: true),
                     const SizedBox(height: 24),
                     const Text(
                       'MASUK',

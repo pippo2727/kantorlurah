@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // Global color constants (use these instead of hardcoded colors)
 const Color primaryColor = Color(0xff20B2AA);
@@ -71,6 +72,11 @@ class AppTheme {
         foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: primaryColor,
+          statusBarIconBrightness: Brightness.light,
+          statusBarBrightness: Brightness.dark,
+        ),
         titleTextStyle: const TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.w600,

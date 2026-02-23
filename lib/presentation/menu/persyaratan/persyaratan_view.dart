@@ -51,13 +51,7 @@ class PersyaratanView extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.fromLTRB(8, 20, 10, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TitleApp(),
-                        OfficeName(),
-                      ],
-                    ),
+                    child: const SizedBox.shrink(),
                   ),
                   const Padding(
                     padding: EdgeInsets.symmetric(
@@ -93,15 +87,16 @@ class PersyaratanView extends StatelessWidget {
                             color: Colors.white,
                           ),
                         ),
-                        const SizedBox(
-                            child: Text(
-                          "INFORMASI  PERSYARATAN",
-                          style: TextStyle(
-                            fontSize: 26,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                        const Flexible(
+                          child: Text(
+                            'INFORMASI PERSYARATAN',
+                            style: TextStyle(
+                              fontSize: 22,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        )),
+                        ),
                       ],
                     ),
                   ),

@@ -41,13 +41,7 @@ class ProfilView extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.fromLTRB(8, 20, 10, 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TitleApp(),
-                    OfficeName(),
-                  ],
-                ),
+                child: const SizedBox.shrink(),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(

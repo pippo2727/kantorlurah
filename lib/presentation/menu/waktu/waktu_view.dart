@@ -40,13 +40,7 @@ class WaktuView extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.fromLTRB(8, 20, 10, 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TitleApp(),
-                    OfficeName(),
-                  ],
-                ),
+                child: const SizedBox.shrink(),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(
@@ -111,9 +105,8 @@ class WaktuView extends StatelessWidget {
 ////////////////kolom jam layanan kantor/////////////////////////
 ////////////////////////////////////////////////////////
               Container(
-                width: 375,
-                height: 220,
-                padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
+                width: double.infinity,
+                padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     colors: [
@@ -128,79 +121,64 @@ class WaktuView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      children: [
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
-                            "JAM LAYANAN KANTOR ",
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                        const Text(
+                            'JAM LAYANAN KANTOR',
                             style: TextStyle(
                                 color: Colors.black87,
-                                fontSize: 30,
+                                fontSize: 24,
                                 fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
+                        const SizedBox(height: 6),
+                        const Text(
                             '🕘 Senin – Kamis',
                             style: TextStyle(
                                 color: Colors.black87,
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
+                        const Text(
                             '      08.00 WIB – 15.30 WIB',
                             style: TextStyle(
                                 color: Colors.black87,
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
+                        const SizedBox(height: 4),
+                        const Text(
                             '🕘 Jumat',
                             style: TextStyle(
                                 color: Colors.black87,
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
+                        const Text(
                             '      08.00 WIB – 11.30 WIB',
                             style: TextStyle(
                                 color: Colors.black87,
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
+                        const SizedBox(height: 4),
+                        const Text(
                             '🕘 Sabtu & Minggu',
                             style: TextStyle(
                                 color: Colors.black87,
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
+                        const Text(
                             '      Tutup',
                             style: TextStyle(
                                 color: Colors.black87,
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -212,9 +190,8 @@ class WaktuView extends StatelessWidget {
 ///////////////////////////////////////////////////////////////////////////////////
               /////////////////KOLOM CATATATN LAYANAN/////////////////
               Container(
-                width: 375,
-                height: 200,
-                padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
+                width: double.infinity,
+                padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     colors: [
@@ -229,69 +206,56 @@ class WaktuView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      children: [
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
-                            "CATATAN LAYANAN",
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                        const Text(
+                            'CATATAN LAYANAN',
                             style: TextStyle(
                                 color: Colors.black87,
-                                fontSize: 30,
+                                fontSize: 24,
                                 fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
+                        const SizedBox(height: 6),
+                        const Text(
                             '📌 Istirahat:',
                             style: TextStyle(
                                 color: Colors.black87,
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
-                            '      Senin – Kamis : 12.00 - 13.00 WIB ',
+                        const Text(
+                            '      Senin – Kamis : 12.00 - 13.00 WIB',
                             style: TextStyle(
                                 color: Colors.black87,
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
+                        const Text(
                             '      Jumat : 11.30 – 13.15 WIB',
                             style: TextStyle(
                                 color: Colors.black87,
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
+                        const SizedBox(height: 4),
+                        const Text(
                             '📌 Layanan tertentu dapat tutup lebih',
                             style: TextStyle(
                                 color: Colors.black87,
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 350,
-                          child: Text(
+                        const Text(
                             '      awal pada hari libur nasional.',
                             style: TextStyle(
                                 color: Colors.black87,
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
