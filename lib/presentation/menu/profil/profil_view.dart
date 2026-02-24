@@ -68,8 +68,7 @@ class ProfilView extends StatelessWidget {
               ),
 
               Container(
-                width: 375,
-                height: 340,
+                width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
@@ -106,8 +105,7 @@ class ProfilView extends StatelessWidget {
                 height: 10,
               ),
               Container(
-                width: 375,
-                height: 190,
+                width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
@@ -194,8 +192,7 @@ class ProfilView extends StatelessWidget {
                 height: 10,
               ),
               Container(
-                width: 375,
-                height: 550,
+                width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(

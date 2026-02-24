@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
+import 'package:kantor_lurah/presentation/partials/app_logo_with_title_and_subtitle.dart';
 import 'package:kantor_lurah/service/supabase_service.dart';
 
 class AdminDashboardView extends StatelessWidget {
@@ -26,62 +27,18 @@ class AdminDashboardView extends StatelessWidget {
           'Admin Dashboard',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        actions: [
-          IconButton(
-            tooltip: 'Logout',
-            icon: const Icon(Icons.logout),
-            onPressed: () => _logout(context),
-          ),
-        ],
+
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header card
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [primaryColor, Color(0xFF178F88)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const CircleAvatar(
-                    radius: 28,
-                    backgroundColor: Colors.white24,
-                    child: Icon(Icons.admin_panel_settings,
-                        color: Colors.white, size: 30),
-                  ),
-                  const SizedBox(height: 12),
-                  const Text(
-                    'Selamat Datang, Admin',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    'admin@demo.com',
-                    style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.8),
-                      fontSize: 13,
-                    ),
-                  ),
-                ],
-              ),
+            AppLogoWithTitleAndSubtitle(),
+            const SizedBox(
+              height: 20.0,
             ),
-            const SizedBox(height: 24),
-
+            // Header card
             const Text(
               'MENU ADMIN',
               style: TextStyle(

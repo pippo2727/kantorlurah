@@ -81,14 +81,15 @@ class PenghasilanView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(0),
                         ),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: const [
-                            Text(
-                              'Peraturan Daerah Kota Pekanbaru \n Nomor 273 Tahun 2017',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 23,
-                                color: Colors.white,
+                            Expanded(
+                              child: Text(
+                                'Peraturan Daerah Kota Pekanbaru \n Nomor 273 Tahun 2017',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ],

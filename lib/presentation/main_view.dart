@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
+import 'package:kantor_lurah/presentation/partials/app_logo_with_title_and_subtitle.dart';
 
 class MainView extends StatelessWidget {
   String name;
@@ -15,23 +16,6 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> imageSliders = imgList
-        .map(
-          (item) => Container(
-            margin: const EdgeInsets.all(0.0),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(5.0),
-              ),
-              child: Image.asset(
-                item,
-                fit: BoxFit.cover,
-                width: 1000.0,
-              ),
-            ),
-          ),
-        )
-        .toList();
     return Scaffold(
       appBar: AppBar(
         title: const Text('PELAYANANKU'),
@@ -40,250 +24,79 @@ class MainView extends StatelessWidget {
         automaticallyImplyLeading: false,
         elevation: 0,
       ),
+      backgroundColor: const Color(0xFFF4F6F8),
       body: SafeArea(
         child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+              AppLogoWithTitleAndSubtitle(),
+              const SizedBox(
+                height: 20.0,
+              ),
+              // Welcome header card
+              const Text(
+                'MENU LAYANAN',
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueGrey,
+                  letterSpacing: 1.2,
+                ),
+              ),
+              const SizedBox(height: 12),
+              GridView.count(
+                crossAxisCount: 2,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+                childAspectRatio: 1.2,
                 children: [
-                  Welcome(
-                    name: name.isNotEmpty ? name.split(' ')[0] : 'Guest',
-                  ),
-                  const SizedBox(height: 12),
-//////////////////////////////////////////////////////////////////////
-////////// BUTTON INFORMASI PERSYARATAN /////////////////////////////
-////////////////////////////////////////////////////////////////////
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PersyaratanView(name: name),
-                        ),
-                      );
-                    },
-                    borderRadius: BorderRadius.circular(16),
-                    child: Container(
-                      width: 380,
-                      height: 140,
-                      padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [
-                            Colors.teal,
-                            Color.fromARGB(31, 109, 226, 0),
-                          ],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const SizedBox(
-                            width: 250,
-                            child: Text(
-                              'INFORMASI PERSYARATAN',
-                              style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Image.asset(
-                            'assets/image/icon4.png',
-                            width: 100,
-                            height: 250,
-                          ),
-                        ],
+                  _MainMenuCard(
+                    icon: Icons.assignment_outlined,
+                    label: 'Informasi\nPersyaratan',
+                    color: Colors.teal,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => PersyaratanView(name: name),
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-
-///////////////////////////////////////////////////////////////
-//// BUTTON PENGADUAN MASYARAKAT ///////////////////////////////////////
-//////////////////////////////////////////////////////////////
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PengaduanView(name: name),
-                        ),
-                      );
-                    },
-                    borderRadius: BorderRadius.circular(16),
-                    child: Container(
-                      width: 380,
-                      height: 140,
-                      padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [
-                            Colors.teal,
-                            Color.fromARGB(31, 109, 226, 0),
-                          ],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const SizedBox(
-                            width: 250,
-                            child: Text(
-                              'PENGADUAN MASYARAKAT',
-                              style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Image.asset(
-                            'assets/image/pengaduann.png',
-                            width: 100,
-                            height: 250,
-                          ),
-                        ],
+                  _MainMenuCard(
+                    icon: Icons.report_problem_outlined,
+                    label: 'Pengaduan\nMasyarakat',
+                    color: Colors.orange,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => PengaduanView(name: name),
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-
-////////////////////////////////////////////////////////////////////
-//////////////BUTTON KETERRANGAN //////////////////////////////////
-//////////////////////////////////////////////////////////////////
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return WaktuView(name: name);
-                                },
-                              ),
-                            );
-                          },
-                          child: Container(
-                            height: 120,
-                            padding: const EdgeInsets.all(8),
-                            margin: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              gradient: const LinearGradient(
-                                colors: [
-                                  Colors.teal,
-                                  Color.fromARGB(31, 109, 226, 0),
-                                ],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Column(
-                              children: [
-                                Image.asset(
-                                  'assets/image/jam.png',
-                                  height: 74,
-                                  width: 500,
-                                ),
-                                const SizedBox(
-                                    height: 30,
-                                    width: 115,
-                                    child: Text(
-                                      "JAM PELAYANAN",
-                                      style:
-                                          TextStyle(fontWeight: FontWeight.bold),
-                                    )),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-//////////////////////
-//////PROFIL////////////
-//////////////////////
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return ProfilView(name: name);
-                                },
-                              ),
-                            );
-                          },
-                          child: Container(
-                            height: 120,
-                            padding: const EdgeInsets.all(8),
-                            margin: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              gradient: const LinearGradient(
-                                colors: [
-                                  Color.fromARGB(31, 109, 226, 0),
-                                  Colors.teal,
-                                ],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Column(
-                              children: [
-                                Image.asset(
-                                  'assets/image/profil.png',
-                                  height: 74,
-                                  width: 500,
-                                ),
-                                const SizedBox(
-                                    height: 30,
-                                    width: 48,
-                                    child: Text(
-                                      "PROFIL",
-                                      style:
-                                          TextStyle(fontWeight: FontWeight.bold),
-                                    )),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  const SizedBox(
-                    height: 10,
-                  ),
-
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 0,
-                      vertical: 0,
+                  _MainMenuCard(
+                    icon: Icons.access_time_outlined,
+                    label: 'Jam\nPelayanan',
+                    color: Colors.blue,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => WaktuView(name: name)),
                     ),
-                    child: Divider(
-                      thickness: 5,
+                  ),
+                  _MainMenuCard(
+                    icon: Icons.account_balance_outlined,
+                    label: 'Profil\nKantor',
+                    color: Colors.green,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => ProfilView(name: name)),
                     ),
                   ),
                 ],
               ),
+              const SizedBox(height: 24),
               Footer(
                 email: 'kelurahanmaharatu@gmail.com',
                 instagram: ' kelurahanmaharatu',
@@ -298,69 +111,60 @@ class MainView extends StatelessWidget {
   }
 }
 
-// ---------------------------------------------------------------------------
-// Combined app logo + title + subtitle widget (replaces TitleApp + OfficeName)
-// ---------------------------------------------------------------------------
-class AppLogoWithTitleAndSubtitle extends StatelessWidget {
-  const AppLogoWithTitleAndSubtitle({super.key});
+class _MainMenuCard extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
+
+  const _MainMenuCard({
+    required this.icon,
+    required this.label,
+    required this.color,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        children: [
-          Image.asset(
-            'assets/image/logo.png',
-            width: 48,
-            height: 48,
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                FittedBox(
-                  fit: BoxFit.scaleDown,
-                  alignment: Alignment.centerLeft,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'PELAYANAN',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          color: Colors.teal,
-                        ),
-                      ),
-                      Text(
-                        'KU',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                          color: Colors.orange,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Text(
-                  'KANTOR LURAH MAHARATU',
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.blueGrey,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.5,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(14),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(14),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 6,
+              offset: const Offset(0, 2),
             ),
-          ),
-        ],
+          ],
+        ),
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: color.withValues(alpha: 0.12),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(icon, color: color, size: 26),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              label,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: Colors.black87,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
