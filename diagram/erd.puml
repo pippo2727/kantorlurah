@@ -1,0 +1,115 @@
+@startuml ERD_Kantor_Lurah_Maharatu
+
+skinparam linetype ortho
+skinparam roundcorner 10
+skinparam classAttributeIconSize 0
+skinparam BackgroundColor white
+skinparam shadowing false
+
+hide circle
+hide methods
+
+title Entity Relationship Diagram\nSistem Informasi Kantor Lurah Maharatu
+
+entity "auth.users" as auth_users #E8F5E9 {
+  * id : uuid <<PK>>
+  --
+  email : text <<UNIQUE, NOT NULL>>
+  encrypted_password : text
+  raw_user_meta_data : jsonb
+  created_at : timestamptz
+  updated_at : timestamptz
+}
+
+entity "public.users" as users #E3F2FD {
+  * id : uuid <<PK, FK>>
+  --
+  name : text <<NOT NULL>>
+  birth_date : date <<NOT NULL>>
+  email : text <<UNIQUE, NOT NULL>>
+  created_at : timestamptz <<DEFAULT now()>>
+  updated_at : timestamptz <<DEFAULT now()>>
+  ..
+  RLS: select own | insert own | update own
+  Trigger: users_updated_at
+}
+
+entity "public.pengaduan" as pengaduan #FFF3E0 {
+  * id : uuid <<PK, DEFAULT uuid_v4()>>
+  --
+  # user_id : uuid <<FK, NULLABLE>>
+  name : text <<NOT NULL>>
+  nik : text <<NOT NULL>>
+  date : date <<NOT NULL, DEFAULT current_date>>
+  address : text <<NOT NULL>>
+  description : text <<NOT NULL>>
+  attachment_url : text <<NULLABLE>>
+  status : text <<NOT NULL, DEFAULT menunggu>>
+  admin_note : text <<NULLABLE>>
+  created_at : timestamptz <<DEFAULT now()>>
+  updated_at : timestamptz <<DEFAULT now()>>
+  ..
+  CHECK: status IN (menunggu, diproses, selesai, ditolak)
+  RLS: insert own, select own OR admin
+  RLS: update admin only
+  Trigger: pengaduan_updated_at
+}
+
+entity "persyaratan_item <<Static>>" as persyaratan #F3E5F5 {
+  * index : int <<PK>>
+  --
+  title : String
+  persyaratan : List~String~
+  ..
+  [0] Ahli Waris
+  [1] Nikah
+  [2] SKTM
+  [3] Keterangan
+  [4] Pindah Wilayah (SKPW)
+  [5] Penghasilan
+  [6] Kematian
+  [7] Belum Punya Rumah (SKBMR)
+  [8] Rekomendasi Usaha
+  [9] Domisili
+  [10] Domisili Usaha
+}
+
+entity "Cloudinary <<External>>" as cloudinary #FFEBEE {
+  * secure_url : text <<PK>>
+  --
+  cloud_name : text
+  upload_preset : text
+  ..
+  6 akun load-balanced
+  (round-robin / random)
+}
+
+auth_users ||--|| users : "id -> id\nON DELETE CASCADE"
+users ||--o{ pengaduan : "id -> user_id\nON DELETE SET NULL"
+pengaduan }o..|| cloudinary : "attachment_url\n(optional)"
+
+note right of auth_users
+  **Trigger: on_auth_user_created**
+  Setelah user mendaftar di Supabase Auth,
+  trigger otomatis INSERT baris baru
+  ke tabel public.users via handle_new_user()
+end note
+
+note bottom of pengaduan
+  **Status Flow:**
+  menunggu -> diproses -> selesai
+  menunggu -> ditolak
+
+  **Admin:** admin@demo.com
+  Hanya admin yang bisa mengubah
+  status dan menambahkan admin_note
+end note
+
+note right of persyaratan
+  Data statis hardcoded di Flutter.
+  Tidak disimpan di database.
+  Berisi daftar persyaratan dokumen
+  untuk layanan administratif kelurahan.
+end note
+
+@enduml

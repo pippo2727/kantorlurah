@@ -1,0 +1,210 @@
+@startuml DFD_Level0_Context_Diagram
+
+skinparam roundcorner 15
+skinparam defaultFontSize 11
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam rectangleBackgroundColor #FEFEFE
+skinparam rectangleBorderColor #555555
+
+title DFD Level 0 - Context Diagram\nSistem Informasi Kantor Lurah Maharatu
+
+actor "Masyarakat\n(User)" as ExtUser0
+actor "Admin\n(Lurah)" as ExtAdmin0
+
+rectangle "Sistem Informasi\nKantor Lurah\nMaharatu" as SistemUtama #E8F5E9
+
+database "Supabase\n(Database)" as DB0 #FFF9C4
+cloud "Cloudinary\n(Image Storage)" as Cloud0 #FFF3E0
+
+ExtUser0 -right-> SistemUtama : Data Registrasi,\nData Login,\nData Pengaduan,\nData Profil,\nLampiran Foto
+SistemUtama -left-> ExtUser0 : Info Persyaratan,\nInfo Jam Pelayanan,\nInfo Profil Kantor,\nStatus Pengaduan,\nData Profil User
+
+ExtAdmin0 -left-> SistemUtama : Data Login,\nPerubahan Status,\nCatatan Admin
+SistemUtama -right-> ExtAdmin0 : Dashboard Statistik,\nDaftar Semua Pengaduan,\nDetail Pengaduan
+
+SistemUtama -down-> DB0 : CRUD Data User,\nCRUD Data Pengaduan,\nAuth (signUp/signIn/signOut)
+DB0 -up-> SistemUtama : Data User,\nData Pengaduan,\nAuth Token
+
+SistemUtama -down-> Cloud0 : Upload Gambar
+Cloud0 -up-> SistemUtama : secure_url Gambar
+
+@enduml
+
+@startuml DFD_Level1_Detail_Proses
+
+left to right direction
+
+skinparam usecase {
+  BackgroundColor #C8E6C9
+  BorderColor #2E7D32
+  FontSize 10
+}
+skinparam database {
+  BackgroundColor #FFF9C4
+  BorderColor #F9A825
+  FontSize 10
+}
+skinparam cloud {
+  BackgroundColor #FFF3E0
+  BorderColor #FF9800
+  FontSize 10
+}
+skinparam storage {
+  BackgroundColor #F3E5F5
+  BorderColor #9C27B0
+  FontSize 10
+}
+skinparam actor {
+  FontSize 11
+}
+skinparam arrow {
+  FontSize 9
+  Color #555555
+}
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam defaultFontSize 10
+
+title DFD Level 1 - Detail Proses\nSistem Informasi Kantor Lurah Maharatu
+
+' ==============================
+' EXTERNAL ENTITIES
+' ==============================
+actor "Masyarakat\n(User)" as Masy
+actor "Admin\n(Lurah)" as Adm
+
+' Vertical ordering for entities
+Masy -[hidden]down-> Adm
+
+' ==============================
+' PROCESSES (numbered circles)
+' ==============================
+usecase "1.0\nRegistrasi\nAkun" as P1
+usecase "2.0\nLogin" as P2
+usecase "3.0\nData Profil\nUser" as P3
+usecase "4.0\nBuat\nPengaduan" as P4
+usecase "5.0\nUpload\nLampiran" as P5
+usecase "6.0\nPengaduan\nSaya" as P6
+usecase "7.0\nKelola\nPengaduan" as P7
+usecase "8.0\nDashboard\nStatistik" as P8
+usecase "9.0\nInformasi\nPersyaratan" as P9
+usecase "10.0\nLogout" as P10
+
+' Vertical ordering for processes
+P1 -[hidden]down-> P2
+P2 -[hidden]down-> P3
+P3 -[hidden]down-> P4
+P4 -[hidden]down-> P5
+P5 -[hidden]down-> P6
+P6 -[hidden]down-> P7
+P7 -[hidden]down-> P8
+P8 -[hidden]down-> P9
+P9 -[hidden]down-> P10
+
+' ==============================
+' DATA STORES
+' ==============================
+database "D1\nauth.users" as D1
+database "D2\npublic.users" as D2
+database "D3\npublic.pengaduan" as D3
+cloud "D4\nCloudinary" as D4
+storage "D5\npersyaratan_item\n(Static Data)" as D5
+
+' Vertical ordering for data stores
+D1 -[hidden]down-> D2
+D2 -[hidden]down-> D3
+D3 -[hidden]down-> D4
+D4 -[hidden]down-> D5
+
+' ==============================
+' ENTITY -> PROCESS FLOWS
+' ==============================
+
+' -- P1 Registrasi Akun --
+Masy --> P1 : Data Registrasi\n(Nama, Email,\nPassword, Tgl Lahir)
+P1 --> Masy : Konfirmasi Registrasi\nBerhasil / Gagal
+
+' -- P2 Login --
+Masy --> P2 : Data Login\n(Email, Password)
+Adm --> P2 : Data Login\n(Email, Password)
+P2 --> Masy : Akses User Home\n(nama, email)
+P2 --> Adm : Akses Admin\nDashboard
+
+' -- P3 Data Profil User --
+Masy --> P3 : Data Profil Baru\n(Nama, Tgl Lahir)
+P3 --> Masy : Informasi Profil\nUser Terbaru
+
+' -- P4 Buat Pengaduan --
+Masy --> P4 : Data Pengaduan\n(Nama, NIK, Tanggal,\nAlamat, Uraian,\nFoto Opsional)
+P4 --> Masy : Konfirmasi Pengaduan\nTerkirim / Gagal
+
+' -- P6 Pengaduan Saya --
+Masy --> P6 : Request Daftar\nPengaduan Saya\n+ Filter, Search
+P6 --> Masy : Daftar & Detail\nPengaduan Saya\n(status, catatan admin)
+
+' -- P7 Kelola Pengaduan --
+Adm --> P7 : Filter, Search,\nStatus Baru,\nCatatan Admin
+P7 --> Adm : Daftar & Detail\nSemua Pengaduan
+
+' -- P8 Dashboard Statistik --
+Adm --> P8 : Request Dashboard
+P8 --> Adm : Grafik Statistik\nMingguan +\n5 Pengaduan Terbaru
+
+' -- P9 Informasi Persyaratan --
+Masy --> P9 : Pilih Kategori\nPersyaratan (0-10)
+P9 --> Masy : Info Persyaratan,\nReferensi Perda,\nLink Download (Nikah)
+
+' -- P10 Logout --
+Masy --> P10 : Request Logout
+Adm --> P10 : Request Logout
+P10 --> Masy : Redirect ke\nHalaman Welcome
+P10 --> Adm : Redirect ke\nHalaman Welcome
+
+' ==============================
+' PROCESS -> DATA STORE FLOWS
+' ==============================
+
+' -- P1 -> D1, D2 --
+P1 --> D1 : INSERT auth.users\n(email, password,\nmetadata: name, birth_date)
+P1 --> D2 : UPSERT public.users\n(id, name, email, birth_date)
+
+' -- P2 -> D1, D2 --
+P2 --> D1 : Verifikasi Kredensial\n(signInWithPassword)
+D1 --> P2 : Auth Token / Error
+P2 --> D2 : ensureUserRow()\n+ fetchProfile()
+D2 --> P2 : Data Profil User\n(name, birth_date)
+
+' -- P3 -> D2 --
+P3 --> D2 : UPDATE public.users\n(name, birth_date)\nWHERE id = auth.uid()
+D2 --> P3 : Data Profil Terbaru\n(name, birth_date, email)
+
+' -- P4 -> P5, D3 --
+P4 --> P5 : File Lampiran Foto\n(jika ada)
+P5 --> P4 : secure_url / null
+P4 --> D3 : INSERT pengaduan\n(user_id, name, nik,\ndate, address, description,\nattachment_url,\nstatus = menunggu)
+
+' -- P5 -> D4 --
+P5 --> D4 : Upload Gambar\n(Dio POST,\nupload_preset: upload)
+D4 --> P5 : Respons\nsecure_url
+
+' -- P6 -> D3 --
+P6 --> D3 : SELECT * FROM pengaduan\nWHERE user_id = auth.uid()\nORDER BY created_at DESC
+D3 --> P6 : List Pengaduan User\n(nama, status, tanggal,\nadmin_note, attachment_url)
+
+' -- P7 -> D3 --
+P7 --> D3 : SELECT ALL pengaduan /\nUPDATE SET status,\nadmin_note WHERE id = ?
+D3 --> P7 : List Semua Pengaduan\n(nama, NIK, status,\ntanggal, attachment_url)
+
+' -- P8 -> D3 --
+P8 --> D3 : SELECT pengaduan\n(filter minggu berjalan\n+ 5 terbaru)
+D3 --> P8 : Data Statistik Harian\n(Sen-Min) + 5 Pengaduan\nTerbaru
+
+' -- P9 -> D5 --
+P9 --> D5 : Baca listData[index]\n(index 0-10)
+D5 --> P9 : Judul Kategori +\nDaftar Persyaratan +\nReferensi Perda
+
+' -- P10 -> D1 --
+P10 --> D1 : signOut()\n(hapus sesi auth)
+
+@enduml

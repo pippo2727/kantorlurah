@@ -1,0 +1,144 @@
+@startuml UseCase_Kantor_Lurah_Maharatu
+
+skinparam actorStyle awesome
+skinparam packageStyle rectangle
+skinparam roundcorner 10
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam usecaseBackgroundColor #FEFEFE
+skinparam usecaseBorderColor #555555
+skinparam usecaseFontSize 11
+skinparam arrowColor #333333
+
+left to right direction
+
+title Use Case Diagram\nSistem Informasi Kantor Lurah Maharatu
+
+actor "Masyarakat\n(User)" as User
+actor "Admin\n(Lurah)" as Admin
+actor "Supabase" as Supabase <<System>>
+actor "Cloudinary" as Cloudinary <<System>>
+
+rectangle "Sistem Informasi Kantor Lurah Maharatu" {
+
+  package "Autentikasi" #E8F5E9 {
+    usecase "Register Akun" as UC_Register
+    usecase "Login" as UC_Login
+    usecase "Logout" as UC_Logout
+    usecase "Validasi Kredensial" as UC_ValidasiAuth
+    usecase "Auto-Create User Row" as UC_AutoCreate
+  }
+
+  package "Manajemen Profil" #E3F2FD {
+    usecase "Lihat Profil" as UC_LihatProfil
+    usecase "Edit Profil\n(Nama & Tgl Lahir)" as UC_EditProfil
+  }
+
+  package "Pengaduan Masyarakat" #FFF3E0 {
+    usecase "Buat Pengaduan Baru" as UC_BuatPengaduan
+    usecase "Upload Lampiran\n(Foto)" as UC_UploadLampiran
+    usecase "Lihat Pengaduan Saya" as UC_LihatPengaduanSaya
+    usecase "Cari & Filter\nPengaduan" as UC_CariPengaduan
+    usecase "Lihat Detail\nPengaduan" as UC_DetailPengaduan
+  }
+
+  package "Kelola Pengaduan (Admin)" #FFEBEE {
+    usecase "Lihat Semua\nPengaduan" as UC_LihatSemuaPengaduan
+    usecase "Lihat Dashboard\n& Statistik" as UC_Dashboard
+    usecase "Ubah Status\nPengaduan" as UC_UbahStatus
+    usecase "Tambah Catatan\nAdmin" as UC_TambahCatatan
+    usecase "Cari & Filter\nPengaduan (Admin)" as UC_CariPengaduanAdmin
+  }
+
+  package "Informasi Layanan" #F3E5F5 {
+    usecase "Lihat Informasi\nPersyaratan" as UC_LihatPersyaratan
+    usecase "Lihat Persyaratan\nAhli Waris" as UC_AhliWaris
+    usecase "Lihat Persyaratan\nNikah" as UC_Nikah
+    usecase "Lihat Persyaratan\nSKTM" as UC_SKTM
+    usecase "Lihat Persyaratan\nKeterangan" as UC_Keterangan
+    usecase "Lihat Persyaratan\nSKPW" as UC_SKPW
+    usecase "Lihat Persyaratan\nPenghasilan" as UC_Penghasilan
+    usecase "Lihat Persyaratan\nKematian" as UC_Kematian
+    usecase "Lihat Persyaratan\nSKBMR" as UC_SKBMR
+    usecase "Lihat Persyaratan\nRekom Usaha" as UC_RekomUsaha
+    usecase "Lihat Persyaratan\nDomisili" as UC_Domisili
+    usecase "Lihat Persyaratan\nDomisili Usaha" as UC_DomisiliUsaha
+    usecase "Lihat Jam\nPelayanan" as UC_JamPelayanan
+    usecase "Lihat Profil\nKantor Kelurahan" as UC_ProfilKantor
+  }
+}
+
+User --> UC_Register
+User --> UC_Login
+User --> UC_Logout
+User --> UC_LihatProfil
+User --> UC_EditProfil
+User --> UC_BuatPengaduan
+User --> UC_LihatPengaduanSaya
+User --> UC_CariPengaduan
+User --> UC_DetailPengaduan
+User --> UC_LihatPersyaratan
+User --> UC_JamPelayanan
+User --> UC_ProfilKantor
+
+Admin --> UC_Login
+Admin --> UC_Logout
+Admin --> UC_LihatProfil
+Admin --> UC_LihatSemuaPengaduan
+Admin --> UC_Dashboard
+Admin --> UC_UbahStatus
+Admin --> UC_TambahCatatan
+Admin --> UC_CariPengaduanAdmin
+
+UC_Login ..> UC_ValidasiAuth : <<include>>
+UC_Register ..> UC_ValidasiAuth : <<include>>
+UC_Register ..> UC_AutoCreate : <<include>>
+UC_BuatPengaduan ..> UC_UploadLampiran : <<extend>>
+UC_UbahStatus ..> UC_TambahCatatan : <<extend>>
+
+UC_LihatPersyaratan ..> UC_AhliWaris : <<extend>>
+UC_LihatPersyaratan ..> UC_Nikah : <<extend>>
+UC_LihatPersyaratan ..> UC_SKTM : <<extend>>
+UC_LihatPersyaratan ..> UC_Keterangan : <<extend>>
+UC_LihatPersyaratan ..> UC_SKPW : <<extend>>
+UC_LihatPersyaratan ..> UC_Penghasilan : <<extend>>
+UC_LihatPersyaratan ..> UC_Kematian : <<extend>>
+UC_LihatPersyaratan ..> UC_SKBMR : <<extend>>
+UC_LihatPersyaratan ..> UC_RekomUsaha : <<extend>>
+UC_LihatPersyaratan ..> UC_Domisili : <<extend>>
+UC_LihatPersyaratan ..> UC_DomisiliUsaha : <<extend>>
+
+UC_ValidasiAuth --> Supabase
+UC_AutoCreate --> Supabase
+UC_BuatPengaduan --> Supabase
+UC_LihatPengaduanSaya --> Supabase
+UC_LihatSemuaPengaduan --> Supabase
+UC_UbahStatus --> Supabase
+UC_EditProfil --> Supabase
+UC_UploadLampiran --> Cloudinary
+
+note right of UC_Login
+  Admin teridentifikasi melalui
+  email: **admin@demo.com**
+  Login admin -> Admin Dashboard
+  Login user -> User Home
+end note
+
+note right of UC_BuatPengaduan
+  Form: Nama, NIK (16 digit),
+  Tanggal, Alamat, Uraian (min 20 char),
+  Lampiran foto (opsional)
+end note
+
+note right of UC_UbahStatus
+  Status: menunggu -> diproses
+  -> selesai / ditolak
+end note
+
+note bottom of UC_Dashboard
+  Grafik bar mingguan
+  jumlah pengaduan (Sen-Min)
+  + 5 pengaduan terbaru
+end note
+
+@enduml

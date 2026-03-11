@@ -1,0 +1,32 @@
+@startuml DFD_Level0_Context_Diagram
+
+skinparam roundcorner 15
+skinparam defaultFontSize 11
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam rectangleBackgroundColor #FEFEFE
+skinparam rectangleBorderColor #555555
+
+title DFD Level 0 - Context Diagram\nSistem Informasi Kantor Lurah Maharatu
+
+actor "Masyarakat\n(User)" as ExtUser0
+actor "Admin\n(Lurah)" as ExtAdmin0
+
+rectangle "Sistem Informasi\nKantor Lurah\nMaharatu" as SistemUtama #E8F5E9
+
+database "Supabase\n(Database)" as DB0 #FFF9C4
+cloud "Cloudinary\n(Image Storage)" as Cloud0 #FFF3E0
+
+ExtUser0 -right-> SistemUtama : Data Registrasi,\nData Login,\nData Pengaduan,\nData Profil,\nLampiran Foto
+SistemUtama -left-> ExtUser0 : Info Persyaratan,\nInfo Jam Pelayanan,\nInfo Profil Kantor,\nStatus Pengaduan,\nData Profil User
+
+ExtAdmin0 -left-> SistemUtama : Data Login,\nPerubahan Status,\nCatatan Admin
+SistemUtama -right-> ExtAdmin0 : Dashboard Statistik,\nDaftar Semua Pengaduan,\nDetail Pengaduan
+
+SistemUtama -down-> DB0 : CRUD Data User,\nCRUD Data Pengaduan,\nAuth (signUp/signIn/signOut)
+DB0 -up-> SistemUtama : Data User,\nData Pengaduan,\nAuth Token
+
+SistemUtama -down-> Cloud0 : Upload Gambar
+Cloud0 -up-> SistemUtama : secure_url Gambar
+
+@enduml

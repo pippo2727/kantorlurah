@@ -1,0 +1,189 @@
+@startuml DFD_Level1_Detail_Proses
+
+skinparam defaultFontSize 9
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam roundcorner 5
+skinparam padding 2
+
+skinparam usecase {
+  BackgroundColor #C8E6C9
+  BorderColor #388E3C
+  FontSize 9
+  FontColor #1B5E20
+}
+skinparam database {
+  BackgroundColor #FFF9C4
+  BorderColor #F9A825
+  FontSize 9
+}
+skinparam cloud {
+  BackgroundColor #FFF3E0
+  BorderColor #FF9800
+  FontSize 9
+}
+skinparam storage {
+  BackgroundColor #F3E5F5
+  BorderColor #9C27B0
+  FontSize 9
+}
+skinparam actor {
+  FontSize 9
+}
+skinparam arrow {
+  FontSize 7
+  Color #555555
+  Thickness 1
+}
+
+scale max 1024 width
+scale max 1448 height
+
+title <size:14>DFD Level 1 - Detail Proses</size>\n<size:11>Sistem Informasi Kantor Lurah Maharatu</size>
+
+' ==============================
+' EXTERNAL ENTITIES (LEFT)
+' ==============================
+actor "Masyarakat" as Masy
+actor "Admin" as Adm
+
+' ==============================
+' PROCESSES (CENTER)
+' ==============================
+usecase "1.0\nRegistrasi" as P1
+usecase "2.0\nLogin" as P2
+usecase "3.0\nProfil User" as P3
+usecase "4.0\nBuat\nPengaduan" as P4
+usecase "5.0\nUpload\nLampiran" as P5
+usecase "6.0\nPengaduan\nSaya" as P6
+usecase "7.0\nKelola\nPengaduan" as P7
+usecase "8.0\nDashboard" as P8
+usecase "9.0\nInfo\nPersyaratan" as P9
+usecase "10.0\nLogout" as P10
+
+' ==============================
+' DATA STORES (RIGHT)
+' ==============================
+database "D1: auth.users" as D1
+database "D2: public.users" as D2
+database "D3: pengaduan" as D3
+cloud "D4: Cloudinary" as D4
+storage "D5: persyaratan\n(Static)" as D5
+
+' ==============================
+' LAYOUT HINTS
+' ==============================
+Masy -[hidden]down- Adm
+
+P1 -[hidden]right- D1
+P2 -[hidden]right- D1
+P3 -[hidden]right- D2
+P4 -[hidden]right- D3
+P5 -[hidden]right- D4
+P6 -[hidden]right- D3
+P7 -[hidden]right- D3
+P8 -[hidden]right- D3
+P9 -[hidden]right- D5
+P10 -[hidden]right- D1
+
+P1 -[hidden]down- P2
+P2 -[hidden]down- P3
+P3 -[hidden]down- P4
+P4 -[hidden]down- P5
+P5 -[hidden]down- P6
+P6 -[hidden]down- P7
+P7 -[hidden]down- P8
+P8 -[hidden]down- P9
+P9 -[hidden]down- P10
+
+D1 -[hidden]down- D2
+D2 -[hidden]down- D3
+D3 -[hidden]down- D4
+D4 -[hidden]down- D5
+
+' ==============================
+' MASYARAKAT -> PROSES
+' ==============================
+Masy --> P1 : Nama, Email,\nPassword, Tgl Lahir
+P1 --> Masy : Konfirmasi\nBerhasil/Gagal
+
+Masy --> P2 : Email, Password
+P2 --> Masy : Akses User Home
+
+Masy --> P3 : Nama Baru,\nTgl Lahir Baru
+P3 --> Masy : Data Profil\nTerbaru
+
+Masy --> P4 : Nama, NIK, Tgl,\nAlamat, Uraian, Foto
+P4 --> Masy : Konfirmasi\nTerkirim/Gagal
+
+Masy --> P6 : Request + Filter
+P6 --> Masy : Daftar & Detail\nPengaduan
+
+Masy --> P9 : Pilih Kategori\n(index 0-10)
+P9 --> Masy : Info Persyaratan,\nPerda, Download
+
+Masy --> P10 : Request Logout
+P10 --> Masy : Redirect Welcome
+
+' ==============================
+' ADMIN -> PROSES
+' ==============================
+Adm --> P2 : Email, Password
+P2 --> Adm : Akses Admin\nDashboard
+
+Adm --> P7 : Filter, Status Baru,\nCatatan Admin
+P7 --> Adm : Daftar & Detail\nPengaduan
+
+Adm --> P8 : Request Dashboard
+P8 --> Adm : Grafik Mingguan\n+ 5 Terbaru
+
+Adm --> P10 : Request Logout
+P10 --> Adm : Redirect Welcome
+
+' ==============================
+' PROSES -> DATA STORE
+' ==============================
+
+' P1 Registrasi
+P1 --> D1 : INSERT auth.users\n(email, password, metadata)
+P1 --> D2 : UPSERT public.users\n(id, name, email, birth_date)
+
+' P2 Login
+P2 --> D1 : signInWithPassword
+D1 --> P2 : Auth Token / Error
+P2 --> D2 : ensureUserRow()\n+ fetchProfile()
+D2 --> P2 : Data Profil\n(name, birth_date)
+
+' P3 Profil
+P3 --> D2 : UPDATE name, birth_date\nWHERE id = auth.uid()
+D2 --> P3 : Profil Terbaru
+
+' P4 Buat Pengaduan
+P4 --> P5 : File Foto (jika ada)
+P5 --> P4 : secure_url / null
+P4 --> D3 : INSERT pengaduan\n(user_id, name, nik, date,\naddress, desc, url,\nstatus=menunggu)
+
+' P5 Upload
+P5 --> D4 : Upload Gambar\n(Dio POST)
+D4 --> P5 : secure_url
+
+' P6 Pengaduan Saya
+P6 --> D3 : SELECT WHERE\nuser_id = auth.uid()
+D3 --> P6 : List Pengaduan User
+
+' P7 Kelola Pengaduan
+P7 --> D3 : SELECT ALL /\nUPDATE status, admin_note
+D3 --> P7 : List Semua Pengaduan
+
+' P8 Dashboard
+P8 --> D3 : SELECT pengaduan\n(minggu ini + 5 terbaru)
+D3 --> P8 : Data Statistik
+
+' P9 Persyaratan
+P9 --> D5 : Baca listData[index]
+D5 --> P9 : Daftar Persyaratan\n+ Referensi Perda
+
+' P10 Logout
+P10 --> D1 : signOut()
+
+@enduml

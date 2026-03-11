@@ -1,0 +1,790 @@
+@startuml Activity_01_Splash_dan_Welcome
+
+skinparam roundcorner 10
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam ActivityBackgroundColor #FEFEFE
+skinparam ActivityBorderColor #555555
+skinparam ActivityFontSize 11
+
+title Activity Diagram 1 - Splash Screen & Halaman Welcome\nSistem Informasi Kantor Lurah Maharatu
+
+|#E8F5E9|Pengguna|
+start
+:Buka Aplikasi;
+
+|#FFF9C4|Sistem|
+:Inisialisasi Supabase\n(URL + Anon Key);
+:Tampilkan SplashView\n(Logo + "KELURAHAN MAHARATU PEKANBARU");
+:Delay 3 detik;
+:Navigasi dengan Fade Transition\n(1 detik) ke FirstView;
+:Tampilkan FirstView;
+note right
+  Komponen FirstView:
+  - Background image (70% tinggi)
+  - Logo "PELAYANANKU"
+  - Teks "SELAMAT DATANG"
+  - Tombol "Masuk"
+  - Tombol "Daftar"
+end note
+
+|#E8F5E9|Pengguna|
+if (Pilih aksi?) then (Masuk)
+  :Navigasi ke LoginView;
+else (Daftar)
+  :Navigasi ke RegisterView;
+endif
+
+stop
+
+@enduml
+
+@startuml Activity_02_Registrasi
+
+skinparam roundcorner 10
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam ActivityBackgroundColor #FEFEFE
+skinparam ActivityBorderColor #555555
+skinparam ActivityFontSize 11
+
+title Activity Diagram 2 - Registrasi Akun\nSistem Informasi Kantor Lurah Maharatu
+
+|#E8F5E9|Masyarakat|
+start
+:Pilih "Daftar" di FirstView;
+:Tampilkan RegisterView;
+:Isi Form Registrasi;
+note right
+  Field Form:
+  - Nama Lengkap (min 2 karakter)
+  - Tanggal Lahir (DatePicker, 1900-sekarang)
+  - Email (harus mengandung @)
+  - Password (min 6 karakter)
+  - Konfirmasi Password (harus cocok)
+end note
+:Tekan Tombol "Daftar";
+
+|#FFF9C4|Sistem|
+:Validasi Form (_formKey);
+
+if (Form valid?) then (Tidak)
+  :Tampilkan pesan error\npada masing-masing field;
+  |#E8F5E9|Masyarakat|
+  :Perbaiki input;
+  stop
+endif
+
+:Cek tanggal lahir != null;
+
+if (Tanggal lahir diisi?) then (Tidak)
+  :AppSnackbar.error\n("Tanggal lahir wajib diisi");
+  |#E8F5E9|Masyarakat|
+  :Perbaiki input;
+  stop
+endif
+
+:Tampilkan Loading Overlay;
+:Supabase Auth signUp\n(email, password, metadata:\nname, birth_date);
+:Trigger handle_new_user()\nINSERT ke public.users;
+
+if (Registrasi berhasil?) then (Ya)
+  if (response.user != null?) then (Ya)
+    :AppSnackbar.success\n("Pendaftaran berhasil!\nSilakan masuk.");
+  else (Perlu konfirmasi email)
+    :AppSnackbar.success\n("Cek email Anda\nuntuk konfirmasi...");
+  endif
+  :Tutup Loading;
+  |#E8F5E9|Masyarakat|
+  :Navigator.pop()\nKembali ke FirstView;
+else (Gagal)
+  :Tutup Loading;
+  :AppSnackbar.error\n(AuthException.message /\n"Terjadi kesalahan");
+  |#E8F5E9|Masyarakat|
+  :Tetap di RegisterView;
+endif
+
+stop
+
+@enduml
+
+@startuml Activity_03_Login
+
+skinparam roundcorner 10
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam ActivityBackgroundColor #FEFEFE
+skinparam ActivityBorderColor #555555
+skinparam ActivityFontSize 11
+
+title Activity Diagram 3 - Login\nSistem Informasi Kantor Lurah Maharatu
+
+|#E8F5E9|Pengguna|
+start
+:Pilih "Masuk" di FirstView;
+:Tampilkan LoginView;
+:Masukkan Email & Password;
+note right
+  Validasi:
+  - Email wajib, harus mengandung @
+  - Password wajib
+end note
+:Tekan Tombol "Masuk";
+
+|#FFF9C4|Sistem|
+:Validasi Form;
+
+if (Form valid?) then (Tidak)
+  :Tampilkan error pada field;
+  |#E8F5E9|Pengguna|
+  :Perbaiki input;
+  stop
+endif
+
+:Tampilkan Loading Overlay;
+:Supabase signInWithPassword\n(email, password);
+
+if (Autentikasi berhasil?) then (Tidak)
+  :Tutup Loading;
+  :AppSnackbar.error\n(e.message /\n"Terjadi kesalahan");
+  |#E8F5E9|Pengguna|
+  :Tetap di LoginView;
+  stop
+endif
+
+:_ensureUserRow()\n(buat row public.users\njika belum ada);
+
+if (email == admin@demo.com?) then (Ya - Admin)
+  :Tutup Loading;
+  :pushAndRemoveUntil\nAdminMainNavigationView;
+  note right
+    Admin 3 Tab:
+    - Dashboard
+    - Pengaduan
+    - Profil
+  end note
+else (Tidak - Masyarakat)
+  :fetchCurrentUserProfile()\nambil nama dari public.users;
+  :Tutup Loading;
+  :pushAndRemoveUntil\nUserMainNavigationView\n(name, email);
+  note right
+    User 3 Tab:
+    - Beranda
+    - Pengaduan
+    - Profil
+  end note
+endif
+
+|#E8F5E9|Pengguna|
+:Tampilkan Halaman Utama;
+stop
+
+@enduml
+
+@startuml Activity_04_Beranda_User
+
+skinparam roundcorner 10
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam ActivityBackgroundColor #FEFEFE
+skinparam ActivityBorderColor #555555
+skinparam ActivityFontSize 11
+
+title Activity Diagram 4 - Beranda / Menu Utama (User)\nSistem Informasi Kantor Lurah Maharatu
+
+|#E8F5E9|Masyarakat|
+start
+:Buka Tab Beranda\n(MainView);
+
+|#FFF9C4|Sistem|
+:Tampilkan Logo "PELAYANANKU"\n+ "KANTOR LURAH MAHARATU";
+:Tampilkan Grid 2x2\nMENU LAYANAN;
+note right
+  4 Menu Card:
+  1. Informasi Persyaratan (teal)
+  2. Pengaduan Masyarakat (orange)
+  3. Jam Pelayanan (biru)
+  4. Profil Kantor (hijau)
+
+  Footer: email, IG, telepon
+end note
+
+|#E8F5E9|Masyarakat|
+:Pilih salah satu menu;
+
+if (Menu dipilih?) then (Informasi Persyaratan)
+  :Navigasi ke PersyaratanView;
+  note right: Lihat Activity Diagram 9
+end note
+elseif (Pengaduan Masyarakat) then
+  :Navigasi ke PengaduanView;
+  note right: Lihat Activity Diagram 5 & 6
+end note
+elseif (Jam Pelayanan) then
+  :Navigasi ke WaktuView;
+elseif (Profil Kantor) then
+  :Navigasi ke ProfilView;
+endif
+
+stop
+
+@enduml
+
+@startuml Activity_05_Buat_Pengaduan
+
+skinparam roundcorner 10
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam ActivityBackgroundColor #FEFEFE
+skinparam ActivityBorderColor #555555
+skinparam ActivityFontSize 11
+
+title Activity Diagram 5 - Buat Pengaduan Baru\nSistem Informasi Kantor Lurah Maharatu
+
+|#E8F5E9|Masyarakat|
+start
+:Pilih Tab/Menu Pengaduan;
+:Tampilkan PengaduanView;
+note right
+  2 Pilihan menu:
+  1. Buat Pengaduan Baru
+  2. Pengaduan Saya
+end note
+:Pilih "Buat Pengaduan Baru";
+:Tampilkan InputPengaduanView;
+:Isi Form Pengaduan;
+note right
+  DATA PELAPOR:
+  - Nama Lengkap (wajib)
+  - NIK (wajib, tepat 16 digit angka)
+  - Tanggal Kejadian (DatePicker,
+    prefill hari ini, range 2000-sekarang)
+  - Alamat (TextArea, 2-4 baris, wajib)
+
+  ISI PENGADUAN:
+  - Uraian Pengaduan (TextArea, 4-8 baris,
+    wajib, min 20 karakter)
+
+  LAMPIRAN:
+  - Foto/Bukti (opsional, FileUploadField)
+end note
+
+if (Ingin lampirkan foto?) then (Ya)
+  :Tekan area upload;
+  |#FFF9C4|Sistem|
+  :Tampilkan BottomSheet\n3 opsi: Kamera, Galeri, Batal;
+  |#E8F5E9|Masyarakat|
+  if (Pilih sumber?) then (Kamera)
+    :Buka Kamera (ImagePicker);
+  else (Galeri)
+    :Buka Galeri (ImagePicker);
+  endif
+  |#FFF9C4|Sistem|
+  :Ambil gambar\n(imageQuality: 75);
+  :Tampilkan Preview Foto\n(tombol Ganti & Hapus);
+else (Tidak)
+  :Lanjut tanpa lampiran;
+endif
+
+|#E8F5E9|Masyarakat|
+:Tekan "Kirim Pengaduan";
+
+|#FFF9C4|Sistem|
+:Validasi Seluruh Form;
+
+if (Validasi berhasil?) then (Tidak)
+  :Tampilkan error pada field;
+  |#E8F5E9|Masyarakat|
+  :Perbaiki input;
+  stop
+endif
+
+:Tampilkan Loading Overlay;
+
+if (Ada file lampiran?) then (Ya)
+  :Upload ke Cloudinary API\n(Dio POST, upload_preset: upload);
+  :Terima secure_url;
+else (Tidak)
+  :attachment_url = null;
+endif
+
+:INSERT INTO pengaduan\n(user_id, name, nik, date,\naddress, description,\nattachment_url,\nstatus = "menunggu");
+
+if (Berhasil?) then (Ya)
+  :Tutup Loading;
+  :AppSnackbar.success\n("Pengaduan berhasil dikirim!");
+  |#E8F5E9|Masyarakat|
+  :Navigator.pop()\nKembali ke PengaduanView;
+else (Gagal)
+  :Tutup Loading;
+  :AppSnackbar.error\n("Gagal mengirim pengaduan");
+  |#E8F5E9|Masyarakat|
+  :Tetap di form;
+endif
+
+stop
+
+@enduml
+
+@startuml Activity_06_Lihat_Pengaduan_User
+
+skinparam roundcorner 10
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam ActivityBackgroundColor #FEFEFE
+skinparam ActivityBorderColor #555555
+skinparam ActivityFontSize 11
+
+title Activity Diagram 6 - Lihat Pengaduan Saya (User)\nSistem Informasi Kantor Lurah Maharatu
+
+|#E8F5E9|Masyarakat|
+start
+:Pilih "Pengaduan Saya"\ndari PengaduanView;
+
+|#FFF9C4|Sistem|
+:fetchMyPengaduan()\nSELECT * FROM pengaduan\nWHERE user_id = auth.uid()\nORDER BY created_at DESC;
+
+if (Query berhasil?) then (Ya)
+  if (Data pengaduan ada?) then (Ya)
+    :Tampilkan Daftar Pengaduan\n(Card: nama bold, status badge\ndengan warna & ikon, tanggal,\ndeskripsi max 2 baris);
+  else (Kosong)
+    :Tampilkan "Belum ada pengaduan";
+  endif
+else (Error)
+  :Tampilkan pesan error\n+ tombol "Coba Lagi";
+endif
+
+|#E8F5E9|Masyarakat|
+:Interaksi dengan daftar;
+note right
+  Fitur:
+  - Search bar (filter nama,
+    deskripsi, alamat)
+  - Filter status chips
+    (Semua, Menunggu, Diproses,
+    Selesai, Ditolak)
+  - Pull-to-refresh
+  - Tombol refresh di AppBar
+end note
+
+:Pilih salah satu pengaduan;
+
+|#FFF9C4|Sistem|
+:Tampilkan PengaduanDetailView;
+note right
+  Konten Detail (read-only):
+  - Banner status berwarna
+    (ikon + "Status: label")
+  - Catatan Admin (jika ada,
+    container amber)
+  - Nama, NIK, Tanggal (DD/MM/YYYY)
+  - Alamat, Keterangan
+  - Foto lampiran (jika ada,
+    Image.network)
+end note
+
+|#E8F5E9|Masyarakat|
+:Baca detail & status pengaduan;
+:Kembali ke daftar;
+stop
+
+@enduml
+
+@startuml Activity_07_Kelola_Pengaduan_Admin
+
+skinparam roundcorner 10
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam ActivityBackgroundColor #FEFEFE
+skinparam ActivityBorderColor #555555
+skinparam ActivityFontSize 11
+
+title Activity Diagram 7 - Kelola Pengaduan (Admin)\nSistem Informasi Kantor Lurah Maharatu
+
+|#FFCDD2|Admin|
+start
+:Buka Tab Pengaduan\n(AdminPengaduanView);
+
+|#FFF9C4|Sistem|
+:fetchAllPengaduan()\nSELECT * FROM pengaduan\nORDER BY created_at DESC;
+
+if (Query berhasil?) then (Ya)
+  :Tampilkan Daftar Semua\nPengaduan Masyarakat;
+  note right
+    Card: Nama bold + NIK,
+    status badge (ikon + warna),
+    tanggal + alamat (ikon lokasi),
+    deskripsi max 2 baris
+  end note
+else (Error)
+  :Tampilkan pesan error\n+ tombol "Coba Lagi";
+endif
+
+|#FFCDD2|Admin|
+:Interaksi dengan daftar;
+note right
+  Fitur:
+  - Search bar (filter nama,
+    NIK, deskripsi, alamat)
+  - Filter status chips
+    (Semua, Menunggu, Diproses,
+    Selesai, Ditolak)
+  - Pull-to-refresh
+  - Tombol refresh di AppBar
+end note
+
+:Pilih pengaduan untuk ditinjau;
+
+|#FFF9C4|Sistem|
+:Tampilkan AdminPengaduanDetailView;
+note right
+  Informasi Pelapor (read-only):
+  Nama, NIK, Tanggal, Alamat,
+  Keterangan, Foto Lampiran
+
+  Aksi Admin:
+  - Dropdown Status (Menunggu /
+    Diproses / Selesai / Ditolak)
+    dengan ikon per status
+  - Catatan Admin (TextFormField,
+    3 baris, opsional)
+  - Tombol "Simpan Perubahan"
+end note
+
+|#FFCDD2|Admin|
+:Pilih Status Baru\n(Dropdown 4 opsi);
+:Tulis Catatan Admin (opsional);
+:Tekan "Simpan Perubahan";
+
+|#FFF9C4|Sistem|
+:updateStatus(id, status, adminNote)\nUPDATE pengaduan\nSET status, admin_note\nWHERE id = ?;
+
+if (Berhasil?) then (Ya)
+  :SnackBar hijau\n"Status berhasil diperbarui";
+  :Navigator.pop(true);
+  :Reload daftar pengaduan;
+else (Gagal)
+  :SnackBar merah\n"Gagal menyimpan: error";
+endif
+
+|#FFCDD2|Admin|
+:Kembali ke daftar pengaduan;
+stop
+
+@enduml
+
+@startuml Activity_08_Dashboard_Admin
+
+skinparam roundcorner 10
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam ActivityBackgroundColor #FEFEFE
+skinparam ActivityBorderColor #555555
+skinparam ActivityFontSize 11
+
+title Activity Diagram 8 - Dashboard Admin\nSistem Informasi Kantor Lurah Maharatu
+
+|#FFCDD2|Admin|
+start
+:Buka Tab Dashboard\n(AdminDashboardView);
+
+|#FFF9C4|Sistem|
+:fetchAllPengaduan();
+
+if (Query berhasil?) then (Ya)
+  :Tampilkan Logo "PELAYANANKU";
+  :Hitung jumlah pengaduan\nper hari minggu berjalan\n(Senin - Minggu);
+  :Tampilkan "LAPORAN MINGGU INI"\nGrafik Bar (SfCartesianChart);
+  note right
+    X-axis: Sen, Sel, Rab,
+    Kam, Jum, Sab, Min
+    Y-axis: jumlah pengaduan
+    Warna: Teal, data labels
+  end note
+  if (Ada pengaduan?) then (Ya)
+    :Tampilkan "5 PENGADUAN TERAKHIR"\n(Card: nama, status badge,\ndeskripsi 2 baris,\ntimestamp DD/MM/YYYY HH:MM);
+  else (Kosong)
+    :Tampilkan ikon inbox\n+ "Belum ada pengaduan";
+  endif
+else (Error)
+  :Tampilkan pesan error\n+ tombol "Coba Lagi";
+endif
+
+|#FFCDD2|Admin|
+:Analisis grafik statistik;
+:Tinjau pengaduan terbaru;
+
+if (Ingin refresh?) then (Ya)
+  :Tekan tombol refresh\ndi AppBar;
+  |#FFF9C4|Sistem|
+  :Reload fetchAllPengaduan();
+else (Tidak)
+  :Lanjut analisis;
+endif
+
+|#FFCDD2|Admin|
+stop
+
+@enduml
+
+@startuml Activity_09_Informasi_Persyaratan
+
+skinparam roundcorner 10
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam ActivityBackgroundColor #FEFEFE
+skinparam ActivityBorderColor #555555
+skinparam ActivityFontSize 11
+
+title Activity Diagram 9 - Informasi Persyaratan Layanan\nSistem Informasi Kantor Lurah Maharatu
+
+|#E8F5E9|Masyarakat|
+start
+:Pilih "Informasi Persyaratan"\ndari Beranda;
+:Tampilkan PersyaratanView;
+note right
+  Grid 11 sub-menu ikon:
+  Baris 1: Ahli Waris, Nikah,
+    SKTM, Kematian
+  Baris 2: Keterangan, SKBMR,
+    SKPW, Domisili
+  Baris 3: Rekom Usaha,
+    Penghasilan, Domisili Usaha
+
+  Footer: info kontak kantor
+end note
+
+:Pilih salah satu kategori;
+
+|#FFF9C4|Sistem|
+:Buka View detail kategori;
+:Ambil data statis dari\nlistData[index].persyaratan;
+:Tampilkan Header "PERSYARATAN";
+:Tampilkan daftar persyaratan\n(numbered list);
+:Tampilkan referensi\n"Peraturan Daerah Kota Pekanbaru\nNomor 273 Tahun 2017";
+
+|#E8F5E9|Masyarakat|
+:Baca daftar persyaratan;
+
+if (Kategori = Nikah?) then (Ya)
+  :Tampilkan tombol Download;
+  :Tekan Download;
+  |#FFF9C4|Sistem|
+  :Buka Google Docs URL\n(url_launcher) untuk\nFormulir Permohonan Nikah;
+else (Tidak)
+  :Selesai membaca persyaratan;
+endif
+
+|#E8F5E9|Masyarakat|
+:Kembali ke PersyaratanView;
+stop
+
+@enduml
+
+@startuml Activity_10_Jam_Pelayanan
+
+skinparam roundcorner 10
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam ActivityBackgroundColor #FEFEFE
+skinparam ActivityBorderColor #555555
+skinparam ActivityFontSize 11
+
+title Activity Diagram 10 - Jam Pelayanan\nSistem Informasi Kantor Lurah Maharatu
+
+|#E8F5E9|Masyarakat|
+start
+:Pilih "Jam Pelayanan"\ndari Beranda;
+
+|#FFF9C4|Sistem|
+:Tampilkan WaktuView;
+:Tampilkan "JAM LAYANAN KANTOR";
+note right
+  Jadwal:
+  Senin - Kamis: 08:00 - 15:30
+  Jumat: 08:00 - 11:30
+  Sabtu - Minggu: Libur
+end note
+:Tampilkan "CATATAN LAYANAN";
+note right
+  Istirahat:
+  Sen - Kam: 12:00 - 13:00
+  Jumat: 11:30 - 13:15
+  Hari libur nasional tutup
+end note
+
+|#E8F5E9|Masyarakat|
+:Baca informasi jam pelayanan;
+:Kembali ke Beranda;
+stop
+
+@enduml
+
+@startuml Activity_11_Profil_Kantor
+
+skinparam roundcorner 10
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam ActivityBackgroundColor #FEFEFE
+skinparam ActivityBorderColor #555555
+skinparam ActivityFontSize 11
+
+title Activity Diagram 11 - Profil Kantor\nSistem Informasi Kantor Lurah Maharatu
+
+|#E8F5E9|Masyarakat|
+start
+:Pilih "Profil Kantor"\ndari Beranda;
+
+|#FFF9C4|Sistem|
+:Tampilkan ProfilView;
+:Tampilkan Carousel Gambar\n(3 foto, auto-play);
+:Tampilkan Deskripsi Kantor\nLurah Maharatu;
+:Tampilkan Identitas Kantor;
+note right
+  - Nama: Kelurahan Maharatu
+  - Kecamatan: Marpoyan Damai
+  - Kota: Pekanbaru
+  - Provinsi: Riau
+  - Status: Kelurahan
+end note
+:Tampilkan Visi & Misi\n(4 poin misi);
+:Tampilkan Footer kontak;
+
+|#E8F5E9|Masyarakat|
+:Baca informasi profil kantor;
+:Scroll dan lihat carousel;
+:Kembali ke Beranda;
+stop
+
+@enduml
+
+@startuml Activity_12_Lihat_dan_Edit_Profil
+
+skinparam roundcorner 10
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam ActivityBackgroundColor #FEFEFE
+skinparam ActivityBorderColor #555555
+skinparam ActivityFontSize 11
+
+title Activity Diagram 12 - Lihat & Edit Profil\nSistem Informasi Kantor Lurah Maharatu
+
+|#E8F5E9|Pengguna|
+start
+:Buka Tab Profil\n(NavProfileTabView);
+
+|#FFF9C4|Sistem|
+if (isAdmin?) then (Ya)
+  :Tampilkan profil Admin;
+  note right
+    Header teal:
+    - Inisial "A" di CircleAvatar
+    - Nama: "Admin"
+    - Email: admin@demo.com
+    - Badge "Administrator"
+
+    Menu:
+    - Edit Profil (disabled)
+    - Syarat & Ketentuan (TODO)
+    - Kebijakan Privasi (TODO)
+    - Keluar (merah)
+  end note
+else (Tidak)
+  :fetchCurrentUserProfile()\nambil nama & tanggal lahir;
+  :Tampilkan profil Masyarakat;
+  note right
+    Header teal:
+    - Inisial nama di CircleAvatar
+    - Nama lengkap
+    - Email
+
+    Menu:
+    - Edit Profil (aktif)
+    - Syarat & Ketentuan (TODO)
+    - Kebijakan Privasi (TODO)
+    - Keluar (merah)
+  end note
+endif
+
+|#E8F5E9|Pengguna|
+
+if (Pilih Edit Profil\ndan bukan Admin?) then (Ya)
+  :Buka EditProfileView;
+  |#FFF9C4|Sistem|
+  :Tampilkan form dengan\ndata saat ini (nama,\ntanggal lahir);
+  |#E8F5E9|Pengguna|
+  :Edit Nama Lengkap\n(TextFormField, min 2 karakter,\nwords capitalization);
+  :Pilih Tanggal Lahir Baru\n(showDatePicker, range 1900-sekarang);
+  :Tekan Tombol "Simpan";
+  |#FFF9C4|Sistem|
+  :Validasi Input;
+  if (Valid?) then (Ya)
+    :Tampilkan Loading;
+    :UPDATE public.users\nSET name, birth_date\nWHERE id = auth.uid();
+    if (Berhasil?) then (Ya)
+      :AppSnackbar.success\n("Profil berhasil diperbarui");
+      :Navigator.pop(true);
+      :Reload profil di tab;
+    else (Gagal)
+      :AppSnackbar.error\n("Gagal memperbarui profil");
+    endif
+    :Tutup Loading;
+  else (Tidak)
+    :Tampilkan error validasi;
+  endif
+else (Tidak / Admin)
+  :Tetap di halaman profil;
+endif
+
+|#E8F5E9|Pengguna|
+stop
+
+@enduml
+
+@startuml Activity_13_Logout
+
+skinparam roundcorner 10
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam ActivityBackgroundColor #FEFEFE
+skinparam ActivityBorderColor #555555
+skinparam ActivityFontSize 11
+
+title Activity Diagram 13 - Logout\nSistem Informasi Kantor Lurah Maharatu
+
+|#E8F5E9|Pengguna|
+start
+note right
+  Logout dapat dilakukan dari 2 tempat:
+  1. Tab Profil (User & Admin)
+     -> dengan dialog konfirmasi
+  2. Dashboard Admin (AppBar)
+     -> tanpa dialog konfirmasi
+end note
+
+if (Logout dari mana?) then (Tab Profil)
+  :Pilih "Keluar" (merah)\ndi NavProfileTabView;
+  |#FFF9C4|Sistem|
+  :Tampilkan AlertDialog\n"Keluar"\n"Anda yakin ingin keluar?";
+  |#E8F5E9|Pengguna|
+  if (Konfirmasi?) then (Ya - "Keluar")
+    |#FFF9C4|Sistem|
+    :SupabaseService.logout()\nSupabase signOut();
+    :pushAndRemoveUntil\nFirstView()\n(hapus seluruh stack);
+  else (Tidak - "Batal")
+    :Dialog ditutup;
+    |#E8F5E9|Pengguna|
+    :Tetap di halaman profil;
+    stop
+  endif
+else (Dashboard Admin AppBar)
+  |#FFF9C4|Sistem|
+  :SupabaseService.logout()\nSupabase signOut()\n(tanpa konfirmasi);
+  :pushAndRemoveUntil\nFirstView()\n(hapus seluruh stack);
+endif
+
+|#E8F5E9|Pengguna|
+:Kembali ke FirstView\n(halaman welcome);
+stop
+
+@enduml

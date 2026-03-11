@@ -226,11 +226,12 @@ show_menu() {
     echo -e "${BLUE}13. Update Dev Config${NC}"
     echo -e "${GREEN}14. Generate SHA1 & SHA256${NC}"
     echo -e "${YELLOW}15. Clean Unused Localizations${NC}"
+    echo -e "${GREEN}16. Generate Keystore (.jks) & key.properties${NC}"
     echo "0. Exit"
     echo -e "${BLUE}================================${NC}"
     echo -e "Current version: ${GREEN}$(get_full_version)${NC}"
     echo -e "${BLUE}================================${NC}"
-    read -p "Pilih opsi (0-15): " choice
+    read -p "Pilih opsi (0-16): " choice
 }
 
 # Check if argument is passed
@@ -1126,16 +1127,16 @@ case $choice in
         echo ""
 
         # Find all ARB files
-        arb_files=($(find lib/l10n -name "*.arb" 2>/dev/null | sort))
+        arb_files=($(find lib/core/l10n -name "*.arb" 2>/dev/null | sort))
 
         if [ ${#arb_files[@]} -eq 0 ]; then
-            echo -e "${RED}Tidak ada file .arb ditemukan di lib/l10n/${NC}"
+            echo -e "${RED}Tidak ada file .arb ditemukan di lib/core/l10n/${NC}"
             pause
             exit 1
         fi
 
         # Use app_en.arb as reference (or first found)
-        reference_arb="lib/l10n/app_en.arb"
+        reference_arb="lib/core/l10n/app_en.arb"
         if [ ! -f "$reference_arb" ]; then
             reference_arb="${arb_files[0]}"
         fi
@@ -1255,6 +1256,164 @@ PYEOF
         fi
         ;;
 
+    16)
+        # Generate Keystore (.jks) & key.properties
+        echo ""
+        echo -e "${GREEN}================================${NC}"
+        echo -e "${GREEN}   Generate Keystore & key.properties${NC}"
+        echo -e "${GREEN}================================${NC}"
+        echo ""
+        
+        JKS_FILE="keystore.jks"
+        KEY_PROPS="android/key.properties"
+        
+        # Check if keystore already exists
+        if [ -f "$JKS_FILE" ]; then
+            echo -e "${YELLOW}⚠️  File $JKS_FILE sudah ada di root project.${NC}"
+            read -p "Overwrite? (y/N): " confirm_overwrite
+            if [[ ! "$confirm_overwrite" =~ ^[Yy]$ ]]; then
+                echo -e "${YELLOW}Dibatalkan.${NC}"
+                pause
+                exit 0
+            fi
+            rm -f "$JKS_FILE"
+        fi
+        
+        # Check if key.properties already exists
+        if [ -f "$KEY_PROPS" ]; then
+            echo -e "${YELLOW}⚠️  File $KEY_PROPS sudah ada.${NC}"
+            read -p "Overwrite? (y/N): " confirm_overwrite_props
+            if [[ ! "$confirm_overwrite_props" =~ ^[Yy]$ ]]; then
+                echo -e "${YELLOW}Dibatalkan.${NC}"
+                pause
+                exit 0
+            fi
+        fi
+        
+        KEY_ALIAS="upload"
+        STORE_PASSWORD="123456"
+        KEY_PASSWORD="123456"
+        
+        echo ""
+        echo -e "${BLUE}Informasi sertifikat (CN, OU, O, L, ST, C):${NC}"
+        echo -e "${YELLOW}Tekan Enter untuk skip field opsional${NC}"
+        echo ""
+        
+        read -p "Nama lengkap (CN): " cn_name
+        cn_name="${cn_name:-Unknown}"
+        read -p "Unit organisasi (OU): " ou_name
+        ou_name="${ou_name:-Development}"
+        read -p "Organisasi (O): " o_name
+        o_name="${o_name:-Unknown}"
+        read -p "Kota (L): " l_name
+        l_name="${l_name:-Unknown}"
+        read -p "Provinsi (ST): " st_name
+        st_name="${st_name:-Unknown}"
+        read -p "Kode negara 2 huruf (C, default: ID): " c_name
+        c_name="${c_name:-ID}"
+        
+        # Validity in years
+        read -p "Masa berlaku dalam tahun (default: 25): " validity_years
+        validity_years="${validity_years:-25}"
+        validity_days=$((validity_years * 365))
+        
+        DNAME="CN=$cn_name, OU=$ou_name, O=$o_name, L=$l_name, ST=$st_name, C=$c_name"
+        
+        echo ""
+        echo -e "${YELLOW}Generating keystore...${NC}"
+        echo ""
+        
+        # Generate JKS
+        keytool -genkeypair \
+            -v \
+            -keystore "$JKS_FILE" \
+            -alias "$KEY_ALIAS" \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity "$validity_days" \
+            -storepass "$STORE_PASSWORD" \
+            -keypass "$KEY_PASSWORD" \
+            -dname "$DNAME"
+        
+        if [ $? -ne 0 ]; then
+            echo ""
+            echo -e "${RED}❌ Gagal generate keystore!${NC}"
+            pause
+            exit 1
+        fi
+        
+        echo ""
+        echo -e "${GREEN}✅ Keystore berhasil dibuat: $JKS_FILE${NC}"
+        
+        # Generate key.properties
+        cat > "$KEY_PROPS" << KEYEOF
+storePassword=$STORE_PASSWORD
+keyPassword=$KEY_PASSWORD
+keyAlias=$KEY_ALIAS
+storeFile=../../keystore.jks
+KEYEOF
+        
+        echo -e "${GREEN}✅ key.properties berhasil dibuat: $KEY_PROPS${NC}"
+        echo ""
+        
+        # Add to .gitignore if not already there
+        if [ -f ".gitignore" ]; then
+            changed_gitignore=0
+            if ! grep -q "^keystore\.jks$" .gitignore; then
+                echo "" >> .gitignore
+                echo "# Keystore" >> .gitignore
+                echo "keystore.jks" >> .gitignore
+                echo "*.jks" >> .gitignore
+                changed_gitignore=1
+            fi
+            if ! grep -q "^android/key\.properties$" .gitignore && ! grep -q "^key\.properties$" .gitignore; then
+                if [ $changed_gitignore -eq 0 ]; then
+                    echo "" >> .gitignore
+                fi
+                echo "android/key.properties" >> .gitignore
+                changed_gitignore=1
+            fi
+            if [ $changed_gitignore -eq 1 ]; then
+                echo -e "${GREEN}✅ .gitignore updated (keystore.jks & key.properties)${NC}"
+            fi
+        fi
+        
+        # Show SHA1 & SHA256 of new keystore
+        echo ""
+        echo -e "${BLUE}================================${NC}"
+        echo -e "${BLUE}   Keystore Info${NC}"
+        echo -e "${BLUE}================================${NC}"
+        echo ""
+        keytool -list -v -keystore "$JKS_FILE" -alias "$KEY_ALIAS" -storepass "$STORE_PASSWORD" 2>/dev/null | grep -E "SHA1:|SHA256:" | while IFS= read -r line; do
+            if echo "$line" | grep -q "SHA1:"; then
+                sha_value=$(echo "$line" | sed 's/.*SHA1: //')
+                echo -e "  ${GREEN}SHA1:   $sha_value${NC}"
+            elif echo "$line" | grep -q "SHA256:"; then
+                sha_value=$(echo "$line" | sed 's/.*SHA256: //')
+                echo -e "  ${GREEN}SHA256: $sha_value${NC}"
+            fi
+        done
+        
+        echo ""
+        echo -e "${BLUE}================================${NC}"
+        echo -e "${BLUE}   Summary${NC}"
+        echo -e "${BLUE}================================${NC}"
+        echo -e "  Keystore : ${GREEN}$JKS_FILE${NC}"
+        echo -e "  Properties: ${GREEN}$KEY_PROPS${NC}"
+        echo -e "  Alias    : ${GREEN}$KEY_ALIAS${NC}"
+        echo -e "  Validity : ${GREEN}$validity_years years${NC}"
+        echo -e "${BLUE}================================${NC}"
+        echo ""
+        echo -e "${RED}⚠️  PENTING: Simpan password di tempat aman!${NC}"
+        echo -e "${RED}   Jika hilang, tidak bisa upload update ke Play Store.${NC}"
+        echo -e "${YELLOW}   Store Password: $STORE_PASSWORD${NC}"
+        if [ "$KEY_PASSWORD" != "$STORE_PASSWORD" ]; then
+            echo -e "${YELLOW}   Key Password  : $KEY_PASSWORD${NC}"
+        fi
+        echo ""
+        pause
+        ;;
+    
     0)
         echo ""
         echo -e "${GREEN}Terima kasih!${NC}"

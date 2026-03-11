@@ -1,0 +1,115 @@
+@startuml ERD_Simple_Kantor_Lurah
+
+allowmixing
+
+skinparam BackgroundColor white
+skinparam shadowing false
+skinparam defaultFontSize 11
+
+skinparam rectangle {
+  BackgroundColor #E8EAF6
+  BorderColor #3F51B5
+  FontStyle bold
+  FontSize 13
+}
+
+skinparam usecase {
+  BackgroundColor white
+  BorderColor #555555
+  FontSize 10
+}
+
+skinparam diamond {
+  BackgroundColor #E8F5E9
+  BorderColor #388E3C
+  FontSize 11
+}
+
+title ERD Chen Notation\nSistem Informasi Kantor Lurah Maharatu
+
+' =========================================
+' Users Attributes (above entity, 1 row)
+' =========================================
+usecase "id (PK)" as u_id
+usecase "name" as u_name
+usecase "birth_date" as u_birth
+usecase "email" as u_email
+
+u_id -[hidden]right- u_name
+u_name -[hidden]right- u_birth
+u_birth -[hidden]right- u_email
+
+' =========================================
+' Entity USERS
+' =========================================
+rectangle "USERS" as users
+
+u_id -down- users
+u_name -down- users
+u_birth -down- users
+u_email -down- users
+
+' =========================================
+' Relationship (diamond)
+' =========================================
+diamond "melakukan" as rel
+
+users -down- rel : "1"
+
+' =========================================
+' Entity PENGADUAN
+' =========================================
+rectangle "PENGADUAN" as pengaduan
+
+rel -down- pengaduan : "M"
+
+' =========================================
+' LEFT-SIDE Pengaduan Attributes (5 items)
+' =========================================
+usecase "id (PK)" as p_id
+usecase "user_id (FK)" as p_uid
+usecase "name" as p_name
+usecase "nik" as p_nik
+usecase "date" as p_date
+
+p_id -[hidden]down- p_uid
+p_uid -[hidden]down- p_name
+p_name -[hidden]down- p_nik
+p_nik -[hidden]down- p_date
+
+pengaduan -left- p_id
+pengaduan -left- p_uid
+pengaduan -left- p_name
+pengaduan -left- p_nik
+pengaduan -left- p_date
+
+' =========================================
+' RIGHT-SIDE Pengaduan Attributes (5 items)
+' =========================================
+usecase "address" as p_addr
+usecase "description" as p_desc
+usecase "attachment_url" as p_attach
+usecase "status" as p_status
+usecase "admin_note" as p_note
+
+p_addr -[hidden]down- p_desc
+p_desc -[hidden]down- p_attach
+p_attach -[hidden]down- p_status
+p_status -[hidden]down- p_note
+
+pengaduan -right- p_addr
+pengaduan -right- p_desc
+pengaduan -right- p_attach
+pengaduan -right- p_status
+pengaduan -right- p_note
+
+' =========================================
+' Align left and right rows at same ranks
+' =========================================
+p_id -[hidden]right- p_addr
+p_uid -[hidden]right- p_desc
+p_name -[hidden]right- p_attach
+p_nik -[hidden]right- p_status
+p_date -[hidden]right- p_note
+
+@enduml
