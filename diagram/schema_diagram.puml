@@ -1,0 +1,219 @@
+@startuml SchemaOverview
+' ============================================================
+' Schema Overview - kantorlurah
+' Source: supabase_schema.sql
+' ============================================================
+
+left to right direction
+skinparam backgroundColor #FCFCFC
+skinparam shadowing false
+skinparam roundCorner 12
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam packageStyle rectangle
+skinparam ArrowColor #5C6B73
+skinparam ArrowThickness 1.2
+skinparam package {
+  BorderColor #B0BEC5
+  FontColor #263238
+  BackgroundColor #F7F9FB
+}
+skinparam class {
+  BorderColor #607D8B
+  ArrowColor #5C6B73
+  FontColor #263238
+  BackgroundColor #FFFFFF
+}
+skinparam note {
+  BorderColor #D7CCC8
+  BackgroundColor #FFF8E1
+  FontColor #5D4037
+}
+
+hide circle
+hide methods
+
+package "Supabase Auth" as auth_pkg #EEF2FF {
+  entity "auth.users" as auth_users #E8EAF6 {
+    * id : uuid <<PK>>
+    --
+    email : text
+    raw_user_meta_data : jsonb
+    created_at : timestamptz
+  }
+}
+
+package "Public Schema" as public_pkg #F8FAFC {
+  entity "users" as users #E3F2FD {
+    * id : uuid <<PK>> <<FK>>
+    --
+    name : text [NOT NULL]
+    birth_date : date [NOT NULL]
+    email : text [NOT NULL, UNIQUE]
+    created_at : timestamptz [DEFAULT now()]
+    updated_at : timestamptz [DEFAULT now()]
+  }
+
+  entity "pengaduan" as pengaduan #FFF3E0 {
+    * id : uuid <<PK>> [DEFAULT uuid_generate_v4()]
+    --
+    user_id : uuid <<FK>> [NULLABLE]
+    name : text [NOT NULL]
+    nik : text [NOT NULL]
+    date : date [NOT NULL, DEFAULT current_date]
+    address : text [NOT NULL]
+    description : text [NOT NULL]
+    attachment_url : text [NULLABLE]
+    status : text [DEFAULT 'menunggu']
+    admin_note : text [NULLABLE]
+    created_at : timestamptz [DEFAULT now()]
+    updated_at : timestamptz [DEFAULT now()]
+  }
+}
+
+note right of auth_users
+  Source table managed by Supabase Auth.
+  App profile data is mirrored into public.users
+  after signup.
+end note
+
+note right of pengaduan
+  Status values:
+  - menunggu
+  - diproses
+  - selesai
+  - ditolak
+end note
+
+auth_users ||--|| users : mirror profile\nON DELETE CASCADE
+users ||--o{ pengaduan : creates reports\nON DELETE SET NULL
+
+legend bottom
+  |= Symbol |= Meaning |
+  | <<PK>> | Primary key |
+  | <<FK>> | Foreign key |
+  | ||--|| | One-to-one |
+  | ||--o{ | One-to-many |
+end legend
+
+@enduml
+
+@startuml SchemaPolicies
+' ============================================================
+' RLS Policies - kantorlurah
+' ============================================================
+
+left to right direction
+skinparam backgroundColor #FCFCFC
+skinparam shadowing false
+skinparam roundCorner 12
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam packageStyle rectangle
+skinparam ArrowColor #5C6B73
+skinparam usecase {
+  BorderColor #607D8B
+  BackgroundColor #FFFFFF
+  FontColor #263238
+}
+skinparam actor {
+  FontColor #263238
+}
+skinparam package {
+  BorderColor #B0BEC5
+  FontColor #263238
+}
+
+title Row Level Security Policies
+
+actor "User" as user
+actor "Admin" as admin
+actor "Service Role" as service_role
+
+package "public.users" as users_rls #E3F2FD {
+  usecase "Select own row" as u_select
+  usecase "Insert own row" as u_insert
+  usecase "Update own row" as u_update
+  usecase "Full access\nservice_role" as u_service
+}
+
+package "public.pengaduan" as pengaduan_rls #FFF3E0 {
+  usecase "Insert own complaint" as p_insert
+  usecase "Select own complaint" as p_select_own
+  usecase "Select all as admin" as p_select_admin
+  usecase "Update status and note\nas admin" as p_update_admin
+}
+
+user --> u_select : auth.uid() = id
+user --> u_insert : auth.uid() = id
+user --> u_update : auth.uid() = id
+user --> p_insert : user_id = auth.uid()
+user --> p_select_own : user_id = auth.uid()
+
+admin --> p_select_admin : email = admin@demo.com
+admin --> p_update_admin : email = admin@demo.com
+
+service_role --> u_service : auth.role() = service_role
+
+@enduml
+
+@startuml SchemaAutomation
+' ============================================================
+' Triggers & Functions - kantorlurah
+' ============================================================
+
+top to bottom direction
+skinparam backgroundColor #FCFCFC
+skinparam shadowing false
+skinparam roundCorner 12
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam ArrowColor #5C6B73
+skinparam rectangle {
+  BorderColor #607D8B
+  FontColor #263238
+}
+skinparam note {
+  BorderColor #D7CCC8
+  BackgroundColor #FFF8E1
+  FontColor #5D4037
+}
+
+title Database Triggers and Functions
+
+rectangle "auth.users" as auth_source #E8EAF6
+rectangle "public.users" as users_table #E3F2FD
+rectangle "public.pengaduan" as pengaduan_table #FFF3E0
+
+rectangle "handle_new_user()" as fn_new_user #E8F5E9
+rectangle "handle_updated_at()" as fn_updated_at #E8F5E9
+
+rectangle "Trigger:\non_auth_user_created\nAFTER INSERT" as trg_auth #C5CAE9
+rectangle "Trigger:\nusers_updated_at\nBEFORE UPDATE" as trg_users #BBDEFB
+rectangle "Trigger:\npengaduan_updated_at\nBEFORE UPDATE" as trg_pengaduan #FFE0B2
+
+auth_source --> trg_auth
+trg_auth --> fn_new_user
+fn_new_user --> users_table : insert profile row
+
+users_table --> trg_users
+pengaduan_table --> trg_pengaduan
+trg_users --> fn_updated_at
+trg_pengaduan --> fn_updated_at
+
+note right of fn_new_user
+  Reads:
+  - new.id
+  - new.email
+  - new.raw_user_meta_data
+
+  Inserts default profile if row
+  does not already exist.
+end note
+
+note right of fn_updated_at
+  Sets updated_at = now()
+  before each update.
+end note
+
+@enduml
