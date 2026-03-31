@@ -132,3 +132,55 @@ create policy "pengaduan: admin update"
   using ((auth.jwt() ->> 'email') = 'admin@demo.com')
   with check ((auth.jwt() ->> 'email') = 'admin@demo.com');
 
+-- ============================================================
+-- Table: pelayanan
+-- Form permohonan pelayanan dengan upload dokumen
+-- ============================================================
+create table if not exists public.pelayanan (
+  id               uuid primary key default uuid_generate_v4(),
+  user_id          uuid references public.users(id) on delete set null,
+  jenis_pelayanan  text not null
+                     check (jenis_pelayanan in (
+                       'skpw', 'skbmr', 'kematian', 'sktm', 'nikah',
+                       'ahli_waris', 'domisili_usaha', 'penghasilan',
+                       'rekomendasi_usaha', 'domisili'
+                     )),
+  name             text not null,
+  nik              text not null,
+  phone            text,
+  address          text,
+  documents        jsonb not null default '[]'::jsonb,
+  status           text not null default 'menunggu'
+                     check (status in ('menunggu', 'diproses', 'selesai', 'ditolak')),
+  admin_note       text,
+  created_at       timestamptz not null default now(),
+  updated_at       timestamptz not null default now()
+);
+
+-- Auto-update updated_at
+create or replace trigger pelayanan_updated_at
+  before update on public.pelayanan
+  for each row execute procedure public.handle_updated_at();
+
+-- Row Level Security
+alter table public.pelayanan enable row level security;
+
+-- Users can insert their own pelayanan
+create policy "pelayanan: insert own"
+  on public.pelayanan for insert
+  with check (user_id = auth.uid());
+
+-- Users can see their own; admin can see all
+create policy "pelayanan: select"
+  on public.pelayanan for select
+  using (
+    user_id = auth.uid()
+    OR (auth.jwt() ->> 'email') = 'admin@demo.com'
+  );
+
+-- Admin can update status / admin_note
+create policy "pelayanan: admin update"
+  on public.pelayanan for update
+  using ((auth.jwt() ->> 'email') = 'admin@demo.com')
+  with check ((auth.jwt() ->> 'email') = 'admin@demo.com');
+

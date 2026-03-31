@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/presentation/admin/admin_dashboard_view.dart';
 import 'package:kantor_lurah/presentation/admin/admin_pengaduan_view.dart';
+import 'package:kantor_lurah/presentation/admin/admin_pelayanan_view.dart';
 import 'package:kantor_lurah/presentation/partials/nav_profile_tab_view.dart';
 
 class AdminMainNavigationView extends StatefulWidget {
@@ -22,6 +23,7 @@ class _AdminMainNavigationViewState extends State<AdminMainNavigationView> {
     _pages = [
       const AdminDashboardView(),
       const AdminPengaduanView(),
+      const AdminPelayananView(),
       const NavProfileTabView(
         name: 'Admin',
         email: 'admin@demo.com',
@@ -50,6 +52,11 @@ class _AdminMainNavigationViewState extends State<AdminMainNavigationView> {
             icon: Icon(Icons.report_outlined),
             selectedIcon: Icon(Icons.report),
             label: 'Pengaduan',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.description_outlined),
+            selectedIcon: Icon(Icons.description),
+            label: 'Pelayanan',
           ),
           NavigationDestination(
             icon: Icon(Icons.person_outline),

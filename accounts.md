@@ -4,6 +4,9 @@ kantorlurah@mailinator.com
 url
 https://nyrgcbrhnytfyddaibju.supabase.co
 
+service role
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im55cmdjYnJobnl0ZnlkZGFpYmp1Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MTg0Njc4OSwiZXhwIjoyMDg3NDIyNzg5fQ.tRY80l6nXQuNUTFehDBSlHTBPbANP4-PzmxFYBQ2VDA
+
 publishable key
 sb_publishable_IId4V-6fO-vjSAyHGIZ19A_uBpnYS99
 

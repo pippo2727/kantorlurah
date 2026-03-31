@@ -1,7 +1,7 @@
 name: kantor_lurah
 description: "A new Flutter project."
 publish_to: 'none' 
-version: 1.0.163+164
+version: 1.0.164+165
 environment:
   sdk: ^3.9.2
 dependencies:
@@ -44,6 +44,7 @@ dependencies:
   font_awesome_flutter: ^10.12.0
   carousel_slider: ^5.1.2
   supabase_flutter: ^2.9.1
+  file_picker: ^10.3.10
 dev_dependencies:
   flutter_test:
     sdk: flutter

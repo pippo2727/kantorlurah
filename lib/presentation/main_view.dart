@@ -55,6 +55,28 @@ class MainView extends StatelessWidget {
                 childAspectRatio: 1.2,
                 children: [
                   _MainMenuCard(
+                    icon: Icons.description_outlined,
+                    label: 'Ajukan\nPelayanan',
+                    color: Colors.purple,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const PelayananListView(),
+                      ),
+                    ),
+                  ),
+                  _MainMenuCard(
+                    icon: Icons.history_outlined,
+                    label: 'Riwayat\nPermohonan',
+                    color: Colors.indigo,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const MyPelayananView(),
+                      ),
+                    ),
+                  ),
+                  _MainMenuCard(
                     icon: Icons.assignment_outlined,
                     label: 'Informasi\nPersyaratan',
                     color: Colors.teal,
