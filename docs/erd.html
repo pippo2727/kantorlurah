@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ERD Chen Notation - Kantor Lurah Maharatu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8fafc;
+      min-height: 100vh;
+      padding: 20px;
+      color: #1e293b;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #64748b;
+      font-size: 0.95rem;
+      margin-bottom: 5px;
+    }
+
+    /* Download Button */
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .download-btn:active {
+      transform: translateY(0);
+    }
+
+    /* ERD Canvas */
+    .erd-canvas {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      min-height: 850px;
+    }
+
+    /* SVG for relationship lines */
+    .erd-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .erd-svg line {
+      stroke: #475569;
+      stroke-width: 2;
+    }
+
+    /* Chen Notation: Entity (Rectangle) */
+    .entity {
+      position: absolute;
+      background: #dbeafe;
+      border: 3px solid #2563eb;
+      padding: 15px 30px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-align: center;
+      min-width: 120px;
+      z-index: 10;
+      cursor: default;
+      transition: box-shadow 0.2s;
+    }
+
+    .entity:hover {
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    /* Chen Notation: Attribute (Ellipse/Oval) */
+    .attribute {
+      position: absolute;
+      background: #fff;
+      border: 2px solid #475569;
+      border-radius: 50%;
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      text-align: center;
+      min-width: 80px;
+      z-index: 10;
+      white-space: nowrap;
+    }
+
+    /* Primary Key: Underlined */
+    .attribute.pk {
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    /* Foreign Key: Dashed border */
+    .attribute.fk {
+      border-style: dashed;
+      border-color: #7c3aed;
+    }
+
+    /* Multi-valued attribute: Double ellipse */
+    .attribute.multivalued {
+      box-shadow: 0 0 0 3px #fff, 0 0 0 5px #475569;
+    }
+
+    /* Derived attribute: Dashed border */
+    .attribute.derived {
+      border-style: dashed;
+    }
+
+    /* Chen Notation: Relationship (Diamond) */
+    .relationship {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: #fef3c7;
+      border: 3px solid #d97706;
+      transform: rotate(45deg);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .relationship .rel-text {
+      transform: rotate(-45deg);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    .relationship:hover {
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.4);
+    }
+
+    /* Cardinality labels */
+    .cardinality {
+      position: absolute;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #dc2626;
+      z-index: 15;
+      background: #fff;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* Legend */
+    .legend {
+      margin-top: 40px;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .legend h3 {
+      font-size: 1rem;
+      color: #475569;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #475569;
+    }
+
+    .legend-shape {
+      flex-shrink: 0;
+    }
+
+    .legend-shape.entity-shape {
+      width: 50px;
+      height: 25px;
+      background: #dbeafe;
+      border: 2px solid #2563eb;
+    }
+
+    .legend-shape.attr-shape {
+      width: 40px;
+      height: 25px;
+      background: #fff;
+      border: 2px solid #475569;
+      border-radius: 50%;
+    }
+
+    .legend-shape.attr-pk {
+      text-decoration: underline;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .legend-shape.attr-fk {
+      border-style: dashed;
+      border-color: #7c3aed;
+    }
+
+    .legend-shape.rel-shape {
+      width: 30px;
+      height: 30px;
+      background: #fef3c7;
+      border: 2px solid #d97706;
+      transform: rotate(45deg);
+    }
+
+    .legend-shape.line-shape {
+      width: 40px;
+      height: 2px;
+      background: #475569;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #94a3b8;
+      font-size: 0.8rem;
+    }
+
+    /* Responsive scroll */
+    .erd-wrapper {
+      overflow-x: auto;
+      padding-bottom: 20px;
+    }
+  </style>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <div class="header">
+    <h1>📊 Entity Relationship Diagram</h1>
+    <p>Sistem Informasi Kantor Lurah Maharatu — Chen Notation</p>
+    <button class="download-btn" onclick="downloadImage()">
+      📥 Download as Image
+    </button>
+  </div>
+
+  <div class="erd-wrapper">
+    <div class="erd-canvas" id="erdCanvas">
+      <!-- SVG for lines -->
+      <svg class="erd-svg" id="erdSvg"></svg>
+
+      <!-- ========== USERS ENTITY ========== -->
+      <div class="entity" id="users" style="left: 120px; top: 400px;">USERS</div>
+      
+      <!-- Users Attributes (arranged around entity, away from relationships) -->
+      <div class="attribute pk" id="users-id" style="left: 20px; top: 280px;">id (PK)</div>
+      <div class="attribute" id="users-name" style="left: 20px; top: 340px;">name</div>
+      <div class="attribute" id="users-birth" style="left: 20px; top: 400px;">birth_date</div>
+      <div class="attribute" id="users-email" style="left: 20px; top: 460px;">email</div>
+      <div class="attribute derived" id="users-created" style="left: 20px; top: 520px;">created_at</div>
+      <div class="attribute derived" id="users-updated" style="left: 120px; top: 560px;">updated_at</div>
+
+      <!-- ========== PENGADUAN ENTITY ========== -->
+      <div class="entity" id="pengaduan" style="left: 700px; top: 120px;">PENGADUAN</div>
+      
+      <!-- Pengaduan Attributes (spread around, top and right side) -->
+      <div class="attribute pk" id="peng-id" style="left: 580px; top: 20px;">id (PK)</div>
+      <div class="attribute fk" id="peng-userid" style="left: 700px; top: 20px;">user_id (FK)</div>
+      <div class="attribute" id="peng-name" style="left: 820px; top: 20px;">name</div>
+      <div class="attribute" id="peng-nik" style="left: 940px; top: 60px;">nik</div>
+      <div class="attribute" id="peng-date" style="left: 940px; top: 120px;">date</div>
+      <div class="attribute" id="peng-address" style="left: 940px; top: 180px;">address</div>
+      <div class="attribute" id="peng-desc" style="left: 900px; top: 240px;">description</div>
+      <div class="attribute" id="peng-attach" style="left: 800px; top: 280px;">attachment_url</div>
+      <div class="attribute" id="peng-status" style="left: 680px; top: 280px;">status</div>
+      <div class="attribute" id="peng-note" style="left: 560px; top: 240px;">admin_note</div>
+      <div class="attribute derived" id="peng-created" style="left: 540px; top: 160px;">created_at</div>
+      <div class="attribute derived" id="peng-updated" style="left: 540px; top: 100px;">updated_at</div>
+
+      <!-- ========== PELAYANAN ENTITY ========== -->
+      <div class="entity" id="pelayanan" style="left: 700px; top: 580px;">PELAYANAN</div>
+      
+      <!-- Pelayanan Attributes (spread around, bottom and right side) -->
+      <div class="attribute pk" id="pel-id" style="left: 540px; top: 520px;">id (PK)</div>
+      <div class="attribute fk" id="pel-userid" style="left: 540px; top: 580px;">user_id (FK)</div>
+      <div class="attribute" id="pel-jenis" style="left: 520px; top: 640px;">jenis_pelayanan</div>
+      <div class="attribute" id="pel-name" style="left: 580px; top: 700px;">name</div>
+      <div class="attribute" id="pel-nik" style="left: 700px; top: 740px;">nik</div>
+      <div class="attribute" id="pel-phone" style="left: 820px; top: 740px;">phone</div>
+      <div class="attribute" id="pel-address" style="left: 920px; top: 700px;">address</div>
+      <div class="attribute" id="pel-docs" style="left: 960px; top: 640px;">documents</div>
+      <div class="attribute" id="pel-status" style="left: 960px; top: 580px;">status</div>
+      <div class="attribute" id="pel-note" style="left: 940px; top: 520px;">admin_note</div>
+      <div class="attribute derived" id="pel-created" style="left: 860px; top: 480px;">created_at</div>
+      <div class="attribute derived" id="pel-updated" style="left: 740px; top: 460px;">updated_at</div>
+
+      <!-- ========== RELATIONSHIPS (Diamonds) ========== -->
+      <!-- Users - Pengaduan: "membuat" -->
+      <div class="relationship" id="rel-membuat-pengaduan" style="left: 380px; top: 200px;">
+        <span class="rel-text">membuat</span>
+      </div>
+      <div class="cardinality" style="left: 280px; top: 320px;">1</div>
+      <div class="cardinality" style="left: 520px; top: 180px;">N</div>
+
+      <!-- Users - Pelayanan: "mengajukan" -->
+      <div class="relationship" id="rel-mengajukan" style="left: 380px; top: 500px;">
+        <span class="rel-text">mengajukan</span>
+      </div>
+      <div class="cardinality" style="left: 280px; top: 480px;">1</div>
+      <div class="cardinality" style="left: 520px; top: 560px;">N</div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <h3>Legenda Notasi Chen</h3>
+    <div class="legend-grid">
+      <div class="legend-item">
+        <div class="legend-shape entity-shape"></div>
+        <span>Entity (Persegi)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-shape attr-shape"></div>
+        <span>Attribute (Oval)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-shape attr-shape attr-pk">id</div>
+        <span>Primary Key (Underline)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-shape attr-shape attr-fk"></div>
+        <span>Foreign Key (Dashed)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-shape rel-shape"></div>
+        <span>Relationship (Diamond)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-shape line-shape"></div>
+        <span>Connecting Line</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Kantor Lurah Maharatu • ERD v1.0 • Chen Notation</p>
+  </div>
+
+  <script>
+    // Draw connecting lines between elements
+    function getCenter(el) {
+      const rect = el.getBoundingClientRect();
+      const canvas = document.getElementById('erdCanvas').getBoundingClientRect();
+      return {
+        x: rect.left - canvas.left + rect.width / 2,
+        y: rect.top - canvas.top + rect.height / 2
+      };
+    }
+
+    function drawLine(svg, el1, el2) {
+      const p1 = getCenter(el1);
+      const p2 = getCenter(el2);
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', p1.x);
+      line.setAttribute('y1', p1.y);
+      line.setAttribute('x2', p2.x);
+      line.setAttribute('y2', p2.y);
+      svg.appendChild(line);
+    }
+
+    function drawERD() {
+      const svg = document.getElementById('erdSvg');
+      svg.innerHTML = '';
+
+      // Users entity to attributes
+      drawLine(svg, document.getElementById('users'), document.getElementById('users-id'));
+      drawLine(svg, document.getElementById('users'), document.getElementById('users-name'));
+      drawLine(svg, document.getElementById('users'), document.getElementById('users-birth'));
+      drawLine(svg, document.getElementById('users'), document.getElementById('users-email'));
+      drawLine(svg, document.getElementById('users'), document.getElementById('users-created'));
+      drawLine(svg, document.getElementById('users'), document.getElementById('users-updated'));
+
+      // Pengaduan entity to attributes
+      drawLine(svg, document.getElementById('pengaduan'), document.getElementById('peng-id'));
+      drawLine(svg, document.getElementById('pengaduan'), document.getElementById('peng-userid'));
+      drawLine(svg, document.getElementById('pengaduan'), document.getElementById('peng-name'));
+      drawLine(svg, document.getElementById('pengaduan'), document.getElementById('peng-nik'));
+      drawLine(svg, document.getElementById('pengaduan'), document.getElementById('peng-date'));
+      drawLine(svg, document.getElementById('pengaduan'), document.getElementById('peng-address'));
+      drawLine(svg, document.getElementById('pengaduan'), document.getElementById('peng-desc'));
+      drawLine(svg, document.getElementById('pengaduan'), document.getElementById('peng-attach'));
+      drawLine(svg, document.getElementById('pengaduan'), document.getElementById('peng-status'));
+      drawLine(svg, document.getElementById('pengaduan'), document.getElementById('peng-note'));
+      drawLine(svg, document.getElementById('pengaduan'), document.getElementById('peng-created'));
+      drawLine(svg, document.getElementById('pengaduan'), document.getElementById('peng-updated'));
+
+      // Pelayanan entity to attributes
+      drawLine(svg, document.getElementById('pelayanan'), document.getElementById('pel-id'));
+      drawLine(svg, document.getElementById('pelayanan'), document.getElementById('pel-userid'));
+      drawLine(svg, document.getElementById('pelayanan'), document.getElementById('pel-jenis'));
+      drawLine(svg, document.getElementById('pelayanan'), document.getElementById('pel-name'));
+      drawLine(svg, document.getElementById('pelayanan'), document.getElementById('pel-nik'));
+      drawLine(svg, document.getElementById('pelayanan'), document.getElementById('pel-phone'));
+      drawLine(svg, document.getElementById('pelayanan'), document.getElementById('pel-address'));
+      drawLine(svg, document.getElementById('pelayanan'), document.getElementById('pel-docs'));
+      drawLine(svg, document.getElementById('pelayanan'), document.getElementById('pel-status'));
+      drawLine(svg, document.getElementById('pelayanan'), document.getElementById('pel-note'));
+      drawLine(svg, document.getElementById('pelayanan'), document.getElementById('pel-created'));
+      drawLine(svg, document.getElementById('pelayanan'), document.getElementById('pel-updated'));
+
+      // Relationships
+      // Users -> rel-membuat-pengaduan -> Pengaduan
+      drawLine(svg, document.getElementById('users'), document.getElementById('rel-membuat-pengaduan'));
+      drawLine(svg, document.getElementById('rel-membuat-pengaduan'), document.getElementById('pengaduan'));
+
+      // Users -> rel-mengajukan -> Pelayanan
+      drawLine(svg, document.getElementById('users'), document.getElementById('rel-mengajukan'));
+      drawLine(svg, document.getElementById('rel-mengajukan'), document.getElementById('pelayanan'));
+    }
+
+    // Draw on load and resize
+    window.addEventListener('load', drawERD);
+    window.addEventListener('resize', drawERD);
+
+    // Download as image
+    function downloadImage() {
+      const element = document.getElementById('erdCanvas');
+      const btn = document.querySelector('.download-btn');
+      btn.textContent = '⏳ Processing...';
+      btn.disabled = true;
+      
+      html2canvas(element, {
+        backgroundColor: '#f8fafc',
+        scale: 2,
+        useCORS: true,
+        logging: false
+      }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'ERD-Kantor-Lurah-Maharatu.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        btn.innerHTML = '📥 Download as Image';
+        btn.disabled = false;
+      }).catch(err => {
+        console.error('Download failed:', err);
+        btn.innerHTML = '📥 Download as Image';
+        btn.disabled = false;
+        alert('Download gagal. Silakan coba lagi.');
+      });
+    }
+  </script>
+</body>
+</html>

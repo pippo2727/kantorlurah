@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dokumentasi - Kantor Lurah Maharatu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      color: white;
+    }
+
+    .header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--card-color) 0%, var(--card-color-light) 100%);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+
+    .card-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--card-color) 0%, var(--card-color-light) 100%);
+      color: white;
+    }
+
+    .card h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    .card-arrow {
+      position: absolute;
+      bottom: 25px;
+      right: 25px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover .card-arrow {
+      background: var(--card-color);
+      color: white;
+      transform: translateX(5px);
+    }
+
+    /* Card Colors */
+    .card.erd {
+      --card-color: #3b82f6;
+      --card-color-light: #60a5fa;
+    }
+
+    .card.dfd {
+      --card-color: #10b981;
+      --card-color-light: #34d399;
+    }
+
+    .card.usecase {
+      --card-color: #8b5cf6;
+      --card-color-light: #a78bfa;
+    }
+
+    .card.flowchart {
+      --card-color: #f59e0b;
+      --card-color-light: #fbbf24;
+    }
+
+    .card.schemas {
+      --card-color: #ec4899;
+      --card-color-light: #f472b6;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      color: white;
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 1.6rem;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📋 Dokumentasi Sistem</h1>
+      <p>Sistem Informasi Kantor Lurah Maharatu</p>
+    </div>
+
+    <div class="cards">
+      <a href="erd.html" class="card erd">
+        <div class="card-icon">🗄️</div>
+        <h2>ERD (Entity Relationship Diagram)</h2>
+        <p>Diagram relasi antar entitas database menggunakan notasi Chen. Menampilkan tabel users, pengaduan, dan pelayanan beserta atributnya.</p>
+        <div class="card-arrow">→</div>
+      </a>
+
+      <a href="dfd.html" class="card dfd">
+        <div class="card-icon">🔄</div>
+        <h2>DFD (Data Flow Diagram)</h2>
+        <p>Diagram aliran data Level 1 dengan layout top-down hierarchical. Menunjukkan proses autentikasi, pelayanan, pengaduan, dan informasi.</p>
+        <div class="card-arrow">→</div>
+      </a>
+
+      <a href="usecase.html" class="card usecase">
+        <div class="card-icon">👤</div>
+        <h2>Use Case Diagram</h2>
+        <p>Diagram use case menampilkan interaksi aktor Pengguna dan Admin dengan sistem. Termasuk fitur pelayanan, pengaduan, dan manajemen.</p>
+        <div class="card-arrow">→</div>
+      </a>
+
+      <a href="flowchart.html" class="card flowchart">
+        <div class="card-icon">📊</div>
+        <h2>Flowchart</h2>
+        <p>Kumpulan 16 flowchart proses sistem: Login, Register, 10 jenis Pelayanan, Pengaduan, Persyaratan, Jam Pelayanan, dan Profil Kantor.</p>
+        <div class="card-arrow">→</div>
+      </a>
+
+      <a href="table_schemas.html" class="card schemas">
+        <div class="card-icon">🗃️</div>
+        <h2>Table Schemas</h2>
+        <p>Dokumentasi struktur tabel database: users, pengaduan, dan pelayanan. Mencakup nama field, tipe data, constraints, dan keterangan.</p>
+        <div class="card-arrow">→</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>© 2026 Kantor Lurah Maharatu - Sistem Informasi Pelayanan Masyarakat</p>
+    </div>
+  </div>
+</body>
+</html>

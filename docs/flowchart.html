@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flowchart - Kantor Lurah Maharatu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8fafc;
+      min-height: 100vh;
+      padding: 20px;
+      color: #1e293b;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #64748b;
+      font-size: 0.95rem;
+      margin-bottom: 5px;
+    }
+
+    /* Download Buttons */
+    .download-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .download-btn:active {
+      transform: translateY(0);
+    }
+
+    .download-btn.secondary {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
+    }
+
+    .download-btn.secondary:hover {
+      box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
+    }
+
+    .download-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 30px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .nav-tab {
+      padding: 8px 16px;
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #64748b;
+      transition: all 0.2s;
+    }
+
+    .nav-tab:hover {
+      border-color: #2563eb;
+      color: #2563eb;
+    }
+
+    .nav-tab.active {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: white;
+    }
+
+    /* Flowchart Container */
+    .flowchart-container {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .flowchart-container.active {
+      display: block;
+    }
+
+    .flowchart-title {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 25px;
+      padding: 15px;
+      background: linear-gradient(135deg, #dbeafe 0%, #ede9fe 100%);
+      border-radius: 12px;
+    }
+
+    /* Flowchart Canvas */
+    .fc-wrapper {
+      overflow-x: auto;
+      padding-bottom: 20px;
+    }
+
+    .fc-canvas {
+      position: relative;
+      margin: 0 auto;
+      min-height: 600px;
+    }
+
+    /* SVG for lines */
+    .fc-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .fc-svg line, .fc-svg path {
+      stroke: #475569;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .fc-svg polygon {
+      fill: #475569;
+    }
+
+    /* Flowchart Shapes */
+    .fc-shape {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 500;
+      z-index: 5;
+      padding: 8px;
+      line-height: 1.3;
+    }
+
+    /* Terminal (Start/End) - Rounded Rectangle */
+    .fc-terminal {
+      background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
+      border: 2px solid #22c55e;
+      border-radius: 25px;
+      color: #14532d;
+      min-width: 120px;
+      min-height: 45px;
+    }
+
+    .fc-terminal.end {
+      background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%);
+      border-color: #ef4444;
+      color: #7f1d1d;
+    }
+
+    /* Process - Rectangle */
+    .fc-process {
+      background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%);
+      border: 2px solid #3b82f6;
+      border-radius: 8px;
+      color: #1e3a8a;
+      min-width: 150px;
+      min-height: 50px;
+    }
+
+    /* Decision - Diamond */
+    .fc-decision {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border: 2px solid #f59e0b;
+      color: #78350f;
+      min-width: 100px;
+      min-height: 100px;
+      transform: rotate(45deg);
+    }
+
+    .fc-decision-text {
+      transform: rotate(-45deg);
+      font-size: 0.75rem;
+      max-width: 80px;
+    }
+
+    /* Input/Output - Parallelogram */
+    .fc-io {
+      background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+      border: 2px solid #6366f1;
+      color: #312e81;
+      min-width: 150px;
+      min-height: 45px;
+      transform: skewX(-10deg);
+    }
+
+    .fc-io-text {
+      transform: skewX(10deg);
+    }
+
+    /* Data/Document */
+    .fc-data {
+      background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+      border: 2px solid #ec4899;
+      border-radius: 0 0 15px 15px;
+      color: #831843;
+      min-width: 140px;
+      min-height: 50px;
+    }
+
+    /* Connector */
+    .fc-connector {
+      background: white;
+      border: 2px solid #475569;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    /* Yes/No Labels */
+    .fc-label {
+      position: absolute;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #059669;
+      background: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+      z-index: 10;
+    }
+
+    .fc-label.no {
+      color: #dc2626;
+    }
+
+    /* Legend */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .legend-shape {
+      width: 35px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .legend-terminal {
+      background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
+      border: 1px solid #22c55e;
+      border-radius: 10px;
+      width: 35px;
+      height: 18px;
+    }
+
+    .legend-process {
+      background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%);
+      border: 1px solid #3b82f6;
+      border-radius: 3px;
+      width: 35px;
+      height: 18px;
+    }
+
+    .legend-decision {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border: 1px solid #f59e0b;
+      width: 18px;
+      height: 18px;
+      transform: rotate(45deg);
+    }
+
+    .legend-io {
+      background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+      border: 1px solid #6366f1;
+      width: 35px;
+      height: 18px;
+      transform: skewX(-10deg);
+    }
+
+    .legend-data {
+      background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+      border: 1px solid #ec4899;
+      border-radius: 0 0 8px 8px;
+      width: 35px;
+      height: 18px;
+    }
+  </style>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+  <div class="header">
+    <h1>Flowchart Sistem Informasi</h1>
+    <p>Kantor Lurah Maharatu</p>
+    <div class="download-buttons">
+      <button class="download-btn" onclick="downloadCurrent()">
+        📥 Download Current
+      </button>
+      <button class="download-btn secondary" onclick="downloadAll()">
+        📦 Download All (ZIP)
+      </button>
+    </div>
+  </div>
+
+  <!-- Navigation Tabs -->
+  <div class="nav-tabs">
+    <div class="nav-tab active" data-target="fc-login">Login</div>
+    <div class="nav-tab" data-target="fc-register">Register</div>
+    <div class="nav-tab" data-target="fc-skpw">SKPW</div>
+    <div class="nav-tab" data-target="fc-skbmr">SKBMR</div>
+    <div class="nav-tab" data-target="fc-kematian">Surat Kematian</div>
+    <div class="nav-tab" data-target="fc-sktm">SKTM</div>
+    <div class="nav-tab" data-target="fc-nikah">Surat Nikah</div>
+    <div class="nav-tab" data-target="fc-ahliwaris">Ahli Waris</div>
+    <div class="nav-tab" data-target="fc-domisili-usaha">Domisili Usaha</div>
+    <div class="nav-tab" data-target="fc-penghasilan">Surat Penghasilan</div>
+    <div class="nav-tab" data-target="fc-rekom-usaha">Rekom Usaha</div>
+    <div class="nav-tab" data-target="fc-domisili">Surat Domisili</div>
+    <div class="nav-tab" data-target="fc-persyaratan">Info Persyaratan</div>
+    <div class="nav-tab" data-target="fc-pengaduan">Pengaduan</div>
+    <div class="nav-tab" data-target="fc-jam">Jam Pelayanan</div>
+    <div class="nav-tab" data-target="fc-profil">Profil Kantor</div>
+  </div>
+
+  <!-- FLOWCHART 1: LOGIN -->
+  <div class="flowchart-container active" id="fc-login">
+    <div class="flowchart-title">Flowchart Login</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 700px; height: 750px;">
+        <svg class="fc-svg" id="svg-login"></svg>
+        
+        <!-- Start -->
+        <div class="fc-shape fc-terminal" id="login-start" style="left: 290px; top: 20px; width: 120px;">Mulai</div>
+        
+        <!-- Buka Halaman Login -->
+        <div class="fc-shape fc-process" id="login-open" style="left: 250px; top: 100px; width: 200px;">Buka Halaman Login</div>
+        
+        <!-- Input Email & Password -->
+        <div class="fc-shape fc-io" id="login-input" style="left: 230px; top: 180px; width: 240px;">
+          <span class="fc-io-text">Input Email & Password</span>
+        </div>
+        
+        <!-- Tap Tombol Masuk -->
+        <div class="fc-shape fc-process" id="login-tap" style="left: 250px; top: 260px; width: 200px;">Tap Tombol "Masuk"</div>
+        
+        <!-- Validasi Form -->
+        <div class="fc-shape fc-decision" id="login-valid" style="left: 300px; top: 350px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Form Valid?</span>
+        </div>
+        <div class="fc-label" style="left: 420px; top: 380px;">Ya</div>
+        <div class="fc-label no" style="left: 335px; top: 470px;">Tidak</div>
+        
+        <!-- Tampilkan Error -->
+        <div class="fc-shape fc-process" id="login-error" style="left: 250px; top: 510px; width: 200px;">Tampilkan Pesan Error</div>
+        
+        <!-- Supabase Auth -->
+        <div class="fc-shape fc-process" id="login-auth" style="left: 460px; top: 370px; width: 200px;">Kirim ke Supabase Auth</div>
+        
+        <!-- Cek Auth -->
+        <div class="fc-shape fc-decision" id="login-cek" style="left: 510px; top: 470px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Autentikasi Berhasil?</span>
+        </div>
+        <div class="fc-label" style="left: 635px; top: 500px;">Ya</div>
+        <div class="fc-label no" style="left: 545px; top: 590px;">Tidak</div>
+        
+        <!-- Error Auth -->
+        <div class="fc-shape fc-process" id="login-auth-error" style="left: 460px; top: 620px; width: 200px;">Tampilkan Error Autentikasi</div>
+        
+        <!-- Cek Admin -->
+        <div class="fc-shape fc-decision" id="login-admin" style="left: 300px; top: 580px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Email Admin?</span>
+        </div>
+        <div class="fc-label" style="left: 270px; top: 610px;">Ya</div>
+        <div class="fc-label no" style="left: 420px; top: 610px;">Tidak</div>
+        
+        <!-- Halaman Admin -->
+        <div class="fc-shape fc-process" id="login-admin-page" style="left: 80px; top: 590px; width: 150px;">Halaman Admin</div>
+        
+        <!-- Halaman User -->
+        <div class="fc-shape fc-process" id="login-user-page" style="left: 460px; top: 590px; width: 150px; display: none;"></div>
+        
+        <!-- End -->
+        <div class="fc-shape fc-terminal end" id="login-end" style="left: 290px; top: 700px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOWCHART 2: REGISTER -->
+  <div class="flowchart-container" id="fc-register">
+    <div class="flowchart-title">Flowchart Register</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 700px; height: 850px;">
+        <svg class="fc-svg" id="svg-register"></svg>
+        
+        <div class="fc-shape fc-terminal" id="reg-start" style="left: 290px; top: 20px; width: 120px;">Mulai</div>
+        
+        <div class="fc-shape fc-process" id="reg-open" style="left: 250px; top: 100px; width: 200px;">Buka Halaman Daftar</div>
+        
+        <div class="fc-shape fc-io" id="reg-input" style="left: 200px; top: 180px; width: 300px;">
+          <span class="fc-io-text">Input Nama, Tgl Lahir, Email, Password</span>
+        </div>
+        
+        <div class="fc-shape fc-process" id="reg-tap" style="left: 250px; top: 270px; width: 200px;">Tap Tombol "Daftar"</div>
+        
+        <div class="fc-shape fc-decision" id="reg-valid" style="left: 300px; top: 360px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Form Valid?</span>
+        </div>
+        <div class="fc-label" style="left: 420px; top: 390px;">Ya</div>
+        <div class="fc-label no" style="left: 335px; top: 480px;">Tidak</div>
+        
+        <div class="fc-shape fc-process" id="reg-error" style="left: 250px; top: 520px; width: 200px;">Tampilkan Pesan Error</div>
+        
+        <div class="fc-shape fc-process" id="reg-auth" style="left: 460px; top: 380px; width: 200px;">Kirim ke Supabase Auth</div>
+        
+        <div class="fc-shape fc-decision" id="reg-cek" style="left: 510px; top: 480px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Registrasi Berhasil?</span>
+        </div>
+        <div class="fc-label" style="left: 635px; top: 510px;">Ya</div>
+        <div class="fc-label no" style="left: 545px; top: 600px;">Tidak</div>
+        
+        <div class="fc-shape fc-process" id="reg-auth-error" style="left: 460px; top: 630px; width: 200px;">Tampilkan Error</div>
+        
+        <div class="fc-shape fc-data" id="reg-save" style="left: 250px; top: 620px; width: 180px;">Simpan Data User ke Database</div>
+        
+        <div class="fc-shape fc-process" id="reg-success" style="left: 250px; top: 710px; width: 200px;">Tampilkan "Berhasil Daftar"</div>
+        
+        <div class="fc-shape fc-process" id="reg-back" style="left: 250px; top: 780px; width: 200px;">Kembali ke Halaman Awal</div>
+        
+        <div class="fc-shape fc-terminal end" id="reg-end" style="left: 290px; top: 860px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOWCHART 3-12: PELAYANAN TEMPLATE -->
+  <!-- SKPW -->
+  <div class="flowchart-container" id="fc-skpw">
+    <div class="flowchart-title">Flowchart Surat Keterangan Pindah Wilayah (SKPW)</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 750px; height: 950px;">
+        <svg class="fc-svg" id="svg-skpw"></svg>
+        
+        <div class="fc-shape fc-terminal" id="skpw-start" style="left: 315px; top: 20px; width: 120px;">Mulai</div>
+        
+        <div class="fc-shape fc-process" id="skpw-menu" style="left: 265px; top: 90px; width: 220px;">Pilih Menu Pelayanan</div>
+        
+        <div class="fc-shape fc-process" id="skpw-select" style="left: 265px; top: 160px; width: 220px;">Pilih "SKPW"</div>
+        
+        <div class="fc-shape fc-io" id="skpw-input" style="left: 240px; top: 230px; width: 270px;">
+          <span class="fc-io-text">Input: Nama, NIK, Telepon, Alamat</span>
+        </div>
+        
+        <div class="fc-shape fc-data" id="skpw-docs" style="left: 200px; top: 310px; width: 350px;">Upload: KTP, KK, Surat RT/RW, SKGR</div>
+        
+        <div class="fc-shape fc-process" id="skpw-submit" style="left: 265px; top: 390px; width: 220px;">Tap "Ajukan Permohonan"</div>
+        
+        <div class="fc-shape fc-decision" id="skpw-valid" style="left: 325px; top: 480px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Data & Dokumen Lengkap?</span>
+        </div>
+        <div class="fc-label" style="left: 450px; top: 510px;">Ya</div>
+        <div class="fc-label no" style="left: 360px; top: 600px;">Tidak</div>
+        
+        <div class="fc-shape fc-process" id="skpw-error" style="left: 265px; top: 640px; width: 220px;">Tampilkan Pesan Error</div>
+        
+        <div class="fc-shape fc-process" id="skpw-upload" style="left: 490px; top: 500px; width: 220px;">Upload Dokumen ke Cloudinary</div>
+        
+        <div class="fc-shape fc-data" id="skpw-save" style="left: 490px; top: 590px; width: 220px;">Simpan ke Database (status: menunggu)</div>
+        
+        <div class="fc-shape fc-process" id="skpw-success" style="left: 490px; top: 680px; width: 220px;">Tampilkan "Berhasil Diajukan"</div>
+        
+        <div class="fc-shape fc-process" id="skpw-wait" style="left: 490px; top: 760px; width: 220px;">Menunggu Proses Admin</div>
+        
+        <div class="fc-shape fc-terminal end" id="skpw-end" style="left: 540px; top: 850px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKBMR -->
+  <div class="flowchart-container" id="fc-skbmr">
+    <div class="flowchart-title">Flowchart Surat Keterangan Belum Memiliki Rumah (SKBMR)</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 750px; height: 950px;">
+        <svg class="fc-svg" id="svg-skbmr"></svg>
+        
+        <div class="fc-shape fc-terminal" id="skbmr-start" style="left: 315px; top: 20px; width: 120px;">Mulai</div>
+        <div class="fc-shape fc-process" id="skbmr-menu" style="left: 265px; top: 90px; width: 220px;">Pilih Menu Pelayanan</div>
+        <div class="fc-shape fc-process" id="skbmr-select" style="left: 265px; top: 160px; width: 220px;">Pilih "SKBMR"</div>
+        <div class="fc-shape fc-io" id="skbmr-input" style="left: 240px; top: 230px; width: 270px;">
+          <span class="fc-io-text">Input: Nama, NIK, Telepon, Alamat</span>
+        </div>
+        <div class="fc-shape fc-data" id="skbmr-docs" style="left: 200px; top: 310px; width: 350px;">Upload: KK, KTP, Surat RT/RW Bermaterai</div>
+        <div class="fc-shape fc-process" id="skbmr-submit" style="left: 265px; top: 390px; width: 220px;">Tap "Ajukan Permohonan"</div>
+        <div class="fc-shape fc-decision" id="skbmr-valid" style="left: 325px; top: 480px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Data & Dokumen Lengkap?</span>
+        </div>
+        <div class="fc-label" style="left: 450px; top: 510px;">Ya</div>
+        <div class="fc-label no" style="left: 360px; top: 600px;">Tidak</div>
+        <div class="fc-shape fc-process" id="skbmr-error" style="left: 265px; top: 640px; width: 220px;">Tampilkan Pesan Error</div>
+        <div class="fc-shape fc-process" id="skbmr-upload" style="left: 490px; top: 500px; width: 220px;">Upload Dokumen ke Cloudinary</div>
+        <div class="fc-shape fc-data" id="skbmr-save" style="left: 490px; top: 590px; width: 220px;">Simpan ke Database (status: menunggu)</div>
+        <div class="fc-shape fc-process" id="skbmr-success" style="left: 490px; top: 680px; width: 220px;">Tampilkan "Berhasil Diajukan"</div>
+        <div class="fc-shape fc-process" id="skbmr-wait" style="left: 490px; top: 760px; width: 220px;">Menunggu Proses Admin</div>
+        <div class="fc-shape fc-terminal end" id="skbmr-end" style="left: 540px; top: 850px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Surat Kematian -->
+  <div class="flowchart-container" id="fc-kematian">
+    <div class="flowchart-title">Flowchart Surat Kematian</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 750px; height: 950px;">
+        <svg class="fc-svg" id="svg-kematian"></svg>
+        
+        <div class="fc-shape fc-terminal" id="kematian-start" style="left: 315px; top: 20px; width: 120px;">Mulai</div>
+        <div class="fc-shape fc-process" id="kematian-menu" style="left: 265px; top: 90px; width: 220px;">Pilih Menu Pelayanan</div>
+        <div class="fc-shape fc-process" id="kematian-select" style="left: 265px; top: 160px; width: 220px;">Pilih "Surat Kematian"</div>
+        <div class="fc-shape fc-io" id="kematian-input" style="left: 240px; top: 230px; width: 270px;">
+          <span class="fc-io-text">Input: Nama, NIK, Telepon, Alamat</span>
+        </div>
+        <div class="fc-shape fc-data" id="kematian-docs" style="left: 170px; top: 310px; width: 410px;">Upload: KTP Pelapor, KTP Almarhum, KK, Surat RT/RW</div>
+        <div class="fc-shape fc-process" id="kematian-submit" style="left: 265px; top: 390px; width: 220px;">Tap "Ajukan Permohonan"</div>
+        <div class="fc-shape fc-decision" id="kematian-valid" style="left: 325px; top: 480px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Data & Dokumen Lengkap?</span>
+        </div>
+        <div class="fc-label" style="left: 450px; top: 510px;">Ya</div>
+        <div class="fc-label no" style="left: 360px; top: 600px;">Tidak</div>
+        <div class="fc-shape fc-process" id="kematian-error" style="left: 265px; top: 640px; width: 220px;">Tampilkan Pesan Error</div>
+        <div class="fc-shape fc-process" id="kematian-upload" style="left: 490px; top: 500px; width: 220px;">Upload Dokumen ke Cloudinary</div>
+        <div class="fc-shape fc-data" id="kematian-save" style="left: 490px; top: 590px; width: 220px;">Simpan ke Database (status: menunggu)</div>
+        <div class="fc-shape fc-process" id="kematian-success" style="left: 490px; top: 680px; width: 220px;">Tampilkan "Berhasil Diajukan"</div>
+        <div class="fc-shape fc-process" id="kematian-wait" style="left: 490px; top: 760px; width: 220px;">Menunggu Proses Admin</div>
+        <div class="fc-shape fc-terminal end" id="kematian-end" style="left: 540px; top: 850px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKTM -->
+  <div class="flowchart-container" id="fc-sktm">
+    <div class="flowchart-title">Flowchart Surat Keterangan Tidak Mampu (SKTM)</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 750px; height: 950px;">
+        <svg class="fc-svg" id="svg-sktm"></svg>
+        
+        <div class="fc-shape fc-terminal" id="sktm-start" style="left: 315px; top: 20px; width: 120px;">Mulai</div>
+        <div class="fc-shape fc-process" id="sktm-menu" style="left: 265px; top: 90px; width: 220px;">Pilih Menu Pelayanan</div>
+        <div class="fc-shape fc-process" id="sktm-select" style="left: 265px; top: 160px; width: 220px;">Pilih "SKTM"</div>
+        <div class="fc-shape fc-io" id="sktm-input" style="left: 240px; top: 230px; width: 270px;">
+          <span class="fc-io-text">Input: Nama, NIK, Telepon, Alamat</span>
+        </div>
+        <div class="fc-shape fc-data" id="sktm-docs" style="left: 200px; top: 310px; width: 350px;">Upload: KK, KTP, Surat Pengantar RT/RW</div>
+        <div class="fc-shape fc-process" id="sktm-submit" style="left: 265px; top: 390px; width: 220px;">Tap "Ajukan Permohonan"</div>
+        <div class="fc-shape fc-decision" id="sktm-valid" style="left: 325px; top: 480px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Data & Dokumen Lengkap?</span>
+        </div>
+        <div class="fc-label" style="left: 450px; top: 510px;">Ya</div>
+        <div class="fc-label no" style="left: 360px; top: 600px;">Tidak</div>
+        <div class="fc-shape fc-process" id="sktm-error" style="left: 265px; top: 640px; width: 220px;">Tampilkan Pesan Error</div>
+        <div class="fc-shape fc-process" id="sktm-upload" style="left: 490px; top: 500px; width: 220px;">Upload Dokumen ke Cloudinary</div>
+        <div class="fc-shape fc-data" id="sktm-save" style="left: 490px; top: 590px; width: 220px;">Simpan ke Database (status: menunggu)</div>
+        <div class="fc-shape fc-process" id="sktm-success" style="left: 490px; top: 680px; width: 220px;">Tampilkan "Berhasil Diajukan"</div>
+        <div class="fc-shape fc-process" id="sktm-wait" style="left: 490px; top: 760px; width: 220px;">Menunggu Proses Admin</div>
+        <div class="fc-shape fc-terminal end" id="sktm-end" style="left: 540px; top: 850px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Surat Nikah -->
+  <div class="flowchart-container" id="fc-nikah">
+    <div class="flowchart-title">Flowchart Surat Nikah</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 750px; height: 1000px;">
+        <svg class="fc-svg" id="svg-nikah"></svg>
+        
+        <div class="fc-shape fc-terminal" id="nikah-start" style="left: 315px; top: 20px; width: 120px;">Mulai</div>
+        <div class="fc-shape fc-process" id="nikah-menu" style="left: 265px; top: 90px; width: 220px;">Pilih Menu Pelayanan</div>
+        <div class="fc-shape fc-process" id="nikah-select" style="left: 265px; top: 160px; width: 220px;">Pilih "Surat Nikah"</div>
+        <div class="fc-shape fc-io" id="nikah-input" style="left: 240px; top: 230px; width: 270px;">
+          <span class="fc-io-text">Input: Nama, NIK, Telepon, Alamat</span>
+        </div>
+        <div class="fc-shape fc-data" id="nikah-docs" style="left: 130px; top: 310px; width: 490px; min-height: 60px;">Upload: KTP Pasangan, KTP Ortu, KTP 2 Saksi, KK Pria, KK Wanita, Surat Izin Atasan, Form Nikah</div>
+        <div class="fc-shape fc-process" id="nikah-submit" style="left: 265px; top: 400px; width: 220px;">Tap "Ajukan Permohonan"</div>
+        <div class="fc-shape fc-decision" id="nikah-valid" style="left: 325px; top: 490px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Data & Dokumen Lengkap?</span>
+        </div>
+        <div class="fc-label" style="left: 450px; top: 520px;">Ya</div>
+        <div class="fc-label no" style="left: 360px; top: 610px;">Tidak</div>
+        <div class="fc-shape fc-process" id="nikah-error" style="left: 265px; top: 650px; width: 220px;">Tampilkan Pesan Error</div>
+        <div class="fc-shape fc-process" id="nikah-upload" style="left: 490px; top: 510px; width: 220px;">Upload Dokumen ke Cloudinary</div>
+        <div class="fc-shape fc-data" id="nikah-save" style="left: 490px; top: 600px; width: 220px;">Simpan ke Database (status: menunggu)</div>
+        <div class="fc-shape fc-process" id="nikah-success" style="left: 490px; top: 690px; width: 220px;">Tampilkan "Berhasil Diajukan"</div>
+        <div class="fc-shape fc-process" id="nikah-wait" style="left: 490px; top: 770px; width: 220px;">Menunggu Proses Admin</div>
+        <div class="fc-shape fc-terminal end" id="nikah-end" style="left: 540px; top: 870px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Surat Ahli Waris -->
+  <div class="flowchart-container" id="fc-ahliwaris">
+    <div class="flowchart-title">Flowchart Surat Ahli Waris</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 750px; height: 1000px;">
+        <svg class="fc-svg" id="svg-ahliwaris"></svg>
+        
+        <div class="fc-shape fc-terminal" id="ahliwaris-start" style="left: 315px; top: 20px; width: 120px;">Mulai</div>
+        <div class="fc-shape fc-process" id="ahliwaris-menu" style="left: 265px; top: 90px; width: 220px;">Pilih Menu Pelayanan</div>
+        <div class="fc-shape fc-process" id="ahliwaris-select" style="left: 265px; top: 160px; width: 220px;">Pilih "Surat Ahli Waris"</div>
+        <div class="fc-shape fc-io" id="ahliwaris-input" style="left: 240px; top: 230px; width: 270px;">
+          <span class="fc-io-text">Input: Nama, NIK, Telepon, Alamat</span>
+        </div>
+        <div class="fc-shape fc-data" id="ahliwaris-docs" style="left: 100px; top: 310px; width: 550px; min-height: 60px;">Upload: Akta Kematian, Surat Nikah, KK Ahli Waris, KTP Ahli Waris, Akta Lahir, Surat Nikah AW, KTP 2 Saksi, Materai</div>
+        <div class="fc-shape fc-process" id="ahliwaris-submit" style="left: 265px; top: 400px; width: 220px;">Tap "Ajukan Permohonan"</div>
+        <div class="fc-shape fc-decision" id="ahliwaris-valid" style="left: 325px; top: 490px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Data & Dokumen Lengkap?</span>
+        </div>
+        <div class="fc-label" style="left: 450px; top: 520px;">Ya</div>
+        <div class="fc-label no" style="left: 360px; top: 610px;">Tidak</div>
+        <div class="fc-shape fc-process" id="ahliwaris-error" style="left: 265px; top: 650px; width: 220px;">Tampilkan Pesan Error</div>
+        <div class="fc-shape fc-process" id="ahliwaris-upload" style="left: 490px; top: 510px; width: 220px;">Upload Dokumen ke Cloudinary</div>
+        <div class="fc-shape fc-data" id="ahliwaris-save" style="left: 490px; top: 600px; width: 220px;">Simpan ke Database (status: menunggu)</div>
+        <div class="fc-shape fc-process" id="ahliwaris-success" style="left: 490px; top: 690px; width: 220px;">Tampilkan "Berhasil Diajukan"</div>
+        <div class="fc-shape fc-process" id="ahliwaris-wait" style="left: 490px; top: 770px; width: 220px;">Menunggu Proses Admin</div>
+        <div class="fc-shape fc-terminal end" id="ahliwaris-end" style="left: 540px; top: 870px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Surat Domisili Usaha -->
+  <div class="flowchart-container" id="fc-domisili-usaha">
+    <div class="flowchart-title">Flowchart Surat Domisili Usaha</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 750px; height: 950px;">
+        <svg class="fc-svg" id="svg-domisili-usaha"></svg>
+        
+        <div class="fc-shape fc-terminal" id="domisili-usaha-start" style="left: 315px; top: 20px; width: 120px;">Mulai</div>
+        <div class="fc-shape fc-process" id="domisili-usaha-menu" style="left: 265px; top: 90px; width: 220px;">Pilih Menu Pelayanan</div>
+        <div class="fc-shape fc-process" id="domisili-usaha-select" style="left: 265px; top: 160px; width: 220px;">Pilih "Surat Domisili Usaha"</div>
+        <div class="fc-shape fc-io" id="domisili-usaha-input" style="left: 240px; top: 230px; width: 270px;">
+          <span class="fc-io-text">Input: Nama, NIK, Telepon, Alamat</span>
+        </div>
+        <div class="fc-shape fc-data" id="domisili-usaha-docs" style="left: 200px; top: 310px; width: 350px;">Upload: KTP, KK, PBB, Surat RT/RW</div>
+        <div class="fc-shape fc-process" id="domisili-usaha-submit" style="left: 265px; top: 390px; width: 220px;">Tap "Ajukan Permohonan"</div>
+        <div class="fc-shape fc-decision" id="domisili-usaha-valid" style="left: 325px; top: 480px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Data & Dokumen Lengkap?</span>
+        </div>
+        <div class="fc-label" style="left: 450px; top: 510px;">Ya</div>
+        <div class="fc-label no" style="left: 360px; top: 600px;">Tidak</div>
+        <div class="fc-shape fc-process" id="domisili-usaha-error" style="left: 265px; top: 640px; width: 220px;">Tampilkan Pesan Error</div>
+        <div class="fc-shape fc-process" id="domisili-usaha-upload" style="left: 490px; top: 500px; width: 220px;">Upload Dokumen ke Cloudinary</div>
+        <div class="fc-shape fc-data" id="domisili-usaha-save" style="left: 490px; top: 590px; width: 220px;">Simpan ke Database (status: menunggu)</div>
+        <div class="fc-shape fc-process" id="domisili-usaha-success" style="left: 490px; top: 680px; width: 220px;">Tampilkan "Berhasil Diajukan"</div>
+        <div class="fc-shape fc-process" id="domisili-usaha-wait" style="left: 490px; top: 760px; width: 220px;">Menunggu Proses Admin</div>
+        <div class="fc-shape fc-terminal end" id="domisili-usaha-end" style="left: 540px; top: 850px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Surat Penghasilan -->
+  <div class="flowchart-container" id="fc-penghasilan">
+    <div class="flowchart-title">Flowchart Surat Penghasilan</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 750px; height: 950px;">
+        <svg class="fc-svg" id="svg-penghasilan"></svg>
+        
+        <div class="fc-shape fc-terminal" id="penghasilan-start" style="left: 315px; top: 20px; width: 120px;">Mulai</div>
+        <div class="fc-shape fc-process" id="penghasilan-menu" style="left: 265px; top: 90px; width: 220px;">Pilih Menu Pelayanan</div>
+        <div class="fc-shape fc-process" id="penghasilan-select" style="left: 265px; top: 160px; width: 220px;">Pilih "Surat Penghasilan"</div>
+        <div class="fc-shape fc-io" id="penghasilan-input" style="left: 240px; top: 230px; width: 270px;">
+          <span class="fc-io-text">Input: Nama, NIK, Telepon, Alamat</span>
+        </div>
+        <div class="fc-shape fc-data" id="penghasilan-docs" style="left: 150px; top: 310px; width: 450px;">Upload: KTP, KK, Surat RT/RW, Surat Pernyataan Bermaterai</div>
+        <div class="fc-shape fc-process" id="penghasilan-submit" style="left: 265px; top: 390px; width: 220px;">Tap "Ajukan Permohonan"</div>
+        <div class="fc-shape fc-decision" id="penghasilan-valid" style="left: 325px; top: 480px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Data & Dokumen Lengkap?</span>
+        </div>
+        <div class="fc-label" style="left: 450px; top: 510px;">Ya</div>
+        <div class="fc-label no" style="left: 360px; top: 600px;">Tidak</div>
+        <div class="fc-shape fc-process" id="penghasilan-error" style="left: 265px; top: 640px; width: 220px;">Tampilkan Pesan Error</div>
+        <div class="fc-shape fc-process" id="penghasilan-upload" style="left: 490px; top: 500px; width: 220px;">Upload Dokumen ke Cloudinary</div>
+        <div class="fc-shape fc-data" id="penghasilan-save" style="left: 490px; top: 590px; width: 220px;">Simpan ke Database (status: menunggu)</div>
+        <div class="fc-shape fc-process" id="penghasilan-success" style="left: 490px; top: 680px; width: 220px;">Tampilkan "Berhasil Diajukan"</div>
+        <div class="fc-shape fc-process" id="penghasilan-wait" style="left: 490px; top: 760px; width: 220px;">Menunggu Proses Admin</div>
+        <div class="fc-shape fc-terminal end" id="penghasilan-end" style="left: 540px; top: 850px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Surat Rekomendasi Usaha -->
+  <div class="flowchart-container" id="fc-rekom-usaha">
+    <div class="flowchart-title">Flowchart Surat Rekomendasi Usaha</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 750px; height: 950px;">
+        <svg class="fc-svg" id="svg-rekom-usaha"></svg>
+        
+        <div class="fc-shape fc-terminal" id="rekom-usaha-start" style="left: 315px; top: 20px; width: 120px;">Mulai</div>
+        <div class="fc-shape fc-process" id="rekom-usaha-menu" style="left: 265px; top: 90px; width: 220px;">Pilih Menu Pelayanan</div>
+        <div class="fc-shape fc-process" id="rekom-usaha-select" style="left: 265px; top: 160px; width: 220px;">Pilih "Surat Rekom Usaha"</div>
+        <div class="fc-shape fc-io" id="rekom-usaha-input" style="left: 240px; top: 230px; width: 270px;">
+          <span class="fc-io-text">Input: Nama, NIK, Telepon, Alamat</span>
+        </div>
+        <div class="fc-shape fc-data" id="rekom-usaha-docs" style="left: 150px; top: 310px; width: 450px;">Upload: KTP, KK, Surat RT/RW, Akta Notaris, PBB</div>
+        <div class="fc-shape fc-process" id="rekom-usaha-submit" style="left: 265px; top: 390px; width: 220px;">Tap "Ajukan Permohonan"</div>
+        <div class="fc-shape fc-decision" id="rekom-usaha-valid" style="left: 325px; top: 480px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Data & Dokumen Lengkap?</span>
+        </div>
+        <div class="fc-label" style="left: 450px; top: 510px;">Ya</div>
+        <div class="fc-label no" style="left: 360px; top: 600px;">Tidak</div>
+        <div class="fc-shape fc-process" id="rekom-usaha-error" style="left: 265px; top: 640px; width: 220px;">Tampilkan Pesan Error</div>
+        <div class="fc-shape fc-process" id="rekom-usaha-upload" style="left: 490px; top: 500px; width: 220px;">Upload Dokumen ke Cloudinary</div>
+        <div class="fc-shape fc-data" id="rekom-usaha-save" style="left: 490px; top: 590px; width: 220px;">Simpan ke Database (status: menunggu)</div>
+        <div class="fc-shape fc-process" id="rekom-usaha-success" style="left: 490px; top: 680px; width: 220px;">Tampilkan "Berhasil Diajukan"</div>
+        <div class="fc-shape fc-process" id="rekom-usaha-wait" style="left: 490px; top: 760px; width: 220px;">Menunggu Proses Admin</div>
+        <div class="fc-shape fc-terminal end" id="rekom-usaha-end" style="left: 540px; top: 850px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Surat Domisili -->
+  <div class="flowchart-container" id="fc-domisili">
+    <div class="flowchart-title">Flowchart Surat Domisili</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 750px; height: 950px;">
+        <svg class="fc-svg" id="svg-domisili"></svg>
+        
+        <div class="fc-shape fc-terminal" id="domisili-start" style="left: 315px; top: 20px; width: 120px;">Mulai</div>
+        <div class="fc-shape fc-process" id="domisili-menu" style="left: 265px; top: 90px; width: 220px;">Pilih Menu Pelayanan</div>
+        <div class="fc-shape fc-process" id="domisili-select" style="left: 265px; top: 160px; width: 220px;">Pilih "Surat Domisili"</div>
+        <div class="fc-shape fc-io" id="domisili-input" style="left: 240px; top: 230px; width: 270px;">
+          <span class="fc-io-text">Input: Nama, NIK, Telepon, Alamat</span>
+        </div>
+        <div class="fc-shape fc-data" id="domisili-docs" style="left: 200px; top: 310px; width: 350px;">Upload: KTP, KK, Surat Pengantar RT/RW</div>
+        <div class="fc-shape fc-process" id="domisili-submit" style="left: 265px; top: 390px; width: 220px;">Tap "Ajukan Permohonan"</div>
+        <div class="fc-shape fc-decision" id="domisili-valid" style="left: 325px; top: 480px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Data & Dokumen Lengkap?</span>
+        </div>
+        <div class="fc-label" style="left: 450px; top: 510px;">Ya</div>
+        <div class="fc-label no" style="left: 360px; top: 600px;">Tidak</div>
+        <div class="fc-shape fc-process" id="domisili-error" style="left: 265px; top: 640px; width: 220px;">Tampilkan Pesan Error</div>
+        <div class="fc-shape fc-process" id="domisili-upload" style="left: 490px; top: 500px; width: 220px;">Upload Dokumen ke Cloudinary</div>
+        <div class="fc-shape fc-data" id="domisili-save" style="left: 490px; top: 590px; width: 220px;">Simpan ke Database (status: menunggu)</div>
+        <div class="fc-shape fc-process" id="domisili-success" style="left: 490px; top: 680px; width: 220px;">Tampilkan "Berhasil Diajukan"</div>
+        <div class="fc-shape fc-process" id="domisili-wait" style="left: 490px; top: 760px; width: 220px;">Menunggu Proses Admin</div>
+        <div class="fc-shape fc-terminal end" id="domisili-end" style="left: 540px; top: 850px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Informasi Persyaratan -->
+  <div class="flowchart-container" id="fc-persyaratan">
+    <div class="flowchart-title">Flowchart Informasi Persyaratan</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 600px; height: 500px;">
+        <svg class="fc-svg" id="svg-persyaratan"></svg>
+        
+        <div class="fc-shape fc-terminal" id="persyaratan-start" style="left: 240px; top: 20px; width: 120px;">Mulai</div>
+        <div class="fc-shape fc-process" id="persyaratan-menu" style="left: 200px; top: 100px; width: 200px;">Pilih Menu "Info Persyaratan"</div>
+        <div class="fc-shape fc-process" id="persyaratan-grid" style="left: 175px; top: 180px; width: 250px;">Tampilkan Grid Menu Persyaratan</div>
+        <div class="fc-shape fc-io" id="persyaratan-select" style="left: 175px; top: 260px; width: 250px;">
+          <span class="fc-io-text">Pilih Jenis Surat</span>
+        </div>
+        <div class="fc-shape fc-process" id="persyaratan-show" style="left: 150px; top: 340px; width: 300px;">Tampilkan Daftar Persyaratan Dokumen</div>
+        <div class="fc-shape fc-terminal end" id="persyaratan-end" style="left: 240px; top: 430px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pengaduan Masyarakat -->
+  <div class="flowchart-container" id="fc-pengaduan">
+    <div class="flowchart-title">Flowchart Pengaduan Masyarakat</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 750px; height: 950px;">
+        <svg class="fc-svg" id="svg-pengaduan"></svg>
+        
+        <div class="fc-shape fc-terminal" id="pengaduan-start" style="left: 315px; top: 20px; width: 120px;">Mulai</div>
+        <div class="fc-shape fc-process" id="pengaduan-menu" style="left: 265px; top: 90px; width: 220px;">Pilih Menu "Pengaduan"</div>
+        <div class="fc-shape fc-process" id="pengaduan-create" style="left: 265px; top: 160px; width: 220px;">Pilih "Buat Pengaduan Baru"</div>
+        <div class="fc-shape fc-io" id="pengaduan-input" style="left: 180px; top: 230px; width: 390px;">
+          <span class="fc-io-text">Input: Nama, NIK, Tanggal, Alamat, Uraian (min 20 huruf)</span>
+        </div>
+        <div class="fc-shape fc-data" id="pengaduan-docs" style="left: 240px; top: 310px; width: 270px;">Upload Lampiran Foto (opsional)</div>
+        <div class="fc-shape fc-process" id="pengaduan-submit" style="left: 265px; top: 390px; width: 220px;">Tap "Kirim Pengaduan"</div>
+        <div class="fc-shape fc-decision" id="pengaduan-valid" style="left: 325px; top: 480px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Data Valid?</span>
+        </div>
+        <div class="fc-label" style="left: 450px; top: 510px;">Ya</div>
+        <div class="fc-label no" style="left: 360px; top: 600px;">Tidak</div>
+        <div class="fc-shape fc-process" id="pengaduan-error" style="left: 265px; top: 640px; width: 220px;">Tampilkan Pesan Error</div>
+        <div class="fc-shape fc-process" id="pengaduan-upload" style="left: 490px; top: 500px; width: 220px;">Upload Foto ke Cloudinary</div>
+        <div class="fc-shape fc-data" id="pengaduan-save" style="left: 490px; top: 590px; width: 220px;">Simpan ke Database (status: menunggu)</div>
+        <div class="fc-shape fc-process" id="pengaduan-success" style="left: 490px; top: 680px; width: 220px;">Tampilkan "Berhasil Dikirim"</div>
+        <div class="fc-shape fc-process" id="pengaduan-wait" style="left: 490px; top: 760px; width: 220px;">Menunggu Tanggapan Admin</div>
+        <div class="fc-shape fc-terminal end" id="pengaduan-end" style="left: 540px; top: 850px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jam Pelayanan -->
+  <div class="flowchart-container" id="fc-jam">
+    <div class="flowchart-title">Flowchart Jam Pelayanan</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 600px; height: 400px;">
+        <svg class="fc-svg" id="svg-jam"></svg>
+        
+        <div class="fc-shape fc-terminal" id="jam-start" style="left: 240px; top: 20px; width: 120px;">Mulai</div>
+        <div class="fc-shape fc-process" id="jam-menu" style="left: 200px; top: 100px; width: 200px;">Pilih Menu "Jam Pelayanan"</div>
+        <div class="fc-shape fc-process" id="jam-show" style="left: 150px; top: 190px; width: 300px;">Tampilkan Jadwal Jam Pelayanan (Senin-Jumat)</div>
+        <div class="fc-shape fc-terminal end" id="jam-end" style="left: 240px; top: 290px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profil Kantor -->
+  <div class="flowchart-container" id="fc-profil">
+    <div class="flowchart-title">Flowchart Profil Kantor Lurah</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 600px; height: 400px;">
+        <svg class="fc-svg" id="svg-profil"></svg>
+        
+        <div class="fc-shape fc-terminal" id="profil-start" style="left: 240px; top: 20px; width: 120px;">Mulai</div>
+        <div class="fc-shape fc-process" id="profil-menu" style="left: 200px; top: 100px; width: 200px;">Pilih Menu "Profil Kantor"</div>
+        <div class="fc-shape fc-process" id="profil-show" style="left: 125px; top: 190px; width: 350px;">Tampilkan Info: Nama, Alamat, Telepon, Visi Misi</div>
+        <div class="fc-shape fc-terminal end" id="profil-end" style="left: 240px; top: 290px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-shape"><div class="legend-terminal"></div></div>
+      <span>Terminal (Mulai/Selesai)</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-shape"><div class="legend-process"></div></div>
+      <span>Proses</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-shape"><div class="legend-decision"></div></div>
+      <span>Keputusan</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-shape"><div class="legend-io"></div></div>
+      <span>Input/Output</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-shape"><div class="legend-data"></div></div>
+      <span>Data/Dokumen</span>
+    </div>
+  </div>
+
+  <script>
+    // Tab navigation
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.flowchart-container').forEach(c => c.classList.remove('active'));
+        
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.target).classList.add('active');
+        
+        // Redraw SVG lines
+        setTimeout(drawAllLines, 50);
+      });
+    });
+
+    // Get center point of element
+    function getCenter(el) {
+      const rect = el.getBoundingClientRect();
+      const parent = el.closest('.fc-canvas').getBoundingClientRect();
+      return {
+        x: rect.left - parent.left + rect.width / 2,
+        y: rect.top - parent.top + rect.height / 2
+      };
+    }
+
+    // Get edge point for connection
+    function getEdgePoint(el, targetCenter, isDiamond = false) {
+      const rect = el.getBoundingClientRect();
+      const parent = el.closest('.fc-canvas').getBoundingClientRect();
+      
+      const cx = rect.left - parent.left + rect.width / 2;
+      const cy = rect.top - parent.top + rect.height / 2;
+      
+      const dx = targetCenter.x - cx;
+      const dy = targetCenter.y - cy;
+      
+      if (isDiamond) {
+        // Diamond edges
+        const size = rect.width / 2 * 0.707; // Diagonal half-width
+        if (Math.abs(dy) > Math.abs(dx)) {
+          return { x: cx, y: cy + (dy > 0 ? size : -size) };
+        } else {
+          return { x: cx + (dx > 0 ? size : -size), y: cy };
+        }
+      }
+      
+      // Rectangle/rounded edges
+      const hw = rect.width / 2;
+      const hh = rect.height / 2;
+      
+      if (Math.abs(dy) * hw > Math.abs(dx) * hh) {
+        return { x: cx, y: cy + (dy > 0 ? hh : -hh) };
+      } else {
+        return { x: cx + (dx > 0 ? hw : -hw), y: cy };
+      }
+    }
+
+    // Draw arrow
+    function drawArrow(svg, x1, y1, x2, y2) {
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', x1);
+      line.setAttribute('y1', y1);
+      line.setAttribute('x2', x2);
+      line.setAttribute('y2', y2);
+      svg.appendChild(line);
+      
+      // Arrow head
+      const angle = Math.atan2(y2 - y1, x2 - x1);
+      const headLen = 10;
+      const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+      const p1x = x2;
+      const p1y = y2;
+      const p2x = x2 - headLen * Math.cos(angle - Math.PI/6);
+      const p2y = y2 - headLen * Math.sin(angle - Math.PI/6);
+      const p3x = x2 - headLen * Math.cos(angle + Math.PI/6);
+      const p3y = y2 - headLen * Math.sin(angle + Math.PI/6);
+      polygon.setAttribute('points', `${p1x},${p1y} ${p2x},${p2y} ${p3x},${p3y}`);
+      svg.appendChild(polygon);
+    }
+
+    // Draw line with corner (L-shape)
+    function drawLLine(svg, x1, y1, x2, y2, cornerX, cornerY) {
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', `M ${x1} ${y1} L ${cornerX} ${cornerY} L ${x2} ${y2}`);
+      svg.appendChild(path);
+      
+      // Arrow head
+      const angle = Math.atan2(y2 - cornerY, x2 - cornerX);
+      const headLen = 10;
+      const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+      const p1x = x2;
+      const p1y = y2;
+      const p2x = x2 - headLen * Math.cos(angle - Math.PI/6);
+      const p2y = y2 - headLen * Math.sin(angle - Math.PI/6);
+      const p3x = x2 - headLen * Math.cos(angle + Math.PI/6);
+      const p3y = y2 - headLen * Math.sin(angle + Math.PI/6);
+      polygon.setAttribute('points', `${p1x},${p1y} ${p2x},${p2y} ${p3x},${p3y}`);
+      svg.appendChild(polygon);
+    }
+
+    // Connect two elements
+    function connect(svg, fromId, toId, fromDiamond = false, toDiamond = false) {
+      const from = document.getElementById(fromId);
+      const to = document.getElementById(toId);
+      if (!from || !to) return;
+      
+      const toCenter = getCenter(to);
+      const fromCenter = getCenter(from);
+      
+      const start = getEdgePoint(from, toCenter, fromDiamond);
+      const end = getEdgePoint(to, fromCenter, toDiamond);
+      
+      drawArrow(svg, start.x, start.y, end.x, end.y);
+    }
+
+    // Connect with L-line
+    function connectL(svg, fromId, toId, direction, fromDiamond = false, toDiamond = false) {
+      const from = document.getElementById(fromId);
+      const to = document.getElementById(toId);
+      if (!from || !to) return;
+      
+      const fromCenter = getCenter(from);
+      const toCenter = getCenter(to);
+      
+      let cornerX, cornerY;
+      if (direction === 'right-down') {
+        cornerX = toCenter.x;
+        cornerY = fromCenter.y;
+      } else if (direction === 'down-right') {
+        cornerX = fromCenter.x;
+        cornerY = toCenter.y;
+      } else if (direction === 'left-down') {
+        cornerX = toCenter.x;
+        cornerY = fromCenter.y;
+      } else if (direction === 'down-left') {
+        cornerX = fromCenter.x;
+        cornerY = toCenter.y;
+      }
+      
+      const start = getEdgePoint(from, {x: cornerX, y: cornerY}, fromDiamond);
+      const end = getEdgePoint(to, {x: cornerX, y: cornerY}, toDiamond);
+      
+      drawLLine(svg, start.x, start.y, end.x, end.y, cornerX, cornerY);
+    }
+
+    function drawAllLines() {
+      // Clear all SVGs
+      document.querySelectorAll('.fc-svg').forEach(svg => svg.innerHTML = '');
+      
+      // LOGIN flowchart
+      const svgLogin = document.getElementById('svg-login');
+      if (svgLogin) {
+        connect(svgLogin, 'login-start', 'login-open');
+        connect(svgLogin, 'login-open', 'login-input');
+        connect(svgLogin, 'login-input', 'login-tap');
+        connect(svgLogin, 'login-tap', 'login-valid', false, true);
+        connect(svgLogin, 'login-valid', 'login-error', true); // No
+        connectL(svgLogin, 'login-error', 'login-input', 'left-down');
+        connectL(svgLogin, 'login-valid', 'login-auth', 'right-down', true); // Yes
+        connect(svgLogin, 'login-auth', 'login-cek', false, true);
+        connect(svgLogin, 'login-cek', 'login-auth-error', true); // No
+        connectL(svgLogin, 'login-auth-error', 'login-input', 'left-down');
+        connectL(svgLogin, 'login-cek', 'login-admin', 'down-left', true, true); // Yes
+        connectL(svgLogin, 'login-admin', 'login-admin-page', 'left-down', true); // Yes - Admin
+        connect(svgLogin, 'login-admin-page', 'login-end');
+        connect(svgLogin, 'login-admin', 'login-end', true); // No - User goes to end
+      }
+      
+      // REGISTER flowchart
+      const svgReg = document.getElementById('svg-register');
+      if (svgReg) {
+        connect(svgReg, 'reg-start', 'reg-open');
+        connect(svgReg, 'reg-open', 'reg-input');
+        connect(svgReg, 'reg-input', 'reg-tap');
+        connect(svgReg, 'reg-tap', 'reg-valid', false, true);
+        connect(svgReg, 'reg-valid', 'reg-error', true); // No
+        connectL(svgReg, 'reg-error', 'reg-input', 'left-down');
+        connectL(svgReg, 'reg-valid', 'reg-auth', 'right-down', true); // Yes
+        connect(svgReg, 'reg-auth', 'reg-cek', false, true);
+        connect(svgReg, 'reg-cek', 'reg-auth-error', true); // No
+        connectL(svgReg, 'reg-auth-error', 'reg-input', 'left-down');
+        connectL(svgReg, 'reg-cek', 'reg-save', 'down-left', true); // Yes
+        connect(svgReg, 'reg-save', 'reg-success');
+        connect(svgReg, 'reg-success', 'reg-back');
+        connect(svgReg, 'reg-back', 'reg-end');
+      }
+      
+      // PELAYANAN flowcharts (SKPW, SKBMR, Kematian, SKTM, Nikah, Ahli Waris, Domisili Usaha, Penghasilan, Rekom Usaha, Domisili)
+      const pelayananPrefixes = ['skpw', 'skbmr', 'kematian', 'sktm', 'nikah', 'ahliwaris', 'domisili-usaha', 'penghasilan', 'rekom-usaha', 'domisili'];
+      pelayananPrefixes.forEach(prefix => {
+        const svg = document.getElementById(`svg-${prefix}`);
+        if (svg) {
+          connect(svg, `${prefix}-start`, `${prefix}-menu`);
+          connect(svg, `${prefix}-menu`, `${prefix}-select`);
+          connect(svg, `${prefix}-select`, `${prefix}-input`);
+          connect(svg, `${prefix}-input`, `${prefix}-docs`);
+          connect(svg, `${prefix}-docs`, `${prefix}-submit`);
+          connect(svg, `${prefix}-submit`, `${prefix}-valid`, false, true);
+          connect(svg, `${prefix}-valid`, `${prefix}-error`, true); // No
+          connectL(svg, `${prefix}-error`, `${prefix}-input`, 'left-down');
+          connectL(svg, `${prefix}-valid`, `${prefix}-upload`, 'right-down', true); // Yes
+          connect(svg, `${prefix}-upload`, `${prefix}-save`);
+          connect(svg, `${prefix}-save`, `${prefix}-success`);
+          connect(svg, `${prefix}-success`, `${prefix}-wait`);
+          connect(svg, `${prefix}-wait`, `${prefix}-end`);
+        }
+      });
+      
+      // PERSYARATAN flowchart
+      const svgPersyaratan = document.getElementById('svg-persyaratan');
+      if (svgPersyaratan) {
+        connect(svgPersyaratan, 'persyaratan-start', 'persyaratan-menu');
+        connect(svgPersyaratan, 'persyaratan-menu', 'persyaratan-grid');
+        connect(svgPersyaratan, 'persyaratan-grid', 'persyaratan-select');
+        connect(svgPersyaratan, 'persyaratan-select', 'persyaratan-show');
+        connect(svgPersyaratan, 'persyaratan-show', 'persyaratan-end');
+      }
+      
+      // PENGADUAN flowchart
+      const svgPengaduan = document.getElementById('svg-pengaduan');
+      if (svgPengaduan) {
+        connect(svgPengaduan, 'pengaduan-start', 'pengaduan-menu');
+        connect(svgPengaduan, 'pengaduan-menu', 'pengaduan-create');
+        connect(svgPengaduan, 'pengaduan-create', 'pengaduan-input');
+        connect(svgPengaduan, 'pengaduan-input', 'pengaduan-docs');
+        connect(svgPengaduan, 'pengaduan-docs', 'pengaduan-submit');
+        connect(svgPengaduan, 'pengaduan-submit', 'pengaduan-valid', false, true);
+        connect(svgPengaduan, 'pengaduan-valid', 'pengaduan-error', true); // No
+        connectL(svgPengaduan, 'pengaduan-error', 'pengaduan-input', 'left-down');
+        connectL(svgPengaduan, 'pengaduan-valid', 'pengaduan-upload', 'right-down', true); // Yes
+        connect(svgPengaduan, 'pengaduan-upload', 'pengaduan-save');
+        connect(svgPengaduan, 'pengaduan-save', 'pengaduan-success');
+        connect(svgPengaduan, 'pengaduan-success', 'pengaduan-wait');
+        connect(svgPengaduan, 'pengaduan-wait', 'pengaduan-end');
+      }
+      
+      // JAM PELAYANAN flowchart
+      const svgJam = document.getElementById('svg-jam');
+      if (svgJam) {
+        connect(svgJam, 'jam-start', 'jam-menu');
+        connect(svgJam, 'jam-menu', 'jam-show');
+        connect(svgJam, 'jam-show', 'jam-end');
+      }
+      
+      // PROFIL KANTOR flowchart
+      const svgProfil = document.getElementById('svg-profil');
+      if (svgProfil) {
+        connect(svgProfil, 'profil-start', 'profil-menu');
+        connect(svgProfil, 'profil-menu', 'profil-show');
+        connect(svgProfil, 'profil-show', 'profil-end');
+      }
+    }
+
+    // Initial draw
+    window.addEventListener('load', () => {
+      setTimeout(drawAllLines, 100);
+    });
+    
+    window.addEventListener('resize', drawAllLines);
+
+    // Download current flowchart
+    function downloadCurrent() {
+      const activeContainer = document.querySelector('.flowchart-container.active');
+      const activeTab = document.querySelector('.nav-tab.active');
+      if (!activeContainer || !activeTab) return;
+      
+      const canvas = activeContainer.querySelector('.fc-canvas');
+      const name = activeTab.textContent.replace(/\s+/g, '-');
+      const btn = document.querySelector('.download-btn');
+      btn.textContent = '⏳ Processing...';
+      btn.disabled = true;
+      
+      html2canvas(canvas, {
+        backgroundColor: '#f8fafc',
+        scale: 2,
+        useCORS: true,
+        logging: false
+      }).then(canvasEl => {
+        const link = document.createElement('a');
+        link.download = `Flowchart-${name}.png`;
+        link.href = canvasEl.toDataURL('image/png');
+        link.click();
+        btn.innerHTML = '📥 Download Current';
+        btn.disabled = false;
+      }).catch(err => {
+        console.error('Download failed:', err);
+        btn.innerHTML = '📥 Download Current';
+        btn.disabled = false;
+        alert('Download gagal. Silakan coba lagi.');
+      });
+    }
+
+    // Download all flowcharts as ZIP
+    async function downloadAll() {
+      const btn = document.querySelectorAll('.download-btn')[1];
+      btn.textContent = '⏳ Processing...';
+      btn.disabled = true;
+      
+      const tabs = document.querySelectorAll('.nav-tab');
+      const containers = document.querySelectorAll('.flowchart-container');
+      const zip = new JSZip();
+      
+      try {
+        for (let i = 0; i < tabs.length; i++) {
+          // Show this flowchart
+          containers.forEach(c => c.classList.remove('active'));
+          tabs.forEach(t => t.classList.remove('active'));
+          containers[i].classList.add('active');
+          tabs[i].classList.add('active');
+          
+          // Wait for redraw
+          drawAllLines();
+          await new Promise(resolve => setTimeout(resolve, 200));
+          
+          // Capture
+          const canvas = containers[i].querySelector('.fc-canvas');
+          const name = tabs[i].textContent.replace(/\s+/g, '-');
+          
+          const canvasEl = await html2canvas(canvas, {
+            backgroundColor: '#f8fafc',
+            scale: 2,
+            useCORS: true,
+            logging: false
+          });
+          
+          // Convert to blob
+          const dataUrl = canvasEl.toDataURL('image/png');
+          const base64 = dataUrl.split(',')[1];
+          zip.file(`Flowchart-${String(i + 1).padStart(2, '0')}-${name}.png`, base64, { base64: true });
+        }
+        
+        // Generate ZIP
+        const content = await zip.generateAsync({ type: 'blob' });
+        const link = document.createElement('a');
+        link.download = 'Flowchart-Kantor-Lurah-Maharatu.zip';
+        link.href = URL.createObjectURL(content);
+        link.click();
+        URL.revokeObjectURL(link.href);
+        
+        btn.innerHTML = '📦 Download All (ZIP)';
+        btn.disabled = false;
+      } catch (err) {
+        console.error('Download all failed:', err);
+        btn.innerHTML = '📦 Download All (ZIP)';
+        btn.disabled = false;
+        alert('Download gagal. Silakan coba lagi.');
+      }
+    }
+  </script>
+</body>
+</html>

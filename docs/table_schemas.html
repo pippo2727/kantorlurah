@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table Schemas - Kantor Lurah Maharatu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff;
+      min-height: 100vh;
+      padding: 20px;
+      color: #000;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #333;
+      font-size: 0.95rem;
+      margin-bottom: 5px;
+    }
+
+    /* Download Button */
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: all 0.2s;
+    }
+
+    .download-btn:hover {
+      background: #333;
+    }
+
+    .download-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Table Section */
+    .table-section {
+      background: #fff;
+      border: 1px solid #000;
+      margin-bottom: 30px;
+    }
+
+    .table-header {
+      background: #000;
+      color: #fff;
+      padding: 15px 20px;
+    }
+
+    .table-number {
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    .table-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .table-name code {
+      font-family: 'Consolas', 'Monaco', monospace;
+    }
+
+    .table-description {
+      padding: 12px 20px;
+      background: #f5f5f5;
+      color: #333;
+      font-size: 0.9rem;
+      border-bottom: 1px solid #000;
+    }
+
+    /* Schema Table */
+    .schema-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .schema-table th {
+      padding: 12px 15px;
+      text-align: left;
+      font-weight: 700;
+      color: #000;
+      border-bottom: 2px solid #000;
+      font-size: 0.9rem;
+      background: #f5f5f5;
+    }
+
+    .schema-table td {
+      padding: 10px 15px;
+      border-bottom: 1px solid #ccc;
+      font-size: 0.85rem;
+      vertical-align: top;
+    }
+
+    .schema-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Field name styling */
+    .field-name {
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-weight: 600;
+    }
+
+    /* Data type styling */
+    .data-type {
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.85rem;
+    }
+
+    /* Description column */
+    .field-desc {
+      color: #333;
+    }
+
+    .field-desc code {
+      background: #eee;
+      padding: 1px 4px;
+      font-size: 0.8rem;
+      font-family: 'Consolas', 'Monaco', monospace;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #666;
+      font-size: 0.8rem;
+    }
+
+    /* Legend */
+    .legend {
+      border: 1px solid #ccc;
+      padding: 15px 20px;
+      margin-bottom: 30px;
+      background: #f9f9f9;
+    }
+
+    .legend h3 {
+      font-size: 0.9rem;
+      color: #000;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .legend-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 0.85rem;
+    }
+
+    .legend-item {
+      color: #333;
+    }
+
+    .legend-item strong {
+      font-weight: 700;
+    }
+  </style>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <div class="header">
+    <h1>Table Schemas</h1>
+    <p>Sistem Informasi Kantor Lurah Maharatu — Database Structure</p>
+    <button class="download-btn" onclick="downloadImage()">
+      Download as Image
+    </button>
+  </div>
+
+  <div class="container" id="schemaContainer">
+    <!-- Legend -->
+    <div class="legend">
+      <h3>Keterangan:</h3>
+      <div class="legend-grid">
+        <div class="legend-item"><strong>PK</strong> = Primary Key</div>
+        <div class="legend-item"><strong>FK</strong> = Foreign Key</div>
+      </div>
+    </div>
+
+    <!-- Table 1: users -->
+    <div class="table-section">
+      <div class="table-header">
+        <div class="table-number">Tabel 1</div>
+        <div class="table-name"><code>users</code></div>
+      </div>
+      <div class="table-description">
+        Menyimpan data profil pengguna yang terdaftar di sistem. Tabel ini ter-link dengan Supabase Auth (auth.users) melalui kolom id. Data pengguna otomatis dibuat saat user melakukan registrasi.
+      </div>
+      <table class="schema-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Nama Field</th>
+            <th style="width: 20%;">Tipe Data</th>
+            <th style="width: 55%;">Keterangan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="field-name">id (PK, FK)</span></td>
+            <td><span class="data-type">uuid</span></td>
+            <td class="field-desc">
+              Primary key, referensi ke <code>auth.users(id)</code>. ON DELETE CASCADE.
+            </td>
+          </tr>
+          <tr>
+            <td><span class="field-name">name</span></td>
+            <td><span class="data-type">text</span></td>
+            <td class="field-desc">Nama lengkap pengguna.</td>
+          </tr>
+          <tr>
+            <td><span class="field-name">birth_date</span></td>
+            <td><span class="data-type">date</span></td>
+            <td class="field-desc">Tanggal lahir pengguna.</td>
+          </tr>
+          <tr>
+            <td><span class="field-name">email</span></td>
+            <td><span class="data-type">text</span></td>
+            <td class="field-desc">Alamat email pengguna (unik).</td>
+          </tr>
+          <tr>
+            <td><span class="field-name">created_at</span></td>
+            <td><span class="data-type">timestamptz</span></td>
+            <td class="field-desc">Waktu pembuatan record. Default: <code>now()</code></td>
+          </tr>
+          <tr>
+            <td><span class="field-name">updated_at</span></td>
+            <td><span class="data-type">timestamptz</span></td>
+            <td class="field-desc">Waktu update terakhir. Otomatis diperbarui via trigger.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Table 2: pengaduan -->
+    <div class="table-section">
+      <div class="table-header">
+        <div class="table-number">Tabel 2</div>
+        <div class="table-name"><code>pengaduan</code></div>
+      </div>
+      <div class="table-description">
+        Menyimpan data pengaduan masyarakat. Pengguna dapat mengajukan keluhan atau aspirasi yang akan ditinjau oleh admin kelurahan. Status pengaduan dapat berupa: menunggu, diproses, selesai, atau ditolak.
+      </div>
+      <table class="schema-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Nama Field</th>
+            <th style="width: 20%;">Tipe Data</th>
+            <th style="width: 55%;">Keterangan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="field-name">id (PK)</span></td>
+            <td><span class="data-type">uuid</span></td>
+            <td class="field-desc">Primary key. Default: <code>uuid_generate_v4()</code></td>
+          </tr>
+          <tr>
+            <td><span class="field-name">user_id (FK)</span></td>
+            <td><span class="data-type">uuid</span></td>
+            <td class="field-desc">
+              Referensi ke <code>users(id)</code>. ON DELETE SET NULL.
+            </td>
+          </tr>
+          <tr>
+            <td><span class="field-name">name</span></td>
+            <td><span class="data-type">text</span></td>
+            <td class="field-desc">Nama pelapor.</td>
+          </tr>
+          <tr>
+            <td><span class="field-name">nik</span></td>
+            <td><span class="data-type">text</span></td>
+            <td class="field-desc">Nomor Induk Kependudukan (NIK) pelapor.</td>
+          </tr>
+          <tr>
+            <td><span class="field-name">date</span></td>
+            <td><span class="data-type">date</span></td>
+            <td class="field-desc">Tanggal pengaduan. Default: <code>current_date</code></td>
+          </tr>
+          <tr>
+            <td><span class="field-name">address</span></td>
+            <td><span class="data-type">text</span></td>
+            <td class="field-desc">Alamat lengkap pelapor.</td>
+          </tr>
+          <tr>
+            <td><span class="field-name">description</span></td>
+            <td><span class="data-type">text</span></td>
+            <td class="field-desc">Isi/deskripsi pengaduan.</td>
+          </tr>
+          <tr>
+            <td><span class="field-name">attachment_url</span></td>
+            <td><span class="data-type">text</span></td>
+            <td class="field-desc">URL lampiran gambar (opsional). Upload via Cloudinary.</td>
+          </tr>
+          <tr>
+            <td><span class="field-name">status</span></td>
+            <td><span class="data-type">text</span></td>
+            <td class="field-desc">
+              Status pengaduan. Nilai: <code>menunggu</code> | <code>diproses</code> | <code>selesai</code> | <code>ditolak</code>. Default: <code>menunggu</code>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="field-name">admin_note</span></td>
+            <td><span class="data-type">text</span></td>
+            <td class="field-desc">Catatan/tanggapan dari admin (opsional).</td>
+          </tr>
+          <tr>
+            <td><span class="field-name">created_at</span></td>
+            <td><span class="data-type">timestamptz</span></td>
+            <td class="field-desc">Waktu pembuatan record. Default: <code>now()</code></td>
+          </tr>
+          <tr>
+            <td><span class="field-name">updated_at</span></td>
+            <td><span class="data-type">timestamptz</span></td>
+            <td class="field-desc">Waktu update terakhir. Otomatis diperbarui via trigger.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Table 3: pelayanan -->
+    <div class="table-section">
+      <div class="table-header">
+        <div class="table-number">Tabel 3</div>
+        <div class="table-name"><code>pelayanan</code></div>
+      </div>
+      <div class="table-description">
+        Menyimpan data permohonan pelayanan administrasi. Mendukung 10 jenis surat: SKPW, SKBMR, Surat Kematian, SKTM, Surat Nikah, Ahli Waris, Domisili Usaha, Surat Penghasilan, Rekomendasi Usaha, dan Surat Domisili.
+      </div>
+      <table class="schema-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Nama Field</th>
+            <th style="width: 20%;">Tipe Data</th>
+            <th style="width: 55%;">Keterangan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="field-name">id (PK)</span></td>
+            <td><span class="data-type">uuid</span></td>
+            <td class="field-desc">Primary key. Default: <code>uuid_generate_v4()</code></td>
+          </tr>
+          <tr>
+            <td><span class="field-name">user_id (FK)</span></td>
+            <td><span class="data-type">uuid</span></td>
+            <td class="field-desc">
+              Referensi ke <code>users(id)</code>. ON DELETE SET NULL.
+            </td>
+          </tr>
+          <tr>
+            <td><span class="field-name">jenis_pelayanan</span></td>
+            <td><span class="data-type">text</span></td>
+            <td class="field-desc">
+              Jenis pelayanan. Nilai: <code>skpw</code> | <code>skbmr</code> | <code>kematian</code> | <code>sktm</code> | <code>nikah</code> | <code>ahli_waris</code> | <code>domisili_usaha</code> | <code>penghasilan</code> | <code>rekomendasi_usaha</code> | <code>domisili</code>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="field-name">name</span></td>
+            <td><span class="data-type">text</span></td>
+            <td class="field-desc">Nama pemohon.</td>
+          </tr>
+          <tr>
+            <td><span class="field-name">nik</span></td>
+            <td><span class="data-type">text</span></td>
+            <td class="field-desc">Nomor Induk Kependudukan (NIK) pemohon.</td>
+          </tr>
+          <tr>
+            <td><span class="field-name">phone</span></td>
+            <td><span class="data-type">text</span></td>
+            <td class="field-desc">Nomor telepon/WhatsApp pemohon (opsional).</td>
+          </tr>
+          <tr>
+            <td><span class="field-name">address</span></td>
+            <td><span class="data-type">text</span></td>
+            <td class="field-desc">Alamat lengkap pemohon (opsional).</td>
+          </tr>
+          <tr>
+            <td><span class="field-name">documents</span></td>
+            <td><span class="data-type">jsonb</span></td>
+            <td class="field-desc">
+              Array JSON berisi URL dokumen pendukung (KTP, KK, dll). Upload via Cloudinary. Default: <code>[]</code>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="field-name">status</span></td>
+            <td><span class="data-type">text</span></td>
+            <td class="field-desc">
+              Status permohonan. Nilai: <code>menunggu</code> | <code>diproses</code> | <code>selesai</code> | <code>ditolak</code>. Default: <code>menunggu</code>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="field-name">admin_note</span></td>
+            <td><span class="data-type">text</span></td>
+            <td class="field-desc">Catatan/tanggapan dari admin (opsional).</td>
+          </tr>
+          <tr>
+            <td><span class="field-name">created_at</span></td>
+            <td><span class="data-type">timestamptz</span></td>
+            <td class="field-desc">Waktu pembuatan record. Default: <code>now()</code></td>
+          </tr>
+          <tr>
+            <td><span class="field-name">updated_at</span></td>
+            <td><span class="data-type">timestamptz</span></td>
+            <td class="field-desc">Waktu update terakhir. Otomatis diperbarui via trigger.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    Dokumentasi Database — Sistem Informasi Kantor Lurah Maharatu
+  </div>
+
+  <script>
+    // Download as image
+    function downloadImage() {
+      const element = document.getElementById('schemaContainer');
+      const btn = document.querySelector('.download-btn');
+      btn.textContent = '⏳ Processing...';
+      btn.disabled = true;
+      
+      html2canvas(element, {
+        backgroundColor: '#f8fafc',
+        scale: 2,
+        useCORS: true,
+        logging: false
+      }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'Table-Schemas-Kantor-Lurah-Maharatu.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        btn.innerHTML = '📥 Download as Image';
+        btn.disabled = false;
+      }).catch(err => {
+        console.error('Download failed:', err);
+        btn.innerHTML = '📥 Download as Image';
+        btn.disabled = false;
+        alert('Download gagal. Silakan coba lagi.');
+      });
+    }
+  </script>
+</body>
+</html>

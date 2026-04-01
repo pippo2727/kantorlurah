@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DFD Level 1 - Kantor Lurah Maharatu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8fafc;
+      min-height: 100vh;
+      padding: 20px;
+      color: #1e293b;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #64748b;
+      font-size: 0.95rem;
+      margin-bottom: 5px;
+    }
+
+    /* Download Button */
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .download-btn:active {
+      transform: translateY(0);
+    }
+
+    /* DFD Canvas */
+    .dfd-wrapper {
+      overflow-x: auto;
+      padding-bottom: 20px;
+    }
+
+    .dfd-canvas {
+      width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      min-height: 950px;
+    }
+
+    /* SVG for data flow lines */
+    .dfd-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .dfd-svg path {
+      fill: none;
+      stroke: #475569;
+      stroke-width: 2;
+    }
+
+    .dfd-svg polygon {
+      fill: #475569;
+    }
+
+    /* External Entity (Rectangle) */
+    .external-entity {
+      position: absolute;
+      background: #f0fdf4;
+      border: 3px solid #16a34a;
+      padding: 12px 20px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-align: center;
+      min-width: 100px;
+      z-index: 10;
+      border-radius: 0;
+    }
+
+    /* Process (Circle) */
+    .process {
+      position: absolute;
+      background: #dbeafe;
+      border: 3px solid #2563eb;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.8rem;
+      z-index: 10;
+      padding: 10px;
+    }
+
+    .process .process-id {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #1d4ed8;
+      margin-bottom: 3px;
+    }
+
+    .process .process-name {
+      font-weight: 600;
+      color: #1e293b;
+      line-height: 1.2;
+    }
+
+    /* Data Store (Open-ended Rectangle) */
+    .data-store {
+      position: absolute;
+      background: #fef3c7;
+      border-top: 3px solid #d97706;
+      border-bottom: 3px solid #d97706;
+      border-left: 3px solid #d97706;
+      border-right: none;
+      padding: 10px 15px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-align: left;
+      min-width: 130px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .data-store::before {
+      content: attr(data-id);
+      font-weight: 700;
+      color: #92400e;
+      padding-right: 8px;
+      border-right: 2px solid #d97706;
+    }
+
+    /* Data Flow Label */
+    .flow-label {
+      position: absolute;
+      background: #fff;
+      padding: 3px 8px;
+      font-size: 0.7rem;
+      color: #475569;
+      border-radius: 3px;
+      z-index: 15;
+      white-space: nowrap;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    /* Legend */
+    .legend {
+      margin-top: 40px;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .legend h3 {
+      font-size: 1rem;
+      color: #475569;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #475569;
+    }
+
+    .legend-shape {
+      flex-shrink: 0;
+    }
+
+    .legend-shape.entity-shape {
+      width: 50px;
+      height: 30px;
+      background: #f0fdf4;
+      border: 2px solid #16a34a;
+    }
+
+    .legend-shape.process-shape {
+      width: 40px;
+      height: 40px;
+      background: #dbeafe;
+      border: 2px solid #2563eb;
+      border-radius: 50%;
+    }
+
+    .legend-shape.store-shape {
+      width: 60px;
+      height: 25px;
+      background: #fef3c7;
+      border-top: 2px solid #d97706;
+      border-bottom: 2px solid #d97706;
+      border-left: 2px solid #d97706;
+    }
+
+    .legend-shape.flow-shape {
+      width: 50px;
+      height: 2px;
+      background: #475569;
+      position: relative;
+    }
+
+    .legend-shape.flow-shape::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: -4px;
+      border: 5px solid transparent;
+      border-left-color: #475569;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #94a3b8;
+      font-size: 0.8rem;
+    }
+  </style>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <div class="header">
+    <h1>📊 Data Flow Diagram Level 1</h1>
+    <p>Sistem Informasi Kantor Lurah Maharatu — DFD Level 1 dengan pendekatan top-down (hierarchical)</p>
+    <button class="download-btn" onclick="downloadImage()">
+      📥 Download as Image
+    </button>
+  </div>
+
+  <div class="dfd-wrapper">
+    <div class="dfd-canvas" id="dfdCanvas">
+      <!-- SVG for arrows -->
+      <svg class="dfd-svg" id="dfdSvg"></svg>
+
+      <!-- ========== EXTERNAL ENTITIES (LEFT SIDE) ========== -->
+      <div class="external-entity" id="user" style="left: 30px; top: 180px;">
+        Pengguna<br>(Masyarakat)
+      </div>
+
+      <div class="external-entity" id="admin" style="left: 30px; top: 520px;">
+        Admin<br>(Petugas Kelurahan)
+      </div>
+
+      <!-- ========== PROCESSES (CENTER - VERTICAL STACK) ========== -->
+      <!-- P1: Kelola Autentikasi -->
+      <div class="process" id="p1" style="left: 420px; top: 30px;">
+        <span class="process-id">1.0</span>
+        <span class="process-name">Kelola Autentikasi</span>
+      </div>
+
+      <!-- P2: Kelola Pengaduan -->
+      <div class="process" id="p2" style="left: 420px; top: 220px;">
+        <span class="process-id">2.0</span>
+        <span class="process-name">Kelola Pengaduan</span>
+      </div>
+
+      <!-- P3: Kelola Pelayanan -->
+      <div class="process" id="p3" style="left: 420px; top: 420px;">
+        <span class="process-id">3.0</span>
+        <span class="process-name">Kelola Pelayanan</span>
+      </div>
+
+      <!-- P4: Kelola Profil -->
+      <div class="process" id="p4" style="left: 420px; top: 620px;">
+        <span class="process-id">4.0</span>
+        <span class="process-name">Kelola Profil</span>
+      </div>
+
+      <!-- ========== DATA STORES (RIGHT SIDE) ========== -->
+      <div class="data-store" id="ds-users" data-id="D1" style="left: 800px; top: 80px;">
+        users
+      </div>
+
+      <div class="data-store" id="ds-pengaduan" data-id="D2" style="left: 800px; top: 265px;">
+        pengaduan
+      </div>
+
+      <div class="data-store" id="ds-pelayanan" data-id="D3" style="left: 800px; top: 465px;">
+        pelayanan
+      </div>
+
+      <!-- ========== FLOW LABELS ========== -->
+      <!-- User to P1 -->
+      <div class="flow-label" style="left: 200px; top: 100px;">Data Login/Register</div>
+      <div class="flow-label" style="left: 250px; top: 140px;">Status Autentikasi</div>
+      
+      <!-- User to P2 -->
+      <div class="flow-label" style="left: 200px; top: 220px;">Data Pengaduan</div>
+      <div class="flow-label" style="left: 250px; top: 260px;">Status Pengaduan</div>
+      
+      <!-- User to P3 -->
+      <div class="flow-label" style="left: 200px; top: 360px;">Data Permohonan</div>
+      <div class="flow-label" style="left: 250px; top: 400px;">Status Pelayanan</div>
+      
+      <!-- User to P4 -->
+      <div class="flow-label" style="left: 200px; top: 580px;">Data Profil</div>
+      <div class="flow-label" style="left: 250px; top: 620px;">Info Profil</div>
+
+      <!-- Admin to P2 -->
+      <div class="flow-label" style="left: 200px; top: 310px;">Verifikasi Pengaduan</div>
+      <div class="flow-label" style="left: 250px; top: 340px;">Laporan Pengaduan</div>
+
+      <!-- Admin to P3 -->
+      <div class="flow-label" style="left: 200px; top: 470px;">Verifikasi Pelayanan</div>
+      <div class="flow-label" style="left: 250px; top: 500px;">Laporan Pelayanan</div>
+
+      <!-- P1 to DS Users -->
+      <div class="flow-label" style="left: 620px; top: 60px;">Simpan User</div>
+      <div class="flow-label" style="left: 670px; top: 95px;">Data User</div>
+
+      <!-- P2 to DS Pengaduan -->
+      <div class="flow-label" style="left: 600px; top: 250px;">Simpan Pengaduan</div>
+      <div class="flow-label" style="left: 650px; top: 285px;">Data Pengaduan</div>
+
+      <!-- P3 to DS Pelayanan -->
+      <div class="flow-label" style="left: 600px; top: 450px;">Simpan Pelayanan</div>
+      <div class="flow-label" style="left: 650px; top: 485px;">Data Pelayanan</div>
+
+      <!-- P4 to DS Users -->
+      <div class="flow-label" style="left: 700px; top: 630px;">Update Profil</div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <h3>Legenda DFD (Data Flow Diagram)</h3>
+    <div class="legend-grid">
+      <div class="legend-item">
+        <div class="legend-shape entity-shape"></div>
+        <span>External Entity (Entitas Luar)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-shape process-shape"></div>
+        <span>Process (Proses)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-shape store-shape"></div>
+        <span>Data Store (Penyimpanan Data)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-shape flow-shape"></div>
+        <span>Data Flow (Aliran Data)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Kantor Lurah Maharatu • DFD Level 1 (Top-Down Hierarchical) v1.0</p>
+  </div>
+
+  <script>
+    function getCenter(el) {
+      const rect = el.getBoundingClientRect();
+      const canvas = document.getElementById('dfdCanvas').getBoundingClientRect();
+      return {
+        x: rect.left - canvas.left + rect.width / 2,
+        y: rect.top - canvas.top + rect.height / 2,
+        width: rect.width,
+        height: rect.height
+      };
+    }
+
+    function getEdgePoint(center, targetCenter, isCircle = false) {
+      const dx = targetCenter.x - center.x;
+      const dy = targetCenter.y - center.y;
+      const angle = Math.atan2(dy, dx);
+      
+      if (isCircle) {
+        const radius = center.width / 2;
+        return {
+          x: center.x + radius * Math.cos(angle),
+          y: center.y + radius * Math.sin(angle)
+        };
+      } else {
+        const hw = center.width / 2;
+        const hh = center.height / 2;
+        const tanAngle = Math.abs(Math.tan(angle));
+        
+        let edgeX, edgeY;
+        if (tanAngle <= hh / hw) {
+          edgeX = dx > 0 ? hw : -hw;
+          edgeY = edgeX * Math.tan(angle);
+        } else {
+          edgeY = dy > 0 ? hh : -hh;
+          edgeX = edgeY / Math.tan(angle);
+        }
+        
+        return {
+          x: center.x + edgeX,
+          y: center.y + edgeY
+        };
+      }
+    }
+
+    function drawArrow(svg, fromEl, toEl, fromCircle = false, toCircle = false, offsetY = 0) {
+      const from = getCenter(fromEl);
+      const to = getCenter(toEl);
+      
+      // Apply offset for parallel arrows
+      const adjustedFrom = { ...from, y: from.y + offsetY };
+      const adjustedTo = { ...to, y: to.y + offsetY };
+      
+      const start = getEdgePoint({ ...from, y: from.y + offsetY, width: from.width, height: from.height }, adjustedTo, fromCircle);
+      const end = getEdgePoint({ ...to, y: to.y + offsetY, width: to.width, height: to.height }, adjustedFrom, toCircle);
+      
+      // Arrow path - straight horizontal/vertical lines
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', `M ${start.x} ${start.y} L ${end.x} ${end.y}`);
+      svg.appendChild(path);
+      
+      // Arrowhead
+      const angle = Math.atan2(end.y - start.y, end.x - start.x);
+      const arrowSize = 10;
+      const arrowAngle = Math.PI / 6;
+      
+      const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+      const points = [
+        `${end.x},${end.y}`,
+        `${end.x - arrowSize * Math.cos(angle - arrowAngle)},${end.y - arrowSize * Math.sin(angle - arrowAngle)}`,
+        `${end.x - arrowSize * Math.cos(angle + arrowAngle)},${end.y - arrowSize * Math.sin(angle + arrowAngle)}`
+      ].join(' ');
+      arrow.setAttribute('points', points);
+      svg.appendChild(arrow);
+    }
+
+    function drawDFD() {
+      const svg = document.getElementById('dfdSvg');
+      svg.innerHTML = '';
+
+      const user = document.getElementById('user');
+      const admin = document.getElementById('admin');
+      const p1 = document.getElementById('p1');
+      const p2 = document.getElementById('p2');
+      const p3 = document.getElementById('p3');
+      const p4 = document.getElementById('p4');
+      const dsUsers = document.getElementById('ds-users');
+      const dsPengaduan = document.getElementById('ds-pengaduan');
+      const dsPelayanan = document.getElementById('ds-pelayanan');
+
+      // === USER to PROCESSES (horizontal arrows) ===
+      drawArrow(svg, user, p1, false, true, -15);
+      drawArrow(svg, p1, user, true, false, 15);
+
+      drawArrow(svg, user, p2, false, true, -15);
+      drawArrow(svg, p2, user, true, false, 15);
+
+      drawArrow(svg, user, p3, false, true, -50);
+      drawArrow(svg, p3, user, true, false, -30);
+
+      drawArrow(svg, user, p4, false, true, -15);
+      drawArrow(svg, p4, user, true, false, 15);
+
+      // === ADMIN to PROCESSES (horizontal arrows) ===
+      drawArrow(svg, admin, p2, false, true, 15);
+      drawArrow(svg, p2, admin, true, false, 35);
+
+      drawArrow(svg, admin, p3, false, true, 15);
+      drawArrow(svg, p3, admin, true, false, 35);
+
+      // === PROCESSES to DATA STORES (horizontal arrows) ===
+      drawArrow(svg, p1, dsUsers, true, false, -10);
+      drawArrow(svg, dsUsers, p1, false, true, 10);
+
+      drawArrow(svg, p2, dsPengaduan, true, false, -10);
+      drawArrow(svg, dsPengaduan, p2, false, true, 10);
+
+      drawArrow(svg, p3, dsPelayanan, true, false, -10);
+      drawArrow(svg, dsPelayanan, p3, false, true, 10);
+
+      drawArrow(svg, p4, dsUsers, true, false, 0);
+    }
+
+    window.addEventListener('load', drawDFD);
+    window.addEventListener('resize', drawDFD);
+
+    // Download as image
+    function downloadImage() {
+      const element = document.getElementById('dfdCanvas');
+      const btn = document.querySelector('.download-btn');
+      btn.textContent = '⏳ Processing...';
+      btn.disabled = true;
+      
+      html2canvas(element, {
+        backgroundColor: '#f8fafc',
+        scale: 2,
+        useCORS: true,
+        logging: false
+      }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'DFD-Level1-Kantor-Lurah-Maharatu.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        btn.innerHTML = '📥 Download as Image';
+        btn.disabled = false;
+      }).catch(err => {
+        console.error('Download failed:', err);
+        btn.innerHTML = '📥 Download as Image';
+        btn.disabled = false;
+        alert('Download gagal. Silakan coba lagi.');
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Use Case Diagram - Kantor Lurah Maharatu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8fafc;
+      min-height: 100vh;
+      padding: 20px;
+      color: #1e293b;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #64748b;
+      font-size: 0.95rem;
+      margin-bottom: 5px;
+    }
+
+    /* Download Button */
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .download-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Use Case Canvas */
+    .uc-wrapper {
+      overflow-x: auto;
+      padding-bottom: 20px;
+    }
+
+    .uc-canvas {
+      width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      min-height: 900px;
+    }
+
+    /* SVG for lines */
+    .uc-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .uc-svg line {
+      stroke: #475569;
+      stroke-width: 1.5;
+    }
+
+    .uc-svg text {
+      font-size: 11px;
+      fill: #64748b;
+      font-style: italic;
+    }
+
+    /* System Boundary */
+    .system-boundary {
+      position: absolute;
+      left: 200px;
+      top: 60px;
+      width: 700px;
+      height: 870px;
+      border: 3px solid #2563eb;
+      border-radius: 20px;
+      background: rgba(219, 234, 254, 0.15);
+      z-index: 0;
+    }
+
+    .system-title {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2563eb;
+      color: white;
+      padding: 8px 25px;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 20px;
+      white-space: nowrap;
+      z-index: 20;
+    }
+
+    /* Actor (Stick Figure) */
+    .actor {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 10;
+      width: 80px;
+    }
+
+    .actor-figure {
+      width: 50px;
+      height: 80px;
+      position: relative;
+    }
+
+    /* Stick figure parts */
+    .actor-head {
+      width: 20px;
+      height: 20px;
+      border: 3px solid #16a34a;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #f0fdf4;
+    }
+
+    .actor-body {
+      width: 3px;
+      height: 25px;
+      background: #16a34a;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .actor-arms {
+      width: 30px;
+      height: 3px;
+      background: #16a34a;
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .actor-leg-left {
+      width: 3px;
+      height: 25px;
+      background: #16a34a;
+      position: absolute;
+      top: 45px;
+      left: 50%;
+      transform: translateX(-50%) rotate(20deg);
+      transform-origin: top center;
+    }
+
+    .actor-leg-right {
+      width: 3px;
+      height: 25px;
+      background: #16a34a;
+      position: absolute;
+      top: 45px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-20deg);
+      transform-origin: top center;
+    }
+
+    .actor-name {
+      margin-top: 5px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #16a34a;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    /* Admin actor - different color */
+    .actor.admin .actor-head {
+      border-color: #dc2626;
+      background: #fef2f2;
+    }
+    .actor.admin .actor-body,
+    .actor.admin .actor-arms,
+    .actor.admin .actor-leg-left,
+    .actor.admin .actor-leg-right {
+      background: #dc2626;
+    }
+    .actor.admin .actor-name {
+      color: #dc2626;
+    }
+
+    /* Use Case (Oval) */
+    .usecase {
+      position: absolute;
+      background: #fff;
+      border: 2px solid #475569;
+      border-radius: 50%;
+      padding: 12px 20px;
+      min-width: 140px;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #1e293b;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 55px;
+    }
+
+    .usecase.shared {
+      border-color: #7c3aed;
+      background: #f5f3ff;
+    }
+
+    /* Legend */
+    .legend {
+      margin-top: 40px;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .legend h3 {
+      font-size: 1rem;
+      color: #475569;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #475569;
+    }
+
+    .legend-shape {
+      flex-shrink: 0;
+    }
+
+    .legend-shape.actor-shape {
+      width: 30px;
+      height: 45px;
+      position: relative;
+    }
+
+    .legend-shape.actor-shape::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      border: 2px solid #16a34a;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .legend-shape.actor-shape::after {
+      content: '';
+      width: 2px;
+      height: 30px;
+      background: #16a34a;
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .legend-shape.usecase-shape {
+      width: 60px;
+      height: 30px;
+      border: 2px solid #475569;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .legend-shape.usecase-shared {
+      width: 60px;
+      height: 30px;
+      border: 2px solid #7c3aed;
+      border-radius: 50%;
+      background: #f5f3ff;
+    }
+
+    .legend-shape.system-shape {
+      width: 60px;
+      height: 35px;
+      border: 2px solid #2563eb;
+      border-radius: 8px;
+      background: rgba(219, 234, 254, 0.3);
+    }
+
+    .legend-shape.assoc-shape {
+      width: 50px;
+      height: 2px;
+      background: #475569;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #94a3b8;
+      font-size: 0.8rem;
+    }
+  </style>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <div class="header">
+    <h1>📋 Use Case Diagram</h1>
+    <p>Sistem Informasi Kantor Lurah Maharatu</p>
+    <button class="download-btn" onclick="downloadImage()">
+      📥 Download as Image
+    </button>
+  </div>
+
+  <div class="uc-wrapper">
+    <div class="uc-canvas" id="ucCanvas">
+      <!-- SVG for association lines -->
+      <svg class="uc-svg" id="ucSvg"></svg>
+
+      <!-- System Boundary -->
+      <div class="system-boundary">
+        <div class="system-title">Sistem Informasi Kantor Lurah Maharatu</div>
+      </div>
+
+      <!-- ========== ACTORS ========== -->
+      <!-- Pengguna (Left) -->
+      <div class="actor" id="actorUser" style="left: 50px; top: 420px;">
+        <div class="actor-figure">
+          <div class="actor-head"></div>
+          <div class="actor-body"></div>
+          <div class="actor-arms"></div>
+          <div class="actor-leg-left"></div>
+          <div class="actor-leg-right"></div>
+        </div>
+        <div class="actor-name">Pengguna<br>(Masyarakat)</div>
+      </div>
+
+      <!-- Admin (Right) -->
+      <div class="actor admin" id="actorAdmin" style="left: 970px; top: 420px;">
+        <div class="actor-figure">
+          <div class="actor-head"></div>
+          <div class="actor-body"></div>
+          <div class="actor-arms"></div>
+          <div class="actor-leg-left"></div>
+          <div class="actor-leg-right"></div>
+        </div>
+        <div class="actor-name">Admin<br>(Petugas)</div>
+      </div>
+
+      <!-- ========== USE CASES ========== -->
+      <!-- Authentication (Shared) -->
+      <div class="usecase shared" id="ucLogin" style="left: 480px; top: 90px;">Login</div>
+      <div class="usecase" id="ucRegister" style="left: 300px; top: 90px;">Register</div>
+      <div class="usecase shared" id="ucLogout" style="left: 660px; top: 90px;">Logout</div>
+
+      <!-- Pengguna Use Cases (Left side of system) -->
+      <div class="usecase" id="ucAjukanPelayanan" style="left: 260px; top: 180px;">Ajukan Pelayanan</div>
+      <div class="usecase" id="ucLihatStatusPelayanan" style="left: 260px; top: 260px;">Lihat Status Pelayanan</div>
+      <div class="usecase" id="ucBuatPengaduan" style="left: 260px; top: 340px;">Buat Pengaduan</div>
+      <div class="usecase" id="ucLihatStatusPengaduan" style="left: 260px; top: 420px;">Lihat Status Pengaduan</div>
+      <div class="usecase" id="ucLihatPersyaratan" style="left: 260px; top: 500px;">Lihat Persyaratan</div>
+      <div class="usecase" id="ucLihatJamPelayanan" style="left: 260px; top: 580px;">Lihat Jam Pelayanan</div>
+      <div class="usecase" id="ucLihatProfilKantor" style="left: 260px; top: 660px;">Lihat Profil Kantor</div>
+      <div class="usecase" id="ucEditProfil" style="left: 260px; top: 740px;">Edit Profil</div>
+      <div class="usecase" id="ucUploadDokumen" style="left: 260px; top: 820px;">Upload Dokumen</div>
+
+      <!-- Admin Use Cases (Right side of system) -->
+      <div class="usecase" id="ucLihatDashboard" style="left: 660px; top: 180px;">Lihat Dashboard</div>
+      <div class="usecase" id="ucKelolaPengaduan" style="left: 660px; top: 260px;">Kelola Pengaduan</div>
+      <div class="usecase" id="ucVerifikasiPengaduan" style="left: 660px; top: 340px;">Verifikasi Pengaduan</div>
+      <div class="usecase" id="ucKelolaPelayanan" style="left: 660px; top: 420px;">Kelola Pelayanan</div>
+      <div class="usecase" id="ucVerifikasiPelayanan" style="left: 660px; top: 500px;">Verifikasi Pelayanan</div>
+      <div class="usecase" id="ucUpdateStatus" style="left: 660px; top: 580px;">Update Status</div>
+      <div class="usecase" id="ucTambahCatatan" style="left: 660px; top: 660px;">Tambah Catatan Admin</div>
+      <div class="usecase" id="ucLihatLaporan" style="left: 660px; top: 740px;">Lihat Laporan</div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <h3>Legenda Use Case Diagram</h3>
+    <div class="legend-grid">
+      <div class="legend-item">
+        <div class="legend-shape actor-shape"></div>
+        <span>Actor (Aktor/Pengguna Sistem)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-shape usecase-shape"></div>
+        <span>Use Case (Fungsi Sistem)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-shape usecase-shared"></div>
+        <span>Use Case (Digunakan Bersama)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-shape system-shape"></div>
+        <span>System Boundary (Batas Sistem)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-shape assoc-shape"></div>
+        <span>Association (Hubungan Aktor-Use Case)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Kantor Lurah Maharatu • Use Case Diagram v1.0</p>
+  </div>
+
+  <script>
+    function getCenter(el) {
+      const rect = el.getBoundingClientRect();
+      const canvas = document.getElementById('ucCanvas').getBoundingClientRect();
+      return {
+        x: rect.left - canvas.left + rect.width / 2,
+        y: rect.top - canvas.top + rect.height / 2,
+        width: rect.width,
+        height: rect.height
+      };
+    }
+
+    function getEdgePoint(center, targetCenter, isOval = true) {
+      const dx = targetCenter.x - center.x;
+      const dy = targetCenter.y - center.y;
+      
+      if (isOval) {
+        // Oval edge calculation
+        const a = center.width / 2;
+        const b = center.height / 2;
+        const angle = Math.atan2(dy, dx);
+        return {
+          x: center.x + a * Math.cos(angle),
+          y: center.y + b * Math.sin(angle)
+        };
+      } else {
+        // Actor - use center of figure (approx)
+        return {
+          x: center.x,
+          y: center.y
+        };
+      }
+    }
+
+    function drawLine(svg, fromEl, toEl, fromIsActor = false, toIsActor = false) {
+      const from = getCenter(fromEl);
+      const to = getCenter(toEl);
+      
+      const start = fromIsActor ? { x: from.x, y: from.y } : getEdgePoint(from, to, true);
+      const end = toIsActor ? { x: to.x, y: to.y } : getEdgePoint(to, from, true);
+      
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', start.x);
+      line.setAttribute('y1', start.y);
+      line.setAttribute('x2', end.x);
+      line.setAttribute('y2', end.y);
+      svg.appendChild(line);
+    }
+
+    function drawDiagram() {
+      const svg = document.getElementById('ucSvg');
+      svg.innerHTML = '';
+
+      const actorUser = document.getElementById('actorUser');
+      const actorAdmin = document.getElementById('actorAdmin');
+
+      // Pengguna associations
+      const userUseCases = [
+        'ucLogin', 'ucRegister', 'ucLogout',
+        'ucAjukanPelayanan', 'ucLihatStatusPelayanan',
+        'ucBuatPengaduan', 'ucLihatStatusPengaduan',
+        'ucLihatPersyaratan', 'ucLihatJamPelayanan', 'ucLihatProfilKantor',
+        'ucEditProfil', 'ucUploadDokumen'
+      ];
+
+      userUseCases.forEach(ucId => {
+        const uc = document.getElementById(ucId);
+        if (uc) drawLine(svg, actorUser, uc, true, false);
+      });
+
+      // Admin associations
+      const adminUseCases = [
+        'ucLogin', 'ucLogout',
+        'ucLihatDashboard', 'ucKelolaPengaduan', 'ucVerifikasiPengaduan',
+        'ucKelolaPelayanan', 'ucVerifikasiPelayanan',
+        'ucUpdateStatus', 'ucTambahCatatan', 'ucLihatLaporan'
+      ];
+
+      adminUseCases.forEach(ucId => {
+        const uc = document.getElementById(ucId);
+        if (uc) drawLine(svg, actorAdmin, uc, true, false);
+      });
+    }
+
+    window.addEventListener('load', drawDiagram);
+    window.addEventListener('resize', drawDiagram);
+
+    // Download as image
+    function downloadImage() {
+      const element = document.getElementById('ucCanvas');
+      const btn = document.querySelector('.download-btn');
+      btn.textContent = '⏳ Processing...';
+      btn.disabled = true;
+      
+      html2canvas(element, {
+        backgroundColor: '#f8fafc',
+        scale: 2,
+        useCORS: true,
+        logging: false
+      }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'UseCase-Diagram-Kantor-Lurah-Maharatu.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        btn.innerHTML = '📥 Download as Image';
+        btn.disabled = false;
+      }).catch(err => {
+        console.error('Download failed:', err);
+        btn.innerHTML = '📥 Download as Image';
+        btn.disabled = false;
+        alert('Download gagal. Silakan coba lagi.');
+      });
+    }
+  </script>
+</body>
+</html>
