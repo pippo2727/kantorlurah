@@ -44,6 +44,11 @@ create policy "users: select own"
   on public.users for select
   using (auth.uid() = id);
 
+-- Admin can read all user rows (for survey respondent info)
+create policy "users: admin select all"
+  on public.users for select
+  using ((auth.jwt() ->> 'email') = 'admin@demo.com');
+
 -- Users can insert their own row (on register)
 create policy "users: insert own"
   on public.users for insert
@@ -183,4 +188,35 @@ create policy "pelayanan: admin update"
   on public.pelayanan for update
   using ((auth.jwt() ->> 'email') = 'admin@demo.com')
   with check ((auth.jwt() ->> 'email') = 'admin@demo.com');
+
+-- ============================================================
+-- Table: survey_responses
+-- Survey kepuasan pengguna (Likert 1-5, 15 pertanyaan)
+-- ============================================================
+create table if not exists public.survey_responses (
+  id          uuid primary key default uuid_generate_v4(),
+  user_id     uuid references public.users(id) on delete set null,
+  answers     jsonb not null default '{}'::jsonb,
+  created_at  timestamptz not null default now()
+);
+
+-- One survey per user
+create unique index if not exists survey_responses_user_unique
+  on public.survey_responses (user_id);
+
+-- Row Level Security
+alter table public.survey_responses enable row level security;
+
+-- Users can insert their own survey (once)
+create policy "survey_responses: insert own"
+  on public.survey_responses for insert
+  with check (user_id = auth.uid());
+
+-- Users can see their own; admin can see all
+create policy "survey_responses: select"
+  on public.survey_responses for select
+  using (
+    user_id = auth.uid()
+    OR (auth.jwt() ->> 'email') = 'admin@demo.com'
+  );
 

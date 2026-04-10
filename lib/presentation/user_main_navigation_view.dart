@@ -26,7 +26,7 @@ class _UserMainNavigationViewState extends State<UserMainNavigationView> {
     super.initState();
     _pages = [
       MainView(name: widget.name),
-      PengaduanView(name: widget.name),
+      const SurveyView(),
       NavProfileTabView(name: widget.name, email: widget.email),
     ];
   }
@@ -48,9 +48,9 @@ class _UserMainNavigationViewState extends State<UserMainNavigationView> {
             label: 'Beranda',
           ),
           NavigationDestination(
-            icon: Icon(Icons.report_outlined),
-            selectedIcon: Icon(Icons.report),
-            label: 'Pengaduan',
+            icon: Icon(Icons.poll_outlined),
+            selectedIcon: Icon(Icons.poll),
+            label: 'Survey',
           ),
           NavigationDestination(
             icon: Icon(Icons.person_outline),
