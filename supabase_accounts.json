@@ -1,0 +1,15 @@
+{
+  "account": {
+    "email": "rocketothemoon@netaccount.shop",
+    "password": "!KantorLurah123"
+  },
+  "supabase": {
+    "url": "https://hcohlzjgzvqdismdfwye.supabase.co",
+    "publishable_key": "sb_publishable_DIBf-MJz800L-Isyvdg3Tg_YOyjNqaV",
+    "secret_key": "sb_secret_07_BbOtqMUHTZu6aywxLNg_fi35WJl2",
+    "anon_public": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhjb2hsempnenZxZGlzbWRmd3llIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTE2NTksImV4cCI6MjA5MzM4NzY1OX0.USiqBZIQCGO7rIa3XknMZ6ZsY1xnJe0qvtm1EMkkT9s",
+    "service_role": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhjb2hsempnenZxZGlzbWRmd3llIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NzgxMTY1OSwiZXhwIjoyMDkzMzg3NjU5fQ.co5Low64zQsHJ43MV_u5E5f5Gb6NYQftWy-HbcEto94",
+    "service_role_key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhjb2hsempnenZxZGlzbWRmd3llIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NzgxMTY1OSwiZXhwIjoyMDkzMzg3NjU5fQ.co5Low64zQsHJ43MV_u5E5f5Gb6NYQftWy-HbcEto94",
+    "storage_bucket": "kantor-lurah-storage"
+  }
+}
