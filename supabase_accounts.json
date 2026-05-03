@@ -5,6 +5,8 @@
   },
   "supabase": {
     "url": "https://hcohlzjgzvqdismdfwye.supabase.co",
+    "database_url": "postgresql://postgres.hcohlzjgzvqdismdfwye:!KantorLurah123@aws-1-ap-south-1.pooler.supabase.com:5432/postgres",
+    "database_password": "!KantorLurah123",
     "publishable_key": "sb_publishable_DIBf-MJz800L-Isyvdg3Tg_YOyjNqaV",
     "secret_key": "sb_secret_07_BbOtqMUHTZu6aywxLNg_fi35WJl2",
     "anon_public": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhjb2hsempnenZxZGlzbWRmd3llIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTE2NTksImV4cCI6MjA5MzM4NzY1OX0.USiqBZIQCGO7rIa3XknMZ6ZsY1xnJe0qvtm1EMkkT9s",
