@@ -5,7 +5,7 @@
   "packages": [
     {
       "name": "kantor_lurah",
-      "version": "1.0.166+167",
+      "version": "1.0.167+168",
       "dependencies": [
         "audioplayers",
         "cached_network_image",
