@@ -30,8 +30,10 @@ class _InputPengaduanViewState extends State<InputPengaduanView> {
     _name = widget.name;
     if (kDebugMode) {
       _nik = '3201012501900001';
-      _address = 'Jl. Merdeka No. 10, RT 002/RW 003, Kel. Sukamaju, Kec. Cimahi Tengah';
-      _description = 'Jalan di depan gang RT 002 mengalami kerusakan parah akibat hujan deras selama seminggu terakhir. Lubang-lubang besar membahayakan pengendara motor dan pejalan kaki.';
+      _address =
+          'Jl. Merdeka No. 10, RT 002/RW 003, Kel. Sukamaju, Kec. Cimahi Tengah';
+      _description =
+          'Jalan di depan gang RT 002 mengalami kerusakan parah akibat hujan deras selama seminggu terakhir. Lubang-lubang besar membahayakan pengendara motor dan pejalan kaki.';
     }
   }
 
@@ -43,8 +45,9 @@ class _InputPengaduanViewState extends State<InputPengaduanView> {
     try {
       String? attachmentUrl;
       if (_attachmentFile != null) {
-        attachmentUrl =
-            await PengaduanService.uploadAttachment(_attachmentFile!);
+        attachmentUrl = await PengaduanService.uploadAttachment(
+          _attachmentFile!,
+        );
       }
 
       await PengaduanService.submitPengaduan(
@@ -73,8 +76,12 @@ class _InputPengaduanViewState extends State<InputPengaduanView> {
       appBar: AppBar(
         backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
-        title: const Text('Buat Pengaduan',
-            style: TextStyle(fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Buat Pengaduan',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         elevation: 0,
       ),
       body: SingleChildScrollView(
@@ -91,9 +98,8 @@ class _InputPengaduanViewState extends State<InputPengaduanView> {
                 label: 'Nama Lengkap',
                 hint: 'Nama pelapor',
                 initialValue: _name,
-                validator: (v) => (v == null || v.trim().isEmpty)
-                    ? 'Nama wajib diisi'
-                    : null,
+                validator: (v) =>
+                    (v == null || v.trim().isEmpty) ? 'Nama wajib diisi' : null,
                 onChanged: (v) => _name = v.trim(),
               ),
               const SizedBox(height: 12),
@@ -142,8 +148,7 @@ class _InputPengaduanViewState extends State<InputPengaduanView> {
 
               QTextArea(
                 label: 'Uraian Pengaduan',
-                hint:
-                    'Jelaskan secara lengkap kejadian yang ingin dilaporkan',
+                hint: 'Jelaskan secara lengkap kejadian yang ingin dilaporkan',
                 initialValue: _description,
                 minLines: 4,
                 maxLines: 8,

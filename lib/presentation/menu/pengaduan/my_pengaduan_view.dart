@@ -32,10 +32,10 @@ class _MyPengaduanViewState extends State<MyPengaduanView> {
 
   List<Pengaduan> _applyFilters(List<Pengaduan> all) {
     return all.where((p) {
-      final matchStatus =
-          _filterStatus == null || p.status == _filterStatus;
+      final matchStatus = _filterStatus == null || p.status == _filterStatus;
       final q = _searchQuery.toLowerCase();
-      final matchSearch = q.isEmpty ||
+      final matchSearch =
+          q.isEmpty ||
           p.name.toLowerCase().contains(q) ||
           p.description.toLowerCase().contains(q) ||
           p.address.toLowerCase().contains(q);
@@ -47,14 +47,15 @@ class _MyPengaduanViewState extends State<MyPengaduanView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pengaduan Saya'),
+        title: const Text(
+          'Pengaduan Saya',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: _reload,
-          ),
+          IconButton(icon: const Icon(Icons.refresh), onPressed: _reload),
         ],
       ),
       body: Column(
@@ -75,15 +76,17 @@ class _MyPengaduanViewState extends State<MyPengaduanView> {
                     : null,
                 contentPadding: const EdgeInsets.symmetric(vertical: 0),
                 border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.grey.shade300)),
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
                 enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.grey.shade300)),
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
                 focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide:
-                        const BorderSide(color: Colors.teal, width: 1.5)),
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: const BorderSide(color: Colors.teal, width: 1.5),
+                ),
                 filled: true,
                 fillColor: Colors.grey.shade50,
               ),
@@ -102,17 +105,20 @@ class _MyPengaduanViewState extends State<MyPengaduanView> {
                   onTap: () => setState(() => _filterStatus = null),
                 ),
                 const SizedBox(width: 8),
-                ...PengaduanStatus.values.map((s) => Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: _FilterChip(
-                        label: s.label,
-                        selected: _filterStatus == s,
-                        color: s.color,
-                        icon: s.icon,
-                        onTap: () => setState(() =>
-                            _filterStatus = _filterStatus == s ? null : s),
+                ...PengaduanStatus.values.map(
+                  (s) => Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: _FilterChip(
+                      label: s.label,
+                      selected: _filterStatus == s,
+                      color: s.color,
+                      icon: s.icon,
+                      onTap: () => setState(
+                        () => _filterStatus = _filterStatus == s ? null : s,
                       ),
-                    )),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -129,15 +135,21 @@ class _MyPengaduanViewState extends State<MyPengaduanView> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.error_outline,
-                            color: Colors.red, size: 48),
+                        const Icon(
+                          Icons.error_outline,
+                          color: Colors.red,
+                          size: 48,
+                        ),
                         const SizedBox(height: 12),
-                        Text('Gagal memuat data: ${snapshot.error}',
-                            textAlign: TextAlign.center),
+                        Text(
+                          'Gagal memuat data: ${snapshot.error}',
+                          textAlign: TextAlign.center,
+                        ),
                         const SizedBox(height: 12),
                         ElevatedButton(
-                            onPressed: _reload,
-                            child: const Text('Coba Lagi')),
+                          onPressed: _reload,
+                          child: const Text('Coba Lagi'),
+                        ),
                       ],
                     ),
                   );
@@ -148,8 +160,11 @@ class _MyPengaduanViewState extends State<MyPengaduanView> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.inbox_outlined,
-                            size: 64, color: Colors.grey),
+                        const Icon(
+                          Icons.inbox_outlined,
+                          size: 64,
+                          color: Colors.grey,
+                        ),
                         const SizedBox(height: 12),
                         Text(
                           (snapshot.data ?? []).isEmpty
@@ -222,14 +237,19 @@ class _FilterChip extends StatelessWidget {
           color: selected ? color : Colors.grey.shade100,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-              color: selected ? color : Colors.grey.shade300, width: 1),
+            color: selected ? color : Colors.grey.shade300,
+            width: 1,
+          ),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             if (icon != null) ...[
-              Icon(icon, size: 13,
-                  color: selected ? Colors.white : Colors.grey.shade600),
+              Icon(
+                icon,
+                size: 13,
+                color: selected ? Colors.white : Colors.grey.shade600,
+              ),
               const SizedBox(width: 4),
             ],
             Text(
@@ -276,7 +296,9 @@ class _PengaduanCard extends StatelessWidget {
                     child: Text(
                       pengaduan.name,
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 15),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
                     ),
                   ),
                   _StatusBadge(status: status),
@@ -286,8 +308,11 @@ class _PengaduanCard extends StatelessWidget {
               // Date
               Row(
                 children: [
-                  const Icon(Icons.calendar_today,
-                      size: 14, color: Colors.grey),
+                  const Icon(
+                    Icons.calendar_today,
+                    size: 14,
+                    color: Colors.grey,
+                  ),
                   const SizedBox(width: 4),
                   Text(
                     _formatDate(pengaduan.date),
@@ -362,7 +387,11 @@ class PengaduanDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detail Pengaduan'),
+        title: const Text(
+          'Detail Pengaduan',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
       ),
@@ -409,8 +438,10 @@ class PengaduanDetailView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Catatan Admin:',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      const Text(
+                        'Catatan Admin:',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                       const SizedBox(height: 4),
                       Text(pengaduan.adminNote!),
                     ],
@@ -433,10 +464,13 @@ class PengaduanDetailView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Lampiran:',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black54)),
+                    const Text(
+                      'Lampiran:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black54,
+                      ),
+                    ),
                     const SizedBox(height: 8),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8),
@@ -478,11 +512,14 @@ class _DetailRow extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label,
-              style: const TextStyle(
-                  fontSize: 12,
-                  color: Colors.black54,
-                  fontWeight: FontWeight.bold)),
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 12,
+              color: Colors.black54,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const SizedBox(height: 2),
           Text(value, style: const TextStyle(fontSize: 14)),
           const Divider(),

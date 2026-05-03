@@ -19,14 +19,18 @@ class _AdminSurveyViewState extends State<AdminSurveyView> {
   }
 
   void _reload() => setState(() {
-        _future = SurveyService.fetchAllSurveys();
-      });
+    _future = SurveyService.fetchAllSurveys();
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HASIL SURVEY'),
+        title: const Text(
+          'HASIL SURVEY',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
@@ -74,8 +78,11 @@ class _AdminSurveyViewState extends State<AdminSurveyView> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.poll_outlined,
-                      size: 64, color: Colors.grey.shade300),
+                  Icon(
+                    Icons.poll_outlined,
+                    size: 64,
+                    color: Colors.grey.shade300,
+                  ),
                   const SizedBox(height: 16),
                   Text(
                     'Belum ada responden',
@@ -106,7 +113,7 @@ class _AdminSurveyViewState extends State<AdminSurveyView> {
     final overallAvg = questionAverages.values.isEmpty
         ? 0.0
         : questionAverages.values.reduce((a, b) => a + b) /
-            questionAverages.values.length;
+              questionAverages.values.length;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
@@ -248,7 +255,9 @@ class _AdminSurveyViewState extends State<AdminSurveyView> {
       }
     }
 
-    return scores.map((k, v) => MapEntry(k, v.reduce((a, b) => a + b) / v.length));
+    return scores.map(
+      (k, v) => MapEntry(k, v.reduce((a, b) => a + b) / v.length),
+    );
   }
 }
 
@@ -343,10 +352,7 @@ class _QuestionResultCard extends StatelessWidget {
   final SurveyQuestion question;
   final double average;
 
-  const _QuestionResultCard({
-    required this.question,
-    required this.average,
-  });
+  const _QuestionResultCard({required this.question, required this.average});
 
   @override
   Widget build(BuildContext context) {

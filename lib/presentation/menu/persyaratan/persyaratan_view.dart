@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
 
-
 class PersyaratanView extends StatelessWidget {
   String name;
 
@@ -21,14 +20,8 @@ class PersyaratanView extends StatelessWidget {
           (item) => Container(
             margin: const EdgeInsets.all(0.0),
             child: ClipRRect(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(5.0),
-              ),
-              child: Image.asset(
-                item,
-                fit: BoxFit.cover,
-                width: 1000.0,
-              ),
+              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+              child: Image.asset(item, fit: BoxFit.cover, width: 1000.0),
             ),
           ),
         )
@@ -42,7 +35,11 @@ class PersyaratanView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('INFORMASI PERSYARATAN'),
+        title: const Text(
+          'INFORMASI PERSYARATAN',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: const Color(0xff20B2AA),
         foregroundColor: Colors.white,
         elevation: 0,
@@ -74,13 +71,8 @@ class PersyaratanView extends StatelessWidget {
                   //   items: imageSliders,
                   // ),
                   const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 0,
-                      vertical: 10,
-                    ),
-                    child: Divider(
-                      thickness: 5,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                    child: Divider(thickness: 5),
                   ),
                   // Menu
                   Padding(
@@ -152,13 +144,8 @@ class PersyaratanView extends StatelessWidget {
                     ),
                   ),
                   const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 0,
-                      vertical: 0,
-                    ),
-                    child: Divider(
-                      thickness: 5,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                    child: Divider(thickness: 5),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -229,13 +216,8 @@ class PersyaratanView extends StatelessWidget {
                     ),
                   ),
                   const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 0,
-                      vertical: 0,
-                    ),
-                    child: Divider(
-                      thickness: 5,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                    child: Divider(thickness: 5),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -291,17 +273,10 @@ class PersyaratanView extends StatelessWidget {
                     ),
                   ),
                   const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 0,
-                      vertical: 0,
-                    ),
-                    child: Divider(
-                      thickness: 5,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                    child: Divider(thickness: 5),
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                  const SizedBox(height: 8),
                 ],
               ),
               Footer(

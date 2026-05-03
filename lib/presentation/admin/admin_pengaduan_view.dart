@@ -31,10 +31,10 @@ class _AdminPengaduanViewState extends State<AdminPengaduanView> {
 
   List<Pengaduan> _applyFilters(List<Pengaduan> all) {
     return all.where((p) {
-      final matchStatus =
-          _filterStatus == null || p.status == _filterStatus;
+      final matchStatus = _filterStatus == null || p.status == _filterStatus;
       final q = _searchQuery.toLowerCase();
-      final matchSearch = q.isEmpty ||
+      final matchSearch =
+          q.isEmpty ||
           p.name.toLowerCase().contains(q) ||
           p.nik.contains(q) ||
           p.description.toLowerCase().contains(q) ||
@@ -47,7 +47,11 @@ class _AdminPengaduanViewState extends State<AdminPengaduanView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pengaduan Masuk'),
+        title: const Text(
+          'Pengaduan Masuk',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
         actions: [
@@ -67,23 +71,22 @@ class _AdminPengaduanViewState extends State<AdminPengaduanView> {
                 suffixIcon: _searchQuery.isNotEmpty
                     ? IconButton(
                         icon: const Icon(Icons.clear),
-                        onPressed: () =>
-                            setState(() => _searchQuery = ''),
+                        onPressed: () => setState(() => _searchQuery = ''),
                       )
                     : null,
                 contentPadding: const EdgeInsets.symmetric(vertical: 0),
                 border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide:
-                        BorderSide(color: Colors.grey.shade300)),
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
                 enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide:
-                        BorderSide(color: Colors.grey.shade300)),
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
                 focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: const BorderSide(
-                        color: Colors.teal, width: 1.5)),
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: const BorderSide(color: Colors.teal, width: 1.5),
+                ),
                 filled: true,
                 fillColor: Colors.grey.shade50,
               ),
@@ -102,18 +105,20 @@ class _AdminPengaduanViewState extends State<AdminPengaduanView> {
                   onTap: () => setState(() => _filterStatus = null),
                 ),
                 const SizedBox(width: 8),
-                ...PengaduanStatus.values.map((s) => Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: _FilterChip(
-                        label: s.label,
-                        selected: _filterStatus == s,
-                        color: s.color,
-                        icon: s.icon,
-                        onTap: () => setState(() =>
-                            _filterStatus =
-                                _filterStatus == s ? null : s),
+                ...PengaduanStatus.values.map(
+                  (s) => Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: _FilterChip(
+                      label: s.label,
+                      selected: _filterStatus == s,
+                      color: s.color,
+                      icon: s.icon,
+                      onTap: () => setState(
+                        () => _filterStatus = _filterStatus == s ? null : s,
                       ),
-                    )),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -130,15 +135,21 @@ class _AdminPengaduanViewState extends State<AdminPengaduanView> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.error_outline,
-                            color: Colors.red, size: 48),
+                        const Icon(
+                          Icons.error_outline,
+                          color: Colors.red,
+                          size: 48,
+                        ),
                         const SizedBox(height: 12),
-                        Text('Gagal memuat data: ${snapshot.error}',
-                            textAlign: TextAlign.center),
+                        Text(
+                          'Gagal memuat data: ${snapshot.error}',
+                          textAlign: TextAlign.center,
+                        ),
                         const SizedBox(height: 12),
                         ElevatedButton(
-                            onPressed: _reload,
-                            child: const Text('Coba Lagi')),
+                          onPressed: _reload,
+                          child: const Text('Coba Lagi'),
+                        ),
                       ],
                     ),
                   );
@@ -149,8 +160,11 @@ class _AdminPengaduanViewState extends State<AdminPengaduanView> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.inbox_outlined,
-                            size: 64, color: Colors.grey),
+                        const Icon(
+                          Icons.inbox_outlined,
+                          size: 64,
+                          color: Colors.grey,
+                        ),
                         const SizedBox(height: 12),
                         Text(
                           (snapshot.data ?? []).isEmpty
@@ -177,8 +191,7 @@ class _AdminPengaduanViewState extends State<AdminPengaduanView> {
                             context,
                             MaterialPageRoute(
                               builder: (_) =>
-                                  AdminPengaduanDetailView(
-                                      pengaduan: item),
+                                  AdminPengaduanDetailView(pengaduan: item),
                             ),
                           );
                           if (updated == true) _reload();
@@ -225,15 +238,19 @@ class _FilterChip extends StatelessWidget {
           color: selected ? color : Colors.grey.shade100,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-              color: selected ? color : Colors.grey.shade300, width: 1),
+            color: selected ? color : Colors.grey.shade300,
+            width: 1,
+          ),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             if (icon != null) ...[
-              Icon(icon,
-                  size: 13,
-                  color: selected ? Colors.white : Colors.grey.shade600),
+              Icon(
+                icon,
+                size: 13,
+                color: selected ? Colors.white : Colors.grey.shade600,
+              ),
               const SizedBox(width: 4),
             ],
             Text(
@@ -282,13 +299,17 @@ class _AdminPengaduanCard extends StatelessWidget {
                         Text(
                           pengaduan.name,
                           style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 15),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
                         ),
                         const SizedBox(height: 2),
                         Text(
                           'NIK: ${pengaduan.nik}',
                           style: const TextStyle(
-                              color: Colors.grey, fontSize: 12),
+                            color: Colors.grey,
+                            fontSize: 12,
+                          ),
                         ),
                       ],
                     ),
@@ -299,25 +320,25 @@ class _AdminPengaduanCard extends StatelessWidget {
               const SizedBox(height: 8),
               Row(
                 children: [
-                  const Icon(Icons.calendar_today,
-                      size: 13, color: Colors.grey),
+                  const Icon(
+                    Icons.calendar_today,
+                    size: 13,
+                    color: Colors.grey,
+                  ),
                   const SizedBox(width: 4),
                   Text(
                     _formatDate(pengaduan.date),
-                    style:
-                        const TextStyle(color: Colors.grey, fontSize: 12),
+                    style: const TextStyle(color: Colors.grey, fontSize: 12),
                   ),
                   const SizedBox(width: 16),
-                  const Icon(Icons.location_on,
-                      size: 13, color: Colors.grey),
+                  const Icon(Icons.location_on, size: 13, color: Colors.grey),
                   const SizedBox(width: 4),
                   Expanded(
                     child: Text(
                       pengaduan.address,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                          color: Colors.grey, fontSize: 12),
+                      style: const TextStyle(color: Colors.grey, fontSize: 12),
                     ),
                   ),
                 ],
@@ -389,8 +410,7 @@ class AdminPengaduanDetailView extends StatefulWidget {
       _AdminPengaduanDetailViewState();
 }
 
-class _AdminPengaduanDetailViewState
-    extends State<AdminPengaduanDetailView> {
+class _AdminPengaduanDetailViewState extends State<AdminPengaduanDetailView> {
   late PengaduanStatus _selectedStatus;
   late TextEditingController _noteController;
   bool _saving = false;
@@ -399,8 +419,9 @@ class _AdminPengaduanDetailViewState
   void initState() {
     super.initState();
     _selectedStatus = widget.pengaduan.status;
-    _noteController =
-        TextEditingController(text: widget.pengaduan.adminNote ?? '');
+    _noteController = TextEditingController(
+      text: widget.pengaduan.adminNote ?? '',
+    );
   }
 
   @override
@@ -445,7 +466,11 @@ class _AdminPengaduanDetailViewState
     final p = widget.pengaduan;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detail Pengaduan'),
+        title: const Text(
+          'Detail Pengaduan',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
       ),
@@ -500,9 +525,12 @@ class _AdminPengaduanDetailViewState
               decoration: InputDecoration(
                 labelText: 'Status Pengaduan',
                 border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8)),
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 12, vertical: 14),
+                  horizontal: 12,
+                  vertical: 14,
+                ),
               ),
               items: PengaduanStatus.values.map((s) {
                 return DropdownMenuItem(
@@ -529,7 +557,8 @@ class _AdminPengaduanDetailViewState
                 labelText: 'Catatan Admin (opsional)',
                 alignLabelWithHint: true,
                 border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8)),
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 contentPadding: const EdgeInsets.all(12),
               ),
             ),
@@ -544,17 +573,22 @@ class _AdminPengaduanDetailViewState
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
                 child: _saving
                     ? const SizedBox(
                         height: 20,
                         width: 20,
                         child: CircularProgressIndicator(
-                            color: Colors.white, strokeWidth: 2),
+                          color: Colors.white,
+                          strokeWidth: 2,
+                        ),
                       )
-                    : const Text('Simpan Perubahan',
-                        style: TextStyle(fontSize: 15)),
+                    : const Text(
+                        'Simpan Perubahan',
+                        style: TextStyle(fontSize: 15),
+                      ),
               ),
             ),
           ],
@@ -567,7 +601,10 @@ class _AdminPengaduanDetailViewState
     return Text(
       title,
       style: const TextStyle(
-          fontSize: 15, fontWeight: FontWeight.bold, color: Colors.teal),
+        fontSize: 15,
+        fontWeight: FontWeight.bold,
+        color: Colors.teal,
+      ),
     );
   }
 }
@@ -588,11 +625,14 @@ class _DetailRow extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label,
-              style: const TextStyle(
-                  fontSize: 12,
-                  color: Colors.black54,
-                  fontWeight: FontWeight.bold)),
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 12,
+              color: Colors.black54,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const SizedBox(height: 2),
           Text(value, style: const TextStyle(fontSize: 14)),
           const Divider(),

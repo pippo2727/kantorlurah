@@ -12,7 +12,11 @@ class PengaduanView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PENGADUAN'),
+        title: const Text(
+          'PENGADUAN',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: const Color(0xff20B2AA),
         foregroundColor: Colors.white,
         elevation: 0,
@@ -34,8 +38,7 @@ class PengaduanView extends StatelessWidget {
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) =>
-                              InputPengaduanView(name: name),
+                          builder: (_) => InputPengaduanView(name: name),
                         ),
                       ),
                     ),
@@ -43,8 +46,7 @@ class PengaduanView extends StatelessWidget {
                     _MenuCard(
                       icon: Icons.list_alt_outlined,
                       title: 'Pengaduan Saya',
-                      subtitle:
-                          'Lihat daftar pengaduan yang pernah Anda buat',
+                      subtitle: 'Lihat daftar pengaduan yang pernah Anda buat',
                       color: Colors.blue,
                       onTap: () => Navigator.push(
                         context,
@@ -113,13 +115,18 @@ class _MenuCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 15)),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
+                  ),
                   const SizedBox(height: 4),
-                  Text(subtitle,
-                      style: const TextStyle(
-                          color: Colors.black54, fontSize: 12)),
+                  Text(
+                    subtitle,
+                    style: const TextStyle(color: Colors.black54, fontSize: 12),
+                  ),
                 ],
               ),
             ),

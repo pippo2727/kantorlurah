@@ -22,8 +22,8 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
   }
 
   void _reload() => setState(() {
-        _future = PengaduanService.fetchAllPengaduan();
-      });
+    _future = PengaduanService.fetchAllPengaduan();
+  });
 
   Future<void> _logout(BuildContext context) async {
     await SupabaseService.logout();
@@ -76,6 +76,8 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
         automaticallyImplyLeading: false,
         title: const Text(
           'Admin Dashboard',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         actions: [
@@ -235,10 +237,10 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                 if (recent.isEmpty)
                   _EmptyPlaceholder()
                 else
-                  ...recent.map((p) => _PengaduanCard(
-                        pengaduan: p,
-                        formatDate: _formatDate,
-                      )),
+                  ...recent.map(
+                    (p) =>
+                        _PengaduanCard(pengaduan: p, formatDate: _formatDate),
+                  ),
                 const SizedBox(height: 16),
               ],
             ),
@@ -302,10 +304,7 @@ class _PengaduanCard extends StatelessWidget {
   final Pengaduan pengaduan;
   final String Function(DateTime) formatDate;
 
-  const _PengaduanCard({
-    required this.pengaduan,
-    required this.formatDate,
-  });
+  const _PengaduanCard({required this.pengaduan, required this.formatDate});
 
   @override
   Widget build(BuildContext context) {
@@ -356,7 +355,9 @@ class _PengaduanCard extends StatelessWidget {
                     const SizedBox(width: 8),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 2),
+                        horizontal: 8,
+                        vertical: 2,
+                      ),
                       decoration: BoxDecoration(
                         color: p.status.color.withValues(alpha: 0.12),
                         borderRadius: BorderRadius.circular(20),

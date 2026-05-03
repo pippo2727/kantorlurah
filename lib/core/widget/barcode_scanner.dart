@@ -68,13 +68,13 @@ class QBarcodeScanner extends StatefulWidget {
     this.iconSize = 24,
     this.tooltip = 'Scan Barcode/QR',
     this.formats,
-  })  : _isFieldMode = false,
-        onChanged = null,
-        label = null,
-        hint = null,
-        initialValue = null,
-        validator = null,
-        prefixIcon = null;
+  }) : _isFieldMode = false,
+       onChanged = null,
+       label = null,
+       hint = null,
+       initialValue = null,
+       validator = null,
+       prefixIcon = null;
 
   /// Field mode - renders as QTextField with scan button as suffix
   const QBarcodeScanner.field({
@@ -110,8 +110,7 @@ class _QBarcodeScannerState extends State<QBarcodeScanner> {
   @override
   void didUpdateWidget(QBarcodeScanner oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget._isFieldMode &&
-        widget.initialValue != oldWidget.initialValue) {
+    if (widget._isFieldMode && widget.initialValue != oldWidget.initialValue) {
       _currentValue = widget.initialValue ?? '';
       _fieldKey = UniqueKey();
     }
@@ -253,7 +252,11 @@ class _BarcodeScannerViewState extends State<_BarcodeScannerView> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
-        title: const Text('Scan Barcode'),
+        title: const Text(
+          'Scan Barcode',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         centerTitle: true,
         actions: [
           IconButton(

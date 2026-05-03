@@ -19,14 +19,8 @@ class KeteranganView extends StatelessWidget {
           (item) => Container(
             margin: const EdgeInsets.all(0.0),
             child: ClipRRect(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(5.0),
-              ),
-              child: Image.asset(
-                item,
-                fit: BoxFit.cover,
-                width: 1000.0,
-              ),
+              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+              child: Image.asset(item, fit: BoxFit.cover, width: 1000.0),
             ),
           ),
         )
@@ -34,7 +28,11 @@ class KeteranganView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('KETERANGAN'),
+        title: const Text(
+          'KETERANGAN',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: const Color(0xff20B2AA),
         foregroundColor: Colors.white,
         elevation: 0,
@@ -44,22 +42,17 @@ class KeteranganView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const SizedBox(
-                height: 10,
-              ),
-////////////////////////////////////////////////////////////////////////
-////////////////kolom jam layanan kantor/////////////////////////
-////////////////////////////////////////////////////////
+              const SizedBox(height: 10),
+              ////////////////////////////////////////////////////////////////////////
+              ////////////////kolom jam layanan kantor/////////////////////////
+              ////////////////////////////////////////////////////////
               Container(
                 width: 375,
                 height: 220,
                 padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [
-                      Colors.teal,
-                      Colors.teal,
-                    ],
+                    colors: [Colors.teal, Colors.teal],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
@@ -75,9 +68,10 @@ class KeteranganView extends StatelessWidget {
                           child: Text(
                             "JAM LAYANAN KANTOR ",
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -85,9 +79,10 @@ class KeteranganView extends StatelessWidget {
                           child: Text(
                             '🕘 Senin – Kamis',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -95,9 +90,10 @@ class KeteranganView extends StatelessWidget {
                           child: Text(
                             '      08.00 WIB – 15.30 WIB',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -105,9 +101,10 @@ class KeteranganView extends StatelessWidget {
                           child: Text(
                             '🕘 Jumat',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -115,9 +112,10 @@ class KeteranganView extends StatelessWidget {
                           child: Text(
                             '      08.00 WIB – 11.30 WIB',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -125,9 +123,10 @@ class KeteranganView extends StatelessWidget {
                           child: Text(
                             '🕘 Sabtu & Minggu',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -135,9 +134,10 @@ class KeteranganView extends StatelessWidget {
                           child: Text(
                             '      Tutup',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],
@@ -145,11 +145,9 @@ class KeteranganView extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-/////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////
+              const SizedBox(height: 10),
+              /////////////////////////////////////////////////////////////////////////////////////
+              ///////////////////////////////////////////////////////////////////////////////////
               /////////////////KOLOM CATATATN LAYANAN/////////////////
               Container(
                 width: 375,
@@ -157,10 +155,7 @@ class KeteranganView extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [
-                      Colors.teal,
-                      Colors.teal,
-                    ],
+                    colors: [Colors.teal, Colors.teal],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
@@ -176,9 +171,10 @@ class KeteranganView extends StatelessWidget {
                           child: Text(
                             "CATATAN LAYANAN",
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -186,9 +182,10 @@ class KeteranganView extends StatelessWidget {
                           child: Text(
                             '📌 Istirahat:',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -196,9 +193,10 @@ class KeteranganView extends StatelessWidget {
                           child: Text(
                             '      Senin – Kamis : 12.00 - 13.00 WIB ',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -206,9 +204,10 @@ class KeteranganView extends StatelessWidget {
                           child: Text(
                             '      Jumat : 11.30 – 13.15 WIB',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -216,9 +215,10 @@ class KeteranganView extends StatelessWidget {
                           child: Text(
                             '📌 Layanan tertentu dapat tutup lebih',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -226,9 +226,10 @@ class KeteranganView extends StatelessWidget {
                           child: Text(
                             '      awal pada hari libur nasional.',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],
@@ -236,12 +237,8 @@ class KeteranganView extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 10),
+              const SizedBox(height: 16),
               Footer(
                 email: 'kelurahanmaharatu@gmail.com',
                 instagram: ' kelurahanmaharatu',

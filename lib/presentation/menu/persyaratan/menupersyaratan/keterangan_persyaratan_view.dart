@@ -10,7 +10,7 @@ class KeteranganPersyaratanView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(data.title!),
+        title: Text(data.title!, maxLines: 1, overflow: TextOverflow.ellipsis),
         backgroundColor: const Color(0xff20B2AA),
         foregroundColor: Colors.white,
         elevation: 0,
@@ -20,9 +20,7 @@ class KeteranganPersyaratanView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Column(
@@ -37,17 +35,10 @@ class KeteranganPersyaratanView extends StatelessWidget {
                       ),
                     ),
                     const Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 0,
-                        vertical: 0,
-                      ),
-                      child: Divider(
-                        thickness: 5,
-                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                      child: Divider(thickness: 5),
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    const SizedBox(height: 5),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: data.persyaratan!.map((value) {
@@ -67,13 +58,8 @@ class KeteranganPersyaratanView extends StatelessWidget {
                       }).toList(),
                     ),
                     const Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 0,
-                        vertical: 0,
-                      ),
-                      child: Divider(
-                        thickness: 5,
-                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                      child: Divider(thickness: 5),
                     ),
                     InkWell(
                       child: Container(
@@ -96,7 +82,7 @@ class KeteranganPersyaratanView extends StatelessWidget {
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 const Color primaryColor = Color(0xff20B2AA);
 const Color secondaryColor = Color(0xff2D5524);
 const Color successColor = Colors.green;
-const Color infoColor = Colors.blue; 
+const Color infoColor = Colors.blue;
 const Color warningColor = Colors.orange;
 const Color dangerColor = Colors.red;
 const Color disabledColor = Colors.grey;
@@ -47,43 +47,86 @@ class AppTheme {
       scaffoldBackgroundColor: Colors.white,
       textTheme: const TextTheme(
         // Display
-        displayLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: textPrimaryColor),
-        displayMedium: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: textPrimaryColor),
-        displaySmall: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: textPrimaryColor),
+        displayLarge: TextStyle(
+          fontSize: 32,
+          fontWeight: FontWeight.bold,
+          color: textPrimaryColor,
+        ),
+        displayMedium: TextStyle(
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
+          color: textPrimaryColor,
+        ),
+        displaySmall: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: textPrimaryColor,
+        ),
         // Headline
-        headlineLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w600, color: textPrimaryColor),
-        headlineMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: textPrimaryColor),
-        headlineSmall: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: textPrimaryColor),
+        headlineLarge: TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.w600,
+          color: textPrimaryColor,
+        ),
+        headlineMedium: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: textPrimaryColor,
+        ),
+        headlineSmall: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          color: textPrimaryColor,
+        ),
         // Title
-        titleLarge: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: textPrimaryColor),
-        titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: textPrimaryColor),
-        titleSmall: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: textPrimaryColor),
+        titleLarge: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          color: textPrimaryColor,
+        ),
+        titleMedium: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+          color: textPrimaryColor,
+        ),
+        titleSmall: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          color: textPrimaryColor,
+        ),
         // Body
         bodyLarge: TextStyle(fontSize: 16, color: textPrimaryColor),
         bodyMedium: TextStyle(fontSize: 14, color: textPrimaryColor),
         bodySmall: TextStyle(fontSize: 12, color: textSecondaryColor),
         // Label
-        labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: textSecondaryColor),
+        labelLarge: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          color: textSecondaryColor,
+        ),
         labelMedium: TextStyle(fontSize: 12, color: textMutedColor),
         labelSmall: TextStyle(fontSize: 10, color: textMutedColor),
       ),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
-        centerTitle: true,
-        systemOverlayStyle: const SystemUiOverlayStyle(
+        scrolledUnderElevation: 0,
+        centerTitle: false,
+        toolbarHeight: 50,
+        titleSpacing: 12,
+        systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: primaryColor,
           statusBarIconBrightness: Brightness.light,
           statusBarBrightness: Brightness.dark,
         ),
-        titleTextStyle: const TextStyle(
-          fontSize: 18,
+        titleTextStyle: TextStyle(
+          fontSize: 16,
           fontWeight: FontWeight.w600,
           color: Colors.white,
         ),
-        iconTheme: const IconThemeData(color: Colors.white),
-        actionsIconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.white, size: 20),
+        actionsIconTheme: IconThemeData(color: Colors.white, size: 20),
       ),
       tabBarTheme: const TabBarThemeData(
         labelColor: Colors.white,
@@ -167,9 +210,10 @@ class AppTheme {
         labelTextStyle: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
             return const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: primaryColor);
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: primaryColor,
+            );
           }
           return TextStyle(fontSize: 12, color: Colors.grey.shade500);
         }),

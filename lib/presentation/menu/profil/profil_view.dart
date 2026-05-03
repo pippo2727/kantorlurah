@@ -20,14 +20,8 @@ class ProfilView extends StatelessWidget {
           (item) => Container(
             margin: const EdgeInsets.all(0.0),
             child: ClipRRect(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(5.0),
-              ),
-              child: Image.asset(
-                item,
-                fit: BoxFit.cover,
-                width: 1000.0,
-              ),
+              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+              child: Image.asset(item, fit: BoxFit.cover, width: 1000.0),
             ),
           ),
         )
@@ -35,7 +29,11 @@ class ProfilView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PROFIL'),
+        title: const Text(
+          'PROFIL',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: const Color(0xff20B2AA),
         foregroundColor: Colors.white,
         elevation: 0,
@@ -46,13 +44,8 @@ class ProfilView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 0,
-                  vertical: 5,
-                ),
-                child: Divider(
-                  thickness: 2,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+                child: Divider(thickness: 2),
               ),
               // Carousel image
               CarouselSlider(
@@ -63,19 +56,14 @@ class ProfilView extends StatelessWidget {
                 ),
                 items: imageSliders,
               ),
-              const SizedBox(
-                height: 26,
-              ),
+              const SizedBox(height: 26),
 
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [
-                      Colors.teal,
-                      Colors.teal,
-                    ],
+                    colors: [Colors.teal, Colors.teal],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
@@ -91,9 +79,10 @@ class ProfilView extends StatelessWidget {
                           child: Text(
                             'Kantor Lurah Maharatu merupakan perangkat pemerintahan kelurahan yang berada di bawah Kecamatan Marpoyan Damai, Kota Pekanbaru. Kantor lurah berperan sebagai ujung tombak pelayanan pemerintahan kepada masyarakat di tingkat kelurahan, dengan tugas utama menyelenggarakan pelayanan administrasi, pemerintahan, pembangunan, serta pemberdayaan masyarakat.',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],
@@ -101,18 +90,13 @@ class ProfilView extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [
-                      Colors.teal,
-                      Colors.teal,
-                    ],
+                    colors: [Colors.teal, Colors.teal],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
@@ -128,9 +112,10 @@ class ProfilView extends StatelessWidget {
                           child: Text(
                             "IDENTITAS KANTOR LURAH ",
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -138,9 +123,10 @@ class ProfilView extends StatelessWidget {
                           child: Text(
                             '⚫ Nama Kelurahan : Maharatu',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -148,9 +134,10 @@ class ProfilView extends StatelessWidget {
                           child: Text(
                             '⚫ Kecamatan : Marpoyan Damai',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -158,9 +145,10 @@ class ProfilView extends StatelessWidget {
                           child: Text(
                             '⚫ Kota : Pekanbaru',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -168,9 +156,10 @@ class ProfilView extends StatelessWidget {
                           child: Text(
                             '⚫ Provinsi : Riau',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -178,9 +167,10 @@ class ProfilView extends StatelessWidget {
                           child: Text(
                             '⚫ Status Wilayah : Kelurahan',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],
@@ -188,18 +178,13 @@ class ProfilView extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [
-                      Colors.teal,
-                      Colors.teal,
-                    ],
+                    colors: [Colors.teal, Colors.teal],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
@@ -215,9 +200,10 @@ class ProfilView extends StatelessWidget {
                           child: Text(
                             "VISI",
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -225,22 +211,22 @@ class ProfilView extends StatelessWidget {
                           child: Text(
                             'Terwujudnya pelayanan publik yang prima, transparan, dan akuntabel guna meningkatkan kesejahteraan masyarakat Kelurahan Maharatu.',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         const SizedBox(
                           width: 350,
                           child: Text(
                             "MISI",
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -248,9 +234,10 @@ class ProfilView extends StatelessWidget {
                           child: Text(
                             '1. Meningkatkan kualitas pelayanan administrasi kelurahan yang cepat, tepat, dan ramah.',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -258,9 +245,10 @@ class ProfilView extends StatelessWidget {
                           child: Text(
                             '2. Mewujudkan tata kelola pemerintahan kelurahan yang transparan dan bertanggung jawab.',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -268,9 +256,10 @@ class ProfilView extends StatelessWidget {
                           child: Text(
                             '3. Mendorong partisipasi aktif masyarakat dalam pembangunan dan kegiatan sosial.',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -278,9 +267,10 @@ class ProfilView extends StatelessWidget {
                           child: Text(
                             '4. Memanfaatkan teknologi informasi dalam mendukung pelayanan kepada masyarakat.',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],
@@ -288,9 +278,7 @@ class ProfilView extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               Footer(
                 email: 'kelurahanmaharatu@gmail.com',
                 instagram: ' kelurahanmaharatu',

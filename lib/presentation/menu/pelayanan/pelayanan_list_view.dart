@@ -9,7 +9,11 @@ class PelayananListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ajukan Pelayanan'),
+        title: const Text(
+          'Ajukan Pelayanan',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
       ),
@@ -21,10 +25,7 @@ class PelayananListView extends StatelessWidget {
             children: [
               const Text(
                 'Pilih Jenis Pelayanan',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
               const Text(
@@ -32,18 +33,20 @@ class PelayananListView extends StatelessWidget {
                 style: TextStyle(color: Colors.grey),
               ),
               const SizedBox(height: 16),
-              ...JenisPelayanan.values.map((jenis) => _PelayananCard(
-                    jenis: jenis,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              PelayananFormView(jenisPelayanan: jenis),
-                        ),
-                      );
-                    },
-                  )),
+              ...JenisPelayanan.values.map(
+                (jenis) => _PelayananCard(
+                  jenis: jenis,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            PelayananFormView(jenisPelayanan: jenis),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
@@ -56,19 +59,14 @@ class _PelayananCard extends StatelessWidget {
   final JenisPelayanan jenis;
   final VoidCallback onTap;
 
-  const _PelayananCard({
-    required this.jenis,
-    required this.onTap,
-  });
+  const _PelayananCard({required this.jenis, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
@@ -83,11 +81,7 @@ class _PelayananCard extends StatelessWidget {
                   color: jenis.color.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(
-                  jenis.icon,
-                  color: jenis.color,
-                  size: 28,
-                ),
+                child: Icon(jenis.icon, color: jenis.color, size: 28),
               ),
               const SizedBox(width: 16),
               Expanded(
@@ -104,19 +98,12 @@ class _PelayananCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       '${jenis.requiredDocuments.length} dokumen diperlukan',
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey[600],
-                      ),
+                      style: TextStyle(fontSize: 13, color: Colors.grey[600]),
                     ),
                   ],
                 ),
               ),
-              Icon(
-                Icons.arrow_forward_ios,
-                size: 16,
-                color: Colors.grey[400],
-              ),
+              Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[400]),
             ],
           ),
         ),

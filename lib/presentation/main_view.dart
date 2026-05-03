@@ -18,7 +18,11 @@ class MainView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PELAYANANKU'),
+        title: const Text(
+          'PELAYANANKU',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: const Color(0xff20B2AA),
         foregroundColor: Colors.white,
         automaticallyImplyLeading: false,
@@ -32,9 +36,7 @@ class MainView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppLogoWithTitleAndSubtitle(),
-              const SizedBox(
-                height: 20.0,
-              ),
+              const SizedBox(height: 20.0),
               // Welcome header card
               const Text(
                 'MENU LAYANAN',

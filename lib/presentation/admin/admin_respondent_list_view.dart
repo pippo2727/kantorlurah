@@ -10,7 +10,11 @@ class AdminRespondentListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('DAFTAR RESPONDEN'),
+        title: const Text(
+          'DAFTAR RESPONDEN',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
@@ -21,8 +25,11 @@ class AdminRespondentListView extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.people_outline,
-                      size: 64, color: Colors.grey.shade300),
+                  Icon(
+                    Icons.people_outline,
+                    size: 64,
+                    color: Colors.grey.shade300,
+                  ),
                   const SizedBox(height: 16),
                   Text(
                     'Belum ada responden',
@@ -46,8 +53,7 @@ class AdminRespondentListView extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (_) =>
-                            AdminRespondentDetailView(response: r),
+                        builder: (_) => AdminRespondentDetailView(response: r),
                       ),
                     );
                   },

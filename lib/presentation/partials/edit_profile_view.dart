@@ -44,9 +44,9 @@ class _EditProfileViewState extends State<EditProfileView> {
       lastDate: DateTime.now(),
       helpText: 'Pilih Tanggal Lahir',
       builder: (context, child) => Theme(
-        data: Theme.of(context).copyWith(
-          colorScheme: const ColorScheme.light(primary: primaryColor),
-        ),
+        data: Theme.of(
+          context,
+        ).copyWith(colorScheme: const ColorScheme.light(primary: primaryColor)),
         child: child!,
       ),
     );
@@ -86,6 +86,8 @@ class _EditProfileViewState extends State<EditProfileView> {
         foregroundColor: Colors.white,
         title: const Text(
           'Edit Profil',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         elevation: 0,
@@ -115,8 +117,10 @@ class _EditProfileViewState extends State<EditProfileView> {
                   hintText: 'Masukkan nama lengkap',
                   filled: true,
                   fillColor: Colors.white,
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 14,
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide(color: Colors.grey.shade300),
@@ -127,8 +131,10 @@ class _EditProfileViewState extends State<EditProfileView> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide:
-                        const BorderSide(color: primaryColor, width: 1.5),
+                    borderSide: const BorderSide(
+                      color: primaryColor,
+                      width: 1.5,
+                    ),
                   ),
                 ),
                 validator: (v) {
@@ -154,7 +160,9 @@ class _EditProfileViewState extends State<EditProfileView> {
                 child: Container(
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 16, vertical: 14),
+                    horizontal: 16,
+                    vertical: 14,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -162,12 +170,18 @@ class _EditProfileViewState extends State<EditProfileView> {
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.calendar_today_outlined,
-                          size: 18, color: primaryColor),
+                      const Icon(
+                        Icons.calendar_today_outlined,
+                        size: 18,
+                        color: primaryColor,
+                      ),
                       const SizedBox(width: 10),
                       Text(
                         _birthDate != null
-                            ? DateFormat('dd MMMM yyyy', 'id').format(_birthDate!)
+                            ? DateFormat(
+                                'dd MMMM yyyy',
+                                'id',
+                              ).format(_birthDate!)
                             : 'Pilih tanggal lahir',
                         style: TextStyle(
                           fontSize: 15,
@@ -201,12 +215,16 @@ class _EditProfileViewState extends State<EditProfileView> {
                           width: 20,
                           height: 20,
                           child: CircularProgressIndicator(
-                              strokeWidth: 2, color: Colors.white),
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          ),
                         )
                       : const Text(
                           'Simpan Perubahan',
                           style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                 ),
               ),

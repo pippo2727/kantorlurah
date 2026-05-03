@@ -43,7 +43,8 @@ class _RegisterViewState extends State<RegisterView> {
       } else {
         // Email confirmation required
         AppSnackbar.success(
-            'Cek email Anda untuk konfirmasi, lalu silakan masuk.');
+          'Cek email Anda untuk konfirmasi, lalu silakan masuk.',
+        );
         Navigator.of(context).pop();
       }
     } on AuthException catch (e) {
@@ -61,7 +62,11 @@ class _RegisterViewState extends State<RegisterView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Daftar Akun'),
+        title: const Text(
+          'Daftar Akun',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         leading: BackButton(onPressed: () => Navigator.of(context).pop()),
       ),
       body: SingleChildScrollView(
@@ -164,8 +169,10 @@ class _RegisterViewState extends State<RegisterView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Sudah punya akun? ',
-                      style: TextStyle(color: Colors.black54)),
+                  const Text(
+                    'Sudah punya akun? ',
+                    style: TextStyle(color: Colors.black54),
+                  ),
                   GestureDetector(
                     onTap: () => Navigator.of(context).pop(),
                     child: Text(

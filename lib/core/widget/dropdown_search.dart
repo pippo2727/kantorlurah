@@ -64,8 +64,11 @@ class _QDropdownSearchState<T> extends State<QDropdownSearch<T>> {
       children: [
         Text(
           widget.label,
-          style: TextStyle(fontSize: defaultFormFieldFontSize, fontWeight: FontWeight.w500),
-        ), 
+          style: TextStyle(
+            fontSize: defaultFormFieldFontSize,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
         const SizedBox(height: 8),
         InkWell(
           onTap: widget.enabled
@@ -130,7 +133,7 @@ class _QDropdownSearchState<T> extends State<QDropdownSearch<T>> {
             style: const TextStyle(color: dangerColor, fontSize: 12),
           ),
         ],
-      ], 
+      ],
     );
   }
 }
@@ -205,7 +208,14 @@ class _DropdownSearchPickerState<T> extends State<_DropdownSearchPicker<T>> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Select ${widget.title}'), centerTitle: true),
+      appBar: AppBar(
+        title: Text(
+          'Select ${widget.title}',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+        centerTitle: true,
+      ),
       body: Column(
         children: [
           // Search field

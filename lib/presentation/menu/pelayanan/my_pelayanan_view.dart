@@ -29,14 +29,15 @@ class _MyPelayananViewState extends State<MyPelayananView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Riwayat Permohonan'),
+        title: const Text(
+          'Riwayat Permohonan',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: _reload,
-          ),
+          IconButton(icon: const Icon(Icons.refresh), onPressed: _reload),
         ],
       ),
       body: FutureBuilder<List<Pelayanan>>(
@@ -71,15 +72,11 @@ class _MyPelayananViewState extends State<MyPelayananView> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.inbox_outlined,
-                      size: 64, color: Colors.grey[400]),
+                  Icon(Icons.inbox_outlined, size: 64, color: Colors.grey[400]),
                   const SizedBox(height: 16),
                   Text(
                     'Belum ada permohonan',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey[600],
-                    ),
+                    style: TextStyle(fontSize: 16, color: Colors.grey[600]),
                   ),
                 ],
               ),
@@ -198,7 +195,8 @@ class _MyPelayananViewState extends State<MyPelayananView> {
               const Divider(height: 32),
               _DetailRow(label: 'Nama', value: p.name),
               _DetailRow(label: 'NIK', value: p.nik),
-              if (p.phone != null) _DetailRow(label: 'Telepon', value: p.phone!),
+              if (p.phone != null)
+                _DetailRow(label: 'Telepon', value: p.phone!),
               if (p.address != null)
                 _DetailRow(label: 'Alamat', value: p.address!),
               _DetailRow(
@@ -241,33 +239,28 @@ class _MyPelayananViewState extends State<MyPelayananView> {
               const SizedBox(height: 16),
               const Text(
                 'Dokumen Yang Diupload',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
-              ...p.documents.map((doc) => ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: const Icon(
-                      Icons.picture_as_pdf,
-                      color: Colors.red,
-                    ),
-                    title: Text(
-                      doc.label,
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.open_in_new),
-                      onPressed: () async {
-                        final uri = Uri.parse(doc.url);
-                        if (await canLaunchUrl(uri)) {
-                          await launchUrl(uri,
-                              mode: LaunchMode.externalApplication);
-                        }
-                      },
-                    ),
-                  )),
+              ...p.documents.map(
+                (doc) => ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: const Icon(Icons.picture_as_pdf, color: Colors.red),
+                  title: Text(doc.label, style: const TextStyle(fontSize: 14)),
+                  trailing: IconButton(
+                    icon: const Icon(Icons.open_in_new),
+                    onPressed: () async {
+                      final uri = Uri.parse(doc.url);
+                      if (await canLaunchUrl(uri)) {
+                        await launchUrl(
+                          uri,
+                          mode: LaunchMode.externalApplication,
+                        );
+                      }
+                    },
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -280,18 +273,13 @@ class _PelayananCard extends StatelessWidget {
   final Pelayanan pelayanan;
   final VoidCallback onTap;
 
-  const _PelayananCard({
-    required this.pelayanan,
-    required this.onTap,
-  });
+  const _PelayananCard({required this.pelayanan, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
@@ -326,10 +314,7 @@ class _PelayananCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       '${pelayanan.createdAt.day}/${pelayanan.createdAt.month}/${pelayanan.createdAt.year}',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey[600],
-                      ),
+                      style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                     ),
                   ],
                 ),
@@ -375,10 +360,7 @@ class _DetailRow extends StatelessWidget {
   final String label;
   final String value;
 
-  const _DetailRow({
-    required this.label,
-    required this.value,
-  });
+  const _DetailRow({required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -389,12 +371,7 @@ class _DetailRow extends StatelessWidget {
         children: [
           SizedBox(
             width: 100,
-            child: Text(
-              label,
-              style: TextStyle(
-                color: Colors.grey[600],
-              ),
-            ),
+            child: Text(label, style: TextStyle(color: Colors.grey[600])),
           ),
           const Text(': '),
           Expanded(child: Text(value)),

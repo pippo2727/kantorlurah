@@ -22,7 +22,7 @@ class NikahView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(data.title!),
+        title: Text(data.title!, maxLines: 1, overflow: TextOverflow.ellipsis),
         backgroundColor: const Color(0xff20B2AA),
         foregroundColor: Colors.white,
         elevation: 0,
@@ -32,9 +32,7 @@ class NikahView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Column(
@@ -49,24 +47,19 @@ class NikahView extends StatelessWidget {
                       ),
                     ),
                     const Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 0,
-                        vertical: 0,
-                      ),
-                      child: Divider(
-                        thickness: 5,
-                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                      child: Divider(thickness: 5),
                     ),
-                    const SizedBox(
-                      height: 4,
-                    ),
+                    const SizedBox(height: 4),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: data.persyaratan!.asMap().entries.map((entry) {
                         int index = entry.key;
                         return Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 5.0, vertical: 5.0),
+                            horizontal: 5.0,
+                            vertical: 5.0,
+                          ),
                           child: Text(
                             '${index + 1}. ${entry.value}',
                             textAlign: TextAlign.left,
@@ -91,10 +84,7 @@ class NikahView extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: const [
-                            Icon(
-                              Icons.download_rounded,
-                              color: Colors.white,
-                            ),
+                            Icon(Icons.download_rounded, color: Colors.white),
                             Text(
                               'Download Formulir\nPermohonan Nikah',
                               style: TextStyle(
@@ -107,13 +97,8 @@ class NikahView extends StatelessWidget {
                       ),
                     ),
                     const Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 0,
-                        vertical: 0,
-                      ),
-                      child: Divider(
-                        thickness: 5,
-                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                      child: Divider(thickness: 5),
                     ),
                     InkWell(
                       child: Container(
@@ -136,7 +121,7 @@ class NikahView extends StatelessWidget {
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

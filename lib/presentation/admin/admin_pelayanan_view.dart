@@ -31,9 +31,11 @@ class _AdminPelayananViewState extends State<AdminPelayananView> {
   List<Pelayanan> _applyFilters(List<Pelayanan> all) {
     return all.where((p) {
       final matchStatus = _filterStatus == null || p.status == _filterStatus;
-      final matchJenis = _filterJenis == null || p.jenisPelayanan == _filterJenis;
+      final matchJenis =
+          _filterJenis == null || p.jenisPelayanan == _filterJenis;
       final q = _searchQuery.toLowerCase();
-      final matchSearch = q.isEmpty ||
+      final matchSearch =
+          q.isEmpty ||
           p.name.toLowerCase().contains(q) ||
           p.nik.contains(q) ||
           p.jenisPelayanan.label.toLowerCase().contains(q);
@@ -45,7 +47,11 @@ class _AdminPelayananViewState extends State<AdminPelayananView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Permohonan Pelayanan'),
+        title: const Text(
+          'Permohonan Pelayanan',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
         actions: [
@@ -98,13 +104,16 @@ class _AdminPelayananViewState extends State<AdminPelayananView> {
                   selected: _filterStatus == null,
                   onSelected: (_) => setState(() => _filterStatus = null),
                 ),
-                ...PelayananStatus.values.map((s) => _FilterChip(
-                      label: s.label,
-                      selected: _filterStatus == s,
-                      color: s.color,
-                      onSelected: (_) =>
-                          setState(() => _filterStatus = _filterStatus == s ? null : s),
-                    )),
+                ...PelayananStatus.values.map(
+                  (s) => _FilterChip(
+                    label: s.label,
+                    selected: _filterStatus == s,
+                    color: s.color,
+                    onSelected: (_) => setState(
+                      () => _filterStatus = _filterStatus == s ? null : s,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -123,7 +132,11 @@ class _AdminPelayananViewState extends State<AdminPelayananView> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.error_outline, size: 48, color: Colors.red),
+                        const Icon(
+                          Icons.error_outline,
+                          size: 48,
+                          color: Colors.red,
+                        ),
                         const SizedBox(height: 16),
                         Text('Error: ${snapshot.error}'),
                         const SizedBox(height: 16),
@@ -143,11 +156,18 @@ class _AdminPelayananViewState extends State<AdminPelayananView> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.inbox_outlined, size: 64, color: Colors.grey[400]),
+                        Icon(
+                          Icons.inbox_outlined,
+                          size: 64,
+                          color: Colors.grey[400],
+                        ),
                         const SizedBox(height: 16),
                         Text(
                           'Tidak ada permohonan',
-                          style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey[600],
+                          ),
                         ),
                       ],
                     ),
@@ -183,10 +203,8 @@ class _AdminPelayananViewState extends State<AdminPelayananView> {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (context) => _AdminDetailSheet(
-        pelayanan: p,
-        onStatusUpdated: _reload,
-      ),
+      builder: (context) =>
+          _AdminDetailSheet(pelayanan: p, onStatusUpdated: _reload),
     );
   }
 }
@@ -227,18 +245,13 @@ class _PelayananAdminCard extends StatelessWidget {
   final Pelayanan pelayanan;
   final VoidCallback onTap;
 
-  const _PelayananAdminCard({
-    required this.pelayanan,
-    required this.onTap,
-  });
+  const _PelayananAdminCard({required this.pelayanan, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
@@ -317,10 +330,7 @@ class _PelayananAdminCard extends StatelessWidget {
               const SizedBox(height: 12),
               Row(
                 children: [
-                  _InfoChip(
-                    icon: Icons.credit_card,
-                    label: pelayanan.nik,
-                  ),
+                  _InfoChip(icon: Icons.credit_card, label: pelayanan.nik),
                   const SizedBox(width: 12),
                   _InfoChip(
                     icon: Icons.calendar_today,
@@ -341,10 +351,7 @@ class _InfoChip extends StatelessWidget {
   final IconData icon;
   final String label;
 
-  const _InfoChip({
-    required this.icon,
-    required this.label,
-  });
+  const _InfoChip({required this.icon, required this.label});
 
   @override
   Widget build(BuildContext context) {
@@ -353,13 +360,7 @@ class _InfoChip extends StatelessWidget {
       children: [
         Icon(icon, size: 14, color: Colors.grey),
         const SizedBox(width: 4),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey[600],
-          ),
-        ),
+        Text(label, style: TextStyle(fontSize: 12, color: Colors.grey[600])),
       ],
     );
   }
@@ -501,50 +502,47 @@ class _AdminDetailSheetState extends State<_AdminDetailSheet> {
             // Data Pemohon
             const Text(
               'Data Pemohon',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             _DetailRow(label: 'Nama', value: p.name),
             _DetailRow(label: 'NIK', value: p.nik),
             if (p.phone != null) _DetailRow(label: 'Telepon', value: p.phone!),
-            if (p.address != null) _DetailRow(label: 'Alamat', value: p.address!),
+            if (p.address != null)
+              _DetailRow(label: 'Alamat', value: p.address!),
             const SizedBox(height: 16),
 
             // Dokumen
             const Text(
               'Dokumen Persyaratan',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            ...p.documents.map((doc) => ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  leading: const Icon(Icons.picture_as_pdf, color: Colors.red),
-                  title: Text(doc.label, style: const TextStyle(fontSize: 14)),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.open_in_new),
-                    onPressed: () async {
-                      final uri = Uri.parse(doc.url);
-                      if (await canLaunchUrl(uri)) {
-                        await launchUrl(uri, mode: LaunchMode.externalApplication);
-                      }
-                    },
-                  ),
-                )),
+            ...p.documents.map(
+              (doc) => ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.picture_as_pdf, color: Colors.red),
+                title: Text(doc.label, style: const TextStyle(fontSize: 14)),
+                trailing: IconButton(
+                  icon: const Icon(Icons.open_in_new),
+                  onPressed: () async {
+                    final uri = Uri.parse(doc.url);
+                    if (await canLaunchUrl(uri)) {
+                      await launchUrl(
+                        uri,
+                        mode: LaunchMode.externalApplication,
+                      );
+                    }
+                  },
+                ),
+              ),
+            ),
             const Divider(height: 32),
 
             // Update Status
             const Text(
               'Update Status',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
             Wrap(
@@ -556,7 +554,11 @@ class _AdminDetailSheetState extends State<_AdminDetailSheet> {
                   label: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(s.icon, size: 16, color: isSelected ? Colors.white : s.color),
+                      Icon(
+                        s.icon,
+                        size: 16,
+                        color: isSelected ? Colors.white : s.color,
+                      ),
                       const SizedBox(width: 4),
                       Text(s.label),
                     ],
@@ -627,10 +629,7 @@ class _DetailRow extends StatelessWidget {
   final String label;
   final String value;
 
-  const _DetailRow({
-    required this.label,
-    required this.value,
-  });
+  const _DetailRow({required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -641,10 +640,7 @@ class _DetailRow extends StatelessWidget {
         children: [
           SizedBox(
             width: 80,
-            child: Text(
-              label,
-              style: TextStyle(color: Colors.grey[600]),
-            ),
+            child: Text(label, style: TextStyle(color: Colors.grey[600])),
           ),
           const Text(': '),
           Expanded(child: Text(value)),

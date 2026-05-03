@@ -385,6 +385,8 @@
     <div class="nav-tab" data-target="fc-domisili">Surat Domisili</div>
     <div class="nav-tab" data-target="fc-persyaratan">Info Persyaratan</div>
     <div class="nav-tab" data-target="fc-pengaduan">Pengaduan</div>
+    <div class="nav-tab" data-target="fc-survey-user">Survey User</div>
+    <div class="nav-tab" data-target="fc-survey-admin">Survey Admin</div>
     <div class="nav-tab" data-target="fc-jam">Jam Pelayanan</div>
     <div class="nav-tab" data-target="fc-profil">Profil Kantor</div>
   </div>
@@ -860,6 +862,87 @@
     </div>
   </div>
 
+  <!-- Survey Kepuasan - User -->
+  <div class="flowchart-container" id="fc-survey-user">
+    <div class="flowchart-title">Flowchart Survey Kepuasan - Sisi User</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 900px; height: 1140px;">
+        <svg class="fc-svg" id="svg-survey-user"></svg>
+
+        <div class="fc-shape fc-terminal" id="survey-user-start" style="left: 390px; top: 20px; width: 120px;">Mulai</div>
+        <div class="fc-shape fc-process" id="survey-user-menu" style="left: 280px; top: 100px; width: 340px;">Masuk sebagai user &amp; buka tab "Survey"</div>
+        <div class="fc-shape fc-process" id="survey-user-checkdb" style="left: 280px; top: 180px; width: 340px;">Cek riwayat survey berdasarkan user_id</div>
+        <div class="fc-shape fc-decision" id="survey-user-exists" style="left: 400px; top: 290px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Sudah Pernah Isi?</span>
+        </div>
+        <div class="fc-label" style="left: 530px; top: 320px;">Ya</div>
+        <div class="fc-label no" style="left: 435px; top: 410px;">Tidak</div>
+
+        <div class="fc-shape fc-process" id="survey-user-thanks" style="left: 620px; top: 280px; width: 220px;">Tampilkan status "Sudah Mengisi" / Terima Kasih</div>
+        <div class="fc-shape fc-process" id="survey-user-form" style="left: 250px; top: 430px; width: 320px;">Tampilkan form survey 15 pertanyaan</div>
+        <div class="fc-shape fc-io" id="survey-user-input" style="left: 220px; top: 520px; width: 380px;">
+          <span class="fc-io-text">Pilih skor 1-5 untuk setiap pertanyaan</span>
+        </div>
+        <div class="fc-shape fc-process" id="survey-user-submit" style="left: 280px; top: 610px; width: 260px;">Tap "Kirim Survey"</div>
+        <div class="fc-shape fc-decision" id="survey-user-complete" style="left: 400px; top: 700px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Semua Terjawab?</span>
+        </div>
+        <div class="fc-label" style="left: 530px; top: 730px;">Ya</div>
+        <div class="fc-label no" style="left: 435px; top: 820px;">Tidak</div>
+
+        <div class="fc-shape fc-process" id="survey-user-warning" style="left: 220px; top: 840px; width: 300px;">Tampilkan peringatan untuk melengkapi jawaban</div>
+        <div class="fc-shape fc-data" id="survey-user-save" style="left: 600px; top: 690px; width: 260px;">Simpan jawaban ke tabel survey_responses</div>
+        <div class="fc-shape fc-decision" id="survey-user-save-check" style="left: 680px; top: 830px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Simpan Berhasil?</span>
+        </div>
+        <div class="fc-label" style="left: 620px; top: 860px;">Ya</div>
+        <div class="fc-label no" style="left: 715px; top: 950px;">Tidak</div>
+
+        <div class="fc-shape fc-process" id="survey-user-error" style="left: 560px; top: 960px; width: 300px;">Tampilkan error pengiriman survey</div>
+        <div class="fc-shape fc-terminal end" id="survey-user-end" style="left: 670px; top: 1080px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Survey Kepuasan - Admin -->
+  <div class="flowchart-container" id="fc-survey-admin">
+    <div class="flowchart-title">Flowchart Survey Kepuasan - Sisi Admin</div>
+    <div class="fc-wrapper">
+      <div class="fc-canvas" style="width: 900px; height: 1160px;">
+        <svg class="fc-svg" id="svg-survey-admin"></svg>
+
+        <div class="fc-shape fc-terminal" id="survey-admin-start" style="left: 390px; top: 20px; width: 120px;">Mulai</div>
+        <div class="fc-shape fc-process" id="survey-admin-menu" style="left: 260px; top: 100px; width: 380px;">Masuk sebagai admin &amp; buka tab "Survey"</div>
+        <div class="fc-shape fc-process" id="survey-admin-fetch" style="left: 260px; top: 180px; width: 380px;">Ambil data survey_responses beserta profil user</div>
+        <div class="fc-shape fc-decision" id="survey-admin-loaded" style="left: 400px; top: 290px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Data Berhasil Dimuat?</span>
+        </div>
+        <div class="fc-label" style="left: 530px; top: 320px;">Ya</div>
+        <div class="fc-label no" style="left: 290px; top: 320px;">Tidak</div>
+
+        <div class="fc-shape fc-process" id="survey-admin-error" style="left: 80px; top: 430px; width: 250px;">Tampilkan pesan gagal &amp; tombol refresh</div>
+        <div class="fc-shape fc-decision" id="survey-admin-has-data" style="left: 680px; top: 290px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Ada Responden?</span>
+        </div>
+        <div class="fc-label" style="left: 630px; top: 360px;">Ya</div>
+        <div class="fc-label no" style="left: 715px; top: 410px;">Tidak</div>
+
+        <div class="fc-shape fc-process" id="survey-admin-empty" style="left: 620px; top: 430px; width: 220px;">Tampilkan status "Belum ada responden"</div>
+        <div class="fc-shape fc-process" id="survey-admin-dashboard" style="left: 230px; top: 480px; width: 420px;">Tampilkan total responden, rata-rata skor, grafik, dan detail per pertanyaan</div>
+        <div class="fc-shape fc-decision" id="survey-admin-open-list" style="left: 400px; top: 620px; width: 100px; height: 100px;">
+          <span class="fc-decision-text">Lihat Detail Responden?</span>
+        </div>
+        <div class="fc-label" style="left: 435px; top: 740px;">Ya</div>
+        <div class="fc-label no" style="left: 530px; top: 650px;">Tidak</div>
+
+        <div class="fc-shape fc-process" id="survey-admin-tap" style="left: 260px; top: 760px; width: 380px;">Tap kartu "Total Responden" pada dashboard</div>
+        <div class="fc-shape fc-process" id="survey-admin-list" style="left: 260px; top: 840px; width: 380px;">Tampilkan daftar responden survey</div>
+        <div class="fc-shape fc-process" id="survey-admin-detail" style="left: 260px; top: 920px; width: 380px;">Pilih responden lalu tampilkan detail jawaban</div>
+        <div class="fc-shape fc-terminal end" id="survey-admin-end" style="left: 390px; top: 1060px; width: 120px;">Selesai</div>
+      </div>
+    </div>
+  </div>
+
   <!-- Jam Pelayanan -->
   <div class="flowchart-container" id="fc-jam">
     <div class="flowchart-title">Flowchart Jam Pelayanan</div>
@@ -1150,6 +1233,47 @@
         connect(svgPengaduan, 'pengaduan-wait', 'pengaduan-end');
       }
       
+      // SURVEY USER flowchart
+      const svgSurveyUser = document.getElementById('svg-survey-user');
+      if (svgSurveyUser) {
+        connect(svgSurveyUser, 'survey-user-start', 'survey-user-menu');
+        connect(svgSurveyUser, 'survey-user-menu', 'survey-user-checkdb');
+        connect(svgSurveyUser, 'survey-user-checkdb', 'survey-user-exists', false, true);
+        connectL(svgSurveyUser, 'survey-user-exists', 'survey-user-thanks', 'right-down', true);
+        connect(svgSurveyUser, 'survey-user-exists', 'survey-user-form', true);
+        connect(svgSurveyUser, 'survey-user-form', 'survey-user-input');
+        connect(svgSurveyUser, 'survey-user-input', 'survey-user-submit');
+        connect(svgSurveyUser, 'survey-user-submit', 'survey-user-complete', false, true);
+        connect(svgSurveyUser, 'survey-user-complete', 'survey-user-warning', true);
+        connectL(svgSurveyUser, 'survey-user-warning', 'survey-user-input', 'left-down');
+        connectL(svgSurveyUser, 'survey-user-complete', 'survey-user-save', 'right-down', true);
+        connect(svgSurveyUser, 'survey-user-save', 'survey-user-save-check', false, true);
+        connect(svgSurveyUser, 'survey-user-save-check', 'survey-user-error', true);
+        connectL(svgSurveyUser, 'survey-user-error', 'survey-user-input', 'left-down');
+        connectL(svgSurveyUser, 'survey-user-save-check', 'survey-user-thanks', 'down-left', true);
+        connect(svgSurveyUser, 'survey-user-thanks', 'survey-user-end');
+      }
+
+      // SURVEY ADMIN flowchart
+      const svgSurveyAdmin = document.getElementById('svg-survey-admin');
+      if (svgSurveyAdmin) {
+        connect(svgSurveyAdmin, 'survey-admin-start', 'survey-admin-menu');
+        connect(svgSurveyAdmin, 'survey-admin-menu', 'survey-admin-fetch');
+        connect(svgSurveyAdmin, 'survey-admin-fetch', 'survey-admin-loaded', false, true);
+        connect(svgSurveyAdmin, 'survey-admin-loaded', 'survey-admin-error', true);
+        connectL(svgSurveyAdmin, 'survey-admin-error', 'survey-admin-fetch', 'left-down');
+        connectL(svgSurveyAdmin, 'survey-admin-loaded', 'survey-admin-has-data', 'right-down', true, true);
+        connect(svgSurveyAdmin, 'survey-admin-has-data', 'survey-admin-empty', true);
+        connectL(svgSurveyAdmin, 'survey-admin-has-data', 'survey-admin-dashboard', 'down-left', true);
+        connect(svgSurveyAdmin, 'survey-admin-dashboard', 'survey-admin-open-list', false, true);
+        connectL(svgSurveyAdmin, 'survey-admin-open-list', 'survey-admin-end', 'right-down', true);
+        connect(svgSurveyAdmin, 'survey-admin-open-list', 'survey-admin-tap', true);
+        connect(svgSurveyAdmin, 'survey-admin-tap', 'survey-admin-list');
+        connect(svgSurveyAdmin, 'survey-admin-list', 'survey-admin-detail');
+        connect(svgSurveyAdmin, 'survey-admin-detail', 'survey-admin-end');
+        connectL(svgSurveyAdmin, 'survey-admin-empty', 'survey-admin-end', 'down-left');
+      }
+
       // JAM PELAYANAN flowchart
       const svgJam = document.getElementById('svg-jam');
       if (svgJam) {

@@ -15,7 +15,11 @@ class AdminRespondentDetailView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('DETAIL RESPONDEN'),
+        title: const Text(
+          'DETAIL RESPONDEN',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
@@ -209,13 +213,14 @@ class _AnswerCard extends StatelessWidget {
               children: [
                 Text(
                   question.text,
-                  style:
-                      const TextStyle(fontSize: 13, color: textPrimaryColor),
+                  style: const TextStyle(fontSize: 13, color: textPrimaryColor),
                 ),
                 const SizedBox(height: 6),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: _scoreColor(s).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(20),

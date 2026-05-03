@@ -19,14 +19,8 @@ class WaktuView extends StatelessWidget {
           (item) => Container(
             margin: const EdgeInsets.all(0.0),
             child: ClipRRect(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(5.0),
-              ),
-              child: Image.asset(
-                item,
-                fit: BoxFit.cover,
-                width: 1000.0,
-              ),
+              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+              child: Image.asset(item, fit: BoxFit.cover, width: 1000.0),
             ),
           ),
         )
@@ -34,7 +28,11 @@ class WaktuView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('JAM PELAYANAN'),
+        title: const Text(
+          'JAM PELAYANAN',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: const Color(0xff20B2AA),
         foregroundColor: Colors.white,
         elevation: 0,
@@ -44,21 +42,16 @@ class WaktuView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const SizedBox(
-                height: 10,
-              ),
-////////////////////////////////////////////////////////////////////////
-////////////////kolom jam layanan kantor/////////////////////////
-////////////////////////////////////////////////////////
+              const SizedBox(height: 10),
+              ////////////////////////////////////////////////////////////////////////
+              ////////////////kolom jam layanan kantor/////////////////////////
+              ////////////////////////////////////////////////////////
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [
-                      Colors.teal,
-                      Colors.teal,
-                    ],
+                    colors: [Colors.teal, Colors.teal],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
@@ -71,57 +64,64 @@ class WaktuView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                        const Text(
+                          const Text(
                             'JAM LAYANAN KANTOR',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        const SizedBox(height: 6),
-                        const Text(
+                          const SizedBox(height: 6),
+                          const Text(
                             '🕘 Senin – Kamis',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        const Text(
+                          const Text(
                             '      08.00 WIB – 15.30 WIB',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        const SizedBox(height: 4),
-                        const Text(
+                          const SizedBox(height: 4),
+                          const Text(
                             '🕘 Jumat',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        const Text(
+                          const Text(
                             '      08.00 WIB – 11.30 WIB',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        const SizedBox(height: 4),
-                        const Text(
+                          const SizedBox(height: 4),
+                          const Text(
                             '🕘 Sabtu & Minggu',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        const Text(
+                          const Text(
                             '      Tutup',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
@@ -129,21 +129,16 @@ class WaktuView extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-/////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////
+              const SizedBox(height: 10),
+              /////////////////////////////////////////////////////////////////////////////////////
+              ///////////////////////////////////////////////////////////////////////////////////
               /////////////////KOLOM CATATATN LAYANAN/////////////////
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [
-                      Colors.teal,
-                      Colors.teal,
-                    ],
+                    colors: [Colors.teal, Colors.teal],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
@@ -156,49 +151,55 @@ class WaktuView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                        const Text(
+                          const Text(
                             'CATATAN LAYANAN',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        const SizedBox(height: 6),
-                        const Text(
+                          const SizedBox(height: 6),
+                          const Text(
                             '📌 Istirahat:',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        const Text(
+                          const Text(
                             '      Senin – Kamis : 12.00 - 13.00 WIB',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        const Text(
+                          const Text(
                             '      Jumat : 11.30 – 13.15 WIB',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        const SizedBox(height: 4),
-                        const Text(
+                          const SizedBox(height: 4),
+                          const Text(
                             '📌 Layanan tertentu dapat tutup lebih',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        const Text(
+                          const Text(
                             '      awal pada hari libur nasional.',
                             style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.black87,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
@@ -206,12 +207,8 @@ class WaktuView extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 10),
+              const SizedBox(height: 16),
               Footer(
                 email: 'kelurahanmaharatu@gmail.com',
                 instagram: ' kelurahanmaharatu',

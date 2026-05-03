@@ -6,10 +6,7 @@ import 'package:kantor_lurah/service/pelayanan_service.dart';
 class PelayananFormView extends StatefulWidget {
   final JenisPelayanan jenisPelayanan;
 
-  const PelayananFormView({
-    super.key,
-    required this.jenisPelayanan,
-  });
+  const PelayananFormView({super.key, required this.jenisPelayanan});
 
   @override
   State<PelayananFormView> createState() => _PelayananFormViewState();
@@ -83,10 +80,12 @@ class _PelayananFormViewState extends State<PelayananFormView> {
       for (int i = 0; i < _selectedFiles.length; i++) {
         final file = _selectedFiles[i]!;
         final url = await PelayananService.uploadDocument(file);
-        documents.add(PelayananDocument(
-          label: widget.jenisPelayanan.requiredDocuments[i],
-          url: url,
-        ));
+        documents.add(
+          PelayananDocument(
+            label: widget.jenisPelayanan.requiredDocuments[i],
+            url: url,
+          ),
+        );
       }
 
       // Submit pelayanan
@@ -134,7 +133,11 @@ class _PelayananFormViewState extends State<PelayananFormView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.jenisPelayanan.shortLabel),
+        title: Text(
+          widget.jenisPelayanan.shortLabel,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
       ),
@@ -192,10 +195,7 @@ class _PelayananFormViewState extends State<PelayananFormView> {
                 // Data Diri
                 const Text(
                   'Data Diri',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
@@ -249,10 +249,7 @@ class _PelayananFormViewState extends State<PelayananFormView> {
                 // Dokumen Persyaratan
                 const Text(
                   'Dokumen Persyaratan',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 4),
                 const Text(
@@ -370,10 +367,7 @@ class _PelayananFormViewState extends State<PelayananFormView> {
                   child: const Text(
                     'Peraturan Daerah Kota Pekanbaru\nNomor 273 Tahun 2017',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                 ),
 
