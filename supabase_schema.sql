@@ -19,6 +19,9 @@ create table if not exists public.users (
   updated_at  timestamptz not null default now()
 );
 
+grant usage on schema public to anon, authenticated;
+grant select, insert, update on public.users to authenticated;
+
 -- Auto-update updated_at on row change
 create or replace function public.handle_updated_at()
 returns trigger
@@ -38,6 +41,12 @@ create or replace trigger users_updated_at
 -- Row Level Security
 -- ------------------------------------------------------------
 alter table public.users enable row level security;
+
+drop policy if exists "users: select own" on public.users;
+drop policy if exists "users: admin select all" on public.users;
+drop policy if exists "users: insert own" on public.users;
+drop policy if exists "users: update own" on public.users;
+drop policy if exists "users: service role full access" on public.users;
 
 -- Users can read only their own row
 create policy "users: select own"
@@ -110,6 +119,8 @@ create table if not exists public.pengaduan (
   updated_at     timestamptz not null default now()
 );
 
+grant select, insert, update on public.pengaduan to authenticated;
+
 -- Auto-update updated_at
 create or replace trigger pengaduan_updated_at
   before update on public.pengaduan
@@ -117,6 +128,10 @@ create or replace trigger pengaduan_updated_at
 
 -- Row Level Security
 alter table public.pengaduan enable row level security;
+
+drop policy if exists "pengaduan: insert own" on public.pengaduan;
+drop policy if exists "pengaduan: select" on public.pengaduan;
+drop policy if exists "pengaduan: admin update" on public.pengaduan;
 
 -- Users can insert their own pengaduan
 create policy "pengaduan: insert own"
@@ -162,6 +177,8 @@ create table if not exists public.pelayanan (
   updated_at       timestamptz not null default now()
 );
 
+grant select, insert, update on public.pelayanan to authenticated;
+
 -- Auto-update updated_at
 create or replace trigger pelayanan_updated_at
   before update on public.pelayanan
@@ -169,6 +186,10 @@ create or replace trigger pelayanan_updated_at
 
 -- Row Level Security
 alter table public.pelayanan enable row level security;
+
+drop policy if exists "pelayanan: insert own" on public.pelayanan;
+drop policy if exists "pelayanan: select" on public.pelayanan;
+drop policy if exists "pelayanan: admin update" on public.pelayanan;
 
 -- Users can insert their own pelayanan
 create policy "pelayanan: insert own"
@@ -200,12 +221,17 @@ create table if not exists public.survey_responses (
   created_at  timestamptz not null default now()
 );
 
+grant select, insert on public.survey_responses to authenticated;
+
 -- One survey per user
 create unique index if not exists survey_responses_user_unique
   on public.survey_responses (user_id);
 
 -- Row Level Security
 alter table public.survey_responses enable row level security;
+
+drop policy if exists "survey_responses: insert own" on public.survey_responses;
+drop policy if exists "survey_responses: select" on public.survey_responses;
 
 -- Users can insert their own survey (once)
 create policy "survey_responses: insert own"
@@ -219,4 +245,3 @@ create policy "survey_responses: select"
     user_id = auth.uid()
     OR (auth.jwt() ->> 'email') = 'admin@demo.com'
   );
-

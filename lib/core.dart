@@ -11,6 +11,7 @@ export 'package:kantor_lurah/core/util/contextless/loading.dart';
 export 'package:kantor_lurah/core/util/contextless/menu_sheet.dart';
 export 'package:kantor_lurah/core/util/contextless/navigation.dart';
 export 'package:kantor_lurah/core/util/contextless/snackbar.dart';
+export 'package:kantor_lurah/core/util/auth_error_message.dart';
 export 'package:kantor_lurah/core/util/validator.dart';
 export 'package:kantor_lurah/core/widget/app_features_card.dart';
 export 'package:kantor_lurah/core/widget/barcode_scanner.dart';

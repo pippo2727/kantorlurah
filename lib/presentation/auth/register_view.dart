@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
 import 'package:kantor_lurah/service/supabase_service.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -47,12 +46,9 @@ class _RegisterViewState extends State<RegisterView> {
         );
         Navigator.of(context).pop();
       }
-    } on AuthException catch (e) {
-      if (!mounted) return;
-      AppSnackbar.error(e.message);
     } catch (e) {
       if (!mounted) return;
-      AppSnackbar.error('Terjadi kesalahan. Silakan coba lagi.');
+      AppSnackbar.error(AuthErrorMessage.register(e));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }

@@ -25,18 +25,6 @@ class SupabaseService {
       },
     );
 
-    // The trigger handle_new_user will insert into public.users automatically.
-    // But in case the trigger didn't fire (e.g. email confirmation required),
-    // we upsert manually.
-    if (response.user != null) {
-      await _upsertUser(
-        id: response.user!.id,
-        email: email,
-        name: name,
-        birthDate: birthDate,
-      );
-    }
-
     return response;
   }
 
@@ -73,10 +61,13 @@ class SupabaseService {
   }) async {
     final uid = _client.auth.currentUser?.id;
     if (uid == null) throw Exception('Not logged in');
-    await _client.from('users').update({
-      'name': name,
-      'birth_date': birthDate.toIso8601String().split('T').first,
-    }).eq('id', uid);
+    await _client
+        .from('users')
+        .update({
+          'name': name,
+          'birth_date': birthDate.toIso8601String().split('T').first,
+        })
+        .eq('id', uid);
   }
 
   /// Fetch the current user profile from public.users
@@ -91,21 +82,6 @@ class SupabaseService {
         .maybeSingle();
 
     return data;
-  }
-
-  /// Upsert user row in public.users
-  static Future<void> _upsertUser({
-    required String id,
-    required String email,
-    required String name,
-    required DateTime birthDate,
-  }) async {
-    await _client.from('users').upsert({
-      'id': id,
-      'email': email,
-      'name': name,
-      'birth_date': birthDate.toIso8601String().split('T').first,
-    }, onConflict: 'id');
   }
 
   /// On login, ensure a row exists in public.users (creates with fallback data

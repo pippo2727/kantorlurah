@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kantor_lurah/core.dart';
 import 'package:kantor_lurah/service/supabase_service.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -43,21 +42,16 @@ class _LoginViewState extends State<LoginView> {
           final name = profile?['name'] as String? ?? user.email ?? 'User';
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
-              builder: (_) => UserMainNavigationView(
-                name: name,
-                email: user.email ?? '',
-              ),
+              builder: (_) =>
+                  UserMainNavigationView(name: name, email: user.email ?? ''),
             ),
             (route) => false,
           );
         }
       }
-    } on AuthException catch (e) {
-      if (!mounted) return;
-      AppSnackbar.error(e.message);
     } catch (e) {
       if (!mounted) return;
-      AppSnackbar.error('Terjadi kesalahan. Silakan coba lagi.');
+      AppSnackbar.error(AuthErrorMessage.login(e));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
@@ -121,7 +115,9 @@ class _LoginViewState extends State<LoginView> {
                       hint: '••••••••',
                       obscureText: true,
                       validator: (v) {
-                        if (v == null || v.isEmpty) return 'Password wajib diisi';
+                        if (v == null || v.isEmpty) {
+                          return 'Password wajib diisi';
+                        }
                         return null;
                       },
                       onChanged: (v) => _password = v,
@@ -136,12 +132,15 @@ class _LoginViewState extends State<LoginView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text('Belum punya akun? ',
-                            style: TextStyle(color: Colors.black54)),
+                        const Text(
+                          'Belum punya akun? ',
+                          style: TextStyle(color: Colors.black54),
+                        ),
                         GestureDetector(
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
-                                builder: (_) => const RegisterView()),
+                              builder: (_) => const RegisterView(),
+                            ),
                           ),
                           child: Text(
                             'Daftar',
